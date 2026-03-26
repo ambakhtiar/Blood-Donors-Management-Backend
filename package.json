@@ -23,7 +23,6 @@
     "http-status": "^2.1.0",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.20.0",
-    "prisma": "^7.5.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
@@ -35,6 +34,7 @@
     "@types/node": "^25.5.0",
     "@types/pg": "^8.20.0",
     "nodemon": "^3.1.14",
+    "prisma": "^7.5.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
