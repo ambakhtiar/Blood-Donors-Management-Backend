@@ -208,6 +208,7 @@ exports.Prisma.PostScalarFieldEnum = {
   authorId: 'authorId',
   type: 'type',
   content: 'content',
+  images: 'images',
   bloodGroup: 'bloodGroup',
   division: 'division',
   district: 'district',

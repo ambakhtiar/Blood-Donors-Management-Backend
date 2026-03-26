@@ -170,6 +170,7 @@ model Post {
   author   User     @relation(fields: [authorId], references: [id])
   type     PostType
   content  String
+  images   String[] @default([])
 
   bloodGroup   String?
   division     String?
@@ -177,7 +178,7 @@ model Post {
   upazila      String?
   requiredDate DateTime?
 
-  isApproved   Boolean @default(false)
+  isApproved   Boolean @default(true)
   targetAmount Float?
   raisedAmount Float?  @default(0)
 

@@ -10282,6 +10282,7 @@ export namespace Prisma {
     authorId: number
     type: number
     content: number
+    images: number
     bloodGroup: number
     division: number
     district: number
@@ -10348,6 +10349,7 @@ export namespace Prisma {
     authorId?: true
     type?: true
     content?: true
+    images?: true
     bloodGroup?: true
     division?: true
     district?: true
@@ -10453,6 +10455,7 @@ export namespace Prisma {
     authorId: string
     type: $Enums.PostType
     content: string
+    images: string[]
     bloodGroup: string | null
     division: string | null
     district: string | null
@@ -10490,6 +10493,7 @@ export namespace Prisma {
     authorId?: boolean
     type?: boolean
     content?: boolean
+    images?: boolean
     bloodGroup?: boolean
     division?: boolean
     district?: boolean
@@ -10509,6 +10513,7 @@ export namespace Prisma {
     authorId?: boolean
     type?: boolean
     content?: boolean
+    images?: boolean
     bloodGroup?: boolean
     division?: boolean
     district?: boolean
@@ -10528,6 +10533,7 @@ export namespace Prisma {
     authorId?: boolean
     type?: boolean
     content?: boolean
+    images?: boolean
     bloodGroup?: boolean
     division?: boolean
     district?: boolean
@@ -10547,6 +10553,7 @@ export namespace Prisma {
     authorId?: boolean
     type?: boolean
     content?: boolean
+    images?: boolean
     bloodGroup?: boolean
     division?: boolean
     district?: boolean
@@ -10560,7 +10567,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "type" | "content" | "bloodGroup" | "division" | "district" | "upazila" | "requiredDate" | "isApproved" | "targetAmount" | "raisedAmount" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "type" | "content" | "images" | "bloodGroup" | "division" | "district" | "upazila" | "requiredDate" | "isApproved" | "targetAmount" | "raisedAmount" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -10581,6 +10588,7 @@ export namespace Prisma {
       authorId: string
       type: $Enums.PostType
       content: string
+      images: string[]
       bloodGroup: string | null
       division: string | null
       district: string | null
@@ -11020,6 +11028,7 @@ export namespace Prisma {
     readonly authorId: FieldRef<"Post", 'String'>
     readonly type: FieldRef<"Post", 'PostType'>
     readonly content: FieldRef<"Post", 'String'>
+    readonly images: FieldRef<"Post", 'String[]'>
     readonly bloodGroup: FieldRef<"Post", 'String'>
     readonly division: FieldRef<"Post", 'String'>
     readonly district: FieldRef<"Post", 'String'>
@@ -15993,6 +16002,7 @@ export namespace Prisma {
     authorId: 'authorId',
     type: 'type',
     content: 'content',
+    images: 'images',
     bloodGroup: 'bloodGroup',
     division: 'division',
     district: 'district',
@@ -16794,6 +16804,7 @@ export namespace Prisma {
     authorId?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     content?: StringFilter<"Post"> | string
+    images?: StringNullableListFilter<"Post">
     bloodGroup?: StringNullableFilter<"Post"> | string | null
     division?: StringNullableFilter<"Post"> | string | null
     district?: StringNullableFilter<"Post"> | string | null
@@ -16813,6 +16824,7 @@ export namespace Prisma {
     authorId?: SortOrder
     type?: SortOrder
     content?: SortOrder
+    images?: SortOrder
     bloodGroup?: SortOrderInput | SortOrder
     division?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
@@ -16835,6 +16847,7 @@ export namespace Prisma {
     authorId?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     content?: StringFilter<"Post"> | string
+    images?: StringNullableListFilter<"Post">
     bloodGroup?: StringNullableFilter<"Post"> | string | null
     division?: StringNullableFilter<"Post"> | string | null
     district?: StringNullableFilter<"Post"> | string | null
@@ -16854,6 +16867,7 @@ export namespace Prisma {
     authorId?: SortOrder
     type?: SortOrder
     content?: SortOrder
+    images?: SortOrder
     bloodGroup?: SortOrderInput | SortOrder
     division?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
@@ -16880,6 +16894,7 @@ export namespace Prisma {
     authorId?: StringWithAggregatesFilter<"Post"> | string
     type?: EnumPostTypeWithAggregatesFilter<"Post"> | $Enums.PostType
     content?: StringWithAggregatesFilter<"Post"> | string
+    images?: StringNullableListFilter<"Post">
     bloodGroup?: StringNullableWithAggregatesFilter<"Post"> | string | null
     division?: StringNullableWithAggregatesFilter<"Post"> | string | null
     district?: StringNullableWithAggregatesFilter<"Post"> | string | null
@@ -17795,6 +17810,7 @@ export namespace Prisma {
     id?: string
     type: $Enums.PostType
     content: string
+    images?: PostCreateimagesInput | string[]
     bloodGroup?: string | null
     division?: string | null
     district?: string | null
@@ -17814,6 +17830,7 @@ export namespace Prisma {
     authorId: string
     type: $Enums.PostType
     content: string
+    images?: PostCreateimagesInput | string[]
     bloodGroup?: string | null
     division?: string | null
     district?: string | null
@@ -17831,6 +17848,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     content?: StringFieldUpdateOperationsInput | string
+    images?: PostUpdateimagesInput | string[]
     bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17850,6 +17868,7 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     content?: StringFieldUpdateOperationsInput | string
+    images?: PostUpdateimagesInput | string[]
     bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17868,6 +17887,7 @@ export namespace Prisma {
     authorId: string
     type: $Enums.PostType
     content: string
+    images?: PostCreateimagesInput | string[]
     bloodGroup?: string | null
     division?: string | null
     district?: string | null
@@ -17885,6 +17905,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     content?: StringFieldUpdateOperationsInput | string
+    images?: PostUpdateimagesInput | string[]
     bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17903,6 +17924,7 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     content?: StringFieldUpdateOperationsInput | string
+    images?: PostUpdateimagesInput | string[]
     bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18748,11 +18770,20 @@ export namespace Prisma {
     not?: NestedEnumPostTypeFilter<$PrismaModel> | $Enums.PostType
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type PostCountOrderByAggregateInput = {
     id?: SortOrder
     authorId?: SortOrder
     type?: SortOrder
     content?: SortOrder
+    images?: SortOrder
     bloodGroup?: SortOrder
     division?: SortOrder
     district?: SortOrder
@@ -19636,6 +19667,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
   }
 
+  export type PostCreateimagesInput = {
+    set: string[]
+  }
+
   export type UserCreateNestedOneWithoutPostsInput = {
     create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
     connectOrCreate?: UserCreateOrConnectWithoutPostsInput
@@ -19644,6 +19679,11 @@ export namespace Prisma {
 
   export type EnumPostTypeFieldUpdateOperationsInput = {
     set?: $Enums.PostType
+  }
+
+  export type PostUpdateimagesInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -20178,6 +20218,7 @@ export namespace Prisma {
     id?: string
     type: $Enums.PostType
     content: string
+    images?: PostCreateimagesInput | string[]
     bloodGroup?: string | null
     division?: string | null
     district?: string | null
@@ -20195,6 +20236,7 @@ export namespace Prisma {
     id?: string
     type: $Enums.PostType
     content: string
+    images?: PostCreateimagesInput | string[]
     bloodGroup?: string | null
     division?: string | null
     district?: string | null
@@ -20619,6 +20661,7 @@ export namespace Prisma {
     authorId?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     content?: StringFilter<"Post"> | string
+    images?: StringNullableListFilter<"Post">
     bloodGroup?: StringNullableFilter<"Post"> | string | null
     division?: StringNullableFilter<"Post"> | string | null
     district?: StringNullableFilter<"Post"> | string | null
@@ -22659,6 +22702,7 @@ export namespace Prisma {
     id?: string
     type: $Enums.PostType
     content: string
+    images?: PostCreateimagesInput | string[]
     bloodGroup?: string | null
     division?: string | null
     district?: string | null
@@ -22773,6 +22817,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     content?: StringFieldUpdateOperationsInput | string
+    images?: PostUpdateimagesInput | string[]
     bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22790,6 +22835,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     content?: StringFieldUpdateOperationsInput | string
+    images?: PostUpdateimagesInput | string[]
     bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22807,6 +22853,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     content?: StringFieldUpdateOperationsInput | string
+    images?: PostUpdateimagesInput | string[]
     bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
