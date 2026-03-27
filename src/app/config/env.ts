@@ -14,6 +14,11 @@ interface EnvConfig {
         SMTP_HOST: string;
         SMTP_PORT: number;
         SMTP_FROM: string;
+    },
+    SSL_COMMERZ: {
+        STORE_ID: string;
+        STORE_PASSWORD: string;
+        IS_LIVE: boolean;
     }
 }
 
@@ -29,11 +34,13 @@ const loadEnvVariables = (): EnvConfig => {
         'EMAIL_SENDER_SMTP_HOST',
         'EMAIL_SENDER_SMTP_PORT',
         'EMAIL_SENDER_SMTP_FROM',
+        'SSL_COMMERZ_STORE_ID',
+        'SSL_COMMERZ_STORE_PASSWORD',
+        'SSL_COMMERZ_IS_LIVE',
     ]
 
     requireEnvVariable.forEach((variable) => {
         if (!process.env[variable]) {
-            // throw new Error(`Environment variable ${variable} is required but not set in .env file.`);
             throw new AppError(status.INTERNAL_SERVER_ERROR, `Environment variable ${variable} is required but not set in .env file.`);
         }
     })
@@ -49,6 +56,11 @@ const loadEnvVariables = (): EnvConfig => {
             SMTP_PORT: Number(process.env.EMAIL_SENDER_SMTP_PORT) || 587,
             SMTP_FROM: process.env.EMAIL_SENDER_SMTP_FROM as string,
         },
+        SSL_COMMERZ: {
+            STORE_ID: process.env.SSL_COMMERZ_STORE_ID as string,
+            STORE_PASSWORD: process.env.SSL_COMMERZ_STORE_PASSWORD as string,
+            IS_LIVE: process.env.SSL_COMMERZ_IS_LIVE === 'true',
+        }
     }
 }
 

@@ -130,9 +130,17 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
   if (!user) throw new AppError(httpStatus.NOT_FOUND, 'User not found!');
   if (user.isDeleted) throw new AppError(httpStatus.FORBIDDEN, 'User is deleted');
 
-  if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
-    throw new AppError(httpStatus.FORBIDDEN, `Your account is ${user.accountStatus.toLowerCase()}`);
+  if (user.accountStatus === 'BLOCKED') {
+    throw new AppError(
+      httpStatus.FORBIDDEN,
+      'Your account has been blocked by the administration due to policy violations. Please contact support.',
+    );
   }
+
+  if (user.accountStatus === 'REJECTED') {
+    throw new AppError(httpStatus.FORBIDDEN, 'Your account request has been rejected.');
+  }
+
   if (user.accountStatus === 'PENDING') {
     throw new AppError(httpStatus.FORBIDDEN, 'Your account is pending approval.');
   }
@@ -219,8 +227,15 @@ const refreshToken = async (token: string) => {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
   }
 
-  if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
-    throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
+  if (user.accountStatus === 'BLOCKED') {
+    throw new AppError(
+      httpStatus.FORBIDDEN,
+      'Your account has been blocked by the administration due to policy violations. Please contact support.',
+    );
+  }
+
+  if (user.accountStatus === 'REJECTED') {
+    throw new AppError(httpStatus.FORBIDDEN, 'This account is rejected.');
   }
 
   const jwtPayload = {

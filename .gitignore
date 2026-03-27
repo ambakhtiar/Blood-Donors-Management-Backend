@@ -1,18 +1,19 @@
 node_modules
-# Keep environment variables out of version control
 .env
 .env.*
 dist
-
-/generated/prisma
-
-/generated/prisma
-
-/generated/prisma
+src/generated/prisma
 
 # Auto-generated agent rules (personalized per developer)
 .brainsync/agent-rules.md
+.agent
+.agent-mem
+.agents
+.cursor
+.vscode
 
 AGENT.md
 CLAUDE.md
+
+
 .agent-mem/

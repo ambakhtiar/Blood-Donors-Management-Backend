@@ -298,6 +298,17 @@ exports.Prisma.VerificationTokenScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.PaymentScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  status: 'status',
+  transactionId: 'transactionId',
+  postId: 'postId',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -360,7 +371,8 @@ exports.Prisma.ModelName = {
   OrganisationVolunteer: 'OrganisationVolunteer',
   HospitalRequest: 'HospitalRequest',
   Notification: 'Notification',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  Payment: 'Payment'
 };
 
 /**

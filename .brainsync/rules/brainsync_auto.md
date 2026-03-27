@@ -1,7 +1,7 @@
 
 
 # Project Memory — Blood-Donors-Management-Backend
-> 259 notes | Score threshold: >40
+> 349 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -20,32 +20,36 @@
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
+- **⚠️ GOTCHA: problem-fix in env.ts** — -             // throw new Error(`Environment variable ${variable} is 
+- **⚠️ GOTCHA: Fixed null crash in Error — externalizes configuration for environment flexib...** — -             
++         'SSL_COMMERZ_STORE_ID',
+-     ]
++         
+- **⚠️ GOTCHA: Fixed null crash in Error — externalizes configuration for environment flexib...** — -     ]
++         
+- 
++     ]
+-     requireEnvVariable.forEach((va
 - **⚠️ GOTCHA: Added JWT tokens authentication — ensures atomic multi-step database operations** — - import AppError from '../../errors/AppError';
 + import { JwtPayload 
 
-## Active: `prisma`
-
-- **Added session cookies authentication — confirmed 6x**
-- **what-changed in schema.prisma — confirmed 4x**
-- **Added session cookies authentication**
-- **🟢 Edited prisma/schema.prisma (27 changes, 2min)**
-- **what-changed in schema.prisma**
-
 ## Project Standards
 
-- Added session cookies authentication — confirmed 6x
-- what-changed in schema.prisma — confirmed 4x
-- Updated API endpoint OrganisationRoutes — confirmed 3x
-- what-changed in index.ts — confirmed 9x
-- Updated API endpoint HospitalRoutes — improves module reusability — confirmed 3x
-- Replaced auth PostControllers — confirmed 4x
-- Updated schema Request — confirmed 4x
-- 🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x
+- what-changed in env.ts — confirmed 3x
+- Fixed null crash in EnvConfig — externalizes configuration for environment fl... — confirmed 4x
+- Updated schema package — confirmed 3x
+- what-changed in client.js — confirmed 4x
+- what-changed in index-browser.js — confirmed 4x
+- 🟢 Edited .gitignore (19 changes, 2min) — confirmed 4x
+- convention in .gitignore
+- convention in .gitignore
 
 ## Known Fixes
 
 - ❌ PrismaClientKnownRequestError, → ✅ problem-fix in index.js
+- ❌ "use strict";var h=Object.defineProperty;var T=Object.getOwnPropertyDescriptor;var M=Object.getOwnPr → ✅ problem-fix in query_compiler_fast_bg.js
 - ❌ - import AppError from '../../errors/AppError'; → ✅ Fixed null crash in Secret — uses a proper password hashing algorithm
+- ❌ -             // throw new Error(`Environment variable ${variable} is required but not set in .env f → ✅ Fixed null crash in EnvConfig — externalizes configuration for environment fl...
 
 ## Recent Decisions
 
@@ -55,7 +59,9 @@
 
 ## Learned Patterns
 
-- Always: what-changed in index.ts — confirmed 9x (seen 2x)
+- When encountering this, fix by: problem-fix in query_compiler_fast_bg.js (seen 2x)
+- When encountering this, fix by: problem-fix in index.js (seen 2x)
+- When encountering this, fix by: problem-fix in edge.js (seen 2x)
 - Agent generates new migration for every change (squash related changes)
 - Agent installs packages without checking if already installed
 

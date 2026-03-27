@@ -1,31 +1,31 @@
 {
   "typescript": {
     "enabled": true,
-    "lastGenerated": "2026-03-27T16:33:59.644Z",
-    "observationCount": 112,
+    "lastGenerated": "2026-03-27T18:14:21.281Z",
+    "observationCount": 130,
     "skillCount": 0,
     "domain": "typescript",
     "triggerGlobs": [
       "**/*.ts",
       "**/*.tsx"
     ],
-    "description": "Typescript for Blood-Donors-Management-Backend. 1 gotchas, 17 conventions, 5 fixes."
+    "description": "Typescript for Blood-Donors-Management-Backend. 4 gotchas, 20 conventions, 8 fixes."
   },
   "project": {
     "enabled": true,
-    "lastGenerated": "2026-03-27T16:33:59.645Z",
-    "observationCount": 120,
+    "lastGenerated": "2026-03-27T18:14:21.282Z",
+    "observationCount": 181,
     "skillCount": 0,
     "domain": "project",
     "triggerGlobs": [
       "**/*"
     ],
-    "description": "Project for Blood-Donors-Management-Backend. 26 gotchas, 46 conventions."
+    "description": "Project for Blood-Donors-Management-Backend. 26 gotchas, 55 conventions."
   },
   "config": {
     "enabled": true,
-    "lastGenerated": "2026-03-27T16:33:59.646Z",
-    "observationCount": 8,
+    "lastGenerated": "2026-03-27T18:14:21.283Z",
+    "observationCount": 10,
     "skillCount": 0,
     "domain": "config",
     "triggerGlobs": [
@@ -34,29 +34,40 @@
       "**/*.json",
       "**/*.toml"
     ],
-    "description": "Config for Blood-Donors-Management-Backend. 1 conventions."
+    "description": "Config for Blood-Donors-Management-Backend. 2 conventions, 1 error→fix pairs."
   },
   "javascript": {
     "enabled": true,
-    "lastGenerated": "2026-03-27T16:33:59.645Z",
-    "observationCount": 19,
+    "lastGenerated": "2026-03-27T18:14:21.282Z",
+    "observationCount": 28,
     "skillCount": 0,
     "domain": "javascript",
     "triggerGlobs": [
       "**/*.js",
       "**/*.jsx"
     ],
-    "description": "Javascript for Blood-Donors-Management-Backend. 2 conventions, 3 fixes."
+    "description": "Javascript for Blood-Donors-Management-Backend. 4 conventions, 6 fixes."
   },
   "convention": {
     "enabled": true,
-    "lastGenerated": "2026-03-27T16:33:59.646Z",
+    "lastGenerated": "2026-03-27T18:14:21.284Z",
     "observationCount": 0,
-    "skillCount": 1,
+    "skillCount": 2,
     "domain": "convention",
     "triggerGlobs": [
       "**/*"
     ],
     "description": "Convention for Blood-Donors-Management-Backend. ."
+  },
+  "problem-fix": {
+    "enabled": true,
+    "lastGenerated": "2026-03-27T18:14:21.283Z",
+    "observationCount": 0,
+    "skillCount": 3,
+    "domain": "problem-fix",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Problem Fix for Blood-Donors-Management-Backend. 4 error→fix pairs."
   }
 }

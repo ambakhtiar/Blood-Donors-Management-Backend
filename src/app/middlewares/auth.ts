@@ -40,9 +40,13 @@ const auth = (...requiredRoles: UserRole[]) => {
       throw new AppError(httpStatus.FORBIDDEN, 'This user is deleted!');
     }
 
-    // check if user is blocked or rejected
-    if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
-      throw new AppError(httpStatus.FORBIDDEN, `This user is ${user.accountStatus.toLowerCase()}`);
+    // check if user is blocked
+    if (user.accountStatus === 'BLOCKED') {
+      throw new AppError(httpStatus.FORBIDDEN, 'This account is blocked. Unauthorized access.');
+    }
+
+    if (user.accountStatus === 'REJECTED') {
+      throw new AppError(httpStatus.FORBIDDEN, 'This account is rejected.');
     }
 
     // role checking

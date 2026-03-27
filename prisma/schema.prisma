@@ -78,6 +78,7 @@ model User {
   organisationManaged  OrganisationVolunteer[]  @relation("OrganisationVolunteers")
   hospitalRecords      HospitalDonationRecord[] @relation("HospitalRecords")
   notifications        Notification[]
+  payments             Payment[]
 }
 
 // ================= 1:1 Role Models =================
@@ -222,6 +223,7 @@ model Post {
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  payments  Payment[]
 }
 
 model DonationHistory {
@@ -279,4 +281,17 @@ model VerificationToken {
   expiresAt DateTime
   isUsed    Boolean  @default(false)
   createdAt DateTime @default(now())
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  amount        Float
+  status        String   @default("PENDING") // PENDING, SUCCESS, FAILED, CANCELLED
+  transactionId String   @unique
+  postId        String
+  post          Post     @relation(fields: [postId], references: [id])
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

@@ -101,9 +101,6 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
   if (upazila) andConditions.push({ upazila });
 
   andConditions.push({ isDeleted: false });
-  
-  // Only show approved posts by default
-  andConditions.push({ isApproved: true });
 
   const whereConditions: Prisma.PostWhereInput = { AND: andConditions };
 
@@ -116,7 +113,7 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
           email: true,
           contactNumber: true,
           role: true,
-          donorProfile: true,
+          bloodDonor: true,
           hospital: true,
           organisation: true
         }
@@ -143,8 +140,7 @@ const getSinglePost = async (postId: string) => {
   const result = await prisma.post.findUnique({
     where: { 
       id: postId,
-      isDeleted: false,
-      isApproved: true
+      isDeleted: false
     },
     include: {
       author: {
@@ -153,7 +149,7 @@ const getSinglePost = async (postId: string) => {
           email: true,
           contactNumber: true,
           role: true,
-          donorProfile: true,
+          bloodDonor: true,
           hospital: true,
           organisation: true
         }
@@ -162,7 +158,7 @@ const getSinglePost = async (postId: string) => {
   });
 
   if (!result) {
-    throw new AppError(httpStatus.NOT_FOUND, "Post not found or not approved");
+    throw new AppError(httpStatus.NOT_FOUND, "Post not found");
   }
 
   return result;
