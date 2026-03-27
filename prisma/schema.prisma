@@ -233,3 +233,12 @@ model Notification {
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
 }
+
+model VerificationToken {
+  id        String   @id @default(uuid(7))
+  email     String   @unique
+  token     String   @unique
+  expiresAt DateTime
+  isUsed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

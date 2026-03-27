@@ -1,5 +1,5 @@
-import { Gender, UserRole } from "@prisma/client";
-import { AccountStatus } from "../../../generated/prisma";
+import { Gender, UserRole } from "../../../generated/prisma";
+
 
 export interface ILocationInfo {
     division: string;
@@ -42,4 +42,20 @@ export interface ILoginUser {
     email?: string;
     password: string;
 }
-
+
+export interface IChangePassword {
+    oldPassword: string;
+    newPassword: string;
+}
+
+export interface IForgotPassword {
+    email: string;
+}
+
+export interface IResetPassword {
+    id: string;
+    token: string;
+    newPassword: string;
+}
+
+

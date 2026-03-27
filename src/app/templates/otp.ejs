@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>OTP Verification</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #f9fafb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #f0f2f5;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .content {
+            padding: 30px;
+            text-align: center;
+            color: #4b5563;
+        }
+
+        .otp-box {
+            margin: 20px auto;
+            padding: 15px 35px;
+            background: #fdfdfd;
+            border: 2px dashed #9ca3af;
+            border-radius: 8px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #111827;
+            letter-spacing: 3px;
+            display: inline-block;
+        }
+
+        .content p {
+            font-size: 15px;
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .footer {
+            background: #f3f4f6;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="header">
+            <h2>Hello <%= name %>
+            </h2>
+        </div>
+        <div class="content">
+            <p>Here is your secure One‑Time Password (OTP):</p>
+            <div class="otp-box">
+                <%= otp %>
+            </div>
+            <p>This OTP will expire in <b>2 minutes</b>. Please use it promptly and keep it confidential.</p>
+        </div>
+        <div class="footer">
+            &copy; <%= new Date().getFullYear() %> PH healthCare. All rights reserved.• Secure Authentication
+        </div>
+    </div>
+</body>
+
+</html>

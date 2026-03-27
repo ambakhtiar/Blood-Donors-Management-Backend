@@ -1,137 +1,64 @@
-# 🩸 System Architecture & Master Context: Blood Donation & Crowdfunding API
+# 🩸 MASTER BLUEPRINT: Blood Donation & Crowdfunding Platform
 
 ## 1. Project Overview & Motive
-This is a highly scalable, industry-standard full-stack web application designed for **Blood Donation Management and Medical Crowdfunding**. The motive is to create a seamless bridge between blood donors, hospitals, and volunteer organizations with real-time location-based tracking and smart notifications.
-- **Deadline:** March 31, 2026 (Rapid Development Phase)
-- **Tech Stack:** Node.js, Express.js, TypeScript, PostgreSQL, Prisma ORM (v7.5.0 with `@prisma/adapter-pg`), Zod, JWT.
+An industry-standard, highly scalable full-stack web application designed to create a seamless bridge between blood donors, hospitals, volunteer organizations, and patients needing funds. 
+- **Deadline:** March 31, 2026.
+- **Tech Stack:** Node.js, Express.js, TypeScript, PostgreSQL, Prisma ORM (v7.5.0), Zod, JWT.
 - **Architecture:** Strict Modular Pattern (`src/app/modules/...`).
-- **Core Principle:** DRY (Don't Repeat Yourself), 100% Type-Safe, Soft-Deletes globally.
+- **Core Principle:** DRY (Don't Repeat Yourself), 100% Type-Safe, Global Soft-Deletes (`isDeleted: true`).
 
+## 2. Role-Based Features & Permissions (The Core Logic)
 
-## 2. Authentication & Security (JWT Based)
-- **Login Strategy:** Dual login support (Email OR Contact Number).
-- **Token System (3-Tier):** - Access Token (Short-lived, sent in headers).
-  - Refresh Token (Long-lived, HTTP-only cookie).
-  - Session Token (Stored in DB to track devices/IPs and allow "Logout from all devices").
-- **Password Reset:** OTP/Link via Email (Nodemailer) or SMS.
+### 🌍 1. Public (Unauthenticated Users)
+- **View Access:** Can see the public feed (Blood Finding Posts, Blood Donation Posts, Helping Posts).
+- **Restrictions:** Cannot Like, Comment, or Post anything. Cannot view sensitive user contact details without logging in.
 
-## 3. Role-Based Access Control (RBAC) & Profiles
-Every entity shares the core `User` model for auth, but has a strict **1:1 Relational Profile Model** for editable data.
-- **Roles:** `SUPER_ADMIN`, `ADMIN`, `HOSPITAL`, `ORGANISATION`, `USER`.
-- **Profile Models (Editable):** - `SuperAdminProfile` (Name, Details)
-  - `AdminProfile` (Name, Details)
-  - `HospitalProfile` (Name, Reg No, Address)
-  - `OrganisationProfile` (Name, Reg No, Established Year, Address)
-  - `DonorProfile` (Name, Blood Group, Gender, Weight, Last Donation Date)
+### 👤 2. User (Donor/General)
+- **Auth:** Login/Signup via Email or Contact Number.
+- **Donation History:** Can manually post past donation history. 
+- **Rule Engine (Strict):** When creating a "Blood Donation Post", the system checks the last donation date. **Males must wait 2 months, Females 3 months.** If eligible, the post is created AND automatically added to their `DonationHistory`.
+- **Finding Post:** Can create "Blood Finding Posts" (Fields: Blood Group, Weight, Reason, Date/Time, Contact, Address). Can manage/resolve the post once blood is found.
+- **Helping Post:** Can create posts for crowdfunding/patient help. These posts feature an "Admin Verification Badge" once verified.
 
-## 4. Core Features & Business Logic
-### A. Post System (Facebook-style Feed)
-- **Blood Finding Post:** Searching for donors (Location & Blood Group based).
-- **Blood Donation Post:** Users announcing their donation.
-- **Helping Post (Crowdfunding):** Collecting funds for patients. Requires **Admin Approval Badge**. Integrated with **Stripe/SSLCommerz**.
+### 🏢 3. Organisation (Volunteer Groups)
+- **Volunteer Management:** Can manually add volunteers (creates a soft profile) like a Facebook group, or send join requests to existing platform users.
+- **Visibility:** Can view the blood donation history and location of **ONLY** the volunteers connected to their specific organisation.
+- **Posting:** Can create Blood Finding and Helping posts on behalf of the organisation.
 
-### B. Blood Donation History & Rules
-- **Rule Engine:** Male donors must wait 2 months, females 3 months between donations.
-- **History Timeline:** A visual timeline on the user's profile showing all past donations (When, Where, Weight).
-- **Auto-Update:** If a donation is confirmed via platform requests, history updates automatically.
+### 🏥 4. Hospital
+- **Direct Requests:** Can create a "Blood Giving/Requirement" request directly targeting a specific user/number on the platform.
+- **Auto-History:** If the user accepts and donates, the donation is automatically added to the user's `DonationHistory`. This updates the user's availability status globally.
+- **Visibility:** Hospitals have global visibility—they can see **ALL** donation records across the platform to easily verify donors.
+- **Posting:** Can create Blood Finding and Helping posts.
 
-### C. Organisation & Hospital Features
-- **Volunteer Management:** Organisations can manually add volunteers (creates a soft/unregistered user profile) or send join requests to existing users.
-- **Hospital Requests:** Hospitals can send direct blood donation requests to matched donors on the platform.
-- **Visibility:** Hospitals see all donation records. Organisations see records of their specific volunteers.
+### 🛡️ 5. Admin & Super Admin
+- **Admin:** Can view all users, volunteers, donation histories, finding posts, and helping posts. Can approve pending Hospital and Organisation accounts. Can approve/verify Helping Posts.
+- **Super Admin:** Has ultimate access. Can seed other admins and manually create verified Organisation/Hospital accounts.
 
-### D. Smart Search & Notifications
-- **Granular Search:** Find donors by Blood Group + Division + District + Upazila.
-- **Smart Trigger:** If someone searches/posts for "A+" blood in a specific area, the system auto-sends notifications to all eligible "A+" donors in that area.
-
-## 5. Coding Standards & Error Handling
-- **No Code Repetition (DRY):** Use utilities and shared interfaces.
-- **Error Handling:** Global Error Handler, `catchAsync`, and Zod Validation for 100% type safety and zero unhandled rejections.
-- **Data Integrity:** Implement **Soft Delete** (`isDeleted: true`) globally instead of hard database deletes.
-
-
-
-
-
-
-
-
-## 2. Core Business Logic & Rules
-- **Role-Based Access Control (RBAC):** `SUPER_ADMIN`, `ADMIN`, `HOSPITAL`, `ORGANISATION`, `USER`.
-- **1:1 Profile Architecture:** A central `User` model handles authentication. Specific details are stored in 1:1 relation tables (`DonorProfile`, `Hospital`, `Organisation`).
-- **Account Approval System:** Hospitals and Organisations are created with a `PENDING` status. They cannot log in (403 Forbidden) until an Admin changes their status to `ACTIVE`.
-- **Donation Rules:** Male donors must wait 2 months, and female donors 3 months between donations.
-- **Authentication Strategy:** Hybrid Session-Based JWT. Access Token (Short-lived), Refresh Token (Hashed in DB Session), Device/IP tracking for "Logout from all devices" feature. Login supports both `email` and `contactNumber`.
-
-## 3. Database Schema Summary (Prisma)
-- **User:** `id`, `contactNumber`, `email`, `password`, `role`, `accountStatus`, `isDeleted`.
-- **Profiles (1:1 with User):** `DonorProfile`, `Hospital`, `Organisation`, `Admin`, `SuperAdmin`.
-- **Session:** Tracks login sessions (`userId`, `refreshToken`, `device`, `ipAddress`).
-- **Post:** Handles feed posts (`BLOOD_FINDING`, `BLOOD_DONATION`, `HELPING`). `HELPING` posts require Admin approval.
-- **DonationHistory:** Tracks past donations of users.
-- **OrganisationVolunteer & HospitalRequest:** Pivot tables for managing volunteer mapping and direct blood requests.
-
----
+## 3. Authentication & Security Strategy
+- **Tokens:** Hybrid Session-Based JWT. Access Token (Short-lived), Refresh Token (Hashed in DB Session).
+- **Security:** "Logout from all devices" feature via Session ID tracking. Password reset via Nodemailer/Email OTP.
 
 ## 4. Current Project Status & Roadmap
+- **Phase 1 & 2 (COMPLETED):** Base setup, Prisma Schema, Global Errors, Auth Module (Login/Register/Tokens), Auth Middleware, User Module (Get/Update Profile, Donor Search).
+- **Phase 3 (PENDING - CURRENT):** Post Module (Feed, Blood Finding, Blood Donation with Rule Engine).
+- **Phase 4 (PENDING):** Hospital Requests, Organisation Volunteer Management, Donation History tracking.
 
-### ✅ COMPLETED TASKS (What we have done so far)
-1. **Initial Setup:** Express app initialization, TypeScript configuration, strict modular folder structure created.
-2. **Database Architecture:** Complete Prisma Schema written with all relations, enums, and soft-delete features.
-3. **Database Connection:** Upgraded to Prisma v7.5.0 using `pg` driver adapter and `prisma.config.ts`.
-4. **Error Handling:** Implemented Global Error Handler, `AppError`, `catchAsync`, and `sendResponse` generic utility.
-5. **Auth Module (Core):**
-   - Zod validation schemas (`userSignupValidationSchema`, `userLoginValidationSchema`) with strict conditional profile requirements.
-   - JWT utility functions (`createToken`, `verifyToken`).
-   - Transactional User Registration (Creates `User` + `Profile` concurrently).
-   - Advanced Login system with DB Session creation and Refresh Token mapping.
-6. **Central Routing:** Setup `routes/index.ts` to manage all module routes.
-
-### ⏳ PENDING TASKS (To achieve 70% Backend Completion Tonight)
-
-**👉 Phase 1: Security & Middleware (Next Immediate Step)**
-- [ ] Implement `auth()` middleware to verify Access Tokens.
-- [ ] Implement role checking inside `auth()` middleware (e.g., `auth('ADMIN', 'SUPER_ADMIN')`).
-
-**👉 Phase 2: User & Profile Management**
-- [ ] Get "My Profile" API (fetching User + nested Profile data).
-- [ ] Update Profile API (allowing users/hospitals/orgs to update their editable info).
-- [ ] Admin Endpoints: Get all pending Hospitals/Orgs, and Approve/Reject API.
-- [ ] Donor Search API: Fetch `USER` role accounts filtered by `bloodGroup`, `division`, `district`, `upazila`, and `isAvailableForDonation`.
-
-**👉 Phase 3: Post & Feed System**
-- [ ] Create Post API (Blood Finding, Blood Donation).
-- [ ] Create Helping Post API (Crowdfunding - sets `isApproved: false` by default).
-- [ ] Get All Posts API (Feed logic).
-
----
-
-## 🤖 INSTRUCTIONS FOR AI CONTEXT
-If you are reading this as an AI assistant:
+## 5. 🤖 INSTRUCTIONS FOR AI CONTEXT
 1. Strictly follow the Modular Architecture (`controller`, `service`, `route`, `validation`, `interface`).
-2. Always wrap controller functions in `catchAsync`.
-3. Always format responses using the `sendResponse` utility.
+2. Do NOT use `any` types. Create strict TypeScript interfaces for all payloads.
+3. Always wrap controller functions in `catchAsync` and format responses using `sendResponse`.
 4. Always validate `req.body` using Zod before passing to the controller.
-5. Ensure `isDeleted: false` is included in all database `findMany` or `findUnique` queries.
-
 
 
 Public : 
-
 See Blood Finding Post 
-
 See Blood Donation Post 
-
 But Dont Like or Comment 
-
 Dont Post Anything 
 
-
-
 User : 
-
 Login/Signup 
-
 Post Previous Blood Donation History / Check as usual Blood Donation Rule (like must after 2/3 months)
 
 Post Blood Donation Post (option show:Blood Donation:Weight,  platilate, afer a blood donation must wait 2/3 month if male 2m and female 3m or other constraints), 
@@ -141,10 +68,6 @@ Add in Blood Donation History Automatically
 Blood Finding Post and have manage or not (and all important thing, like bg, weight, why, when, contact, address and other)
 
 Helping Post like donation collection for any patients (there have admin approval or show admin approval badge) 
-
-
-
-
 
 Organisations : 
 
@@ -173,21 +96,14 @@ Blood finding post
 Helping post 
 
 
-
 Hospital show all donation record 
 
 
-
 Admin :
-
 Admin show all volunteer blood donation history, blood finding post, helping post, or other important thing. 
-
 create account for organisations and hospital. 
 
 
-
 Super Admin : 
-
 Super admin have all access.
-
 Seed admin and create account organisations and hospital.

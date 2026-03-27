@@ -1,0 +1,39 @@
+{
+  "typescript": {
+    "enabled": true,
+    "lastGenerated": "2026-03-27T09:49:15.700Z",
+    "observationCount": 4,
+    "skillCount": 0,
+    "domain": "typescript",
+    "triggerGlobs": [
+      "**/*.ts",
+      "**/*.tsx"
+    ],
+    "description": "Typescript for Blood-Donors-Management-Backend. ."
+  },
+  "project": {
+    "enabled": true,
+    "lastGenerated": "2026-03-27T09:49:15.703Z",
+    "observationCount": 73,
+    "skillCount": 0,
+    "domain": "project",
+    "triggerGlobs": [
+      "**/*"
+    ],
+    "description": "Project for Blood-Donors-Management-Backend. 26 gotchas, 38 conventions."
+  },
+  "config": {
+    "enabled": true,
+    "lastGenerated": "2026-03-27T09:49:15.705Z",
+    "observationCount": 4,
+    "skillCount": 0,
+    "domain": "config",
+    "triggerGlobs": [
+      "**/*.yaml",
+      "**/*.yml",
+      "**/*.json",
+      "**/*.toml"
+    ],
+    "description": "Config for Blood-Donors-Management-Backend. 1 conventions."
+  }
+}

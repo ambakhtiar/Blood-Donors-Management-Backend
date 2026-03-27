@@ -13,4 +13,5 @@ export default {
     refresh_expires_in: process.env.JWT_REFRESH_EXPIRES_IN || '30d',
   },
   bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS || 12,
+  client_url: process.env.CLIENT_URL || 'http://localhost:3000',
 };
