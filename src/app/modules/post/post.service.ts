@@ -4,6 +4,7 @@ import AppError from '../../errors/AppError';
 import { prisma } from '../../lib/prisma';
 import { ICreatePost, IPaginationOptions, IPostFilters } from './post.interface';
 import { PostType, UserRole, Prisma } from '../../../generated/prisma';
+import { sendNotificationEmail } from '../../utils/sendEmail';
 
 const createPost = async (user: JwtPayload, payload: ICreatePost) => {
   const { userId, role } = user;
@@ -67,13 +68,41 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
     });
   }
 
-  return await prisma.post.create({
+  const result = await prisma.post.create({
     data: {
       ...payload,
       authorId: userId,
       isApproved
     },
   });
+
+  // Smart Area Alert for BLOOD_FINDING posts
+  if (payload.type === PostType.BLOOD_FINDING) {
+    const matchingDonors = await prisma.bloodDonor.findMany({
+      where: {
+        bloodGroup: payload.bloodGroup,
+        division: payload.division,
+        district: payload.district,
+        upazila: payload.upazila,
+        isAvailable: true,
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    matchingDonors.forEach((donor) => {
+      if (donor.user?.email) {
+        sendNotificationEmail(
+          donor.user.email,
+          "Urgent Blood Required!",
+          `Someone needs ${payload.bloodGroup} blood in your area (${payload.district}, ${payload.upazila}). Please check our platform for details.`
+        );
+      }
+    });
+  }
+
+  return result;
 };
 
 const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) => {

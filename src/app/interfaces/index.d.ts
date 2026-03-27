@@ -7,3 +7,6 @@ declare global {
     }
   }
 }
+
+declare module 'sslcommerz-lts';
+

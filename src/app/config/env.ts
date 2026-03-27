@@ -7,6 +7,8 @@ dotenv.config();
 interface EnvConfig {
     NODE_ENV: string;
     PORT: number;
+    BACKEND_URL: string;
+    FRINTEND_URL: string;
     DATABASE_URL: string;
     EMAIL_SENDER: {
         SMTP_USER: string;
@@ -37,6 +39,8 @@ const loadEnvVariables = (): EnvConfig => {
         'SSL_COMMERZ_STORE_ID',
         'SSL_COMMERZ_STORE_PASSWORD',
         'SSL_COMMERZ_IS_LIVE',
+        'BACKEND_URL',
+        'FRINTEND_URL',
     ]
 
     requireEnvVariable.forEach((variable) => {
@@ -60,7 +64,9 @@ const loadEnvVariables = (): EnvConfig => {
             STORE_ID: process.env.SSL_COMMERZ_STORE_ID as string,
             STORE_PASSWORD: process.env.SSL_COMMERZ_STORE_PASSWORD as string,
             IS_LIVE: process.env.SSL_COMMERZ_IS_LIVE === 'true',
-        }
+        },
+        BACKEND_URL: process.env.BACKEND_URL as string,
+        FRINTEND_URL: process.env.FRINTEND_URL as string,
     }
 }
 

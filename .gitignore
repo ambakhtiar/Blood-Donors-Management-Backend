@@ -5,15 +5,18 @@ dist
 src/generated/prisma
 
 # Auto-generated agent rules (personalized per developer)
-.brainsync/agent-rules.md
-.agent
-.agent-mem
-.agents
-.cursor
-.vscode
+# .brainsync/**/*
+# .agent/**/*
+# .agent-mem/**/*
+# .agents/**/*
+# .cursor/**/*
+# .vscode/**/*
 
 AGENT.md
 CLAUDE.md
-
+.windsurf/rules
 
 .agent-mem/
+
+# Auto-generated agent rules (personalized per developer)
+.brainsync/agent-rules.md

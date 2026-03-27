@@ -4,6 +4,7 @@ import AppError from "../../errors/AppError";
 import { prisma } from "../../lib/prisma";
 import { IOptions, IUserFilters } from "./admin.interface";
 import { paginationHelper } from "../../../helpers/paginationHelper";
+import { sendNotificationEmail } from "../../utils/sendEmail";
 
 const getAllUsers = async (filters: IUserFilters, options: IOptions) => {
   const { searchTerm, email, contactNumber, role, accountStatus } = filters;
@@ -80,6 +81,14 @@ const changeUserStatus = async (id: string, status: AccountStatus) => {
       accountStatus: status,
     },
   });
+
+  if (result.email && (status === AccountStatus.ACTIVE || status === AccountStatus.BLOCKED)) {
+    sendNotificationEmail(
+      result.email,
+      "Account Status Update",
+      `Your account status has been changed to ${status} by the administrator.`
+    );
+  }
 
   return result;
 };

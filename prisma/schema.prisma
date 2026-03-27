@@ -29,7 +29,6 @@ enum AccountStatus {
 enum Gender {
   MALE
   FEMALE
-  OTHER
 }
 
 enum PostType {
@@ -42,6 +41,14 @@ enum RequestStatus {
   PENDING
   ACCEPTED
   REJECTED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  CANCELLED
 }
 
 // ================= Core User Model =================
@@ -286,7 +293,7 @@ model VerificationToken {
 model Payment {
   id            String   @id @default(uuid())
   amount        Float
-  status        String   @default("PENDING") // PENDING, SUCCESS, FAILED, CANCELLED
+  status        PaymentStatus @default(PENDING)
   transactionId String   @unique
   postId        String
   post          Post     @relation(fields: [postId], references: [id])

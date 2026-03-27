@@ -3,6 +3,7 @@ import { prisma } from '../../lib/prisma';
 import AppError from '../../errors/AppError';
 import { IRecordDonationPayload, IUpdateRequestStatusPayload } from './hospital.interface';
 import { PostType, RequestStatus } from '../../../generated/prisma';
+import { sendNotificationEmail } from '../../utils/sendEmail';
 
 const recordDonation = async (hospitalId: string, payload: IRecordDonationPayload) => {
   return await prisma.$transaction(async (tx) => {
@@ -56,6 +57,18 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
           status: RequestStatus.PENDING,
         },
       });
+
+      const user = await tx.user.findUnique({
+        where: { id: bloodDonor.userId as string }
+      });
+
+      if (user?.email) {
+        sendNotificationEmail(
+          user.email,
+          "Donation Record Request",
+          "A hospital has recorded a blood donation under your name. Please log in to your account and go to requests to accept or decline the record."
+        );
+      }
 
       return { type: 'REQUEST_SENT', data: request };
     }
@@ -154,6 +167,16 @@ const updateRequestStatus = async (
           bloodDonorId: bloodDonor.id,
           donationDate: new Date(),
         },
+      });
+
+      // Automatically create a post for the blood donor
+      await tx.post.create({
+        data: {
+          authorId: userId,
+          type: PostType.BLOOD_DONATION,
+          content: `I have just donated blood at ${request.hospitalId}. It feels great to save a life!`,
+          isApproved: true,
+        }
       });
 
       return updatedRequest;

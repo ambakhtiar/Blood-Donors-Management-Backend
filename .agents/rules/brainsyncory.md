@@ -1,7 +1,7 @@
 
 
 # Project Memory — Blood-Donors-Management-Backend
-> 349 notes | Score threshold: >40
+> 401 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -20,6 +20,20 @@
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
+- **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -         
++         'BACKEND_URL',
+-     ]
++         'FRINTEND_URL
+- **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -     ]
++         
+- 
++     ]
+-     requireEnvVariable.forEach((va
+- **⚠️ GOTCHA: Replaced session cookies with JWT tokens — reduces initial bundle size with c...** — -   FEMALE: 'FEMALE',
++   FEMALE: 'FEMALE'
+-   OTHER: 'OTHER'
++ };
+- }
 - **⚠️ GOTCHA: problem-fix in env.ts** — -             // throw new Error(`Environment variable ${variable} is 
 - **⚠️ GOTCHA: Fixed null crash in Error — externalizes configuration for environment flexib...** — -             
 +         'SSL_COMMERZ_STORE_ID',
@@ -30,17 +44,15 @@
 - 
 +     ]
 -     requireEnvVariable.forEach((va
-- **⚠️ GOTCHA: Added JWT tokens authentication — ensures atomic multi-step database operations** — - import AppError from '../../errors/AppError';
-+ import { JwtPayload 
 
 ## Project Standards
 
-- what-changed in env.ts — confirmed 3x
-- Fixed null crash in EnvConfig — externalizes configuration for environment fl... — confirmed 4x
-- Updated schema package — confirmed 3x
-- what-changed in client.js — confirmed 4x
-- what-changed in index-browser.js — confirmed 4x
-- 🟢 Edited .gitignore (19 changes, 2min) — confirmed 4x
+- Added session cookies authentication — ensures atomic multi-step database ope... — confirmed 4x
+- 🟢 Edited .gitignore (12 changes, 4min) — confirmed 3x
+- convention in .gitignore
+- convention in .gitignore
+- trade-off in .gitignore — confirmed 4x
+- convention in .gitignore
 - convention in .gitignore
 - convention in .gitignore
 
@@ -50,6 +62,7 @@
 - ❌ "use strict";var h=Object.defineProperty;var T=Object.getOwnPropertyDescriptor;var M=Object.getOwnPr → ✅ problem-fix in query_compiler_fast_bg.js
 - ❌ - import AppError from '../../errors/AppError'; → ✅ Fixed null crash in Secret — uses a proper password hashing algorithm
 - ❌ -             // throw new Error(`Environment variable ${variable} is required but not set in .env f → ✅ Fixed null crash in EnvConfig — externalizes configuration for environment fl...
+- ❌ -             throw new AppError(status.INTERNAL_SERVER_ERROR, `Environment variable ${variable} is  → ✅ Fixed null crash in EnvConfig — externalizes configuration for environment fl...
 
 ## Recent Decisions
 

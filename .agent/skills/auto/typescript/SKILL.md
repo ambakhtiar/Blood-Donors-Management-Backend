@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: "Typescript for Blood-Donors-Management-Backend. 4 gotchas, 20 conventions, 8 fixes."
+description: "Typescript for Blood-Donors-Management-Backend. 6 gotchas, 21 conventions, 12 fixes."
 domain: typescript
 triggers:
   - glob: "**/*.ts"
@@ -11,7 +11,7 @@ enabled: true
 
 # Typescript
 
-Auto-compiled from **130 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
+Auto-compiled from **150 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -19,12 +19,83 @@ Auto-compiled from **130 real patterns** in **Blood-Donors-Management-Backend**.
 
 | ❌ Don't | Details |
 |----------|----------|
+| ⚠️ GOTCHA: Fixed null crash in AppError — external | -          +         'BACKEND_URL', -     ] +         'FRINTEND_URL', -  +     ] -     require |
+| ⚠️ GOTCHA: Fixed null crash in AppError — external | -     ] +          -  +     ] -     requireEnvVariable.forEach((variable) => { +  -         if |
 | ⚠️ GOTCHA: problem-fix in env.ts | -             // throw new Error(`Environment variable ${variable} is required but not set in .env f |
 | ⚠️ GOTCHA: Fixed null crash in Error — externalize | -              +         'SSL_COMMERZ_STORE_ID', -     ] +         'SSL_COMMERZ_STORE_PASSWORD', |
 | ⚠️ GOTCHA: Fixed null crash in Error — externalize | -     ] +          -  +     ] -     requireEnvVariable.forEach((variable) => { +  -         if |
 | ⚠️ GOTCHA: Added JWT tokens authentication — ensur | - import AppError from '../../errors/AppError'; + import { JwtPayload } from 'jsonwebtoken'; - impor |
 
 ## 🔧 Problem Playbooks
+
+### Fixed null crash in PORT — externalizes configuration for environment flexibi...
+-     PORT: number;
++     PORT: number;,
+-     DATABASE_URL: string;
++     
+-     EMAIL_SENDER: {
++     DATABASE_URL: string;
+-         SMTP_USER: string;
++     EMAIL_SENDER: {
+-         SMTP_PASS: string;
++         SMTP_USER: string;
+-         SMTP_HOST: string;
++         SMTP_PASS: string;
+-         SMTP_PORT: number;
++         SMTP_HOST: string;
+-         SMTP_FROM: string;
++    
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: PORT
+3. identifier: EnvConfig
+4. identifier: AppError
+5. identifier: Environment
+
+### Fixed null crash in AppError — ensures atomic multi-step database operations
+- // import { v4 as uuidv4 } from 'uuid'; // Removed as it was unused and uninstalled
++ 
+- 
++ const initiateDonation = async (userId: string, postId: string, amount: number) => {
+- const initiateDonation = async (userId: string, postId: string, amount: number) => {
++   const post = await prisma.post.findUnique({
+-   const post = await prisma.post.findUnique({
++     where: { id: postId, isDeleted: 
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AppError
+3. identifier: Post
+4. identifier: PostType
+5. identifier: HELPING
+
+### problem-fix in payment.controller.ts
+-    // IPN (Instant Payment Notification) callback logic if needed
++   // IPN (Instant Payment Notification) callback logic if needed
+
+📌 IDE AST Context: Modified symbols likely include [initiateDonation, paymentSuccess, paymentFail, paymentCancel, paymentIPN]
+
+**Actionable Steps:**
+1. Modified 1 files
+
+### Fixed null crash in IRecordDonationPayload — prevents null/undefined runtime ...
+- 
++ import { sendNotificationEmail } from '../../utils/sendEmail';
+- const recordDonation = async (hospitalId: string, payload: IRecordDonationPayload) => {
++ 
+-   return await prisma.$transaction(async (tx) => {
++ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayload) => {
+-     // Find or create BloodDonor
++   return await prisma.$transaction(async (tx) => {
+-     le
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: IRecordDonationPayload
+3. identifier: Find
+4. identifier: BloodDonor
+5. identifier: AppError
 
 ### Added error handling AppError — externalizes configuration for environment fl...
 -            
@@ -176,6 +247,11 @@ const calculateMonths = (cu
 ## 📐 Conventions & Best Practices
 
 ### Project Conventions
+- 📐 **Fixed null crash in EnvConfig — externalizes configuration for environment fl... — confirmed 4x** — -     
++     BACKEND_URL: string;
+-     DATABASE_URL: string;
++     FRINTEND_URL: string;
+-     
 - 📐 **what-changed in env.ts — confirmed 3x** — -         
 +             
 
@@ -250,29 +326,6 @@ Content summary (81 lines):
 - 📐 **Strengthened types AppError — filters out falsy/null values explicitly** — - import bcrypt from 'bcrypt';
 + import { prisma } from '../../lib/prisma';
 - import { prisma } from
-- 📐 **what-changed in post.controller.ts — confirmed 4x** — -   
-+   const { id } = req.params;
+- 📐 **what-changed in post.controller.ts — confirmed 4x
 
-📌 IDE AST Context: Modified symbols likely include [createPost
-- 📐 **Replaced auth AppError — confirmed 4x** — - 
-+   if (!req.user) {
--   if (!req.user) {
-+     throw new AppError(httpStatus.UNAUTHORIZED, 'Unau
-
-## 🔵 Architecture
-
-### Git hotspots: src/app/config/index.ts(3x), package-lock.json(2x), package.json(2x), docs/req.md(2x), prisma/schema.prisma(2x)
-## 🤔 Decisions & Trade-offs
-
-- **decision in post.interface.ts** — + export interface IPostFilters {
-+   searchTerm?: string;
-+   type?: PostType;
-+   bloodGroup?: str
-- **trade-off in auth.constant.ts** — - export const USER_ROLE = {
-+ 
--   SUPER_ADMIN: 'SUPER_ADMIN',
--   ADMIN: 'ADMIN',
--   HOSPITAL: 'H
-
----
-*Auto-generated by BrainSync 🧠 | 130 patterns | 2026-03-27*
+... [Truncated — see individual observations for full content]

@@ -14,7 +14,7 @@ import {
 } from './auth.interface';
 import { prisma } from '../../lib/prisma';
 import { AccountStatus, UserRole } from '../../../generated/prisma';
-import { sendEmail } from '../../utils/sendEmail';
+import { sendOTPEmail } from '../../utils/sendEmail';
 
 const registerUser = async (payload: IRegisterUser) => {
   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
@@ -332,7 +332,7 @@ const forgotPassword = async (payload: IForgotPassword) => {
     user.donorProfile?.name ||
     'User';
 
-  await sendEmail({
+  await sendOTPEmail({
     to: user.email as string,
     subject: 'Password Reset OTP',
     templateName: 'otp',

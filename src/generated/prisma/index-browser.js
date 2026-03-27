@@ -340,8 +340,7 @@ exports.AccountStatus = exports.$Enums.AccountStatus = {
 
 exports.Gender = exports.$Enums.Gender = {
   MALE: 'MALE',
-  FEMALE: 'FEMALE',
-  OTHER: 'OTHER'
+  FEMALE: 'FEMALE'
 };
 
 exports.PostType = exports.$Enums.PostType = {
@@ -353,7 +352,15 @@ exports.PostType = exports.$Enums.PostType = {
 exports.RequestStatus = exports.$Enums.RequestStatus = {
   PENDING: 'PENDING',
   ACCEPTED: 'ACCEPTED',
-  REJECTED: 'REJECTED'
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.PaymentStatus = exports.$Enums.PaymentStatus = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED'
 };
 
 exports.Prisma.ModelName = {

@@ -1,6 +1,6 @@
 ---
 name: project
-description: "Project for Blood-Donors-Management-Backend. 26 gotchas, 55 conventions."
+description: "Project for Blood-Donors-Management-Backend. 26 gotchas, 68 conventions."
 domain: project
 triggers:
   - glob: "**/*"
@@ -10,7 +10,7 @@ enabled: true
 
 # Project
 
-Auto-compiled from **181 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on project files.
+Auto-compiled from **209 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on project files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -48,6 +48,47 @@ Auto-compiled from **181 real patterns** in **Blood-Donors-Management-Backend**.
 ## 📐 Conventions & Best Practices
 
 ### Project Conventions
+- 📐 **Added session cookies authentication — ensures atomic multi-step database ope... — confirmed 4x** — -   OTHER
++ }
+- }
++ 
+- 
++ enum PostType {
+- enum PostType {
++   BLOOD_FINDING
+-   BLOOD_FINDING
++   
+- 📐 **🟢 Edited .gitignore (12 changes, 4min) — confirmed 3x** — Active editing session on .gitignore.
+12 content changes over 4 minutes.
+- 📐 **convention in .gitignore** — - .windsurfrules
++ .windsurf/rules
+- 📐 **convention in .gitignore** — - ..windsurfrules
++ .windsurfrules
+- 📐 **trade-off in .gitignore — confirmed 4x** — - .brainsync/**/*
++ # .brainsync/**/*
+- .agent/**/*
++ # .agent/**/*
+- .agent-mem/**/*
++ # .agen
+- 📐 **convention in .gitignore** — - .windsurf/rules
++ ..windsurfrules
+- 📐 **convention in .gitignore** — - ..windsurfrules
++ .windsurf/rules
+- 📐 **convention in .gitignore** — - .windsurf
++ ..windsurfrules
+- 📐 **what-changed in .gitignore — confirmed 7x** — - .wind
++ .windsurf
+- 📐 **convention in .gitignore** — - 
++ 
+- # Auto-generated agent rules (personalized per developer)
++ # Auto-generated agent rules (p
+- 📐 **convention in .gitignore** — + # Auto-generated agent rules (personalized per developer)
++ .brainsync/agent-rules.md
++ 
+- 📐 **convention in .gitignore** — - .brainsync/agent-rules.md
++ .brainsync
+- 📐 **🟢 Edited prisma/schema.prisma (6 changes, 3min) — confirmed 3x** — Active editing session on prisma/schema.prisma.
+6 content changes over 3 minutes.
 - 📐 **🟢 Edited .gitignore (19 changes, 2min) — confirmed 4x** — Active editing session on .gitignore.
 19 content changes over 2 minutes.
 - 📐 **convention in .gitignore** — - # .brainsync/agent-rules.md
@@ -140,19 +181,6 @@ Auto-compiled from **181 real patterns** in **Blood-Donors-Management-Backend**.
 - 📐 **Always add error states with retry button — not just blank screen** — Always add error states with retry button — not just blank screen
 - 📐 **Always add loading states for async operations (skeleton, spinner)** — Always add loading states for async operations (skeleton, spinner)
 - 📐 **Test edge cases: empty input, null, boundary values, error scenarios** — Test edge cases: empty input, null, boundary values, error scenarios
-- 📐 **Each test should be independent — no shared mutable state between tests** — Each test should be independent — no shared mutable state between tests
-- 📐 **Write tests for business logic — test behavior/output, not implementation details** — Write tests for business logic — test behavior/output, not implementation details
-- 📐 **Close resources (streams, connections, handles) when done** — Close resources (streams, connections, handles) when done
-- 📐 **Debounce user input handlers (search, resize, scroll)** — Debounce user input handlers (search, resize, scroll)
-- 📐 **Use pagination for lists over 100 items** — Use pagination for lists over 100 items
-- 📐 **Implement retry logic for transient failures with exponential backoff** — Implement retry logic for transient failures with exponential backoff
-- 📐 **Return proper HTTP status codes — not 500 for everything** — Return proper HTTP status codes — not 500 for everything
-- 📐 **Always wrap async/await in try/catch** — Always wrap async/await in try/catch
-- 📐 **Hash passwords with cost factor ≥12 (bcrypt) or memory ≥64MB (argon2)** — Hash passwords with cost factor ≥12 (bcrypt) or memory ≥64MB (argon2)
-- 📐 **Implement rate limiting on login endpoints to prevent brute force** — Implement rate limiting on login endpoints to prevent brute force
-- 📐 **Use constants for magic numbers and strings** — Use constants for magic numbers and strings
-- 📐 **Handle edge cases: empty arrays, empty strings, null, undefined, 0, NaN** — Handle edge cases: empty arrays, empty strings, null, undefined, 0, NaN
-- 📐 **Keep functions under 50 lines and single-responsibility** — Keep functions under 50 lines and single-responsibility
 
 ## 🔵 Architecture
 
@@ -169,6 +197,14 @@ e8491b5 auth.ts middleware add
 ## 🤔 Decisions & Trade-offs
 
 - **trade-off in .gitignore** — - .agent
++ .agent/**/*
+- .agent-mem
++ .agent-mem/**/*
+- .agents
++ .agents/**/*
+- .cursor
++ .c
+- **trade-off in .gitignore** — - .agent
 + # .agent
 - .agent-mem
 + # .agent-mem
@@ -181,4 +217,4 @@ e8491b5 auth.ts middleware add
 + .vscode
 
 ---
-*Auto-generated by BrainSync 🧠 | 181 patterns | 2026-03-27*
+*Auto-generated by BrainSync 🧠 | 209 patterns | 2026-03-27*
