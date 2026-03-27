@@ -1,7 +1,7 @@
 
 
 # Project Memory — Blood-Donors-Management-Backend
-> 201 notes | Score threshold: >40
+> 233 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -18,31 +18,39 @@
 
 **Stack:** JavaScript/TypeScript · Express · DB: PostgreSQL, Prisma
 
-## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Active: `prisma`
+## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
-- **what-changed in schema.prisma — confirmed 4x**
-- **Added session cookies authentication**
-- **🟢 Edited prisma/schema.prisma (27 changes, 2min)**
-- **what-changed in schema.prisma**
-- **what-changed in schema.prisma**
+- **⚠️ GOTCHA: Added JWT tokens authentication — ensures atomic multi-step database operations** — - import AppError from '../../errors/AppError';
++ import { JwtPayload 
+
+## Active: `src/app/routes`
+
+- **🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x**
+- **Replaced auth PostRoutes — improves module reusability — confirmed 3x**
+- **Replaced auth HospitalRoutes — improves module reusability — confirmed 3x**
+- **Replaced auth Router — improves module reusability — confirmed 3x**
+- **what-changed in index.ts — confirmed 3x**
 
 ## Project Standards
 
-- what-changed in schema.prisma — confirmed 4x
-- Strengthened types AppError — ensures atomic multi-step database operations
-- convention in sendEmail.ts
-- Added JWT tokens authentication — optimizes data fetching with relational que... — confirmed 3x
-- Strengthened types AppError — filters out falsy/null values explicitly
-- Added session cookies authentication — externalizes configuration for environ... — confirmed 6x
-- Added JWT tokens authentication — optimizes data fetching with relational que... — confirmed 3x
-- Replaced auth Public — confirmed 3x
+- 🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x
+- Replaced auth PostRoutes — improves module reusability — confirmed 3x
+- Replaced auth HospitalRoutes — improves module reusability — confirmed 3x
+- Replaced auth Router — improves module reusability — confirmed 3x
+- what-changed in index.ts — confirmed 3x
+- Updated API endpoint index — improves module reusability — confirmed 3x
+- Replaced auth PostControllers — confirmed 4x
+- Updated schema Request — confirmed 4x
 
 ## Known Fixes
 
 - ❌ PrismaClientKnownRequestError, → ✅ problem-fix in index.js
+- ❌ - import AppError from '../../errors/AppError'; → ✅ Fixed null crash in Secret — uses a proper password hashing algorithm
 
 ## Recent Decisions
 
+- decision in post.interface.ts
+- Optimized package — offloads heavy computation off the main thread
 - Optimized package — offloads heavy computation off the main thread
 
 ## Verified Best Practices

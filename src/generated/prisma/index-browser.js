@@ -127,7 +127,6 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   role: 'role',
   accountStatus: 'accountStatus',
-  isRegisteredUser: 'isRegisteredUser',
   division: 'division',
   district: 'district',
   upazila: 'upazila',
@@ -203,6 +202,34 @@ exports.Prisma.SessionScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.BloodDonorScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  contactNumber: 'contactNumber',
+  bloodGroup: 'bloodGroup',
+  gender: 'gender',
+  lastDonationDate: 'lastDonationDate',
+  isAvailable: 'isAvailable',
+  division: 'division',
+  district: 'district',
+  upazila: 'upazila',
+  userId: 'userId',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HospitalDonationRecordScalarFieldEnum = {
+  id: 'id',
+  hospitalId: 'hospitalId',
+  bloodDonorId: 'bloodDonorId',
+  donationDate: 'donationDate',
+  weight: 'weight',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
   authorId: 'authorId',
@@ -215,6 +242,7 @@ exports.Prisma.PostScalarFieldEnum = {
   upazila: 'upazila',
   requiredDate: 'requiredDate',
   isApproved: 'isApproved',
+  isResolved: 'isResolved',
   targetAmount: 'targetAmount',
   raisedAmount: 'raisedAmount',
   isDeleted: 'isDeleted',
@@ -224,7 +252,7 @@ exports.Prisma.PostScalarFieldEnum = {
 
 exports.Prisma.DonationHistoryScalarFieldEnum = {
   id: 'id',
-  donorId: 'donorId',
+  bloodDonorId: 'bloodDonorId',
   receiverOrgId: 'receiverOrgId',
   donationDate: 'donationDate',
   weightDuringDonation: 'weightDuringDonation',
@@ -235,7 +263,7 @@ exports.Prisma.DonationHistoryScalarFieldEnum = {
 exports.Prisma.OrganisationVolunteerScalarFieldEnum = {
   id: 'id',
   organisationId: 'organisationId',
-  volunteerId: 'volunteerId',
+  bloodDonorId: 'bloodDonorId',
   status: 'status',
   isDeleted: 'isDeleted',
   createdAt: 'createdAt'
@@ -244,7 +272,7 @@ exports.Prisma.OrganisationVolunteerScalarFieldEnum = {
 exports.Prisma.HospitalRequestScalarFieldEnum = {
   id: 'id',
   hospitalId: 'hospitalId',
-  userId: 'userId',
+  bloodDonorId: 'bloodDonorId',
   status: 'status',
   isDeleted: 'isDeleted',
   createdAt: 'createdAt',
@@ -258,6 +286,15 @@ exports.Prisma.NotificationScalarFieldEnum = {
   message: 'message',
   type: 'type',
   isRead: 'isRead',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.VerificationTokenScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  isUsed: 'isUsed',
   createdAt: 'createdAt'
 };
 
@@ -316,11 +353,14 @@ exports.Prisma.ModelName = {
   Organisation: 'Organisation',
   DonorProfile: 'DonorProfile',
   Session: 'Session',
+  BloodDonor: 'BloodDonor',
+  HospitalDonationRecord: 'HospitalDonationRecord',
   Post: 'Post',
   DonationHistory: 'DonationHistory',
   OrganisationVolunteer: 'OrganisationVolunteer',
   HospitalRequest: 'HospitalRequest',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  VerificationToken: 'VerificationToken'
 };
 
 /**

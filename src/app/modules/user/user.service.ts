@@ -62,7 +62,7 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
   return userWithoutPassword;
 };
 
-const getDonorList = async (filters: Record<string, string | undefined>) => {
+const getDonorList = async (filters: Record<string, unknown>) => {
     const { bloodGroup, division, district, upazila, searchTerm, ...filterData } = filters;
 
     const andConditions = [];
@@ -70,29 +70,29 @@ const getDonorList = async (filters: Record<string, string | undefined>) => {
     if (searchTerm) {
         andConditions.push({
             OR: [
-                { email: { contains: searchTerm, mode: 'insensitive' } },
-                { contactNumber: { contains: searchTerm, mode: 'insensitive' } },
-                { donorProfile: { name: { contains: searchTerm, mode: 'insensitive' } } }
+                { email: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
+                { contactNumber: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
+                { donorProfile: { name: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } } }
             ]
         });
     }
 
     if (bloodGroup) {
         andConditions.push({
-            donorProfile: { bloodGroup: { equals: bloodGroup } }
+            donorProfile: { bloodGroup: { equals: bloodGroup as string } }
         });
     }
 
     if (division) {
-        andConditions.push({ division: { equals: division } });
+        andConditions.push({ division: { equals: division as string } });
     }
 
     if (district) {
-        andConditions.push({ district: { equals: district } });
+        andConditions.push({ district: { equals: district as string } });
     }
 
     if (upazila) {
-        andConditions.push({ upazila: { equals: upazila } });
+        andConditions.push({ upazila: { equals: upazila as string } });
     }
 
     // Always filter for USER role and not deleted

@@ -4,24 +4,21 @@ import jwt, { Secret } from 'jsonwebtoken';
 import AppError from '../../errors/AppError';
 import config from '../../config';
 import { createToken, verifyToken } from '../../utils/jwt.utils';
-import { 
-  IChangePassword, 
-  IForgotPassword, 
-  ILocationInfo, 
-  ILoginUser, 
-  IRegisterUser, 
-  IResetPassword 
+import {
+  IChangePassword,
+  IForgotPassword,
+  ILocationInfo,
+  ILoginUser,
+  IRegisterUser,
+  IResetPassword
 } from './auth.interface';
 import { prisma } from '../../lib/prisma';
 import { AccountStatus, UserRole } from '../../../generated/prisma';
 import { sendEmail } from '../../utils/sendEmail';
-import crypto from 'crypto';
-
 
 const registerUser = async (payload: IRegisterUser) => {
   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
 
-  // Check if user exists
   const userExists = await prisma.user.findFirst({
     where: {
       OR: [
@@ -40,7 +37,6 @@ const registerUser = async (payload: IRegisterUser) => {
   let accountStatus: AccountStatus = AccountStatus.ACTIVE;
   let locationData: Partial<ILocationInfo> = {};
 
-  // Extract location and set status efficiently
   if (role === UserRole.HOSPITAL && hospitalInfo) {
     accountStatus = AccountStatus.PENDING;
     const { division, district, upazila } = hospitalInfo;
@@ -63,18 +59,43 @@ const registerUser = async (payload: IRegisterUser) => {
   };
 
   const result = await prisma.$transaction(async (tx) => {
-    // 1. Create User
     const user = await tx.user.create({ data: newUserData });
 
-    // 2. Dynamically create nested profile depending on role
     if (role === 'USER' && donorInfo) {
       const { division, district, upazila, ...restDonorInfo } = donorInfo;
       if (restDonorInfo.lastDonationDate) {
         restDonorInfo.lastDonationDate = new Date(restDonorInfo.lastDonationDate);
       }
+
       await tx.donorProfile.create({
         data: { ...restDonorInfo, userId: user.id },
       });
+
+      const existingBloodDonor = await tx.bloodDonor.findUnique({
+        where: { contactNumber: user.contactNumber },
+      });
+
+      if (existingBloodDonor) {
+        await tx.bloodDonor.update({
+          where: { id: existingBloodDonor.id },
+          data: { userId: user.id },
+        });
+      } else {
+        await tx.bloodDonor.create({
+          data: {
+            name: restDonorInfo.name,
+            contactNumber: user.contactNumber,
+            bloodGroup: restDonorInfo.bloodGroup,
+            gender: restDonorInfo.gender as any,
+            lastDonationDate: restDonorInfo.lastDonationDate,
+            isAvailable: true,
+            division: division as string,
+            district: district as string,
+            upazila: upazila as string,
+            userId: user.id,
+          },
+        });
+      }
     } else if (role === 'HOSPITAL' && hospitalInfo) {
       const { division, district, upazila, ...restHospitalInfo } = hospitalInfo;
       await tx.hospital.create({
@@ -97,7 +118,6 @@ const registerUser = async (payload: IRegisterUser) => {
 const loginUser = async (payload: ILoginUser, ipAddress: string, device: string) => {
   const { contactNumber, email, password } = payload;
 
-  // Find user by either contactNumber OR email
   const user = await prisma.user.findFirst({
     where: {
       OR: [
@@ -125,7 +145,6 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
     role: user.role,
   };
 
-  // Create session
   const session = await prisma.session.create({
     data: {
       userId: user.id,
@@ -133,25 +152,25 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
       contactNumber: user.contactNumber,
       ipAddress,
       device,
-      refreshToken: '', // Temporary empty string, will update after generating JWT
-      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+      refreshToken: '', 
+      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), 
     },
   });
 
   const accessToken = createToken(
-    { userId: user.id, role: user.role }, 
-    config.jwt.secret as string, 
+    { userId: user.id, role: user.role },
+    config.jwt.secret as string,
     config.jwt.expires_in as string
   );
-  
+
   const refreshToken = createToken(
-    { userId: user.id, role: user.role, sessionId: session.id }, 
-    config.jwt.refresh_secret as string, 
+    { userId: user.id, role: user.role, sessionId: session.id },
+    config.jwt.refresh_secret as string,
     config.jwt.refresh_expires_in as string
   );
-  
+
   const hashedRefreshToken = await bcrypt.hash(refreshToken, Number(config.bcrypt_salt_rounds));
-  
+
   await prisma.session.update({
     where: { id: session.id },
     data: { refreshToken: hashedRefreshToken }
@@ -167,7 +186,6 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
 };
 
 const refreshToken = async (token: string) => {
-  // verify token
   let decodedData;
   try {
     decodedData = verifyToken(token, config.jwt.refresh_secret as string) as jwt.JwtPayload;
@@ -177,7 +195,6 @@ const refreshToken = async (token: string) => {
 
   const { userId, sessionId } = decodedData;
 
-  // checking if the session exists and is valid
   const session = await prisma.session.findUnique({
     where: { id: sessionId },
   });
@@ -186,13 +203,11 @@ const refreshToken = async (token: string) => {
     throw new AppError(httpStatus.UNAUTHORIZED, 'Session is invalid or expired!');
   }
 
-  // Compare the cookie refresh token with the hashed refresh token in the DB
   const isRefreshTokenMatched = await bcrypt.compare(token, session.refreshToken);
   if (!isRefreshTokenMatched) {
     throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid refresh token!');
   }
 
-  // checking if the user exists
   const user = await prisma.user.findUnique({
     where: {
       id: userId,
@@ -204,7 +219,6 @@ const refreshToken = async (token: string) => {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
   }
 
-  // checking if the user is already blocked
   if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
   }
@@ -226,7 +240,6 @@ const refreshToken = async (token: string) => {
 };
 
 const changePassword = async (userData: jwt.JwtPayload, payload: IChangePassword) => {
-  // checking if the user is already exist
   const user = await prisma.user.findUnique({
     where: {
       id: userData.userId,
@@ -238,17 +251,14 @@ const changePassword = async (userData: jwt.JwtPayload, payload: IChangePassword
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
   }
 
-  // checking if the user is already blocked
   if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
   }
 
-  // checking if password is correct
   if (!(await bcrypt.compare(payload.oldPassword, user.password as string))) {
     throw new AppError(httpStatus.FORBIDDEN, 'Password do not match');
   }
 
-  // hash new password
   const newHashedPassword = await bcrypt.hash(
     payload.newPassword,
     Number(config.bcrypt_salt_rounds),
@@ -267,7 +277,6 @@ const changePassword = async (userData: jwt.JwtPayload, payload: IChangePassword
 };
 
 const forgotPassword = async (payload: IForgotPassword) => {
-  // checking if the user is already exist
   const user = await prisma.user.findUnique({
     where: {
       email: payload.email,
@@ -286,15 +295,13 @@ const forgotPassword = async (payload: IForgotPassword) => {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
   }
 
-  // checking if the user is already blocked
   if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
   }
 
-  // Generate 6-digit OTP
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
   const hashedToken = await bcrypt.hash(otp, Number(config.bcrypt_salt_rounds));
-  const expiresAt = new Date(Date.now() + 3 * 60 * 1000); // 3 minutes buffer for template's 2 mins
+  const expiresAt = new Date(Date.now() + 3 * 60 * 1000); 
 
   await (prisma as any).verificationToken.upsert({
     where: { email: user.email as string },
@@ -302,13 +309,12 @@ const forgotPassword = async (payload: IForgotPassword) => {
     create: { email: user.email as string, token: hashedToken, expiresAt },
   });
 
-  // Determine user name for template
-  const userName = 
-    user.admin?.name || 
-    user.superAdmin?.name || 
-    user.hospital?.name || 
-    user.organisation?.name || 
-    user.donorProfile?.name || 
+  const userName =
+    user.admin?.name ||
+    user.superAdmin?.name ||
+    user.hospital?.name ||
+    user.organisation?.name ||
+    user.donorProfile?.name ||
     'User';
 
   await sendEmail({
@@ -323,7 +329,6 @@ const forgotPassword = async (payload: IForgotPassword) => {
 };
 
 const resetPassword = async (payload: IResetPassword) => {
-  // checking if the user is already exist
   const user = await prisma.user.findUnique({
     where: {
       id: payload.id,
@@ -335,7 +340,6 @@ const resetPassword = async (payload: IResetPassword) => {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
   }
 
-  // checking if the user is already blocked
   if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
   }
@@ -353,7 +357,6 @@ const resetPassword = async (payload: IResetPassword) => {
     throw new AppError(httpStatus.FORBIDDEN, 'Invalid reset token!');
   }
 
-  // hash new password
   const newHashedPassword = await bcrypt.hash(
     payload.newPassword,
     Number(config.bcrypt_salt_rounds),

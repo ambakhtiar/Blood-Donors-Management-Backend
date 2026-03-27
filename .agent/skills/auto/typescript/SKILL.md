@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: "Typescript for Blood-Donors-Management-Backend. ."
+description: "Typescript for Blood-Donors-Management-Backend. 1 gotchas, 14 conventions, 5 fixes."
 domain: typescript
 triggers:
   - glob: "**/*.ts"
@@ -11,10 +11,180 @@ enabled: true
 
 # Typescript
 
-Auto-compiled from **4 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
+Auto-compiled from **88 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
+
+## ⚠️ Anti-Patterns & Gotchas
+
+> **CRITICAL:** These are real gotchas from this project. Ignoring them WILL cause bugs.
+
+### ❌ ⚠️ GOTCHA: Added JWT tokens authentication — ensures atomic multi-step database operations
+- import AppError from '../../errors/AppError';
++ import { JwtPayload } from 'jsonwebtoken';
+- import { prisma } from '../../lib/prisma';
++ import AppError from '../../errors/AppError';
+- import { ICreatePost } from './post.interface';
++ import { pri
+- Modified 1 files
+- identifier: JwtPayload
+- identifier: AppError
+
+
+## 🔧 Problem Playbooks
+
+### Fixed null crash in Secret — uses a proper password hashing algorithm
+- import bcrypt from 'bcrypt';
++ import bcrypt from 'bcrypt';
+- import httpStatus from 'http-status';
++ import httpStatus from 'http-status';
+- import jwt, { Secret } from 'jsonwebtoken';
++ import jwt, { Secret } from 'jsonwebtoken';
+- import AppError from '../../errors/AppError';
++ import AppError from '../../errors/AppError';
+- import config from '../../config';
++ import config from '../../
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: Secret
+3. identifier: AppError
+4. identifier: IChangePassword
+5. identifier: IForgotPassword
+
+### Fixed null crash in IRegisterUser — uses a proper password hashing algorithm
+- import crypto from 'crypto';
++ 
+- 
++ const registerUser = async (payload: IRegisterUser) => {
+- const registerUser = async (payload: IRegisterUser) => {
++   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
+-   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
++ 
+- 
++   // Check if user exists
+-   // Check if use
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: IRegisterUser
+3. identifier: Check
+4. identifier: AppError
+5. identifier: CONFLICT
+
+### Fixed null crash in IRecordDonationPayload — filters out falsy/null values ex...
+- import { IBloodRequestPayload, IUpdateRequestStatusPayload } from './hospital.interface';
++ import { IRecordDonationPayload, IUpdateRequestStatusPayload } from './hospital.interface';
+- import { RequestStatus } from '../../../generated/prisma';
++ import { PostType, RequestStatus } from '../../../generated/prisma';
+- const sendBloodRequest = async (hospitalId: string, payload: IBloodRequestPayloa
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: IRecordDonationPayload
+3. identifier: IUpdateRequestStatusPayload
+4. identifier: PostType
+5. identifier: RequestStatus
+
+### problem-fix in hospital.validation.ts
+-     userId: z.string({ required_error: 'userId is required' }),
++     userId: z.string({ message: 'userId is required' }),
+-       required_error: 'Status is required and must be ACCEPTED or REJECTED',
++       message: 'Status is required and must be ACCEPTED or REJECTED',
+
+📌 IDE AST Context: Modified symbols likely include [sendBloodRequestSchema, updateRequestStatusSchema, HospitalValidation]
+
+**Actionable Steps:**
+1. Modified 1 files
+
+### problem-fix in post.service.ts
+File updated (external): src/app/modules/post/post.service.ts
+
+Content summary (206 lines):
+import httpStatus from 'http-status';
+import { Prisma, PostType, UserRole } from '../../../generated/prisma';
+import { prisma } from '../../lib/prisma';
+import AppError from '../../errors/AppError';
+import { ICreatePostPayload, IUpdatePostStatusPayload } from './post.interface';
+
+const calculateMonths = (cu
+
+**Actionable Steps:**
+1. Modified 1 files
+
+## 📐 Conventions & Best Practices
+
+### Project Conventions
+- 📐 **Replaced auth PostControllers — confirmed 4x** — - 
++ import { PostControllers } from './post.controller';
+- const router = Router();
++ 
+- 
++ const r
+- 📐 **Updated schema Request — confirmed 4x** — - import { PostServices } from './post.service';
++ import pick from '../../utils/pick';
+- import pic
+- 📐 **🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x** — Active editing session on src/app/routes/index.ts.
+5 content changes over 5 minutes.
+- 📐 **Replaced auth PostRoutes — improves module reusability — confirmed 3x** — - 
++ import { PostRoutes } from '../modules/post/post.route';
+- const router = Router();
++ 
+- 
+
+- 📐 **Replaced auth HospitalRoutes — improves module reusability — confirmed 3x** — - import { PostRoutes } from '../modules/post/post.route';
++ import { HospitalRoutes } from '../mod
+- 📐 **Strengthened types AppError — ensures atomic multi-step database operations** — - import httpStatus from "http-status";
++ import httpStatus from "http-status";
+- import { prisma }
+- 📐 **Fixed null crash in Secret — uses a proper password hashing algorithm — confirmed 3x** — - import bcrypt from 'bcrypt';
++ import bcrypt from 'bcrypt';
+- import httpStatus from 'http-status
+- 📐 **Replaced auth Router — improves module reusability — confirmed 3x** — - import { PostRoutes } from '../modules/post/post.route';
++ 
+- 
++ const router = Router();
+- co
+- 📐 **convention in sendEmail.ts** — File updated (external): src/app/utils/sendEmail.ts
+
+Content summary (81 lines):
+// import nodemaile
+- 📐 **what-changed in index.ts — confirmed 3x** — -     {path: }
++     {path: ''}
+
+📌 IDE AST Context: Modified symbols likely include [router, modu
+- 📐 **Updated API endpoint index — improves module reusability — confirmed 3x** — -     {
++     {}
+-         
++ ];
+-     }
++ 
+- ];
++ moduleRoutes.forEach((route) => router.use
+- 📐 **Strengthened types AppError — filters out falsy/null values explicitly** — - import bcrypt from 'bcrypt';
++ import { prisma } from '../../lib/prisma';
+- import { prisma } from
+- 📐 **what-changed in post.controller.ts — confirmed 4x** — -   
++   const { id } = req.params;
+
+📌 IDE AST Context: Modified symbols likely include [createPost
+- 📐 **Replaced auth AppError — confirmed 4x** — - 
++   if (!req.user) {
+-   if (!req.user) {
++     throw new AppError(httpStatus.UNAUTHORIZED, 'Unau
 
 ## 🔵 Architecture
 
 ### Git hotspots: src/app/config/index.ts(3x), package-lock.json(2x), package.json(2x), docs/req.md(2x), prisma/schema.prisma(2x)
+## 🤔 Decisions & Trade-offs
+
+- **decision in post.interface.ts** — + export interface IPostFilters {
++   searchTerm?: string;
++   type?: PostType;
++   bloodGroup?: str
+- **trade-off in auth.constant.ts** — - export const USER_ROLE = {
++ 
+-   SUPER_ADMIN: 'SUPER_ADMIN',
+-   ADMIN: 'ADMIN',
+-   HOSPITAL: 'H
+
 ---
-*Auto-generated by BrainSync 🧠 | 4 patterns | 2026-03-27*
+*Auto-generated by BrainSync 🧠 | 88 patterns | 2026-03-27*

@@ -1,0 +1,7 @@
+export const USER_ROLE = {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  ADMIN: 'ADMIN',
+  HOSPITAL: 'HOSPITAL',
+  ORGANISATION: 'ORGANISATION',
+  USER: 'USER',
+} as const;

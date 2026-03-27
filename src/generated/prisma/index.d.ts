@@ -49,6 +49,16 @@ export type DonorProfile = $Result.DefaultSelection<Prisma.$DonorProfilePayload>
  */
 export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
 /**
+ * Model BloodDonor
+ * 
+ */
+export type BloodDonor = $Result.DefaultSelection<Prisma.$BloodDonorPayload>
+/**
+ * Model HospitalDonationRecord
+ * 
+ */
+export type HospitalDonationRecord = $Result.DefaultSelection<Prisma.$HospitalDonationRecordPayload>
+/**
  * Model Post
  * 
  */
@@ -73,6 +83,11 @@ export type HospitalRequest = $Result.DefaultSelection<Prisma.$HospitalRequestPa
  * 
  */
 export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model VerificationToken
+ * 
+ */
+export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTokenPayload>
 
 /**
  * Enums
@@ -339,6 +354,26 @@ export class PrismaClient<
   get session(): Prisma.SessionDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.bloodDonor`: Exposes CRUD operations for the **BloodDonor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BloodDonors
+    * const bloodDonors = await prisma.bloodDonor.findMany()
+    * ```
+    */
+  get bloodDonor(): Prisma.BloodDonorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hospitalDonationRecord`: Exposes CRUD operations for the **HospitalDonationRecord** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HospitalDonationRecords
+    * const hospitalDonationRecords = await prisma.hospitalDonationRecord.findMany()
+    * ```
+    */
+  get hospitalDonationRecord(): Prisma.HospitalDonationRecordDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.post`: Exposes CRUD operations for the **Post** model.
     * Example usage:
     * ```ts
@@ -387,6 +422,16 @@ export class PrismaClient<
     * ```
     */
   get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.verificationToken`: Exposes CRUD operations for the **VerificationToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VerificationTokens
+    * const verificationTokens = await prisma.verificationToken.findMany()
+    * ```
+    */
+  get verificationToken(): Prisma.VerificationTokenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -828,11 +873,14 @@ export namespace Prisma {
     Organisation: 'Organisation',
     DonorProfile: 'DonorProfile',
     Session: 'Session',
+    BloodDonor: 'BloodDonor',
+    HospitalDonationRecord: 'HospitalDonationRecord',
     Post: 'Post',
     DonationHistory: 'DonationHistory',
     OrganisationVolunteer: 'OrganisationVolunteer',
     HospitalRequest: 'HospitalRequest',
-    Notification: 'Notification'
+    Notification: 'Notification',
+    VerificationToken: 'VerificationToken'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -848,7 +896,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "superAdmin" | "admin" | "hospital" | "organisation" | "donorProfile" | "session" | "post" | "donationHistory" | "organisationVolunteer" | "hospitalRequest" | "notification"
+      modelProps: "user" | "superAdmin" | "admin" | "hospital" | "organisation" | "donorProfile" | "session" | "bloodDonor" | "hospitalDonationRecord" | "post" | "donationHistory" | "organisationVolunteer" | "hospitalRequest" | "notification" | "verificationToken"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1370,6 +1418,154 @@ export namespace Prisma {
           }
         }
       }
+      BloodDonor: {
+        payload: Prisma.$BloodDonorPayload<ExtArgs>
+        fields: Prisma.BloodDonorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BloodDonorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BloodDonorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>
+          }
+          findFirst: {
+            args: Prisma.BloodDonorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BloodDonorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>
+          }
+          findMany: {
+            args: Prisma.BloodDonorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>[]
+          }
+          create: {
+            args: Prisma.BloodDonorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>
+          }
+          createMany: {
+            args: Prisma.BloodDonorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BloodDonorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>[]
+          }
+          delete: {
+            args: Prisma.BloodDonorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>
+          }
+          update: {
+            args: Prisma.BloodDonorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>
+          }
+          deleteMany: {
+            args: Prisma.BloodDonorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BloodDonorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BloodDonorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>[]
+          }
+          upsert: {
+            args: Prisma.BloodDonorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BloodDonorPayload>
+          }
+          aggregate: {
+            args: Prisma.BloodDonorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBloodDonor>
+          }
+          groupBy: {
+            args: Prisma.BloodDonorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BloodDonorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BloodDonorCountArgs<ExtArgs>
+            result: $Utils.Optional<BloodDonorCountAggregateOutputType> | number
+          }
+        }
+      }
+      HospitalDonationRecord: {
+        payload: Prisma.$HospitalDonationRecordPayload<ExtArgs>
+        fields: Prisma.HospitalDonationRecordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HospitalDonationRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HospitalDonationRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>
+          }
+          findFirst: {
+            args: Prisma.HospitalDonationRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HospitalDonationRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>
+          }
+          findMany: {
+            args: Prisma.HospitalDonationRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>[]
+          }
+          create: {
+            args: Prisma.HospitalDonationRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>
+          }
+          createMany: {
+            args: Prisma.HospitalDonationRecordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HospitalDonationRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>[]
+          }
+          delete: {
+            args: Prisma.HospitalDonationRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>
+          }
+          update: {
+            args: Prisma.HospitalDonationRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>
+          }
+          deleteMany: {
+            args: Prisma.HospitalDonationRecordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HospitalDonationRecordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HospitalDonationRecordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>[]
+          }
+          upsert: {
+            args: Prisma.HospitalDonationRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HospitalDonationRecordPayload>
+          }
+          aggregate: {
+            args: Prisma.HospitalDonationRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHospitalDonationRecord>
+          }
+          groupBy: {
+            args: Prisma.HospitalDonationRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HospitalDonationRecordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HospitalDonationRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<HospitalDonationRecordCountAggregateOutputType> | number
+          }
+        }
+      }
       Post: {
         payload: Prisma.$PostPayload<ExtArgs>
         fields: Prisma.PostFieldRefs
@@ -1740,6 +1936,80 @@ export namespace Prisma {
           }
         }
       }
+      VerificationToken: {
+        payload: Prisma.$VerificationTokenPayload<ExtArgs>
+        fields: Prisma.VerificationTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VerificationTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VerificationTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.VerificationTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VerificationTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          findMany: {
+            args: Prisma.VerificationTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          create: {
+            args: Prisma.VerificationTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          createMany: {
+            args: Prisma.VerificationTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VerificationTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.VerificationTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          update: {
+            args: Prisma.VerificationTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.VerificationTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VerificationTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VerificationTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.VerificationTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.VerificationTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVerificationToken>
+          }
+          groupBy: {
+            args: Prisma.VerificationTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VerificationTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VerificationTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<VerificationTokenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1855,11 +2125,14 @@ export namespace Prisma {
     organisation?: OrganisationOmit
     donorProfile?: DonorProfileOmit
     session?: SessionOmit
+    bloodDonor?: BloodDonorOmit
+    hospitalDonationRecord?: HospitalDonationRecordOmit
     post?: PostOmit
     donationHistory?: DonationHistoryOmit
     organisationVolunteer?: OrganisationVolunteerOmit
     hospitalRequest?: HospitalRequestOmit
     notification?: NotificationOmit
+    verificationToken?: VerificationTokenOmit
   }
 
   /* Types for Logging */
@@ -1942,24 +2215,20 @@ export namespace Prisma {
   export type UserCountOutputType = {
     sessions: number
     posts: number
-    donationsAsDonor: number
     donationsAsReceiver: number
-    hospitalRequests: number
     requestedByHospitals: number
-    organisationVolunteers: number
     organisationManaged: number
+    hospitalRecords: number
     notifications: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     posts?: boolean | UserCountOutputTypeCountPostsArgs
-    donationsAsDonor?: boolean | UserCountOutputTypeCountDonationsAsDonorArgs
     donationsAsReceiver?: boolean | UserCountOutputTypeCountDonationsAsReceiverArgs
-    hospitalRequests?: boolean | UserCountOutputTypeCountHospitalRequestsArgs
     requestedByHospitals?: boolean | UserCountOutputTypeCountRequestedByHospitalsArgs
-    organisationVolunteers?: boolean | UserCountOutputTypeCountOrganisationVolunteersArgs
     organisationManaged?: boolean | UserCountOutputTypeCountOrganisationManagedArgs
+    hospitalRecords?: boolean | UserCountOutputTypeCountHospitalRecordsArgs
     notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   }
 
@@ -1991,22 +2260,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountDonationsAsDonorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DonationHistoryWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountDonationsAsReceiverArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DonationHistoryWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountHospitalRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HospitalRequestWhereInput
   }
 
   /**
@@ -2019,13 +2274,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountOrganisationVolunteersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OrganisationVolunteerWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountOrganisationManagedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OrganisationVolunteerWhereInput
   }
@@ -2033,8 +2281,73 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
+  export type UserCountOutputTypeCountHospitalRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HospitalDonationRecordWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
   export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: NotificationWhereInput
+  }
+
+
+  /**
+   * Count Type BloodDonorCountOutputType
+   */
+
+  export type BloodDonorCountOutputType = {
+    donations: number
+    hospitalRequests: number
+    hospitalRecords: number
+    organisationVols: number
+  }
+
+  export type BloodDonorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    donations?: boolean | BloodDonorCountOutputTypeCountDonationsArgs
+    hospitalRequests?: boolean | BloodDonorCountOutputTypeCountHospitalRequestsArgs
+    hospitalRecords?: boolean | BloodDonorCountOutputTypeCountHospitalRecordsArgs
+    organisationVols?: boolean | BloodDonorCountOutputTypeCountOrganisationVolsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BloodDonorCountOutputType without action
+   */
+  export type BloodDonorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonorCountOutputType
+     */
+    select?: BloodDonorCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BloodDonorCountOutputType without action
+   */
+  export type BloodDonorCountOutputTypeCountDonationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DonationHistoryWhereInput
+  }
+
+  /**
+   * BloodDonorCountOutputType without action
+   */
+  export type BloodDonorCountOutputTypeCountHospitalRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HospitalRequestWhereInput
+  }
+
+  /**
+   * BloodDonorCountOutputType without action
+   */
+  export type BloodDonorCountOutputTypeCountHospitalRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HospitalDonationRecordWhereInput
+  }
+
+  /**
+   * BloodDonorCountOutputType without action
+   */
+  export type BloodDonorCountOutputTypeCountOrganisationVolsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrganisationVolunteerWhereInput
   }
 
 
@@ -2059,7 +2372,6 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole | null
     accountStatus: $Enums.AccountStatus | null
-    isRegisteredUser: boolean | null
     division: string | null
     district: string | null
     upazila: string | null
@@ -2075,7 +2387,6 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole | null
     accountStatus: $Enums.AccountStatus | null
-    isRegisteredUser: boolean | null
     division: string | null
     district: string | null
     upazila: string | null
@@ -2091,7 +2402,6 @@ export namespace Prisma {
     password: number
     role: number
     accountStatus: number
-    isRegisteredUser: number
     division: number
     district: number
     upazila: number
@@ -2109,7 +2419,6 @@ export namespace Prisma {
     password?: true
     role?: true
     accountStatus?: true
-    isRegisteredUser?: true
     division?: true
     district?: true
     upazila?: true
@@ -2125,7 +2434,6 @@ export namespace Prisma {
     password?: true
     role?: true
     accountStatus?: true
-    isRegisteredUser?: true
     division?: true
     district?: true
     upazila?: true
@@ -2141,7 +2449,6 @@ export namespace Prisma {
     password?: true
     role?: true
     accountStatus?: true
-    isRegisteredUser?: true
     division?: true
     district?: true
     upazila?: true
@@ -2230,7 +2537,6 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole
     accountStatus: $Enums.AccountStatus
-    isRegisteredUser: boolean
     division: string | null
     district: string | null
     upazila: string | null
@@ -2263,7 +2569,6 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     accountStatus?: boolean
-    isRegisteredUser?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
@@ -2277,12 +2582,11 @@ export namespace Prisma {
     donorProfile?: boolean | User$donorProfileArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
-    donationsAsDonor?: boolean | User$donationsAsDonorArgs<ExtArgs>
+    bloodDonor?: boolean | User$bloodDonorArgs<ExtArgs>
     donationsAsReceiver?: boolean | User$donationsAsReceiverArgs<ExtArgs>
-    hospitalRequests?: boolean | User$hospitalRequestsArgs<ExtArgs>
     requestedByHospitals?: boolean | User$requestedByHospitalsArgs<ExtArgs>
-    organisationVolunteers?: boolean | User$organisationVolunteersArgs<ExtArgs>
     organisationManaged?: boolean | User$organisationManagedArgs<ExtArgs>
+    hospitalRecords?: boolean | User$hospitalRecordsArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -2294,7 +2598,6 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     accountStatus?: boolean
-    isRegisteredUser?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
@@ -2310,7 +2613,6 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     accountStatus?: boolean
-    isRegisteredUser?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
@@ -2326,7 +2628,6 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     accountStatus?: boolean
-    isRegisteredUser?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
@@ -2335,7 +2636,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "contactNumber" | "password" | "role" | "accountStatus" | "isRegisteredUser" | "division" | "district" | "upazila" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "contactNumber" | "password" | "role" | "accountStatus" | "division" | "district" | "upazila" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     superAdmin?: boolean | User$superAdminArgs<ExtArgs>
     admin?: boolean | User$adminArgs<ExtArgs>
@@ -2344,12 +2645,11 @@ export namespace Prisma {
     donorProfile?: boolean | User$donorProfileArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
-    donationsAsDonor?: boolean | User$donationsAsDonorArgs<ExtArgs>
+    bloodDonor?: boolean | User$bloodDonorArgs<ExtArgs>
     donationsAsReceiver?: boolean | User$donationsAsReceiverArgs<ExtArgs>
-    hospitalRequests?: boolean | User$hospitalRequestsArgs<ExtArgs>
     requestedByHospitals?: boolean | User$requestedByHospitalsArgs<ExtArgs>
-    organisationVolunteers?: boolean | User$organisationVolunteersArgs<ExtArgs>
     organisationManaged?: boolean | User$organisationManagedArgs<ExtArgs>
+    hospitalRecords?: boolean | User$hospitalRecordsArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2366,12 +2666,11 @@ export namespace Prisma {
       donorProfile: Prisma.$DonorProfilePayload<ExtArgs> | null
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       posts: Prisma.$PostPayload<ExtArgs>[]
-      donationsAsDonor: Prisma.$DonationHistoryPayload<ExtArgs>[]
+      bloodDonor: Prisma.$BloodDonorPayload<ExtArgs> | null
       donationsAsReceiver: Prisma.$DonationHistoryPayload<ExtArgs>[]
-      hospitalRequests: Prisma.$HospitalRequestPayload<ExtArgs>[]
       requestedByHospitals: Prisma.$HospitalRequestPayload<ExtArgs>[]
-      organisationVolunteers: Prisma.$OrganisationVolunteerPayload<ExtArgs>[]
       organisationManaged: Prisma.$OrganisationVolunteerPayload<ExtArgs>[]
+      hospitalRecords: Prisma.$HospitalDonationRecordPayload<ExtArgs>[]
       notifications: Prisma.$NotificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2381,7 +2680,6 @@ export namespace Prisma {
       password: string | null
       role: $Enums.UserRole
       accountStatus: $Enums.AccountStatus
-      isRegisteredUser: boolean
       division: string | null
       district: string | null
       upazila: string | null
@@ -2789,12 +3087,11 @@ export namespace Prisma {
     donorProfile<T extends User$donorProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$donorProfileArgs<ExtArgs>>): Prisma__DonorProfileClient<$Result.GetResult<Prisma.$DonorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    donationsAsDonor<T extends User$donationsAsDonorArgs<ExtArgs> = {}>(args?: Subset<T, User$donationsAsDonorArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DonationHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    bloodDonor<T extends User$bloodDonorArgs<ExtArgs> = {}>(args?: Subset<T, User$bloodDonorArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     donationsAsReceiver<T extends User$donationsAsReceiverArgs<ExtArgs> = {}>(args?: Subset<T, User$donationsAsReceiverArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DonationHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hospitalRequests<T extends User$hospitalRequestsArgs<ExtArgs> = {}>(args?: Subset<T, User$hospitalRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     requestedByHospitals<T extends User$requestedByHospitalsArgs<ExtArgs> = {}>(args?: Subset<T, User$requestedByHospitalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    organisationVolunteers<T extends User$organisationVolunteersArgs<ExtArgs> = {}>(args?: Subset<T, User$organisationVolunteersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganisationVolunteerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     organisationManaged<T extends User$organisationManagedArgs<ExtArgs> = {}>(args?: Subset<T, User$organisationManagedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganisationVolunteerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hospitalRecords<T extends User$hospitalRecordsArgs<ExtArgs> = {}>(args?: Subset<T, User$hospitalRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2831,7 +3128,6 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
     readonly accountStatus: FieldRef<"User", 'AccountStatus'>
-    readonly isRegisteredUser: FieldRef<"User", 'Boolean'>
     readonly division: FieldRef<"User", 'String'>
     readonly district: FieldRef<"User", 'String'>
     readonly upazila: FieldRef<"User", 'String'>
@@ -3374,27 +3670,22 @@ export namespace Prisma {
   }
 
   /**
-   * User.donationsAsDonor
+   * User.bloodDonor
    */
-  export type User$donationsAsDonorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$bloodDonorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DonationHistory
+     * Select specific fields to fetch from the BloodDonor
      */
-    select?: DonationHistorySelect<ExtArgs> | null
+    select?: BloodDonorSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DonationHistory
+     * Omit specific fields from the BloodDonor
      */
-    omit?: DonationHistoryOmit<ExtArgs> | null
+    omit?: BloodDonorOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DonationHistoryInclude<ExtArgs> | null
-    where?: DonationHistoryWhereInput
-    orderBy?: DonationHistoryOrderByWithRelationInput | DonationHistoryOrderByWithRelationInput[]
-    cursor?: DonationHistoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DonationHistoryScalarFieldEnum | DonationHistoryScalarFieldEnum[]
+    include?: BloodDonorInclude<ExtArgs> | null
+    where?: BloodDonorWhereInput
   }
 
   /**
@@ -3422,30 +3713,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.hospitalRequests
-   */
-  export type User$hospitalRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HospitalRequest
-     */
-    select?: HospitalRequestSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HospitalRequest
-     */
-    omit?: HospitalRequestOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HospitalRequestInclude<ExtArgs> | null
-    where?: HospitalRequestWhereInput
-    orderBy?: HospitalRequestOrderByWithRelationInput | HospitalRequestOrderByWithRelationInput[]
-    cursor?: HospitalRequestWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HospitalRequestScalarFieldEnum | HospitalRequestScalarFieldEnum[]
-  }
-
-  /**
    * User.requestedByHospitals
    */
   export type User$requestedByHospitalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3470,30 +3737,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.organisationVolunteers
-   */
-  export type User$organisationVolunteersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrganisationVolunteer
-     */
-    select?: OrganisationVolunteerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrganisationVolunteer
-     */
-    omit?: OrganisationVolunteerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OrganisationVolunteerInclude<ExtArgs> | null
-    where?: OrganisationVolunteerWhereInput
-    orderBy?: OrganisationVolunteerOrderByWithRelationInput | OrganisationVolunteerOrderByWithRelationInput[]
-    cursor?: OrganisationVolunteerWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OrganisationVolunteerScalarFieldEnum | OrganisationVolunteerScalarFieldEnum[]
-  }
-
-  /**
    * User.organisationManaged
    */
   export type User$organisationManagedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3515,6 +3758,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OrganisationVolunteerScalarFieldEnum | OrganisationVolunteerScalarFieldEnum[]
+  }
+
+  /**
+   * User.hospitalRecords
+   */
+  export type User$hospitalRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    where?: HospitalDonationRecordWhereInput
+    orderBy?: HospitalDonationRecordOrderByWithRelationInput | HospitalDonationRecordOrderByWithRelationInput[]
+    cursor?: HospitalDonationRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HospitalDonationRecordScalarFieldEnum | HospitalDonationRecordScalarFieldEnum[]
   }
 
   /**
@@ -10220,6 +10487,2463 @@ export namespace Prisma {
 
 
   /**
+   * Model BloodDonor
+   */
+
+  export type AggregateBloodDonor = {
+    _count: BloodDonorCountAggregateOutputType | null
+    _min: BloodDonorMinAggregateOutputType | null
+    _max: BloodDonorMaxAggregateOutputType | null
+  }
+
+  export type BloodDonorMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    contactNumber: string | null
+    bloodGroup: string | null
+    gender: $Enums.Gender | null
+    lastDonationDate: Date | null
+    isAvailable: boolean | null
+    division: string | null
+    district: string | null
+    upazila: string | null
+    userId: string | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BloodDonorMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    contactNumber: string | null
+    bloodGroup: string | null
+    gender: $Enums.Gender | null
+    lastDonationDate: Date | null
+    isAvailable: boolean | null
+    division: string | null
+    district: string | null
+    upazila: string | null
+    userId: string | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BloodDonorCountAggregateOutputType = {
+    id: number
+    name: number
+    contactNumber: number
+    bloodGroup: number
+    gender: number
+    lastDonationDate: number
+    isAvailable: number
+    division: number
+    district: number
+    upazila: number
+    userId: number
+    isDeleted: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BloodDonorMinAggregateInputType = {
+    id?: true
+    name?: true
+    contactNumber?: true
+    bloodGroup?: true
+    gender?: true
+    lastDonationDate?: true
+    isAvailable?: true
+    division?: true
+    district?: true
+    upazila?: true
+    userId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BloodDonorMaxAggregateInputType = {
+    id?: true
+    name?: true
+    contactNumber?: true
+    bloodGroup?: true
+    gender?: true
+    lastDonationDate?: true
+    isAvailable?: true
+    division?: true
+    district?: true
+    upazila?: true
+    userId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BloodDonorCountAggregateInputType = {
+    id?: true
+    name?: true
+    contactNumber?: true
+    bloodGroup?: true
+    gender?: true
+    lastDonationDate?: true
+    isAvailable?: true
+    division?: true
+    district?: true
+    upazila?: true
+    userId?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BloodDonorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BloodDonor to aggregate.
+     */
+    where?: BloodDonorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BloodDonors to fetch.
+     */
+    orderBy?: BloodDonorOrderByWithRelationInput | BloodDonorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BloodDonorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BloodDonors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BloodDonors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BloodDonors
+    **/
+    _count?: true | BloodDonorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BloodDonorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BloodDonorMaxAggregateInputType
+  }
+
+  export type GetBloodDonorAggregateType<T extends BloodDonorAggregateArgs> = {
+        [P in keyof T & keyof AggregateBloodDonor]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBloodDonor[P]>
+      : GetScalarType<T[P], AggregateBloodDonor[P]>
+  }
+
+
+
+
+  export type BloodDonorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BloodDonorWhereInput
+    orderBy?: BloodDonorOrderByWithAggregationInput | BloodDonorOrderByWithAggregationInput[]
+    by: BloodDonorScalarFieldEnum[] | BloodDonorScalarFieldEnum
+    having?: BloodDonorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BloodDonorCountAggregateInputType | true
+    _min?: BloodDonorMinAggregateInputType
+    _max?: BloodDonorMaxAggregateInputType
+  }
+
+  export type BloodDonorGroupByOutputType = {
+    id: string
+    name: string
+    contactNumber: string
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate: Date | null
+    isAvailable: boolean
+    division: string
+    district: string
+    upazila: string
+    userId: string | null
+    isDeleted: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: BloodDonorCountAggregateOutputType | null
+    _min: BloodDonorMinAggregateOutputType | null
+    _max: BloodDonorMaxAggregateOutputType | null
+  }
+
+  type GetBloodDonorGroupByPayload<T extends BloodDonorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BloodDonorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BloodDonorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BloodDonorGroupByOutputType[P]>
+            : GetScalarType<T[P], BloodDonorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BloodDonorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    contactNumber?: boolean
+    bloodGroup?: boolean
+    gender?: boolean
+    lastDonationDate?: boolean
+    isAvailable?: boolean
+    division?: boolean
+    district?: boolean
+    upazila?: boolean
+    userId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | BloodDonor$userArgs<ExtArgs>
+    donations?: boolean | BloodDonor$donationsArgs<ExtArgs>
+    hospitalRequests?: boolean | BloodDonor$hospitalRequestsArgs<ExtArgs>
+    hospitalRecords?: boolean | BloodDonor$hospitalRecordsArgs<ExtArgs>
+    organisationVols?: boolean | BloodDonor$organisationVolsArgs<ExtArgs>
+    _count?: boolean | BloodDonorCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bloodDonor"]>
+
+  export type BloodDonorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    contactNumber?: boolean
+    bloodGroup?: boolean
+    gender?: boolean
+    lastDonationDate?: boolean
+    isAvailable?: boolean
+    division?: boolean
+    district?: boolean
+    upazila?: boolean
+    userId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | BloodDonor$userArgs<ExtArgs>
+  }, ExtArgs["result"]["bloodDonor"]>
+
+  export type BloodDonorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    contactNumber?: boolean
+    bloodGroup?: boolean
+    gender?: boolean
+    lastDonationDate?: boolean
+    isAvailable?: boolean
+    division?: boolean
+    district?: boolean
+    upazila?: boolean
+    userId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | BloodDonor$userArgs<ExtArgs>
+  }, ExtArgs["result"]["bloodDonor"]>
+
+  export type BloodDonorSelectScalar = {
+    id?: boolean
+    name?: boolean
+    contactNumber?: boolean
+    bloodGroup?: boolean
+    gender?: boolean
+    lastDonationDate?: boolean
+    isAvailable?: boolean
+    division?: boolean
+    district?: boolean
+    upazila?: boolean
+    userId?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BloodDonorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "contactNumber" | "bloodGroup" | "gender" | "lastDonationDate" | "isAvailable" | "division" | "district" | "upazila" | "userId" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["bloodDonor"]>
+  export type BloodDonorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | BloodDonor$userArgs<ExtArgs>
+    donations?: boolean | BloodDonor$donationsArgs<ExtArgs>
+    hospitalRequests?: boolean | BloodDonor$hospitalRequestsArgs<ExtArgs>
+    hospitalRecords?: boolean | BloodDonor$hospitalRecordsArgs<ExtArgs>
+    organisationVols?: boolean | BloodDonor$organisationVolsArgs<ExtArgs>
+    _count?: boolean | BloodDonorCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BloodDonorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | BloodDonor$userArgs<ExtArgs>
+  }
+  export type BloodDonorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | BloodDonor$userArgs<ExtArgs>
+  }
+
+  export type $BloodDonorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BloodDonor"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+      donations: Prisma.$DonationHistoryPayload<ExtArgs>[]
+      hospitalRequests: Prisma.$HospitalRequestPayload<ExtArgs>[]
+      hospitalRecords: Prisma.$HospitalDonationRecordPayload<ExtArgs>[]
+      organisationVols: Prisma.$OrganisationVolunteerPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      contactNumber: string
+      bloodGroup: string
+      gender: $Enums.Gender
+      lastDonationDate: Date | null
+      isAvailable: boolean
+      division: string
+      district: string
+      upazila: string
+      userId: string | null
+      isDeleted: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bloodDonor"]>
+    composites: {}
+  }
+
+  type BloodDonorGetPayload<S extends boolean | null | undefined | BloodDonorDefaultArgs> = $Result.GetResult<Prisma.$BloodDonorPayload, S>
+
+  type BloodDonorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BloodDonorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BloodDonorCountAggregateInputType | true
+    }
+
+  export interface BloodDonorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BloodDonor'], meta: { name: 'BloodDonor' } }
+    /**
+     * Find zero or one BloodDonor that matches the filter.
+     * @param {BloodDonorFindUniqueArgs} args - Arguments to find a BloodDonor
+     * @example
+     * // Get one BloodDonor
+     * const bloodDonor = await prisma.bloodDonor.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BloodDonorFindUniqueArgs>(args: SelectSubset<T, BloodDonorFindUniqueArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BloodDonor that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BloodDonorFindUniqueOrThrowArgs} args - Arguments to find a BloodDonor
+     * @example
+     * // Get one BloodDonor
+     * const bloodDonor = await prisma.bloodDonor.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BloodDonorFindUniqueOrThrowArgs>(args: SelectSubset<T, BloodDonorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BloodDonor that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BloodDonorFindFirstArgs} args - Arguments to find a BloodDonor
+     * @example
+     * // Get one BloodDonor
+     * const bloodDonor = await prisma.bloodDonor.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BloodDonorFindFirstArgs>(args?: SelectSubset<T, BloodDonorFindFirstArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BloodDonor that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BloodDonorFindFirstOrThrowArgs} args - Arguments to find a BloodDonor
+     * @example
+     * // Get one BloodDonor
+     * const bloodDonor = await prisma.bloodDonor.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BloodDonorFindFirstOrThrowArgs>(args?: SelectSubset<T, BloodDonorFindFirstOrThrowArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BloodDonors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BloodDonorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BloodDonors
+     * const bloodDonors = await prisma.bloodDonor.findMany()
+     * 
+     * // Get first 10 BloodDonors
+     * const bloodDonors = await prisma.bloodDonor.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const bloodDonorWithIdOnly = await prisma.bloodDonor.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BloodDonorFindManyArgs>(args?: SelectSubset<T, BloodDonorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BloodDonor.
+     * @param {BloodDonorCreateArgs} args - Arguments to create a BloodDonor.
+     * @example
+     * // Create one BloodDonor
+     * const BloodDonor = await prisma.bloodDonor.create({
+     *   data: {
+     *     // ... data to create a BloodDonor
+     *   }
+     * })
+     * 
+     */
+    create<T extends BloodDonorCreateArgs>(args: SelectSubset<T, BloodDonorCreateArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BloodDonors.
+     * @param {BloodDonorCreateManyArgs} args - Arguments to create many BloodDonors.
+     * @example
+     * // Create many BloodDonors
+     * const bloodDonor = await prisma.bloodDonor.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BloodDonorCreateManyArgs>(args?: SelectSubset<T, BloodDonorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BloodDonors and returns the data saved in the database.
+     * @param {BloodDonorCreateManyAndReturnArgs} args - Arguments to create many BloodDonors.
+     * @example
+     * // Create many BloodDonors
+     * const bloodDonor = await prisma.bloodDonor.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BloodDonors and only return the `id`
+     * const bloodDonorWithIdOnly = await prisma.bloodDonor.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BloodDonorCreateManyAndReturnArgs>(args?: SelectSubset<T, BloodDonorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BloodDonor.
+     * @param {BloodDonorDeleteArgs} args - Arguments to delete one BloodDonor.
+     * @example
+     * // Delete one BloodDonor
+     * const BloodDonor = await prisma.bloodDonor.delete({
+     *   where: {
+     *     // ... filter to delete one BloodDonor
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BloodDonorDeleteArgs>(args: SelectSubset<T, BloodDonorDeleteArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BloodDonor.
+     * @param {BloodDonorUpdateArgs} args - Arguments to update one BloodDonor.
+     * @example
+     * // Update one BloodDonor
+     * const bloodDonor = await prisma.bloodDonor.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BloodDonorUpdateArgs>(args: SelectSubset<T, BloodDonorUpdateArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BloodDonors.
+     * @param {BloodDonorDeleteManyArgs} args - Arguments to filter BloodDonors to delete.
+     * @example
+     * // Delete a few BloodDonors
+     * const { count } = await prisma.bloodDonor.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BloodDonorDeleteManyArgs>(args?: SelectSubset<T, BloodDonorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BloodDonors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BloodDonorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BloodDonors
+     * const bloodDonor = await prisma.bloodDonor.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BloodDonorUpdateManyArgs>(args: SelectSubset<T, BloodDonorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BloodDonors and returns the data updated in the database.
+     * @param {BloodDonorUpdateManyAndReturnArgs} args - Arguments to update many BloodDonors.
+     * @example
+     * // Update many BloodDonors
+     * const bloodDonor = await prisma.bloodDonor.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BloodDonors and only return the `id`
+     * const bloodDonorWithIdOnly = await prisma.bloodDonor.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BloodDonorUpdateManyAndReturnArgs>(args: SelectSubset<T, BloodDonorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BloodDonor.
+     * @param {BloodDonorUpsertArgs} args - Arguments to update or create a BloodDonor.
+     * @example
+     * // Update or create a BloodDonor
+     * const bloodDonor = await prisma.bloodDonor.upsert({
+     *   create: {
+     *     // ... data to create a BloodDonor
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BloodDonor we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BloodDonorUpsertArgs>(args: SelectSubset<T, BloodDonorUpsertArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BloodDonors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BloodDonorCountArgs} args - Arguments to filter BloodDonors to count.
+     * @example
+     * // Count the number of BloodDonors
+     * const count = await prisma.bloodDonor.count({
+     *   where: {
+     *     // ... the filter for the BloodDonors we want to count
+     *   }
+     * })
+    **/
+    count<T extends BloodDonorCountArgs>(
+      args?: Subset<T, BloodDonorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BloodDonorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BloodDonor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BloodDonorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BloodDonorAggregateArgs>(args: Subset<T, BloodDonorAggregateArgs>): Prisma.PrismaPromise<GetBloodDonorAggregateType<T>>
+
+    /**
+     * Group by BloodDonor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BloodDonorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BloodDonorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BloodDonorGroupByArgs['orderBy'] }
+        : { orderBy?: BloodDonorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BloodDonorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBloodDonorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BloodDonor model
+   */
+  readonly fields: BloodDonorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BloodDonor.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BloodDonorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends BloodDonor$userArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonor$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    donations<T extends BloodDonor$donationsArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonor$donationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DonationHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hospitalRequests<T extends BloodDonor$hospitalRequestsArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonor$hospitalRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hospitalRecords<T extends BloodDonor$hospitalRecordsArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonor$hospitalRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    organisationVols<T extends BloodDonor$organisationVolsArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonor$organisationVolsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrganisationVolunteerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BloodDonor model
+   */
+  interface BloodDonorFieldRefs {
+    readonly id: FieldRef<"BloodDonor", 'String'>
+    readonly name: FieldRef<"BloodDonor", 'String'>
+    readonly contactNumber: FieldRef<"BloodDonor", 'String'>
+    readonly bloodGroup: FieldRef<"BloodDonor", 'String'>
+    readonly gender: FieldRef<"BloodDonor", 'Gender'>
+    readonly lastDonationDate: FieldRef<"BloodDonor", 'DateTime'>
+    readonly isAvailable: FieldRef<"BloodDonor", 'Boolean'>
+    readonly division: FieldRef<"BloodDonor", 'String'>
+    readonly district: FieldRef<"BloodDonor", 'String'>
+    readonly upazila: FieldRef<"BloodDonor", 'String'>
+    readonly userId: FieldRef<"BloodDonor", 'String'>
+    readonly isDeleted: FieldRef<"BloodDonor", 'Boolean'>
+    readonly createdAt: FieldRef<"BloodDonor", 'DateTime'>
+    readonly updatedAt: FieldRef<"BloodDonor", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BloodDonor findUnique
+   */
+  export type BloodDonorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * Filter, which BloodDonor to fetch.
+     */
+    where: BloodDonorWhereUniqueInput
+  }
+
+  /**
+   * BloodDonor findUniqueOrThrow
+   */
+  export type BloodDonorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * Filter, which BloodDonor to fetch.
+     */
+    where: BloodDonorWhereUniqueInput
+  }
+
+  /**
+   * BloodDonor findFirst
+   */
+  export type BloodDonorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * Filter, which BloodDonor to fetch.
+     */
+    where?: BloodDonorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BloodDonors to fetch.
+     */
+    orderBy?: BloodDonorOrderByWithRelationInput | BloodDonorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BloodDonors.
+     */
+    cursor?: BloodDonorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BloodDonors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BloodDonors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BloodDonors.
+     */
+    distinct?: BloodDonorScalarFieldEnum | BloodDonorScalarFieldEnum[]
+  }
+
+  /**
+   * BloodDonor findFirstOrThrow
+   */
+  export type BloodDonorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * Filter, which BloodDonor to fetch.
+     */
+    where?: BloodDonorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BloodDonors to fetch.
+     */
+    orderBy?: BloodDonorOrderByWithRelationInput | BloodDonorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BloodDonors.
+     */
+    cursor?: BloodDonorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BloodDonors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BloodDonors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BloodDonors.
+     */
+    distinct?: BloodDonorScalarFieldEnum | BloodDonorScalarFieldEnum[]
+  }
+
+  /**
+   * BloodDonor findMany
+   */
+  export type BloodDonorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * Filter, which BloodDonors to fetch.
+     */
+    where?: BloodDonorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BloodDonors to fetch.
+     */
+    orderBy?: BloodDonorOrderByWithRelationInput | BloodDonorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BloodDonors.
+     */
+    cursor?: BloodDonorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BloodDonors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BloodDonors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BloodDonors.
+     */
+    distinct?: BloodDonorScalarFieldEnum | BloodDonorScalarFieldEnum[]
+  }
+
+  /**
+   * BloodDonor create
+   */
+  export type BloodDonorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BloodDonor.
+     */
+    data: XOR<BloodDonorCreateInput, BloodDonorUncheckedCreateInput>
+  }
+
+  /**
+   * BloodDonor createMany
+   */
+  export type BloodDonorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BloodDonors.
+     */
+    data: BloodDonorCreateManyInput | BloodDonorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BloodDonor createManyAndReturn
+   */
+  export type BloodDonorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * The data used to create many BloodDonors.
+     */
+    data: BloodDonorCreateManyInput | BloodDonorCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BloodDonor update
+   */
+  export type BloodDonorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BloodDonor.
+     */
+    data: XOR<BloodDonorUpdateInput, BloodDonorUncheckedUpdateInput>
+    /**
+     * Choose, which BloodDonor to update.
+     */
+    where: BloodDonorWhereUniqueInput
+  }
+
+  /**
+   * BloodDonor updateMany
+   */
+  export type BloodDonorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BloodDonors.
+     */
+    data: XOR<BloodDonorUpdateManyMutationInput, BloodDonorUncheckedUpdateManyInput>
+    /**
+     * Filter which BloodDonors to update
+     */
+    where?: BloodDonorWhereInput
+    /**
+     * Limit how many BloodDonors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BloodDonor updateManyAndReturn
+   */
+  export type BloodDonorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * The data used to update BloodDonors.
+     */
+    data: XOR<BloodDonorUpdateManyMutationInput, BloodDonorUncheckedUpdateManyInput>
+    /**
+     * Filter which BloodDonors to update
+     */
+    where?: BloodDonorWhereInput
+    /**
+     * Limit how many BloodDonors to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BloodDonor upsert
+   */
+  export type BloodDonorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BloodDonor to update in case it exists.
+     */
+    where: BloodDonorWhereUniqueInput
+    /**
+     * In case the BloodDonor found by the `where` argument doesn't exist, create a new BloodDonor with this data.
+     */
+    create: XOR<BloodDonorCreateInput, BloodDonorUncheckedCreateInput>
+    /**
+     * In case the BloodDonor was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BloodDonorUpdateInput, BloodDonorUncheckedUpdateInput>
+  }
+
+  /**
+   * BloodDonor delete
+   */
+  export type BloodDonorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+    /**
+     * Filter which BloodDonor to delete.
+     */
+    where: BloodDonorWhereUniqueInput
+  }
+
+  /**
+   * BloodDonor deleteMany
+   */
+  export type BloodDonorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BloodDonors to delete
+     */
+    where?: BloodDonorWhereInput
+    /**
+     * Limit how many BloodDonors to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BloodDonor.user
+   */
+  export type BloodDonor$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * BloodDonor.donations
+   */
+  export type BloodDonor$donationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DonationHistory
+     */
+    select?: DonationHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DonationHistory
+     */
+    omit?: DonationHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DonationHistoryInclude<ExtArgs> | null
+    where?: DonationHistoryWhereInput
+    orderBy?: DonationHistoryOrderByWithRelationInput | DonationHistoryOrderByWithRelationInput[]
+    cursor?: DonationHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DonationHistoryScalarFieldEnum | DonationHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * BloodDonor.hospitalRequests
+   */
+  export type BloodDonor$hospitalRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalRequest
+     */
+    select?: HospitalRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalRequest
+     */
+    omit?: HospitalRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalRequestInclude<ExtArgs> | null
+    where?: HospitalRequestWhereInput
+    orderBy?: HospitalRequestOrderByWithRelationInput | HospitalRequestOrderByWithRelationInput[]
+    cursor?: HospitalRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HospitalRequestScalarFieldEnum | HospitalRequestScalarFieldEnum[]
+  }
+
+  /**
+   * BloodDonor.hospitalRecords
+   */
+  export type BloodDonor$hospitalRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    where?: HospitalDonationRecordWhereInput
+    orderBy?: HospitalDonationRecordOrderByWithRelationInput | HospitalDonationRecordOrderByWithRelationInput[]
+    cursor?: HospitalDonationRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HospitalDonationRecordScalarFieldEnum | HospitalDonationRecordScalarFieldEnum[]
+  }
+
+  /**
+   * BloodDonor.organisationVols
+   */
+  export type BloodDonor$organisationVolsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrganisationVolunteer
+     */
+    select?: OrganisationVolunteerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrganisationVolunteer
+     */
+    omit?: OrganisationVolunteerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrganisationVolunteerInclude<ExtArgs> | null
+    where?: OrganisationVolunteerWhereInput
+    orderBy?: OrganisationVolunteerOrderByWithRelationInput | OrganisationVolunteerOrderByWithRelationInput[]
+    cursor?: OrganisationVolunteerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrganisationVolunteerScalarFieldEnum | OrganisationVolunteerScalarFieldEnum[]
+  }
+
+  /**
+   * BloodDonor without action
+   */
+  export type BloodDonorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BloodDonor
+     */
+    select?: BloodDonorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BloodDonor
+     */
+    omit?: BloodDonorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BloodDonorInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model HospitalDonationRecord
+   */
+
+  export type AggregateHospitalDonationRecord = {
+    _count: HospitalDonationRecordCountAggregateOutputType | null
+    _avg: HospitalDonationRecordAvgAggregateOutputType | null
+    _sum: HospitalDonationRecordSumAggregateOutputType | null
+    _min: HospitalDonationRecordMinAggregateOutputType | null
+    _max: HospitalDonationRecordMaxAggregateOutputType | null
+  }
+
+  export type HospitalDonationRecordAvgAggregateOutputType = {
+    weight: number | null
+  }
+
+  export type HospitalDonationRecordSumAggregateOutputType = {
+    weight: number | null
+  }
+
+  export type HospitalDonationRecordMinAggregateOutputType = {
+    id: string | null
+    hospitalId: string | null
+    bloodDonorId: string | null
+    donationDate: Date | null
+    weight: number | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HospitalDonationRecordMaxAggregateOutputType = {
+    id: string | null
+    hospitalId: string | null
+    bloodDonorId: string | null
+    donationDate: Date | null
+    weight: number | null
+    isDeleted: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HospitalDonationRecordCountAggregateOutputType = {
+    id: number
+    hospitalId: number
+    bloodDonorId: number
+    donationDate: number
+    weight: number
+    isDeleted: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HospitalDonationRecordAvgAggregateInputType = {
+    weight?: true
+  }
+
+  export type HospitalDonationRecordSumAggregateInputType = {
+    weight?: true
+  }
+
+  export type HospitalDonationRecordMinAggregateInputType = {
+    id?: true
+    hospitalId?: true
+    bloodDonorId?: true
+    donationDate?: true
+    weight?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HospitalDonationRecordMaxAggregateInputType = {
+    id?: true
+    hospitalId?: true
+    bloodDonorId?: true
+    donationDate?: true
+    weight?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HospitalDonationRecordCountAggregateInputType = {
+    id?: true
+    hospitalId?: true
+    bloodDonorId?: true
+    donationDate?: true
+    weight?: true
+    isDeleted?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HospitalDonationRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HospitalDonationRecord to aggregate.
+     */
+    where?: HospitalDonationRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HospitalDonationRecords to fetch.
+     */
+    orderBy?: HospitalDonationRecordOrderByWithRelationInput | HospitalDonationRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HospitalDonationRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HospitalDonationRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HospitalDonationRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HospitalDonationRecords
+    **/
+    _count?: true | HospitalDonationRecordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HospitalDonationRecordAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HospitalDonationRecordSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HospitalDonationRecordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HospitalDonationRecordMaxAggregateInputType
+  }
+
+  export type GetHospitalDonationRecordAggregateType<T extends HospitalDonationRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateHospitalDonationRecord]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHospitalDonationRecord[P]>
+      : GetScalarType<T[P], AggregateHospitalDonationRecord[P]>
+  }
+
+
+
+
+  export type HospitalDonationRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HospitalDonationRecordWhereInput
+    orderBy?: HospitalDonationRecordOrderByWithAggregationInput | HospitalDonationRecordOrderByWithAggregationInput[]
+    by: HospitalDonationRecordScalarFieldEnum[] | HospitalDonationRecordScalarFieldEnum
+    having?: HospitalDonationRecordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HospitalDonationRecordCountAggregateInputType | true
+    _avg?: HospitalDonationRecordAvgAggregateInputType
+    _sum?: HospitalDonationRecordSumAggregateInputType
+    _min?: HospitalDonationRecordMinAggregateInputType
+    _max?: HospitalDonationRecordMaxAggregateInputType
+  }
+
+  export type HospitalDonationRecordGroupByOutputType = {
+    id: string
+    hospitalId: string
+    bloodDonorId: string
+    donationDate: Date
+    weight: number | null
+    isDeleted: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: HospitalDonationRecordCountAggregateOutputType | null
+    _avg: HospitalDonationRecordAvgAggregateOutputType | null
+    _sum: HospitalDonationRecordSumAggregateOutputType | null
+    _min: HospitalDonationRecordMinAggregateOutputType | null
+    _max: HospitalDonationRecordMaxAggregateOutputType | null
+  }
+
+  type GetHospitalDonationRecordGroupByPayload<T extends HospitalDonationRecordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HospitalDonationRecordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HospitalDonationRecordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HospitalDonationRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], HospitalDonationRecordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HospitalDonationRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    hospitalId?: boolean
+    bloodDonorId?: boolean
+    donationDate?: boolean
+    weight?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    hospital?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hospitalDonationRecord"]>
+
+  export type HospitalDonationRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    hospitalId?: boolean
+    bloodDonorId?: boolean
+    donationDate?: boolean
+    weight?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    hospital?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hospitalDonationRecord"]>
+
+  export type HospitalDonationRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    hospitalId?: boolean
+    bloodDonorId?: boolean
+    donationDate?: boolean
+    weight?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    hospital?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hospitalDonationRecord"]>
+
+  export type HospitalDonationRecordSelectScalar = {
+    id?: boolean
+    hospitalId?: boolean
+    bloodDonorId?: boolean
+    donationDate?: boolean
+    weight?: boolean
+    isDeleted?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HospitalDonationRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "hospitalId" | "bloodDonorId" | "donationDate" | "weight" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["hospitalDonationRecord"]>
+  export type HospitalDonationRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hospital?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
+  }
+  export type HospitalDonationRecordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hospital?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
+  }
+  export type HospitalDonationRecordIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    hospital?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
+  }
+
+  export type $HospitalDonationRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HospitalDonationRecord"
+    objects: {
+      hospital: Prisma.$UserPayload<ExtArgs>
+      bloodDonor: Prisma.$BloodDonorPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      hospitalId: string
+      bloodDonorId: string
+      donationDate: Date
+      weight: number | null
+      isDeleted: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["hospitalDonationRecord"]>
+    composites: {}
+  }
+
+  type HospitalDonationRecordGetPayload<S extends boolean | null | undefined | HospitalDonationRecordDefaultArgs> = $Result.GetResult<Prisma.$HospitalDonationRecordPayload, S>
+
+  type HospitalDonationRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HospitalDonationRecordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HospitalDonationRecordCountAggregateInputType | true
+    }
+
+  export interface HospitalDonationRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HospitalDonationRecord'], meta: { name: 'HospitalDonationRecord' } }
+    /**
+     * Find zero or one HospitalDonationRecord that matches the filter.
+     * @param {HospitalDonationRecordFindUniqueArgs} args - Arguments to find a HospitalDonationRecord
+     * @example
+     * // Get one HospitalDonationRecord
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HospitalDonationRecordFindUniqueArgs>(args: SelectSubset<T, HospitalDonationRecordFindUniqueArgs<ExtArgs>>): Prisma__HospitalDonationRecordClient<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HospitalDonationRecord that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HospitalDonationRecordFindUniqueOrThrowArgs} args - Arguments to find a HospitalDonationRecord
+     * @example
+     * // Get one HospitalDonationRecord
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HospitalDonationRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, HospitalDonationRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HospitalDonationRecordClient<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HospitalDonationRecord that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HospitalDonationRecordFindFirstArgs} args - Arguments to find a HospitalDonationRecord
+     * @example
+     * // Get one HospitalDonationRecord
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HospitalDonationRecordFindFirstArgs>(args?: SelectSubset<T, HospitalDonationRecordFindFirstArgs<ExtArgs>>): Prisma__HospitalDonationRecordClient<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HospitalDonationRecord that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HospitalDonationRecordFindFirstOrThrowArgs} args - Arguments to find a HospitalDonationRecord
+     * @example
+     * // Get one HospitalDonationRecord
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HospitalDonationRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, HospitalDonationRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__HospitalDonationRecordClient<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HospitalDonationRecords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HospitalDonationRecordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HospitalDonationRecords
+     * const hospitalDonationRecords = await prisma.hospitalDonationRecord.findMany()
+     * 
+     * // Get first 10 HospitalDonationRecords
+     * const hospitalDonationRecords = await prisma.hospitalDonationRecord.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hospitalDonationRecordWithIdOnly = await prisma.hospitalDonationRecord.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HospitalDonationRecordFindManyArgs>(args?: SelectSubset<T, HospitalDonationRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HospitalDonationRecord.
+     * @param {HospitalDonationRecordCreateArgs} args - Arguments to create a HospitalDonationRecord.
+     * @example
+     * // Create one HospitalDonationRecord
+     * const HospitalDonationRecord = await prisma.hospitalDonationRecord.create({
+     *   data: {
+     *     // ... data to create a HospitalDonationRecord
+     *   }
+     * })
+     * 
+     */
+    create<T extends HospitalDonationRecordCreateArgs>(args: SelectSubset<T, HospitalDonationRecordCreateArgs<ExtArgs>>): Prisma__HospitalDonationRecordClient<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HospitalDonationRecords.
+     * @param {HospitalDonationRecordCreateManyArgs} args - Arguments to create many HospitalDonationRecords.
+     * @example
+     * // Create many HospitalDonationRecords
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HospitalDonationRecordCreateManyArgs>(args?: SelectSubset<T, HospitalDonationRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HospitalDonationRecords and returns the data saved in the database.
+     * @param {HospitalDonationRecordCreateManyAndReturnArgs} args - Arguments to create many HospitalDonationRecords.
+     * @example
+     * // Create many HospitalDonationRecords
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HospitalDonationRecords and only return the `id`
+     * const hospitalDonationRecordWithIdOnly = await prisma.hospitalDonationRecord.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HospitalDonationRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, HospitalDonationRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HospitalDonationRecord.
+     * @param {HospitalDonationRecordDeleteArgs} args - Arguments to delete one HospitalDonationRecord.
+     * @example
+     * // Delete one HospitalDonationRecord
+     * const HospitalDonationRecord = await prisma.hospitalDonationRecord.delete({
+     *   where: {
+     *     // ... filter to delete one HospitalDonationRecord
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HospitalDonationRecordDeleteArgs>(args: SelectSubset<T, HospitalDonationRecordDeleteArgs<ExtArgs>>): Prisma__HospitalDonationRecordClient<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HospitalDonationRecord.
+     * @param {HospitalDonationRecordUpdateArgs} args - Arguments to update one HospitalDonationRecord.
+     * @example
+     * // Update one HospitalDonationRecord
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HospitalDonationRecordUpdateArgs>(args: SelectSubset<T, HospitalDonationRecordUpdateArgs<ExtArgs>>): Prisma__HospitalDonationRecordClient<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HospitalDonationRecords.
+     * @param {HospitalDonationRecordDeleteManyArgs} args - Arguments to filter HospitalDonationRecords to delete.
+     * @example
+     * // Delete a few HospitalDonationRecords
+     * const { count } = await prisma.hospitalDonationRecord.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HospitalDonationRecordDeleteManyArgs>(args?: SelectSubset<T, HospitalDonationRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HospitalDonationRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HospitalDonationRecordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HospitalDonationRecords
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HospitalDonationRecordUpdateManyArgs>(args: SelectSubset<T, HospitalDonationRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HospitalDonationRecords and returns the data updated in the database.
+     * @param {HospitalDonationRecordUpdateManyAndReturnArgs} args - Arguments to update many HospitalDonationRecords.
+     * @example
+     * // Update many HospitalDonationRecords
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HospitalDonationRecords and only return the `id`
+     * const hospitalDonationRecordWithIdOnly = await prisma.hospitalDonationRecord.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HospitalDonationRecordUpdateManyAndReturnArgs>(args: SelectSubset<T, HospitalDonationRecordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HospitalDonationRecord.
+     * @param {HospitalDonationRecordUpsertArgs} args - Arguments to update or create a HospitalDonationRecord.
+     * @example
+     * // Update or create a HospitalDonationRecord
+     * const hospitalDonationRecord = await prisma.hospitalDonationRecord.upsert({
+     *   create: {
+     *     // ... data to create a HospitalDonationRecord
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HospitalDonationRecord we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HospitalDonationRecordUpsertArgs>(args: SelectSubset<T, HospitalDonationRecordUpsertArgs<ExtArgs>>): Prisma__HospitalDonationRecordClient<$Result.GetResult<Prisma.$HospitalDonationRecordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HospitalDonationRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HospitalDonationRecordCountArgs} args - Arguments to filter HospitalDonationRecords to count.
+     * @example
+     * // Count the number of HospitalDonationRecords
+     * const count = await prisma.hospitalDonationRecord.count({
+     *   where: {
+     *     // ... the filter for the HospitalDonationRecords we want to count
+     *   }
+     * })
+    **/
+    count<T extends HospitalDonationRecordCountArgs>(
+      args?: Subset<T, HospitalDonationRecordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HospitalDonationRecordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HospitalDonationRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HospitalDonationRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HospitalDonationRecordAggregateArgs>(args: Subset<T, HospitalDonationRecordAggregateArgs>): Prisma.PrismaPromise<GetHospitalDonationRecordAggregateType<T>>
+
+    /**
+     * Group by HospitalDonationRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HospitalDonationRecordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HospitalDonationRecordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HospitalDonationRecordGroupByArgs['orderBy'] }
+        : { orderBy?: HospitalDonationRecordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HospitalDonationRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHospitalDonationRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HospitalDonationRecord model
+   */
+  readonly fields: HospitalDonationRecordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HospitalDonationRecord.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HospitalDonationRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    hospital<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    bloodDonor<T extends BloodDonorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonorDefaultArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HospitalDonationRecord model
+   */
+  interface HospitalDonationRecordFieldRefs {
+    readonly id: FieldRef<"HospitalDonationRecord", 'String'>
+    readonly hospitalId: FieldRef<"HospitalDonationRecord", 'String'>
+    readonly bloodDonorId: FieldRef<"HospitalDonationRecord", 'String'>
+    readonly donationDate: FieldRef<"HospitalDonationRecord", 'DateTime'>
+    readonly weight: FieldRef<"HospitalDonationRecord", 'Float'>
+    readonly isDeleted: FieldRef<"HospitalDonationRecord", 'Boolean'>
+    readonly createdAt: FieldRef<"HospitalDonationRecord", 'DateTime'>
+    readonly updatedAt: FieldRef<"HospitalDonationRecord", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HospitalDonationRecord findUnique
+   */
+  export type HospitalDonationRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which HospitalDonationRecord to fetch.
+     */
+    where: HospitalDonationRecordWhereUniqueInput
+  }
+
+  /**
+   * HospitalDonationRecord findUniqueOrThrow
+   */
+  export type HospitalDonationRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which HospitalDonationRecord to fetch.
+     */
+    where: HospitalDonationRecordWhereUniqueInput
+  }
+
+  /**
+   * HospitalDonationRecord findFirst
+   */
+  export type HospitalDonationRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which HospitalDonationRecord to fetch.
+     */
+    where?: HospitalDonationRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HospitalDonationRecords to fetch.
+     */
+    orderBy?: HospitalDonationRecordOrderByWithRelationInput | HospitalDonationRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HospitalDonationRecords.
+     */
+    cursor?: HospitalDonationRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HospitalDonationRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HospitalDonationRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HospitalDonationRecords.
+     */
+    distinct?: HospitalDonationRecordScalarFieldEnum | HospitalDonationRecordScalarFieldEnum[]
+  }
+
+  /**
+   * HospitalDonationRecord findFirstOrThrow
+   */
+  export type HospitalDonationRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which HospitalDonationRecord to fetch.
+     */
+    where?: HospitalDonationRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HospitalDonationRecords to fetch.
+     */
+    orderBy?: HospitalDonationRecordOrderByWithRelationInput | HospitalDonationRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HospitalDonationRecords.
+     */
+    cursor?: HospitalDonationRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HospitalDonationRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HospitalDonationRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HospitalDonationRecords.
+     */
+    distinct?: HospitalDonationRecordScalarFieldEnum | HospitalDonationRecordScalarFieldEnum[]
+  }
+
+  /**
+   * HospitalDonationRecord findMany
+   */
+  export type HospitalDonationRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which HospitalDonationRecords to fetch.
+     */
+    where?: HospitalDonationRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HospitalDonationRecords to fetch.
+     */
+    orderBy?: HospitalDonationRecordOrderByWithRelationInput | HospitalDonationRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HospitalDonationRecords.
+     */
+    cursor?: HospitalDonationRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HospitalDonationRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HospitalDonationRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HospitalDonationRecords.
+     */
+    distinct?: HospitalDonationRecordScalarFieldEnum | HospitalDonationRecordScalarFieldEnum[]
+  }
+
+  /**
+   * HospitalDonationRecord create
+   */
+  export type HospitalDonationRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a HospitalDonationRecord.
+     */
+    data: XOR<HospitalDonationRecordCreateInput, HospitalDonationRecordUncheckedCreateInput>
+  }
+
+  /**
+   * HospitalDonationRecord createMany
+   */
+  export type HospitalDonationRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HospitalDonationRecords.
+     */
+    data: HospitalDonationRecordCreateManyInput | HospitalDonationRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HospitalDonationRecord createManyAndReturn
+   */
+  export type HospitalDonationRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * The data used to create many HospitalDonationRecords.
+     */
+    data: HospitalDonationRecordCreateManyInput | HospitalDonationRecordCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HospitalDonationRecord update
+   */
+  export type HospitalDonationRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a HospitalDonationRecord.
+     */
+    data: XOR<HospitalDonationRecordUpdateInput, HospitalDonationRecordUncheckedUpdateInput>
+    /**
+     * Choose, which HospitalDonationRecord to update.
+     */
+    where: HospitalDonationRecordWhereUniqueInput
+  }
+
+  /**
+   * HospitalDonationRecord updateMany
+   */
+  export type HospitalDonationRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HospitalDonationRecords.
+     */
+    data: XOR<HospitalDonationRecordUpdateManyMutationInput, HospitalDonationRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which HospitalDonationRecords to update
+     */
+    where?: HospitalDonationRecordWhereInput
+    /**
+     * Limit how many HospitalDonationRecords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HospitalDonationRecord updateManyAndReturn
+   */
+  export type HospitalDonationRecordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * The data used to update HospitalDonationRecords.
+     */
+    data: XOR<HospitalDonationRecordUpdateManyMutationInput, HospitalDonationRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which HospitalDonationRecords to update
+     */
+    where?: HospitalDonationRecordWhereInput
+    /**
+     * Limit how many HospitalDonationRecords to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HospitalDonationRecord upsert
+   */
+  export type HospitalDonationRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the HospitalDonationRecord to update in case it exists.
+     */
+    where: HospitalDonationRecordWhereUniqueInput
+    /**
+     * In case the HospitalDonationRecord found by the `where` argument doesn't exist, create a new HospitalDonationRecord with this data.
+     */
+    create: XOR<HospitalDonationRecordCreateInput, HospitalDonationRecordUncheckedCreateInput>
+    /**
+     * In case the HospitalDonationRecord was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HospitalDonationRecordUpdateInput, HospitalDonationRecordUncheckedUpdateInput>
+  }
+
+  /**
+   * HospitalDonationRecord delete
+   */
+  export type HospitalDonationRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+    /**
+     * Filter which HospitalDonationRecord to delete.
+     */
+    where: HospitalDonationRecordWhereUniqueInput
+  }
+
+  /**
+   * HospitalDonationRecord deleteMany
+   */
+  export type HospitalDonationRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HospitalDonationRecords to delete
+     */
+    where?: HospitalDonationRecordWhereInput
+    /**
+     * Limit how many HospitalDonationRecords to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HospitalDonationRecord without action
+   */
+  export type HospitalDonationRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HospitalDonationRecord
+     */
+    select?: HospitalDonationRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HospitalDonationRecord
+     */
+    omit?: HospitalDonationRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HospitalDonationRecordInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Post
    */
 
@@ -10252,6 +12976,7 @@ export namespace Prisma {
     upazila: string | null
     requiredDate: Date | null
     isApproved: boolean | null
+    isResolved: boolean | null
     targetAmount: number | null
     raisedAmount: number | null
     isDeleted: boolean | null
@@ -10270,6 +12995,7 @@ export namespace Prisma {
     upazila: string | null
     requiredDate: Date | null
     isApproved: boolean | null
+    isResolved: boolean | null
     targetAmount: number | null
     raisedAmount: number | null
     isDeleted: boolean | null
@@ -10289,6 +13015,7 @@ export namespace Prisma {
     upazila: number
     requiredDate: number
     isApproved: number
+    isResolved: number
     targetAmount: number
     raisedAmount: number
     isDeleted: number
@@ -10319,6 +13046,7 @@ export namespace Prisma {
     upazila?: true
     requiredDate?: true
     isApproved?: true
+    isResolved?: true
     targetAmount?: true
     raisedAmount?: true
     isDeleted?: true
@@ -10337,6 +13065,7 @@ export namespace Prisma {
     upazila?: true
     requiredDate?: true
     isApproved?: true
+    isResolved?: true
     targetAmount?: true
     raisedAmount?: true
     isDeleted?: true
@@ -10356,6 +13085,7 @@ export namespace Prisma {
     upazila?: true
     requiredDate?: true
     isApproved?: true
+    isResolved?: true
     targetAmount?: true
     raisedAmount?: true
     isDeleted?: true
@@ -10462,6 +13192,7 @@ export namespace Prisma {
     upazila: string | null
     requiredDate: Date | null
     isApproved: boolean
+    isResolved: boolean
     targetAmount: number | null
     raisedAmount: number | null
     isDeleted: boolean
@@ -10500,6 +13231,7 @@ export namespace Prisma {
     upazila?: boolean
     requiredDate?: boolean
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: boolean
     raisedAmount?: boolean
     isDeleted?: boolean
@@ -10520,6 +13252,7 @@ export namespace Prisma {
     upazila?: boolean
     requiredDate?: boolean
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: boolean
     raisedAmount?: boolean
     isDeleted?: boolean
@@ -10540,6 +13273,7 @@ export namespace Prisma {
     upazila?: boolean
     requiredDate?: boolean
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: boolean
     raisedAmount?: boolean
     isDeleted?: boolean
@@ -10560,6 +13294,7 @@ export namespace Prisma {
     upazila?: boolean
     requiredDate?: boolean
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: boolean
     raisedAmount?: boolean
     isDeleted?: boolean
@@ -10567,7 +13302,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "type" | "content" | "images" | "bloodGroup" | "division" | "district" | "upazila" | "requiredDate" | "isApproved" | "targetAmount" | "raisedAmount" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "type" | "content" | "images" | "bloodGroup" | "division" | "district" | "upazila" | "requiredDate" | "isApproved" | "isResolved" | "targetAmount" | "raisedAmount" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -10595,6 +13330,7 @@ export namespace Prisma {
       upazila: string | null
       requiredDate: Date | null
       isApproved: boolean
+      isResolved: boolean
       targetAmount: number | null
       raisedAmount: number | null
       isDeleted: boolean
@@ -11035,6 +13771,7 @@ export namespace Prisma {
     readonly upazila: FieldRef<"Post", 'String'>
     readonly requiredDate: FieldRef<"Post", 'DateTime'>
     readonly isApproved: FieldRef<"Post", 'Boolean'>
+    readonly isResolved: FieldRef<"Post", 'Boolean'>
     readonly targetAmount: FieldRef<"Post", 'Float'>
     readonly raisedAmount: FieldRef<"Post", 'Float'>
     readonly isDeleted: FieldRef<"Post", 'Boolean'>
@@ -11481,7 +14218,7 @@ export namespace Prisma {
 
   export type DonationHistoryMinAggregateOutputType = {
     id: string | null
-    donorId: string | null
+    bloodDonorId: string | null
     receiverOrgId: string | null
     donationDate: Date | null
     weightDuringDonation: number | null
@@ -11491,7 +14228,7 @@ export namespace Prisma {
 
   export type DonationHistoryMaxAggregateOutputType = {
     id: string | null
-    donorId: string | null
+    bloodDonorId: string | null
     receiverOrgId: string | null
     donationDate: Date | null
     weightDuringDonation: number | null
@@ -11501,7 +14238,7 @@ export namespace Prisma {
 
   export type DonationHistoryCountAggregateOutputType = {
     id: number
-    donorId: number
+    bloodDonorId: number
     receiverOrgId: number
     donationDate: number
     weightDuringDonation: number
@@ -11521,7 +14258,7 @@ export namespace Prisma {
 
   export type DonationHistoryMinAggregateInputType = {
     id?: true
-    donorId?: true
+    bloodDonorId?: true
     receiverOrgId?: true
     donationDate?: true
     weightDuringDonation?: true
@@ -11531,7 +14268,7 @@ export namespace Prisma {
 
   export type DonationHistoryMaxAggregateInputType = {
     id?: true
-    donorId?: true
+    bloodDonorId?: true
     receiverOrgId?: true
     donationDate?: true
     weightDuringDonation?: true
@@ -11541,7 +14278,7 @@ export namespace Prisma {
 
   export type DonationHistoryCountAggregateInputType = {
     id?: true
-    donorId?: true
+    bloodDonorId?: true
     receiverOrgId?: true
     donationDate?: true
     weightDuringDonation?: true
@@ -11638,7 +14375,7 @@ export namespace Prisma {
 
   export type DonationHistoryGroupByOutputType = {
     id: string
-    donorId: string
+    bloodDonorId: string
     receiverOrgId: string | null
     donationDate: Date
     weightDuringDonation: number | null
@@ -11667,43 +14404,43 @@ export namespace Prisma {
 
   export type DonationHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    donorId?: boolean
+    bloodDonorId?: boolean
     receiverOrgId?: boolean
     donationDate?: boolean
     weightDuringDonation?: boolean
     isDeleted?: boolean
     createdAt?: boolean
-    donor?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
     receiverOrg?: boolean | DonationHistory$receiverOrgArgs<ExtArgs>
   }, ExtArgs["result"]["donationHistory"]>
 
   export type DonationHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    donorId?: boolean
+    bloodDonorId?: boolean
     receiverOrgId?: boolean
     donationDate?: boolean
     weightDuringDonation?: boolean
     isDeleted?: boolean
     createdAt?: boolean
-    donor?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
     receiverOrg?: boolean | DonationHistory$receiverOrgArgs<ExtArgs>
   }, ExtArgs["result"]["donationHistory"]>
 
   export type DonationHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    donorId?: boolean
+    bloodDonorId?: boolean
     receiverOrgId?: boolean
     donationDate?: boolean
     weightDuringDonation?: boolean
     isDeleted?: boolean
     createdAt?: boolean
-    donor?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
     receiverOrg?: boolean | DonationHistory$receiverOrgArgs<ExtArgs>
   }, ExtArgs["result"]["donationHistory"]>
 
   export type DonationHistorySelectScalar = {
     id?: boolean
-    donorId?: boolean
+    bloodDonorId?: boolean
     receiverOrgId?: boolean
     donationDate?: boolean
     weightDuringDonation?: boolean
@@ -11711,29 +14448,29 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type DonationHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "donorId" | "receiverOrgId" | "donationDate" | "weightDuringDonation" | "isDeleted" | "createdAt", ExtArgs["result"]["donationHistory"]>
+  export type DonationHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "bloodDonorId" | "receiverOrgId" | "donationDate" | "weightDuringDonation" | "isDeleted" | "createdAt", ExtArgs["result"]["donationHistory"]>
   export type DonationHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    donor?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
     receiverOrg?: boolean | DonationHistory$receiverOrgArgs<ExtArgs>
   }
   export type DonationHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    donor?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
     receiverOrg?: boolean | DonationHistory$receiverOrgArgs<ExtArgs>
   }
   export type DonationHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    donor?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
     receiverOrg?: boolean | DonationHistory$receiverOrgArgs<ExtArgs>
   }
 
   export type $DonationHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DonationHistory"
     objects: {
-      donor: Prisma.$UserPayload<ExtArgs>
+      bloodDonor: Prisma.$BloodDonorPayload<ExtArgs>
       receiverOrg: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      donorId: string
+      bloodDonorId: string
       receiverOrgId: string | null
       donationDate: Date
       weightDuringDonation: number | null
@@ -12133,7 +14870,7 @@ export namespace Prisma {
    */
   export interface Prisma__DonationHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    donor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    bloodDonor<T extends BloodDonorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonorDefaultArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     receiverOrg<T extends DonationHistory$receiverOrgArgs<ExtArgs> = {}>(args?: Subset<T, DonationHistory$receiverOrgArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12165,7 +14902,7 @@ export namespace Prisma {
    */
   interface DonationHistoryFieldRefs {
     readonly id: FieldRef<"DonationHistory", 'String'>
-    readonly donorId: FieldRef<"DonationHistory", 'String'>
+    readonly bloodDonorId: FieldRef<"DonationHistory", 'String'>
     readonly receiverOrgId: FieldRef<"DonationHistory", 'String'>
     readonly donationDate: FieldRef<"DonationHistory", 'DateTime'>
     readonly weightDuringDonation: FieldRef<"DonationHistory", 'Float'>
@@ -12622,7 +15359,7 @@ export namespace Prisma {
   export type OrganisationVolunteerMinAggregateOutputType = {
     id: string | null
     organisationId: string | null
-    volunteerId: string | null
+    bloodDonorId: string | null
     status: $Enums.RequestStatus | null
     isDeleted: boolean | null
     createdAt: Date | null
@@ -12631,7 +15368,7 @@ export namespace Prisma {
   export type OrganisationVolunteerMaxAggregateOutputType = {
     id: string | null
     organisationId: string | null
-    volunteerId: string | null
+    bloodDonorId: string | null
     status: $Enums.RequestStatus | null
     isDeleted: boolean | null
     createdAt: Date | null
@@ -12640,7 +15377,7 @@ export namespace Prisma {
   export type OrganisationVolunteerCountAggregateOutputType = {
     id: number
     organisationId: number
-    volunteerId: number
+    bloodDonorId: number
     status: number
     isDeleted: number
     createdAt: number
@@ -12651,7 +15388,7 @@ export namespace Prisma {
   export type OrganisationVolunteerMinAggregateInputType = {
     id?: true
     organisationId?: true
-    volunteerId?: true
+    bloodDonorId?: true
     status?: true
     isDeleted?: true
     createdAt?: true
@@ -12660,7 +15397,7 @@ export namespace Prisma {
   export type OrganisationVolunteerMaxAggregateInputType = {
     id?: true
     organisationId?: true
-    volunteerId?: true
+    bloodDonorId?: true
     status?: true
     isDeleted?: true
     createdAt?: true
@@ -12669,7 +15406,7 @@ export namespace Prisma {
   export type OrganisationVolunteerCountAggregateInputType = {
     id?: true
     organisationId?: true
-    volunteerId?: true
+    bloodDonorId?: true
     status?: true
     isDeleted?: true
     createdAt?: true
@@ -12751,7 +15488,7 @@ export namespace Prisma {
   export type OrganisationVolunteerGroupByOutputType = {
     id: string
     organisationId: string
-    volunteerId: string
+    bloodDonorId: string
     status: $Enums.RequestStatus
     isDeleted: boolean
     createdAt: Date
@@ -12777,69 +15514,69 @@ export namespace Prisma {
   export type OrganisationVolunteerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     organisationId?: boolean
-    volunteerId?: boolean
+    bloodDonorId?: boolean
     status?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     organisation?: boolean | UserDefaultArgs<ExtArgs>
-    volunteer?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["organisationVolunteer"]>
 
   export type OrganisationVolunteerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     organisationId?: boolean
-    volunteerId?: boolean
+    bloodDonorId?: boolean
     status?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     organisation?: boolean | UserDefaultArgs<ExtArgs>
-    volunteer?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["organisationVolunteer"]>
 
   export type OrganisationVolunteerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     organisationId?: boolean
-    volunteerId?: boolean
+    bloodDonorId?: boolean
     status?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     organisation?: boolean | UserDefaultArgs<ExtArgs>
-    volunteer?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["organisationVolunteer"]>
 
   export type OrganisationVolunteerSelectScalar = {
     id?: boolean
     organisationId?: boolean
-    volunteerId?: boolean
+    bloodDonorId?: boolean
     status?: boolean
     isDeleted?: boolean
     createdAt?: boolean
   }
 
-  export type OrganisationVolunteerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "organisationId" | "volunteerId" | "status" | "isDeleted" | "createdAt", ExtArgs["result"]["organisationVolunteer"]>
+  export type OrganisationVolunteerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "organisationId" | "bloodDonorId" | "status" | "isDeleted" | "createdAt", ExtArgs["result"]["organisationVolunteer"]>
   export type OrganisationVolunteerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     organisation?: boolean | UserDefaultArgs<ExtArgs>
-    volunteer?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }
   export type OrganisationVolunteerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     organisation?: boolean | UserDefaultArgs<ExtArgs>
-    volunteer?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }
   export type OrganisationVolunteerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     organisation?: boolean | UserDefaultArgs<ExtArgs>
-    volunteer?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }
 
   export type $OrganisationVolunteerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OrganisationVolunteer"
     objects: {
       organisation: Prisma.$UserPayload<ExtArgs>
-      volunteer: Prisma.$UserPayload<ExtArgs>
+      bloodDonor: Prisma.$BloodDonorPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       organisationId: string
-      volunteerId: string
+      bloodDonorId: string
       status: $Enums.RequestStatus
       isDeleted: boolean
       createdAt: Date
@@ -13238,7 +15975,7 @@ export namespace Prisma {
   export interface Prisma__OrganisationVolunteerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     organisation<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    volunteer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    bloodDonor<T extends BloodDonorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonorDefaultArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13270,7 +16007,7 @@ export namespace Prisma {
   interface OrganisationVolunteerFieldRefs {
     readonly id: FieldRef<"OrganisationVolunteer", 'String'>
     readonly organisationId: FieldRef<"OrganisationVolunteer", 'String'>
-    readonly volunteerId: FieldRef<"OrganisationVolunteer", 'String'>
+    readonly bloodDonorId: FieldRef<"OrganisationVolunteer", 'String'>
     readonly status: FieldRef<"OrganisationVolunteer", 'RequestStatus'>
     readonly isDeleted: FieldRef<"OrganisationVolunteer", 'Boolean'>
     readonly createdAt: FieldRef<"OrganisationVolunteer", 'DateTime'>
@@ -13706,7 +16443,7 @@ export namespace Prisma {
   export type HospitalRequestMinAggregateOutputType = {
     id: string | null
     hospitalId: string | null
-    userId: string | null
+    bloodDonorId: string | null
     status: $Enums.RequestStatus | null
     isDeleted: boolean | null
     createdAt: Date | null
@@ -13716,7 +16453,7 @@ export namespace Prisma {
   export type HospitalRequestMaxAggregateOutputType = {
     id: string | null
     hospitalId: string | null
-    userId: string | null
+    bloodDonorId: string | null
     status: $Enums.RequestStatus | null
     isDeleted: boolean | null
     createdAt: Date | null
@@ -13726,7 +16463,7 @@ export namespace Prisma {
   export type HospitalRequestCountAggregateOutputType = {
     id: number
     hospitalId: number
-    userId: number
+    bloodDonorId: number
     status: number
     isDeleted: number
     createdAt: number
@@ -13738,7 +16475,7 @@ export namespace Prisma {
   export type HospitalRequestMinAggregateInputType = {
     id?: true
     hospitalId?: true
-    userId?: true
+    bloodDonorId?: true
     status?: true
     isDeleted?: true
     createdAt?: true
@@ -13748,7 +16485,7 @@ export namespace Prisma {
   export type HospitalRequestMaxAggregateInputType = {
     id?: true
     hospitalId?: true
-    userId?: true
+    bloodDonorId?: true
     status?: true
     isDeleted?: true
     createdAt?: true
@@ -13758,7 +16495,7 @@ export namespace Prisma {
   export type HospitalRequestCountAggregateInputType = {
     id?: true
     hospitalId?: true
-    userId?: true
+    bloodDonorId?: true
     status?: true
     isDeleted?: true
     createdAt?: true
@@ -13841,7 +16578,7 @@ export namespace Prisma {
   export type HospitalRequestGroupByOutputType = {
     id: string
     hospitalId: string
-    userId: string
+    bloodDonorId: string
     status: $Enums.RequestStatus
     isDeleted: boolean
     createdAt: Date
@@ -13868,73 +16605,73 @@ export namespace Prisma {
   export type HospitalRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     hospitalId?: boolean
-    userId?: boolean
+    bloodDonorId?: boolean
     status?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     hospital?: boolean | UserDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hospitalRequest"]>
 
   export type HospitalRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     hospitalId?: boolean
-    userId?: boolean
+    bloodDonorId?: boolean
     status?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     hospital?: boolean | UserDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hospitalRequest"]>
 
   export type HospitalRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     hospitalId?: boolean
-    userId?: boolean
+    bloodDonorId?: boolean
     status?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     hospital?: boolean | UserDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hospitalRequest"]>
 
   export type HospitalRequestSelectScalar = {
     id?: boolean
     hospitalId?: boolean
-    userId?: boolean
+    bloodDonorId?: boolean
     status?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type HospitalRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "hospitalId" | "userId" | "status" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["hospitalRequest"]>
+  export type HospitalRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "hospitalId" | "bloodDonorId" | "status" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["hospitalRequest"]>
   export type HospitalRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hospital?: boolean | UserDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }
   export type HospitalRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hospital?: boolean | UserDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }
   export type HospitalRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hospital?: boolean | UserDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    bloodDonor?: boolean | BloodDonorDefaultArgs<ExtArgs>
   }
 
   export type $HospitalRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "HospitalRequest"
     objects: {
       hospital: Prisma.$UserPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
+      bloodDonor: Prisma.$BloodDonorPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       hospitalId: string
-      userId: string
+      bloodDonorId: string
       status: $Enums.RequestStatus
       isDeleted: boolean
       createdAt: Date
@@ -14334,7 +17071,7 @@ export namespace Prisma {
   export interface Prisma__HospitalRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     hospital<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    bloodDonor<T extends BloodDonorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BloodDonorDefaultArgs<ExtArgs>>): Prisma__BloodDonorClient<$Result.GetResult<Prisma.$BloodDonorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14366,7 +17103,7 @@ export namespace Prisma {
   interface HospitalRequestFieldRefs {
     readonly id: FieldRef<"HospitalRequest", 'String'>
     readonly hospitalId: FieldRef<"HospitalRequest", 'String'>
-    readonly userId: FieldRef<"HospitalRequest", 'String'>
+    readonly bloodDonorId: FieldRef<"HospitalRequest", 'String'>
     readonly status: FieldRef<"HospitalRequest", 'RequestStatus'>
     readonly isDeleted: FieldRef<"HospitalRequest", 'Boolean'>
     readonly createdAt: FieldRef<"HospitalRequest", 'DateTime'>
@@ -15880,6 +18617,1019 @@ export namespace Prisma {
 
 
   /**
+   * Model VerificationToken
+   */
+
+  export type AggregateVerificationToken = {
+    _count: VerificationTokenCountAggregateOutputType | null
+    _min: VerificationTokenMinAggregateOutputType | null
+    _max: VerificationTokenMaxAggregateOutputType | null
+  }
+
+  export type VerificationTokenMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    token: string | null
+    expiresAt: Date | null
+    isUsed: boolean | null
+    createdAt: Date | null
+  }
+
+  export type VerificationTokenMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    token: string | null
+    expiresAt: Date | null
+    isUsed: boolean | null
+    createdAt: Date | null
+  }
+
+  export type VerificationTokenCountAggregateOutputType = {
+    id: number
+    email: number
+    token: number
+    expiresAt: number
+    isUsed: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type VerificationTokenMinAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expiresAt?: true
+    isUsed?: true
+    createdAt?: true
+  }
+
+  export type VerificationTokenMaxAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expiresAt?: true
+    isUsed?: true
+    createdAt?: true
+  }
+
+  export type VerificationTokenCountAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expiresAt?: true
+    isUsed?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type VerificationTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VerificationToken to aggregate.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VerificationTokens
+    **/
+    _count?: true | VerificationTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VerificationTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VerificationTokenMaxAggregateInputType
+  }
+
+  export type GetVerificationTokenAggregateType<T extends VerificationTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateVerificationToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVerificationToken[P]>
+      : GetScalarType<T[P], AggregateVerificationToken[P]>
+  }
+
+
+
+
+  export type VerificationTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VerificationTokenWhereInput
+    orderBy?: VerificationTokenOrderByWithAggregationInput | VerificationTokenOrderByWithAggregationInput[]
+    by: VerificationTokenScalarFieldEnum[] | VerificationTokenScalarFieldEnum
+    having?: VerificationTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VerificationTokenCountAggregateInputType | true
+    _min?: VerificationTokenMinAggregateInputType
+    _max?: VerificationTokenMaxAggregateInputType
+  }
+
+  export type VerificationTokenGroupByOutputType = {
+    id: string
+    email: string
+    token: string
+    expiresAt: Date
+    isUsed: boolean
+    createdAt: Date
+    _count: VerificationTokenCountAggregateOutputType | null
+    _min: VerificationTokenMinAggregateOutputType | null
+    _max: VerificationTokenMaxAggregateOutputType | null
+  }
+
+  type GetVerificationTokenGroupByPayload<T extends VerificationTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VerificationTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VerificationTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VerificationTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], VerificationTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VerificationTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expiresAt?: boolean
+    isUsed?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expiresAt?: boolean
+    isUsed?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expiresAt?: boolean
+    isUsed?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectScalar = {
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expiresAt?: boolean
+    isUsed?: boolean
+    createdAt?: boolean
+  }
+
+  export type VerificationTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "token" | "expiresAt" | "isUsed" | "createdAt", ExtArgs["result"]["verificationToken"]>
+
+  export type $VerificationTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VerificationToken"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      email: string
+      token: string
+      expiresAt: Date
+      isUsed: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["verificationToken"]>
+    composites: {}
+  }
+
+  type VerificationTokenGetPayload<S extends boolean | null | undefined | VerificationTokenDefaultArgs> = $Result.GetResult<Prisma.$VerificationTokenPayload, S>
+
+  type VerificationTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VerificationTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VerificationTokenCountAggregateInputType | true
+    }
+
+  export interface VerificationTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VerificationToken'], meta: { name: 'VerificationToken' } }
+    /**
+     * Find zero or one VerificationToken that matches the filter.
+     * @param {VerificationTokenFindUniqueArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VerificationTokenFindUniqueArgs>(args: SelectSubset<T, VerificationTokenFindUniqueArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VerificationToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VerificationTokenFindUniqueOrThrowArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VerificationTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, VerificationTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VerificationToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindFirstArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VerificationTokenFindFirstArgs>(args?: SelectSubset<T, VerificationTokenFindFirstArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VerificationToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindFirstOrThrowArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VerificationTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, VerificationTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VerificationTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VerificationTokens
+     * const verificationTokens = await prisma.verificationToken.findMany()
+     * 
+     * // Get first 10 VerificationTokens
+     * const verificationTokens = await prisma.verificationToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const verificationTokenWithIdOnly = await prisma.verificationToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VerificationTokenFindManyArgs>(args?: SelectSubset<T, VerificationTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VerificationToken.
+     * @param {VerificationTokenCreateArgs} args - Arguments to create a VerificationToken.
+     * @example
+     * // Create one VerificationToken
+     * const VerificationToken = await prisma.verificationToken.create({
+     *   data: {
+     *     // ... data to create a VerificationToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends VerificationTokenCreateArgs>(args: SelectSubset<T, VerificationTokenCreateArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VerificationTokens.
+     * @param {VerificationTokenCreateManyArgs} args - Arguments to create many VerificationTokens.
+     * @example
+     * // Create many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VerificationTokenCreateManyArgs>(args?: SelectSubset<T, VerificationTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VerificationTokens and returns the data saved in the database.
+     * @param {VerificationTokenCreateManyAndReturnArgs} args - Arguments to create many VerificationTokens.
+     * @example
+     * // Create many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VerificationTokens and only return the `id`
+     * const verificationTokenWithIdOnly = await prisma.verificationToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VerificationTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, VerificationTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VerificationToken.
+     * @param {VerificationTokenDeleteArgs} args - Arguments to delete one VerificationToken.
+     * @example
+     * // Delete one VerificationToken
+     * const VerificationToken = await prisma.verificationToken.delete({
+     *   where: {
+     *     // ... filter to delete one VerificationToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VerificationTokenDeleteArgs>(args: SelectSubset<T, VerificationTokenDeleteArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VerificationToken.
+     * @param {VerificationTokenUpdateArgs} args - Arguments to update one VerificationToken.
+     * @example
+     * // Update one VerificationToken
+     * const verificationToken = await prisma.verificationToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VerificationTokenUpdateArgs>(args: SelectSubset<T, VerificationTokenUpdateArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VerificationTokens.
+     * @param {VerificationTokenDeleteManyArgs} args - Arguments to filter VerificationTokens to delete.
+     * @example
+     * // Delete a few VerificationTokens
+     * const { count } = await prisma.verificationToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VerificationTokenDeleteManyArgs>(args?: SelectSubset<T, VerificationTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VerificationTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VerificationTokenUpdateManyArgs>(args: SelectSubset<T, VerificationTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VerificationTokens and returns the data updated in the database.
+     * @param {VerificationTokenUpdateManyAndReturnArgs} args - Arguments to update many VerificationTokens.
+     * @example
+     * // Update many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VerificationTokens and only return the `id`
+     * const verificationTokenWithIdOnly = await prisma.verificationToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VerificationTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, VerificationTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VerificationToken.
+     * @param {VerificationTokenUpsertArgs} args - Arguments to update or create a VerificationToken.
+     * @example
+     * // Update or create a VerificationToken
+     * const verificationToken = await prisma.verificationToken.upsert({
+     *   create: {
+     *     // ... data to create a VerificationToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VerificationToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VerificationTokenUpsertArgs>(args: SelectSubset<T, VerificationTokenUpsertArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VerificationTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenCountArgs} args - Arguments to filter VerificationTokens to count.
+     * @example
+     * // Count the number of VerificationTokens
+     * const count = await prisma.verificationToken.count({
+     *   where: {
+     *     // ... the filter for the VerificationTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends VerificationTokenCountArgs>(
+      args?: Subset<T, VerificationTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VerificationTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VerificationToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VerificationTokenAggregateArgs>(args: Subset<T, VerificationTokenAggregateArgs>): Prisma.PrismaPromise<GetVerificationTokenAggregateType<T>>
+
+    /**
+     * Group by VerificationToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VerificationTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VerificationTokenGroupByArgs['orderBy'] }
+        : { orderBy?: VerificationTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VerificationTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVerificationTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VerificationToken model
+   */
+  readonly fields: VerificationTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VerificationToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VerificationTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VerificationToken model
+   */
+  interface VerificationTokenFieldRefs {
+    readonly id: FieldRef<"VerificationToken", 'String'>
+    readonly email: FieldRef<"VerificationToken", 'String'>
+    readonly token: FieldRef<"VerificationToken", 'String'>
+    readonly expiresAt: FieldRef<"VerificationToken", 'DateTime'>
+    readonly isUsed: FieldRef<"VerificationToken", 'Boolean'>
+    readonly createdAt: FieldRef<"VerificationToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VerificationToken findUnique
+   */
+  export type VerificationTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken findUniqueOrThrow
+   */
+  export type VerificationTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken findFirst
+   */
+  export type VerificationTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VerificationTokens.
+     */
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken findFirstOrThrow
+   */
+  export type VerificationTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VerificationTokens.
+     */
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken findMany
+   */
+  export type VerificationTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationTokens to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VerificationTokens.
+     */
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken create
+   */
+  export type VerificationTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to create a VerificationToken.
+     */
+    data: XOR<VerificationTokenCreateInput, VerificationTokenUncheckedCreateInput>
+  }
+
+  /**
+   * VerificationToken createMany
+   */
+  export type VerificationTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VerificationTokens.
+     */
+    data: VerificationTokenCreateManyInput | VerificationTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VerificationToken createManyAndReturn
+   */
+  export type VerificationTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many VerificationTokens.
+     */
+    data: VerificationTokenCreateManyInput | VerificationTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VerificationToken update
+   */
+  export type VerificationTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to update a VerificationToken.
+     */
+    data: XOR<VerificationTokenUpdateInput, VerificationTokenUncheckedUpdateInput>
+    /**
+     * Choose, which VerificationToken to update.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken updateMany
+   */
+  export type VerificationTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VerificationTokens.
+     */
+    data: XOR<VerificationTokenUpdateManyMutationInput, VerificationTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which VerificationTokens to update
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken updateManyAndReturn
+   */
+  export type VerificationTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update VerificationTokens.
+     */
+    data: XOR<VerificationTokenUpdateManyMutationInput, VerificationTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which VerificationTokens to update
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken upsert
+   */
+  export type VerificationTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The filter to search for the VerificationToken to update in case it exists.
+     */
+    where: VerificationTokenWhereUniqueInput
+    /**
+     * In case the VerificationToken found by the `where` argument doesn't exist, create a new VerificationToken with this data.
+     */
+    create: XOR<VerificationTokenCreateInput, VerificationTokenUncheckedCreateInput>
+    /**
+     * In case the VerificationToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VerificationTokenUpdateInput, VerificationTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * VerificationToken delete
+   */
+  export type VerificationTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter which VerificationToken to delete.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken deleteMany
+   */
+  export type VerificationTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VerificationTokens to delete
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken without action
+   */
+  export type VerificationTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -15900,7 +19650,6 @@ export namespace Prisma {
     password: 'password',
     role: 'role',
     accountStatus: 'accountStatus',
-    isRegisteredUser: 'isRegisteredUser',
     division: 'division',
     district: 'district',
     upazila: 'upazila',
@@ -15997,6 +19746,40 @@ export namespace Prisma {
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
+  export const BloodDonorScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    contactNumber: 'contactNumber',
+    bloodGroup: 'bloodGroup',
+    gender: 'gender',
+    lastDonationDate: 'lastDonationDate',
+    isAvailable: 'isAvailable',
+    division: 'division',
+    district: 'district',
+    upazila: 'upazila',
+    userId: 'userId',
+    isDeleted: 'isDeleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BloodDonorScalarFieldEnum = (typeof BloodDonorScalarFieldEnum)[keyof typeof BloodDonorScalarFieldEnum]
+
+
+  export const HospitalDonationRecordScalarFieldEnum: {
+    id: 'id',
+    hospitalId: 'hospitalId',
+    bloodDonorId: 'bloodDonorId',
+    donationDate: 'donationDate',
+    weight: 'weight',
+    isDeleted: 'isDeleted',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HospitalDonationRecordScalarFieldEnum = (typeof HospitalDonationRecordScalarFieldEnum)[keyof typeof HospitalDonationRecordScalarFieldEnum]
+
+
   export const PostScalarFieldEnum: {
     id: 'id',
     authorId: 'authorId',
@@ -16009,6 +19792,7 @@ export namespace Prisma {
     upazila: 'upazila',
     requiredDate: 'requiredDate',
     isApproved: 'isApproved',
+    isResolved: 'isResolved',
     targetAmount: 'targetAmount',
     raisedAmount: 'raisedAmount',
     isDeleted: 'isDeleted',
@@ -16021,7 +19805,7 @@ export namespace Prisma {
 
   export const DonationHistoryScalarFieldEnum: {
     id: 'id',
-    donorId: 'donorId',
+    bloodDonorId: 'bloodDonorId',
     receiverOrgId: 'receiverOrgId',
     donationDate: 'donationDate',
     weightDuringDonation: 'weightDuringDonation',
@@ -16035,7 +19819,7 @@ export namespace Prisma {
   export const OrganisationVolunteerScalarFieldEnum: {
     id: 'id',
     organisationId: 'organisationId',
-    volunteerId: 'volunteerId',
+    bloodDonorId: 'bloodDonorId',
     status: 'status',
     isDeleted: 'isDeleted',
     createdAt: 'createdAt'
@@ -16047,7 +19831,7 @@ export namespace Prisma {
   export const HospitalRequestScalarFieldEnum: {
     id: 'id',
     hospitalId: 'hospitalId',
-    userId: 'userId',
+    bloodDonorId: 'bloodDonorId',
     status: 'status',
     isDeleted: 'isDeleted',
     createdAt: 'createdAt',
@@ -16068,6 +19852,18 @@ export namespace Prisma {
   };
 
   export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+  export const VerificationTokenScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    token: 'token',
+    expiresAt: 'expiresAt',
+    isUsed: 'isUsed',
+    createdAt: 'createdAt'
+  };
+
+  export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -16245,7 +20041,6 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     accountStatus?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
-    isRegisteredUser?: BoolFilter<"User"> | boolean
     division?: StringNullableFilter<"User"> | string | null
     district?: StringNullableFilter<"User"> | string | null
     upazila?: StringNullableFilter<"User"> | string | null
@@ -16259,12 +20054,11 @@ export namespace Prisma {
     donorProfile?: XOR<DonorProfileNullableScalarRelationFilter, DonorProfileWhereInput> | null
     sessions?: SessionListRelationFilter
     posts?: PostListRelationFilter
-    donationsAsDonor?: DonationHistoryListRelationFilter
+    bloodDonor?: XOR<BloodDonorNullableScalarRelationFilter, BloodDonorWhereInput> | null
     donationsAsReceiver?: DonationHistoryListRelationFilter
-    hospitalRequests?: HospitalRequestListRelationFilter
     requestedByHospitals?: HospitalRequestListRelationFilter
-    organisationVolunteers?: OrganisationVolunteerListRelationFilter
     organisationManaged?: OrganisationVolunteerListRelationFilter
+    hospitalRecords?: HospitalDonationRecordListRelationFilter
     notifications?: NotificationListRelationFilter
   }
 
@@ -16275,7 +20069,6 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
-    isRegisteredUser?: SortOrder
     division?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
     upazila?: SortOrderInput | SortOrder
@@ -16289,12 +20082,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileOrderByWithRelationInput
     sessions?: SessionOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
-    donationsAsDonor?: DonationHistoryOrderByRelationAggregateInput
+    bloodDonor?: BloodDonorOrderByWithRelationInput
     donationsAsReceiver?: DonationHistoryOrderByRelationAggregateInput
-    hospitalRequests?: HospitalRequestOrderByRelationAggregateInput
     requestedByHospitals?: HospitalRequestOrderByRelationAggregateInput
-    organisationVolunteers?: OrganisationVolunteerOrderByRelationAggregateInput
     organisationManaged?: OrganisationVolunteerOrderByRelationAggregateInput
+    hospitalRecords?: HospitalDonationRecordOrderByRelationAggregateInput
     notifications?: NotificationOrderByRelationAggregateInput
   }
 
@@ -16308,7 +20100,6 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     accountStatus?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
-    isRegisteredUser?: BoolFilter<"User"> | boolean
     division?: StringNullableFilter<"User"> | string | null
     district?: StringNullableFilter<"User"> | string | null
     upazila?: StringNullableFilter<"User"> | string | null
@@ -16322,12 +20113,11 @@ export namespace Prisma {
     donorProfile?: XOR<DonorProfileNullableScalarRelationFilter, DonorProfileWhereInput> | null
     sessions?: SessionListRelationFilter
     posts?: PostListRelationFilter
-    donationsAsDonor?: DonationHistoryListRelationFilter
+    bloodDonor?: XOR<BloodDonorNullableScalarRelationFilter, BloodDonorWhereInput> | null
     donationsAsReceiver?: DonationHistoryListRelationFilter
-    hospitalRequests?: HospitalRequestListRelationFilter
     requestedByHospitals?: HospitalRequestListRelationFilter
-    organisationVolunteers?: OrganisationVolunteerListRelationFilter
     organisationManaged?: OrganisationVolunteerListRelationFilter
+    hospitalRecords?: HospitalDonationRecordListRelationFilter
     notifications?: NotificationListRelationFilter
   }, "id" | "email" | "contactNumber">
 
@@ -16338,7 +20128,6 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
-    isRegisteredUser?: SortOrder
     division?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
     upazila?: SortOrderInput | SortOrder
@@ -16360,7 +20149,6 @@ export namespace Prisma {
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     accountStatus?: EnumAccountStatusWithAggregatesFilter<"User"> | $Enums.AccountStatus
-    isRegisteredUser?: BoolWithAggregatesFilter<"User"> | boolean
     division?: StringNullableWithAggregatesFilter<"User"> | string | null
     district?: StringNullableWithAggregatesFilter<"User"> | string | null
     upazila?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -16796,6 +20584,193 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
   }
 
+  export type BloodDonorWhereInput = {
+    AND?: BloodDonorWhereInput | BloodDonorWhereInput[]
+    OR?: BloodDonorWhereInput[]
+    NOT?: BloodDonorWhereInput | BloodDonorWhereInput[]
+    id?: StringFilter<"BloodDonor"> | string
+    name?: StringFilter<"BloodDonor"> | string
+    contactNumber?: StringFilter<"BloodDonor"> | string
+    bloodGroup?: StringFilter<"BloodDonor"> | string
+    gender?: EnumGenderFilter<"BloodDonor"> | $Enums.Gender
+    lastDonationDate?: DateTimeNullableFilter<"BloodDonor"> | Date | string | null
+    isAvailable?: BoolFilter<"BloodDonor"> | boolean
+    division?: StringFilter<"BloodDonor"> | string
+    district?: StringFilter<"BloodDonor"> | string
+    upazila?: StringFilter<"BloodDonor"> | string
+    userId?: StringNullableFilter<"BloodDonor"> | string | null
+    isDeleted?: BoolFilter<"BloodDonor"> | boolean
+    createdAt?: DateTimeFilter<"BloodDonor"> | Date | string
+    updatedAt?: DateTimeFilter<"BloodDonor"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    donations?: DonationHistoryListRelationFilter
+    hospitalRequests?: HospitalRequestListRelationFilter
+    hospitalRecords?: HospitalDonationRecordListRelationFilter
+    organisationVols?: OrganisationVolunteerListRelationFilter
+  }
+
+  export type BloodDonorOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contactNumber?: SortOrder
+    bloodGroup?: SortOrder
+    gender?: SortOrder
+    lastDonationDate?: SortOrderInput | SortOrder
+    isAvailable?: SortOrder
+    division?: SortOrder
+    district?: SortOrder
+    upazila?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    donations?: DonationHistoryOrderByRelationAggregateInput
+    hospitalRequests?: HospitalRequestOrderByRelationAggregateInput
+    hospitalRecords?: HospitalDonationRecordOrderByRelationAggregateInput
+    organisationVols?: OrganisationVolunteerOrderByRelationAggregateInput
+  }
+
+  export type BloodDonorWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    contactNumber?: string
+    userId?: string
+    AND?: BloodDonorWhereInput | BloodDonorWhereInput[]
+    OR?: BloodDonorWhereInput[]
+    NOT?: BloodDonorWhereInput | BloodDonorWhereInput[]
+    name?: StringFilter<"BloodDonor"> | string
+    bloodGroup?: StringFilter<"BloodDonor"> | string
+    gender?: EnumGenderFilter<"BloodDonor"> | $Enums.Gender
+    lastDonationDate?: DateTimeNullableFilter<"BloodDonor"> | Date | string | null
+    isAvailable?: BoolFilter<"BloodDonor"> | boolean
+    division?: StringFilter<"BloodDonor"> | string
+    district?: StringFilter<"BloodDonor"> | string
+    upazila?: StringFilter<"BloodDonor"> | string
+    isDeleted?: BoolFilter<"BloodDonor"> | boolean
+    createdAt?: DateTimeFilter<"BloodDonor"> | Date | string
+    updatedAt?: DateTimeFilter<"BloodDonor"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    donations?: DonationHistoryListRelationFilter
+    hospitalRequests?: HospitalRequestListRelationFilter
+    hospitalRecords?: HospitalDonationRecordListRelationFilter
+    organisationVols?: OrganisationVolunteerListRelationFilter
+  }, "id" | "contactNumber" | "userId">
+
+  export type BloodDonorOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contactNumber?: SortOrder
+    bloodGroup?: SortOrder
+    gender?: SortOrder
+    lastDonationDate?: SortOrderInput | SortOrder
+    isAvailable?: SortOrder
+    division?: SortOrder
+    district?: SortOrder
+    upazila?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BloodDonorCountOrderByAggregateInput
+    _max?: BloodDonorMaxOrderByAggregateInput
+    _min?: BloodDonorMinOrderByAggregateInput
+  }
+
+  export type BloodDonorScalarWhereWithAggregatesInput = {
+    AND?: BloodDonorScalarWhereWithAggregatesInput | BloodDonorScalarWhereWithAggregatesInput[]
+    OR?: BloodDonorScalarWhereWithAggregatesInput[]
+    NOT?: BloodDonorScalarWhereWithAggregatesInput | BloodDonorScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BloodDonor"> | string
+    name?: StringWithAggregatesFilter<"BloodDonor"> | string
+    contactNumber?: StringWithAggregatesFilter<"BloodDonor"> | string
+    bloodGroup?: StringWithAggregatesFilter<"BloodDonor"> | string
+    gender?: EnumGenderWithAggregatesFilter<"BloodDonor"> | $Enums.Gender
+    lastDonationDate?: DateTimeNullableWithAggregatesFilter<"BloodDonor"> | Date | string | null
+    isAvailable?: BoolWithAggregatesFilter<"BloodDonor"> | boolean
+    division?: StringWithAggregatesFilter<"BloodDonor"> | string
+    district?: StringWithAggregatesFilter<"BloodDonor"> | string
+    upazila?: StringWithAggregatesFilter<"BloodDonor"> | string
+    userId?: StringNullableWithAggregatesFilter<"BloodDonor"> | string | null
+    isDeleted?: BoolWithAggregatesFilter<"BloodDonor"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"BloodDonor"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BloodDonor"> | Date | string
+  }
+
+  export type HospitalDonationRecordWhereInput = {
+    AND?: HospitalDonationRecordWhereInput | HospitalDonationRecordWhereInput[]
+    OR?: HospitalDonationRecordWhereInput[]
+    NOT?: HospitalDonationRecordWhereInput | HospitalDonationRecordWhereInput[]
+    id?: StringFilter<"HospitalDonationRecord"> | string
+    hospitalId?: StringFilter<"HospitalDonationRecord"> | string
+    bloodDonorId?: StringFilter<"HospitalDonationRecord"> | string
+    donationDate?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
+    weight?: FloatNullableFilter<"HospitalDonationRecord"> | number | null
+    isDeleted?: BoolFilter<"HospitalDonationRecord"> | boolean
+    createdAt?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
+    updatedAt?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
+    hospital?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bloodDonor?: XOR<BloodDonorScalarRelationFilter, BloodDonorWhereInput>
+  }
+
+  export type HospitalDonationRecordOrderByWithRelationInput = {
+    id?: SortOrder
+    hospitalId?: SortOrder
+    bloodDonorId?: SortOrder
+    donationDate?: SortOrder
+    weight?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    hospital?: UserOrderByWithRelationInput
+    bloodDonor?: BloodDonorOrderByWithRelationInput
+  }
+
+  export type HospitalDonationRecordWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HospitalDonationRecordWhereInput | HospitalDonationRecordWhereInput[]
+    OR?: HospitalDonationRecordWhereInput[]
+    NOT?: HospitalDonationRecordWhereInput | HospitalDonationRecordWhereInput[]
+    hospitalId?: StringFilter<"HospitalDonationRecord"> | string
+    bloodDonorId?: StringFilter<"HospitalDonationRecord"> | string
+    donationDate?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
+    weight?: FloatNullableFilter<"HospitalDonationRecord"> | number | null
+    isDeleted?: BoolFilter<"HospitalDonationRecord"> | boolean
+    createdAt?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
+    updatedAt?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
+    hospital?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bloodDonor?: XOR<BloodDonorScalarRelationFilter, BloodDonorWhereInput>
+  }, "id">
+
+  export type HospitalDonationRecordOrderByWithAggregationInput = {
+    id?: SortOrder
+    hospitalId?: SortOrder
+    bloodDonorId?: SortOrder
+    donationDate?: SortOrder
+    weight?: SortOrderInput | SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HospitalDonationRecordCountOrderByAggregateInput
+    _avg?: HospitalDonationRecordAvgOrderByAggregateInput
+    _max?: HospitalDonationRecordMaxOrderByAggregateInput
+    _min?: HospitalDonationRecordMinOrderByAggregateInput
+    _sum?: HospitalDonationRecordSumOrderByAggregateInput
+  }
+
+  export type HospitalDonationRecordScalarWhereWithAggregatesInput = {
+    AND?: HospitalDonationRecordScalarWhereWithAggregatesInput | HospitalDonationRecordScalarWhereWithAggregatesInput[]
+    OR?: HospitalDonationRecordScalarWhereWithAggregatesInput[]
+    NOT?: HospitalDonationRecordScalarWhereWithAggregatesInput | HospitalDonationRecordScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HospitalDonationRecord"> | string
+    hospitalId?: StringWithAggregatesFilter<"HospitalDonationRecord"> | string
+    bloodDonorId?: StringWithAggregatesFilter<"HospitalDonationRecord"> | string
+    donationDate?: DateTimeWithAggregatesFilter<"HospitalDonationRecord"> | Date | string
+    weight?: FloatNullableWithAggregatesFilter<"HospitalDonationRecord"> | number | null
+    isDeleted?: BoolWithAggregatesFilter<"HospitalDonationRecord"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"HospitalDonationRecord"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HospitalDonationRecord"> | Date | string
+  }
+
   export type PostWhereInput = {
     AND?: PostWhereInput | PostWhereInput[]
     OR?: PostWhereInput[]
@@ -16811,6 +20786,7 @@ export namespace Prisma {
     upazila?: StringNullableFilter<"Post"> | string | null
     requiredDate?: DateTimeNullableFilter<"Post"> | Date | string | null
     isApproved?: BoolFilter<"Post"> | boolean
+    isResolved?: BoolFilter<"Post"> | boolean
     targetAmount?: FloatNullableFilter<"Post"> | number | null
     raisedAmount?: FloatNullableFilter<"Post"> | number | null
     isDeleted?: BoolFilter<"Post"> | boolean
@@ -16831,6 +20807,7 @@ export namespace Prisma {
     upazila?: SortOrderInput | SortOrder
     requiredDate?: SortOrderInput | SortOrder
     isApproved?: SortOrder
+    isResolved?: SortOrder
     targetAmount?: SortOrderInput | SortOrder
     raisedAmount?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
@@ -16854,6 +20831,7 @@ export namespace Prisma {
     upazila?: StringNullableFilter<"Post"> | string | null
     requiredDate?: DateTimeNullableFilter<"Post"> | Date | string | null
     isApproved?: BoolFilter<"Post"> | boolean
+    isResolved?: BoolFilter<"Post"> | boolean
     targetAmount?: FloatNullableFilter<"Post"> | number | null
     raisedAmount?: FloatNullableFilter<"Post"> | number | null
     isDeleted?: BoolFilter<"Post"> | boolean
@@ -16874,6 +20852,7 @@ export namespace Prisma {
     upazila?: SortOrderInput | SortOrder
     requiredDate?: SortOrderInput | SortOrder
     isApproved?: SortOrder
+    isResolved?: SortOrder
     targetAmount?: SortOrderInput | SortOrder
     raisedAmount?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
@@ -16901,6 +20880,7 @@ export namespace Prisma {
     upazila?: StringNullableWithAggregatesFilter<"Post"> | string | null
     requiredDate?: DateTimeNullableWithAggregatesFilter<"Post"> | Date | string | null
     isApproved?: BoolWithAggregatesFilter<"Post"> | boolean
+    isResolved?: BoolWithAggregatesFilter<"Post"> | boolean
     targetAmount?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     raisedAmount?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     isDeleted?: BoolWithAggregatesFilter<"Post"> | boolean
@@ -16913,25 +20893,25 @@ export namespace Prisma {
     OR?: DonationHistoryWhereInput[]
     NOT?: DonationHistoryWhereInput | DonationHistoryWhereInput[]
     id?: StringFilter<"DonationHistory"> | string
-    donorId?: StringFilter<"DonationHistory"> | string
+    bloodDonorId?: StringFilter<"DonationHistory"> | string
     receiverOrgId?: StringNullableFilter<"DonationHistory"> | string | null
     donationDate?: DateTimeFilter<"DonationHistory"> | Date | string
     weightDuringDonation?: FloatNullableFilter<"DonationHistory"> | number | null
     isDeleted?: BoolFilter<"DonationHistory"> | boolean
     createdAt?: DateTimeFilter<"DonationHistory"> | Date | string
-    donor?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bloodDonor?: XOR<BloodDonorScalarRelationFilter, BloodDonorWhereInput>
     receiverOrg?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type DonationHistoryOrderByWithRelationInput = {
     id?: SortOrder
-    donorId?: SortOrder
+    bloodDonorId?: SortOrder
     receiverOrgId?: SortOrderInput | SortOrder
     donationDate?: SortOrder
     weightDuringDonation?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
-    donor?: UserOrderByWithRelationInput
+    bloodDonor?: BloodDonorOrderByWithRelationInput
     receiverOrg?: UserOrderByWithRelationInput
   }
 
@@ -16940,19 +20920,19 @@ export namespace Prisma {
     AND?: DonationHistoryWhereInput | DonationHistoryWhereInput[]
     OR?: DonationHistoryWhereInput[]
     NOT?: DonationHistoryWhereInput | DonationHistoryWhereInput[]
-    donorId?: StringFilter<"DonationHistory"> | string
+    bloodDonorId?: StringFilter<"DonationHistory"> | string
     receiverOrgId?: StringNullableFilter<"DonationHistory"> | string | null
     donationDate?: DateTimeFilter<"DonationHistory"> | Date | string
     weightDuringDonation?: FloatNullableFilter<"DonationHistory"> | number | null
     isDeleted?: BoolFilter<"DonationHistory"> | boolean
     createdAt?: DateTimeFilter<"DonationHistory"> | Date | string
-    donor?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bloodDonor?: XOR<BloodDonorScalarRelationFilter, BloodDonorWhereInput>
     receiverOrg?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type DonationHistoryOrderByWithAggregationInput = {
     id?: SortOrder
-    donorId?: SortOrder
+    bloodDonorId?: SortOrder
     receiverOrgId?: SortOrderInput | SortOrder
     donationDate?: SortOrder
     weightDuringDonation?: SortOrderInput | SortOrder
@@ -16970,7 +20950,7 @@ export namespace Prisma {
     OR?: DonationHistoryScalarWhereWithAggregatesInput[]
     NOT?: DonationHistoryScalarWhereWithAggregatesInput | DonationHistoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"DonationHistory"> | string
-    donorId?: StringWithAggregatesFilter<"DonationHistory"> | string
+    bloodDonorId?: StringWithAggregatesFilter<"DonationHistory"> | string
     receiverOrgId?: StringNullableWithAggregatesFilter<"DonationHistory"> | string | null
     donationDate?: DateTimeWithAggregatesFilter<"DonationHistory"> | Date | string
     weightDuringDonation?: FloatNullableWithAggregatesFilter<"DonationHistory"> | number | null
@@ -16984,44 +20964,44 @@ export namespace Prisma {
     NOT?: OrganisationVolunteerWhereInput | OrganisationVolunteerWhereInput[]
     id?: StringFilter<"OrganisationVolunteer"> | string
     organisationId?: StringFilter<"OrganisationVolunteer"> | string
-    volunteerId?: StringFilter<"OrganisationVolunteer"> | string
+    bloodDonorId?: StringFilter<"OrganisationVolunteer"> | string
     status?: EnumRequestStatusFilter<"OrganisationVolunteer"> | $Enums.RequestStatus
     isDeleted?: BoolFilter<"OrganisationVolunteer"> | boolean
     createdAt?: DateTimeFilter<"OrganisationVolunteer"> | Date | string
     organisation?: XOR<UserScalarRelationFilter, UserWhereInput>
-    volunteer?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bloodDonor?: XOR<BloodDonorScalarRelationFilter, BloodDonorWhereInput>
   }
 
   export type OrganisationVolunteerOrderByWithRelationInput = {
     id?: SortOrder
     organisationId?: SortOrder
-    volunteerId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     organisation?: UserOrderByWithRelationInput
-    volunteer?: UserOrderByWithRelationInput
+    bloodDonor?: BloodDonorOrderByWithRelationInput
   }
 
   export type OrganisationVolunteerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    organisationId_volunteerId?: OrganisationVolunteerOrganisationIdVolunteerIdCompoundUniqueInput
+    organisationId_bloodDonorId?: OrganisationVolunteerOrganisationIdBloodDonorIdCompoundUniqueInput
     AND?: OrganisationVolunteerWhereInput | OrganisationVolunteerWhereInput[]
     OR?: OrganisationVolunteerWhereInput[]
     NOT?: OrganisationVolunteerWhereInput | OrganisationVolunteerWhereInput[]
     organisationId?: StringFilter<"OrganisationVolunteer"> | string
-    volunteerId?: StringFilter<"OrganisationVolunteer"> | string
+    bloodDonorId?: StringFilter<"OrganisationVolunteer"> | string
     status?: EnumRequestStatusFilter<"OrganisationVolunteer"> | $Enums.RequestStatus
     isDeleted?: BoolFilter<"OrganisationVolunteer"> | boolean
     createdAt?: DateTimeFilter<"OrganisationVolunteer"> | Date | string
     organisation?: XOR<UserScalarRelationFilter, UserWhereInput>
-    volunteer?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "organisationId_volunteerId">
+    bloodDonor?: XOR<BloodDonorScalarRelationFilter, BloodDonorWhereInput>
+  }, "id" | "organisationId_bloodDonorId">
 
   export type OrganisationVolunteerOrderByWithAggregationInput = {
     id?: SortOrder
     organisationId?: SortOrder
-    volunteerId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -17036,7 +21016,7 @@ export namespace Prisma {
     NOT?: OrganisationVolunteerScalarWhereWithAggregatesInput | OrganisationVolunteerScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"OrganisationVolunteer"> | string
     organisationId?: StringWithAggregatesFilter<"OrganisationVolunteer"> | string
-    volunteerId?: StringWithAggregatesFilter<"OrganisationVolunteer"> | string
+    bloodDonorId?: StringWithAggregatesFilter<"OrganisationVolunteer"> | string
     status?: EnumRequestStatusWithAggregatesFilter<"OrganisationVolunteer"> | $Enums.RequestStatus
     isDeleted?: BoolWithAggregatesFilter<"OrganisationVolunteer"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"OrganisationVolunteer"> | Date | string
@@ -17048,25 +21028,25 @@ export namespace Prisma {
     NOT?: HospitalRequestWhereInput | HospitalRequestWhereInput[]
     id?: StringFilter<"HospitalRequest"> | string
     hospitalId?: StringFilter<"HospitalRequest"> | string
-    userId?: StringFilter<"HospitalRequest"> | string
+    bloodDonorId?: StringFilter<"HospitalRequest"> | string
     status?: EnumRequestStatusFilter<"HospitalRequest"> | $Enums.RequestStatus
     isDeleted?: BoolFilter<"HospitalRequest"> | boolean
     createdAt?: DateTimeFilter<"HospitalRequest"> | Date | string
     updatedAt?: DateTimeFilter<"HospitalRequest"> | Date | string
     hospital?: XOR<UserScalarRelationFilter, UserWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bloodDonor?: XOR<BloodDonorScalarRelationFilter, BloodDonorWhereInput>
   }
 
   export type HospitalRequestOrderByWithRelationInput = {
     id?: SortOrder
     hospitalId?: SortOrder
-    userId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     hospital?: UserOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
+    bloodDonor?: BloodDonorOrderByWithRelationInput
   }
 
   export type HospitalRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -17075,19 +21055,19 @@ export namespace Prisma {
     OR?: HospitalRequestWhereInput[]
     NOT?: HospitalRequestWhereInput | HospitalRequestWhereInput[]
     hospitalId?: StringFilter<"HospitalRequest"> | string
-    userId?: StringFilter<"HospitalRequest"> | string
+    bloodDonorId?: StringFilter<"HospitalRequest"> | string
     status?: EnumRequestStatusFilter<"HospitalRequest"> | $Enums.RequestStatus
     isDeleted?: BoolFilter<"HospitalRequest"> | boolean
     createdAt?: DateTimeFilter<"HospitalRequest"> | Date | string
     updatedAt?: DateTimeFilter<"HospitalRequest"> | Date | string
     hospital?: XOR<UserScalarRelationFilter, UserWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    bloodDonor?: XOR<BloodDonorScalarRelationFilter, BloodDonorWhereInput>
   }, "id">
 
   export type HospitalRequestOrderByWithAggregationInput = {
     id?: SortOrder
     hospitalId?: SortOrder
-    userId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -17103,7 +21083,7 @@ export namespace Prisma {
     NOT?: HospitalRequestScalarWhereWithAggregatesInput | HospitalRequestScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"HospitalRequest"> | string
     hospitalId?: StringWithAggregatesFilter<"HospitalRequest"> | string
-    userId?: StringWithAggregatesFilter<"HospitalRequest"> | string
+    bloodDonorId?: StringWithAggregatesFilter<"HospitalRequest"> | string
     status?: EnumRequestStatusWithAggregatesFilter<"HospitalRequest"> | $Enums.RequestStatus
     isDeleted?: BoolWithAggregatesFilter<"HospitalRequest"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"HospitalRequest"> | Date | string
@@ -17175,6 +21155,63 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
   }
 
+  export type VerificationTokenWhereInput = {
+    AND?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    OR?: VerificationTokenWhereInput[]
+    NOT?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    id?: StringFilter<"VerificationToken"> | string
+    email?: StringFilter<"VerificationToken"> | string
+    token?: StringFilter<"VerificationToken"> | string
+    expiresAt?: DateTimeFilter<"VerificationToken"> | Date | string
+    isUsed?: BoolFilter<"VerificationToken"> | boolean
+    createdAt?: DateTimeFilter<"VerificationToken"> | Date | string
+  }
+
+  export type VerificationTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VerificationTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    token?: string
+    AND?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    OR?: VerificationTokenWhereInput[]
+    NOT?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    expiresAt?: DateTimeFilter<"VerificationToken"> | Date | string
+    isUsed?: BoolFilter<"VerificationToken"> | boolean
+    createdAt?: DateTimeFilter<"VerificationToken"> | Date | string
+  }, "id" | "email" | "token">
+
+  export type VerificationTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+    _count?: VerificationTokenCountOrderByAggregateInput
+    _max?: VerificationTokenMaxOrderByAggregateInput
+    _min?: VerificationTokenMinOrderByAggregateInput
+  }
+
+  export type VerificationTokenScalarWhereWithAggregatesInput = {
+    AND?: VerificationTokenScalarWhereWithAggregatesInput | VerificationTokenScalarWhereWithAggregatesInput[]
+    OR?: VerificationTokenScalarWhereWithAggregatesInput[]
+    NOT?: VerificationTokenScalarWhereWithAggregatesInput | VerificationTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VerificationToken"> | string
+    email?: StringWithAggregatesFilter<"VerificationToken"> | string
+    token?: StringWithAggregatesFilter<"VerificationToken"> | string
+    expiresAt?: DateTimeWithAggregatesFilter<"VerificationToken"> | Date | string
+    isUsed?: BoolWithAggregatesFilter<"VerificationToken"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"VerificationToken"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email?: string | null
@@ -17182,7 +21219,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -17196,12 +21232,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -17212,7 +21247,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -17226,12 +21260,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -17242,7 +21275,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17256,12 +21288,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -17272,7 +21303,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17286,12 +21316,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -17302,7 +21331,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -17318,7 +21346,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17334,7 +21361,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17806,6 +21832,215 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BloodDonorCreateInput = {
+    id?: string
+    name: string
+    contactNumber: string
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutBloodDonorInput
+    donations?: DonationHistoryCreateNestedManyWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerCreateNestedManyWithoutBloodDonorInput
+  }
+
+  export type BloodDonorUncheckedCreateInput = {
+    id?: string
+    name: string
+    contactNumber: string
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
+    userId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    donations?: DonationHistoryUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerUncheckedCreateNestedManyWithoutBloodDonorInput
+  }
+
+  export type BloodDonorUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutBloodDonorNestedInput
+    donations?: DonationHistoryUpdateManyWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUpdateManyWithoutBloodDonorNestedInput
+  }
+
+  export type BloodDonorUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    donations?: DonationHistoryUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUncheckedUpdateManyWithoutBloodDonorNestedInput
+  }
+
+  export type BloodDonorCreateManyInput = {
+    id?: string
+    name: string
+    contactNumber: string
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
+    userId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BloodDonorUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BloodDonorUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalDonationRecordCreateInput = {
+    id?: string
+    donationDate?: Date | string
+    weight?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    hospital: UserCreateNestedOneWithoutHospitalRecordsInput
+    bloodDonor: BloodDonorCreateNestedOneWithoutHospitalRecordsInput
+  }
+
+  export type HospitalDonationRecordUncheckedCreateInput = {
+    id?: string
+    hospitalId: string
+    bloodDonorId: string
+    donationDate?: Date | string
+    weight?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HospitalDonationRecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hospital?: UserUpdateOneRequiredWithoutHospitalRecordsNestedInput
+    bloodDonor?: BloodDonorUpdateOneRequiredWithoutHospitalRecordsNestedInput
+  }
+
+  export type HospitalDonationRecordUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hospitalId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalDonationRecordCreateManyInput = {
+    id?: string
+    hospitalId: string
+    bloodDonorId: string
+    donationDate?: Date | string
+    weight?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HospitalDonationRecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalDonationRecordUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hospitalId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PostCreateInput = {
     id?: string
     type: $Enums.PostType
@@ -17817,6 +22052,7 @@ export namespace Prisma {
     upazila?: string | null
     requiredDate?: Date | string | null
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: number | null
     raisedAmount?: number | null
     isDeleted?: boolean
@@ -17837,6 +22073,7 @@ export namespace Prisma {
     upazila?: string | null
     requiredDate?: Date | string | null
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: number | null
     raisedAmount?: number | null
     isDeleted?: boolean
@@ -17855,6 +22092,7 @@ export namespace Prisma {
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
     requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -17875,6 +22113,7 @@ export namespace Prisma {
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
     requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -17894,6 +22133,7 @@ export namespace Prisma {
     upazila?: string | null
     requiredDate?: Date | string | null
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: number | null
     raisedAmount?: number | null
     isDeleted?: boolean
@@ -17912,6 +22152,7 @@ export namespace Prisma {
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
     requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -17931,6 +22172,7 @@ export namespace Prisma {
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
     requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -17944,13 +22186,13 @@ export namespace Prisma {
     weightDuringDonation?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
-    donor: UserCreateNestedOneWithoutDonationsAsDonorInput
+    bloodDonor: BloodDonorCreateNestedOneWithoutDonationsInput
     receiverOrg?: UserCreateNestedOneWithoutDonationsAsReceiverInput
   }
 
   export type DonationHistoryUncheckedCreateInput = {
     id?: string
-    donorId: string
+    bloodDonorId: string
     receiverOrgId?: string | null
     donationDate: Date | string
     weightDuringDonation?: number | null
@@ -17964,13 +22206,13 @@ export namespace Prisma {
     weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    donor?: UserUpdateOneRequiredWithoutDonationsAsDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneRequiredWithoutDonationsNestedInput
     receiverOrg?: UserUpdateOneWithoutDonationsAsReceiverNestedInput
   }
 
   export type DonationHistoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    donorId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     receiverOrgId?: NullableStringFieldUpdateOperationsInput | string | null
     donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
     weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -17980,7 +22222,7 @@ export namespace Prisma {
 
   export type DonationHistoryCreateManyInput = {
     id?: string
-    donorId: string
+    bloodDonorId: string
     receiverOrgId?: string | null
     donationDate: Date | string
     weightDuringDonation?: number | null
@@ -17998,7 +22240,7 @@ export namespace Prisma {
 
   export type DonationHistoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    donorId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     receiverOrgId?: NullableStringFieldUpdateOperationsInput | string | null
     donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
     weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -18012,13 +22254,13 @@ export namespace Prisma {
     isDeleted?: boolean
     createdAt?: Date | string
     organisation: UserCreateNestedOneWithoutOrganisationManagedInput
-    volunteer: UserCreateNestedOneWithoutOrganisationVolunteersInput
+    bloodDonor: BloodDonorCreateNestedOneWithoutOrganisationVolsInput
   }
 
   export type OrganisationVolunteerUncheckedCreateInput = {
     id?: string
     organisationId: string
-    volunteerId: string
+    bloodDonorId: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
@@ -18030,13 +22272,13 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     organisation?: UserUpdateOneRequiredWithoutOrganisationManagedNestedInput
-    volunteer?: UserUpdateOneRequiredWithoutOrganisationVolunteersNestedInput
+    bloodDonor?: BloodDonorUpdateOneRequiredWithoutOrganisationVolsNestedInput
   }
 
   export type OrganisationVolunteerUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     organisationId?: StringFieldUpdateOperationsInput | string
-    volunteerId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18045,7 +22287,7 @@ export namespace Prisma {
   export type OrganisationVolunteerCreateManyInput = {
     id?: string
     organisationId: string
-    volunteerId: string
+    bloodDonorId: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
@@ -18061,7 +22303,7 @@ export namespace Prisma {
   export type OrganisationVolunteerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     organisationId?: StringFieldUpdateOperationsInput | string
-    volunteerId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18074,13 +22316,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     hospital: UserCreateNestedOneWithoutRequestedByHospitalsInput
-    user: UserCreateNestedOneWithoutHospitalRequestsInput
+    bloodDonor: BloodDonorCreateNestedOneWithoutHospitalRequestsInput
   }
 
   export type HospitalRequestUncheckedCreateInput = {
     id?: string
     hospitalId: string
-    userId: string
+    bloodDonorId: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
@@ -18094,13 +22336,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     hospital?: UserUpdateOneRequiredWithoutRequestedByHospitalsNestedInput
-    user?: UserUpdateOneRequiredWithoutHospitalRequestsNestedInput
+    bloodDonor?: BloodDonorUpdateOneRequiredWithoutHospitalRequestsNestedInput
   }
 
   export type HospitalRequestUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     hospitalId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18110,7 +22352,7 @@ export namespace Prisma {
   export type HospitalRequestCreateManyInput = {
     id?: string
     hospitalId: string
-    userId: string
+    bloodDonorId: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
@@ -18128,7 +22370,7 @@ export namespace Prisma {
   export type HospitalRequestUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     hospitalId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18201,6 +22443,69 @@ export namespace Prisma {
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenCreateInput = {
+    id?: string
+    email: string
+    token: string
+    expiresAt: Date | string
+    isUsed?: boolean
+    createdAt?: Date | string
+  }
+
+  export type VerificationTokenUncheckedCreateInput = {
+    id?: string
+    email: string
+    token: string
+    expiresAt: Date | string
+    isUsed?: boolean
+    createdAt?: Date | string
+  }
+
+  export type VerificationTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isUsed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isUsed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenCreateManyInput = {
+    id?: string
+    email: string
+    token: string
+    expiresAt: Date | string
+    isUsed?: boolean
+    createdAt?: Date | string
+  }
+
+  export type VerificationTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isUsed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isUsed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -18301,6 +22606,11 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
+  export type BloodDonorNullableScalarRelationFilter = {
+    is?: BloodDonorWhereInput | null
+    isNot?: BloodDonorWhereInput | null
+  }
+
   export type DonationHistoryListRelationFilter = {
     every?: DonationHistoryWhereInput
     some?: DonationHistoryWhereInput
@@ -18317,6 +22627,12 @@ export namespace Prisma {
     every?: OrganisationVolunteerWhereInput
     some?: OrganisationVolunteerWhereInput
     none?: OrganisationVolunteerWhereInput
+  }
+
+  export type HospitalDonationRecordListRelationFilter = {
+    every?: HospitalDonationRecordWhereInput
+    some?: HospitalDonationRecordWhereInput
+    none?: HospitalDonationRecordWhereInput
   }
 
   export type NotificationListRelationFilter = {
@@ -18350,6 +22666,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type HospitalDonationRecordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type NotificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -18361,7 +22681,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
-    isRegisteredUser?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
@@ -18377,7 +22696,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
-    isRegisteredUser?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
@@ -18393,7 +22711,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
-    isRegisteredUser?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
@@ -18763,6 +23080,108 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type BloodDonorCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contactNumber?: SortOrder
+    bloodGroup?: SortOrder
+    gender?: SortOrder
+    lastDonationDate?: SortOrder
+    isAvailable?: SortOrder
+    division?: SortOrder
+    district?: SortOrder
+    upazila?: SortOrder
+    userId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BloodDonorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contactNumber?: SortOrder
+    bloodGroup?: SortOrder
+    gender?: SortOrder
+    lastDonationDate?: SortOrder
+    isAvailable?: SortOrder
+    division?: SortOrder
+    district?: SortOrder
+    upazila?: SortOrder
+    userId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BloodDonorMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    contactNumber?: SortOrder
+    bloodGroup?: SortOrder
+    gender?: SortOrder
+    lastDonationDate?: SortOrder
+    isAvailable?: SortOrder
+    division?: SortOrder
+    district?: SortOrder
+    upazila?: SortOrder
+    userId?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BloodDonorScalarRelationFilter = {
+    is?: BloodDonorWhereInput
+    isNot?: BloodDonorWhereInput
+  }
+
+  export type HospitalDonationRecordCountOrderByAggregateInput = {
+    id?: SortOrder
+    hospitalId?: SortOrder
+    bloodDonorId?: SortOrder
+    donationDate?: SortOrder
+    weight?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HospitalDonationRecordAvgOrderByAggregateInput = {
+    weight?: SortOrder
+  }
+
+  export type HospitalDonationRecordMaxOrderByAggregateInput = {
+    id?: SortOrder
+    hospitalId?: SortOrder
+    bloodDonorId?: SortOrder
+    donationDate?: SortOrder
+    weight?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HospitalDonationRecordMinOrderByAggregateInput = {
+    id?: SortOrder
+    hospitalId?: SortOrder
+    bloodDonorId?: SortOrder
+    donationDate?: SortOrder
+    weight?: SortOrder
+    isDeleted?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type HospitalDonationRecordSumOrderByAggregateInput = {
+    weight?: SortOrder
+  }
+
   export type EnumPostTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.PostType | EnumPostTypeFieldRefInput<$PrismaModel>
     in?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
@@ -18790,6 +23209,7 @@ export namespace Prisma {
     upazila?: SortOrder
     requiredDate?: SortOrder
     isApproved?: SortOrder
+    isResolved?: SortOrder
     targetAmount?: SortOrder
     raisedAmount?: SortOrder
     isDeleted?: SortOrder
@@ -18813,6 +23233,7 @@ export namespace Prisma {
     upazila?: SortOrder
     requiredDate?: SortOrder
     isApproved?: SortOrder
+    isResolved?: SortOrder
     targetAmount?: SortOrder
     raisedAmount?: SortOrder
     isDeleted?: SortOrder
@@ -18831,6 +23252,7 @@ export namespace Prisma {
     upazila?: SortOrder
     requiredDate?: SortOrder
     isApproved?: SortOrder
+    isResolved?: SortOrder
     targetAmount?: SortOrder
     raisedAmount?: SortOrder
     isDeleted?: SortOrder
@@ -18853,14 +23275,9 @@ export namespace Prisma {
     _max?: NestedEnumPostTypeFilter<$PrismaModel>
   }
 
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
-  }
-
   export type DonationHistoryCountOrderByAggregateInput = {
     id?: SortOrder
-    donorId?: SortOrder
+    bloodDonorId?: SortOrder
     receiverOrgId?: SortOrder
     donationDate?: SortOrder
     weightDuringDonation?: SortOrder
@@ -18874,7 +23291,7 @@ export namespace Prisma {
 
   export type DonationHistoryMaxOrderByAggregateInput = {
     id?: SortOrder
-    donorId?: SortOrder
+    bloodDonorId?: SortOrder
     receiverOrgId?: SortOrder
     donationDate?: SortOrder
     weightDuringDonation?: SortOrder
@@ -18884,7 +23301,7 @@ export namespace Prisma {
 
   export type DonationHistoryMinOrderByAggregateInput = {
     id?: SortOrder
-    donorId?: SortOrder
+    bloodDonorId?: SortOrder
     receiverOrgId?: SortOrder
     donationDate?: SortOrder
     weightDuringDonation?: SortOrder
@@ -18903,15 +23320,15 @@ export namespace Prisma {
     not?: NestedEnumRequestStatusFilter<$PrismaModel> | $Enums.RequestStatus
   }
 
-  export type OrganisationVolunteerOrganisationIdVolunteerIdCompoundUniqueInput = {
+  export type OrganisationVolunteerOrganisationIdBloodDonorIdCompoundUniqueInput = {
     organisationId: string
-    volunteerId: string
+    bloodDonorId: string
   }
 
   export type OrganisationVolunteerCountOrderByAggregateInput = {
     id?: SortOrder
     organisationId?: SortOrder
-    volunteerId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -18920,7 +23337,7 @@ export namespace Prisma {
   export type OrganisationVolunteerMaxOrderByAggregateInput = {
     id?: SortOrder
     organisationId?: SortOrder
-    volunteerId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -18929,7 +23346,7 @@ export namespace Prisma {
   export type OrganisationVolunteerMinOrderByAggregateInput = {
     id?: SortOrder
     organisationId?: SortOrder
-    volunteerId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -18948,7 +23365,7 @@ export namespace Prisma {
   export type HospitalRequestCountOrderByAggregateInput = {
     id?: SortOrder
     hospitalId?: SortOrder
-    userId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -18958,7 +23375,7 @@ export namespace Prisma {
   export type HospitalRequestMaxOrderByAggregateInput = {
     id?: SortOrder
     hospitalId?: SortOrder
-    userId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -18968,7 +23385,7 @@ export namespace Prisma {
   export type HospitalRequestMinOrderByAggregateInput = {
     id?: SortOrder
     hospitalId?: SortOrder
-    userId?: SortOrder
+    bloodDonorId?: SortOrder
     status?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -19002,6 +23419,33 @@ export namespace Prisma {
     message?: SortOrder
     type?: SortOrder
     isRead?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VerificationTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VerificationTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VerificationTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -19049,11 +23493,10 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type DonationHistoryCreateNestedManyWithoutDonorInput = {
-    create?: XOR<DonationHistoryCreateWithoutDonorInput, DonationHistoryUncheckedCreateWithoutDonorInput> | DonationHistoryCreateWithoutDonorInput[] | DonationHistoryUncheckedCreateWithoutDonorInput[]
-    connectOrCreate?: DonationHistoryCreateOrConnectWithoutDonorInput | DonationHistoryCreateOrConnectWithoutDonorInput[]
-    createMany?: DonationHistoryCreateManyDonorInputEnvelope
-    connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+  export type BloodDonorCreateNestedOneWithoutUserInput = {
+    create?: XOR<BloodDonorCreateWithoutUserInput, BloodDonorUncheckedCreateWithoutUserInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutUserInput
+    connect?: BloodDonorWhereUniqueInput
   }
 
   export type DonationHistoryCreateNestedManyWithoutReceiverOrgInput = {
@@ -19063,13 +23506,6 @@ export namespace Prisma {
     connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
   }
 
-  export type HospitalRequestCreateNestedManyWithoutUserInput = {
-    create?: XOR<HospitalRequestCreateWithoutUserInput, HospitalRequestUncheckedCreateWithoutUserInput> | HospitalRequestCreateWithoutUserInput[] | HospitalRequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HospitalRequestCreateOrConnectWithoutUserInput | HospitalRequestCreateOrConnectWithoutUserInput[]
-    createMany?: HospitalRequestCreateManyUserInputEnvelope
-    connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-  }
-
   export type HospitalRequestCreateNestedManyWithoutHospitalInput = {
     create?: XOR<HospitalRequestCreateWithoutHospitalInput, HospitalRequestUncheckedCreateWithoutHospitalInput> | HospitalRequestCreateWithoutHospitalInput[] | HospitalRequestUncheckedCreateWithoutHospitalInput[]
     connectOrCreate?: HospitalRequestCreateOrConnectWithoutHospitalInput | HospitalRequestCreateOrConnectWithoutHospitalInput[]
@@ -19077,18 +23513,18 @@ export namespace Prisma {
     connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
   }
 
-  export type OrganisationVolunteerCreateNestedManyWithoutVolunteerInput = {
-    create?: XOR<OrganisationVolunteerCreateWithoutVolunteerInput, OrganisationVolunteerUncheckedCreateWithoutVolunteerInput> | OrganisationVolunteerCreateWithoutVolunteerInput[] | OrganisationVolunteerUncheckedCreateWithoutVolunteerInput[]
-    connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutVolunteerInput | OrganisationVolunteerCreateOrConnectWithoutVolunteerInput[]
-    createMany?: OrganisationVolunteerCreateManyVolunteerInputEnvelope
-    connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-  }
-
   export type OrganisationVolunteerCreateNestedManyWithoutOrganisationInput = {
     create?: XOR<OrganisationVolunteerCreateWithoutOrganisationInput, OrganisationVolunteerUncheckedCreateWithoutOrganisationInput> | OrganisationVolunteerCreateWithoutOrganisationInput[] | OrganisationVolunteerUncheckedCreateWithoutOrganisationInput[]
     connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutOrganisationInput | OrganisationVolunteerCreateOrConnectWithoutOrganisationInput[]
     createMany?: OrganisationVolunteerCreateManyOrganisationInputEnvelope
     connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+  }
+
+  export type HospitalDonationRecordCreateNestedManyWithoutHospitalInput = {
+    create?: XOR<HospitalDonationRecordCreateWithoutHospitalInput, HospitalDonationRecordUncheckedCreateWithoutHospitalInput> | HospitalDonationRecordCreateWithoutHospitalInput[] | HospitalDonationRecordUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: HospitalDonationRecordCreateOrConnectWithoutHospitalInput | HospitalDonationRecordCreateOrConnectWithoutHospitalInput[]
+    createMany?: HospitalDonationRecordCreateManyHospitalInputEnvelope
+    connect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
   }
 
   export type NotificationCreateNestedManyWithoutUserInput = {
@@ -19142,11 +23578,10 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type DonationHistoryUncheckedCreateNestedManyWithoutDonorInput = {
-    create?: XOR<DonationHistoryCreateWithoutDonorInput, DonationHistoryUncheckedCreateWithoutDonorInput> | DonationHistoryCreateWithoutDonorInput[] | DonationHistoryUncheckedCreateWithoutDonorInput[]
-    connectOrCreate?: DonationHistoryCreateOrConnectWithoutDonorInput | DonationHistoryCreateOrConnectWithoutDonorInput[]
-    createMany?: DonationHistoryCreateManyDonorInputEnvelope
-    connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+  export type BloodDonorUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<BloodDonorCreateWithoutUserInput, BloodDonorUncheckedCreateWithoutUserInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutUserInput
+    connect?: BloodDonorWhereUniqueInput
   }
 
   export type DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput = {
@@ -19156,13 +23591,6 @@ export namespace Prisma {
     connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
   }
 
-  export type HospitalRequestUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<HospitalRequestCreateWithoutUserInput, HospitalRequestUncheckedCreateWithoutUserInput> | HospitalRequestCreateWithoutUserInput[] | HospitalRequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HospitalRequestCreateOrConnectWithoutUserInput | HospitalRequestCreateOrConnectWithoutUserInput[]
-    createMany?: HospitalRequestCreateManyUserInputEnvelope
-    connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-  }
-
   export type HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput = {
     create?: XOR<HospitalRequestCreateWithoutHospitalInput, HospitalRequestUncheckedCreateWithoutHospitalInput> | HospitalRequestCreateWithoutHospitalInput[] | HospitalRequestUncheckedCreateWithoutHospitalInput[]
     connectOrCreate?: HospitalRequestCreateOrConnectWithoutHospitalInput | HospitalRequestCreateOrConnectWithoutHospitalInput[]
@@ -19170,18 +23598,18 @@ export namespace Prisma {
     connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
   }
 
-  export type OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput = {
-    create?: XOR<OrganisationVolunteerCreateWithoutVolunteerInput, OrganisationVolunteerUncheckedCreateWithoutVolunteerInput> | OrganisationVolunteerCreateWithoutVolunteerInput[] | OrganisationVolunteerUncheckedCreateWithoutVolunteerInput[]
-    connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutVolunteerInput | OrganisationVolunteerCreateOrConnectWithoutVolunteerInput[]
-    createMany?: OrganisationVolunteerCreateManyVolunteerInputEnvelope
-    connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-  }
-
   export type OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput = {
     create?: XOR<OrganisationVolunteerCreateWithoutOrganisationInput, OrganisationVolunteerUncheckedCreateWithoutOrganisationInput> | OrganisationVolunteerCreateWithoutOrganisationInput[] | OrganisationVolunteerUncheckedCreateWithoutOrganisationInput[]
     connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutOrganisationInput | OrganisationVolunteerCreateOrConnectWithoutOrganisationInput[]
     createMany?: OrganisationVolunteerCreateManyOrganisationInputEnvelope
     connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+  }
+
+  export type HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput = {
+    create?: XOR<HospitalDonationRecordCreateWithoutHospitalInput, HospitalDonationRecordUncheckedCreateWithoutHospitalInput> | HospitalDonationRecordCreateWithoutHospitalInput[] | HospitalDonationRecordUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: HospitalDonationRecordCreateOrConnectWithoutHospitalInput | HospitalDonationRecordCreateOrConnectWithoutHospitalInput[]
+    createMany?: HospitalDonationRecordCreateManyHospitalInputEnvelope
+    connect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
   }
 
   export type NotificationUncheckedCreateNestedManyWithoutUserInput = {
@@ -19293,18 +23721,14 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
-  export type DonationHistoryUpdateManyWithoutDonorNestedInput = {
-    create?: XOR<DonationHistoryCreateWithoutDonorInput, DonationHistoryUncheckedCreateWithoutDonorInput> | DonationHistoryCreateWithoutDonorInput[] | DonationHistoryUncheckedCreateWithoutDonorInput[]
-    connectOrCreate?: DonationHistoryCreateOrConnectWithoutDonorInput | DonationHistoryCreateOrConnectWithoutDonorInput[]
-    upsert?: DonationHistoryUpsertWithWhereUniqueWithoutDonorInput | DonationHistoryUpsertWithWhereUniqueWithoutDonorInput[]
-    createMany?: DonationHistoryCreateManyDonorInputEnvelope
-    set?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
-    disconnect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
-    delete?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
-    connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
-    update?: DonationHistoryUpdateWithWhereUniqueWithoutDonorInput | DonationHistoryUpdateWithWhereUniqueWithoutDonorInput[]
-    updateMany?: DonationHistoryUpdateManyWithWhereWithoutDonorInput | DonationHistoryUpdateManyWithWhereWithoutDonorInput[]
-    deleteMany?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
+  export type BloodDonorUpdateOneWithoutUserNestedInput = {
+    create?: XOR<BloodDonorCreateWithoutUserInput, BloodDonorUncheckedCreateWithoutUserInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutUserInput
+    upsert?: BloodDonorUpsertWithoutUserInput
+    disconnect?: BloodDonorWhereInput | boolean
+    delete?: BloodDonorWhereInput | boolean
+    connect?: BloodDonorWhereUniqueInput
+    update?: XOR<XOR<BloodDonorUpdateToOneWithWhereWithoutUserInput, BloodDonorUpdateWithoutUserInput>, BloodDonorUncheckedUpdateWithoutUserInput>
   }
 
   export type DonationHistoryUpdateManyWithoutReceiverOrgNestedInput = {
@@ -19321,20 +23745,6 @@ export namespace Prisma {
     deleteMany?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
   }
 
-  export type HospitalRequestUpdateManyWithoutUserNestedInput = {
-    create?: XOR<HospitalRequestCreateWithoutUserInput, HospitalRequestUncheckedCreateWithoutUserInput> | HospitalRequestCreateWithoutUserInput[] | HospitalRequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HospitalRequestCreateOrConnectWithoutUserInput | HospitalRequestCreateOrConnectWithoutUserInput[]
-    upsert?: HospitalRequestUpsertWithWhereUniqueWithoutUserInput | HospitalRequestUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: HospitalRequestCreateManyUserInputEnvelope
-    set?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-    disconnect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-    delete?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-    connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-    update?: HospitalRequestUpdateWithWhereUniqueWithoutUserInput | HospitalRequestUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: HospitalRequestUpdateManyWithWhereWithoutUserInput | HospitalRequestUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
-  }
-
   export type HospitalRequestUpdateManyWithoutHospitalNestedInput = {
     create?: XOR<HospitalRequestCreateWithoutHospitalInput, HospitalRequestUncheckedCreateWithoutHospitalInput> | HospitalRequestCreateWithoutHospitalInput[] | HospitalRequestUncheckedCreateWithoutHospitalInput[]
     connectOrCreate?: HospitalRequestCreateOrConnectWithoutHospitalInput | HospitalRequestCreateOrConnectWithoutHospitalInput[]
@@ -19349,20 +23759,6 @@ export namespace Prisma {
     deleteMany?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
   }
 
-  export type OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput = {
-    create?: XOR<OrganisationVolunteerCreateWithoutVolunteerInput, OrganisationVolunteerUncheckedCreateWithoutVolunteerInput> | OrganisationVolunteerCreateWithoutVolunteerInput[] | OrganisationVolunteerUncheckedCreateWithoutVolunteerInput[]
-    connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutVolunteerInput | OrganisationVolunteerCreateOrConnectWithoutVolunteerInput[]
-    upsert?: OrganisationVolunteerUpsertWithWhereUniqueWithoutVolunteerInput | OrganisationVolunteerUpsertWithWhereUniqueWithoutVolunteerInput[]
-    createMany?: OrganisationVolunteerCreateManyVolunteerInputEnvelope
-    set?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-    disconnect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-    delete?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-    connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-    update?: OrganisationVolunteerUpdateWithWhereUniqueWithoutVolunteerInput | OrganisationVolunteerUpdateWithWhereUniqueWithoutVolunteerInput[]
-    updateMany?: OrganisationVolunteerUpdateManyWithWhereWithoutVolunteerInput | OrganisationVolunteerUpdateManyWithWhereWithoutVolunteerInput[]
-    deleteMany?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
-  }
-
   export type OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput = {
     create?: XOR<OrganisationVolunteerCreateWithoutOrganisationInput, OrganisationVolunteerUncheckedCreateWithoutOrganisationInput> | OrganisationVolunteerCreateWithoutOrganisationInput[] | OrganisationVolunteerUncheckedCreateWithoutOrganisationInput[]
     connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutOrganisationInput | OrganisationVolunteerCreateOrConnectWithoutOrganisationInput[]
@@ -19375,6 +23771,20 @@ export namespace Prisma {
     update?: OrganisationVolunteerUpdateWithWhereUniqueWithoutOrganisationInput | OrganisationVolunteerUpdateWithWhereUniqueWithoutOrganisationInput[]
     updateMany?: OrganisationVolunteerUpdateManyWithWhereWithoutOrganisationInput | OrganisationVolunteerUpdateManyWithWhereWithoutOrganisationInput[]
     deleteMany?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
+  }
+
+  export type HospitalDonationRecordUpdateManyWithoutHospitalNestedInput = {
+    create?: XOR<HospitalDonationRecordCreateWithoutHospitalInput, HospitalDonationRecordUncheckedCreateWithoutHospitalInput> | HospitalDonationRecordCreateWithoutHospitalInput[] | HospitalDonationRecordUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: HospitalDonationRecordCreateOrConnectWithoutHospitalInput | HospitalDonationRecordCreateOrConnectWithoutHospitalInput[]
+    upsert?: HospitalDonationRecordUpsertWithWhereUniqueWithoutHospitalInput | HospitalDonationRecordUpsertWithWhereUniqueWithoutHospitalInput[]
+    createMany?: HospitalDonationRecordCreateManyHospitalInputEnvelope
+    set?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    disconnect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    delete?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    connect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    update?: HospitalDonationRecordUpdateWithWhereUniqueWithoutHospitalInput | HospitalDonationRecordUpdateWithWhereUniqueWithoutHospitalInput[]
+    updateMany?: HospitalDonationRecordUpdateManyWithWhereWithoutHospitalInput | HospitalDonationRecordUpdateManyWithWhereWithoutHospitalInput[]
+    deleteMany?: HospitalDonationRecordScalarWhereInput | HospitalDonationRecordScalarWhereInput[]
   }
 
   export type NotificationUpdateManyWithoutUserNestedInput = {
@@ -19469,18 +23879,14 @@ export namespace Prisma {
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
   }
 
-  export type DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput = {
-    create?: XOR<DonationHistoryCreateWithoutDonorInput, DonationHistoryUncheckedCreateWithoutDonorInput> | DonationHistoryCreateWithoutDonorInput[] | DonationHistoryUncheckedCreateWithoutDonorInput[]
-    connectOrCreate?: DonationHistoryCreateOrConnectWithoutDonorInput | DonationHistoryCreateOrConnectWithoutDonorInput[]
-    upsert?: DonationHistoryUpsertWithWhereUniqueWithoutDonorInput | DonationHistoryUpsertWithWhereUniqueWithoutDonorInput[]
-    createMany?: DonationHistoryCreateManyDonorInputEnvelope
-    set?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
-    disconnect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
-    delete?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
-    connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
-    update?: DonationHistoryUpdateWithWhereUniqueWithoutDonorInput | DonationHistoryUpdateWithWhereUniqueWithoutDonorInput[]
-    updateMany?: DonationHistoryUpdateManyWithWhereWithoutDonorInput | DonationHistoryUpdateManyWithWhereWithoutDonorInput[]
-    deleteMany?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
+  export type BloodDonorUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<BloodDonorCreateWithoutUserInput, BloodDonorUncheckedCreateWithoutUserInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutUserInput
+    upsert?: BloodDonorUpsertWithoutUserInput
+    disconnect?: BloodDonorWhereInput | boolean
+    delete?: BloodDonorWhereInput | boolean
+    connect?: BloodDonorWhereUniqueInput
+    update?: XOR<XOR<BloodDonorUpdateToOneWithWhereWithoutUserInput, BloodDonorUpdateWithoutUserInput>, BloodDonorUncheckedUpdateWithoutUserInput>
   }
 
   export type DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput = {
@@ -19497,20 +23903,6 @@ export namespace Prisma {
     deleteMany?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
   }
 
-  export type HospitalRequestUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<HospitalRequestCreateWithoutUserInput, HospitalRequestUncheckedCreateWithoutUserInput> | HospitalRequestCreateWithoutUserInput[] | HospitalRequestUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HospitalRequestCreateOrConnectWithoutUserInput | HospitalRequestCreateOrConnectWithoutUserInput[]
-    upsert?: HospitalRequestUpsertWithWhereUniqueWithoutUserInput | HospitalRequestUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: HospitalRequestCreateManyUserInputEnvelope
-    set?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-    disconnect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-    delete?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-    connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
-    update?: HospitalRequestUpdateWithWhereUniqueWithoutUserInput | HospitalRequestUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: HospitalRequestUpdateManyWithWhereWithoutUserInput | HospitalRequestUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
-  }
-
   export type HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput = {
     create?: XOR<HospitalRequestCreateWithoutHospitalInput, HospitalRequestUncheckedCreateWithoutHospitalInput> | HospitalRequestCreateWithoutHospitalInput[] | HospitalRequestUncheckedCreateWithoutHospitalInput[]
     connectOrCreate?: HospitalRequestCreateOrConnectWithoutHospitalInput | HospitalRequestCreateOrConnectWithoutHospitalInput[]
@@ -19525,20 +23917,6 @@ export namespace Prisma {
     deleteMany?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
   }
 
-  export type OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput = {
-    create?: XOR<OrganisationVolunteerCreateWithoutVolunteerInput, OrganisationVolunteerUncheckedCreateWithoutVolunteerInput> | OrganisationVolunteerCreateWithoutVolunteerInput[] | OrganisationVolunteerUncheckedCreateWithoutVolunteerInput[]
-    connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutVolunteerInput | OrganisationVolunteerCreateOrConnectWithoutVolunteerInput[]
-    upsert?: OrganisationVolunteerUpsertWithWhereUniqueWithoutVolunteerInput | OrganisationVolunteerUpsertWithWhereUniqueWithoutVolunteerInput[]
-    createMany?: OrganisationVolunteerCreateManyVolunteerInputEnvelope
-    set?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-    disconnect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-    delete?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-    connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
-    update?: OrganisationVolunteerUpdateWithWhereUniqueWithoutVolunteerInput | OrganisationVolunteerUpdateWithWhereUniqueWithoutVolunteerInput[]
-    updateMany?: OrganisationVolunteerUpdateManyWithWhereWithoutVolunteerInput | OrganisationVolunteerUpdateManyWithWhereWithoutVolunteerInput[]
-    deleteMany?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
-  }
-
   export type OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput = {
     create?: XOR<OrganisationVolunteerCreateWithoutOrganisationInput, OrganisationVolunteerUncheckedCreateWithoutOrganisationInput> | OrganisationVolunteerCreateWithoutOrganisationInput[] | OrganisationVolunteerUncheckedCreateWithoutOrganisationInput[]
     connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutOrganisationInput | OrganisationVolunteerCreateOrConnectWithoutOrganisationInput[]
@@ -19551,6 +23929,20 @@ export namespace Prisma {
     update?: OrganisationVolunteerUpdateWithWhereUniqueWithoutOrganisationInput | OrganisationVolunteerUpdateWithWhereUniqueWithoutOrganisationInput[]
     updateMany?: OrganisationVolunteerUpdateManyWithWhereWithoutOrganisationInput | OrganisationVolunteerUpdateManyWithWhereWithoutOrganisationInput[]
     deleteMany?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
+  }
+
+  export type HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput = {
+    create?: XOR<HospitalDonationRecordCreateWithoutHospitalInput, HospitalDonationRecordUncheckedCreateWithoutHospitalInput> | HospitalDonationRecordCreateWithoutHospitalInput[] | HospitalDonationRecordUncheckedCreateWithoutHospitalInput[]
+    connectOrCreate?: HospitalDonationRecordCreateOrConnectWithoutHospitalInput | HospitalDonationRecordCreateOrConnectWithoutHospitalInput[]
+    upsert?: HospitalDonationRecordUpsertWithWhereUniqueWithoutHospitalInput | HospitalDonationRecordUpsertWithWhereUniqueWithoutHospitalInput[]
+    createMany?: HospitalDonationRecordCreateManyHospitalInputEnvelope
+    set?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    disconnect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    delete?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    connect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    update?: HospitalDonationRecordUpdateWithWhereUniqueWithoutHospitalInput | HospitalDonationRecordUpdateWithWhereUniqueWithoutHospitalInput[]
+    updateMany?: HospitalDonationRecordUpdateManyWithWhereWithoutHospitalInput | HospitalDonationRecordUpdateManyWithWhereWithoutHospitalInput[]
+    deleteMany?: HospitalDonationRecordScalarWhereInput | HospitalDonationRecordScalarWhereInput[]
   }
 
   export type NotificationUncheckedUpdateManyWithoutUserNestedInput = {
@@ -19667,6 +24059,218 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSessionsInput, UserUpdateWithoutSessionsInput>, UserUncheckedUpdateWithoutSessionsInput>
   }
 
+  export type UserCreateNestedOneWithoutBloodDonorInput = {
+    create?: XOR<UserCreateWithoutBloodDonorInput, UserUncheckedCreateWithoutBloodDonorInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBloodDonorInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type DonationHistoryCreateNestedManyWithoutBloodDonorInput = {
+    create?: XOR<DonationHistoryCreateWithoutBloodDonorInput, DonationHistoryUncheckedCreateWithoutBloodDonorInput> | DonationHistoryCreateWithoutBloodDonorInput[] | DonationHistoryUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: DonationHistoryCreateOrConnectWithoutBloodDonorInput | DonationHistoryCreateOrConnectWithoutBloodDonorInput[]
+    createMany?: DonationHistoryCreateManyBloodDonorInputEnvelope
+    connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+  }
+
+  export type HospitalRequestCreateNestedManyWithoutBloodDonorInput = {
+    create?: XOR<HospitalRequestCreateWithoutBloodDonorInput, HospitalRequestUncheckedCreateWithoutBloodDonorInput> | HospitalRequestCreateWithoutBloodDonorInput[] | HospitalRequestUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: HospitalRequestCreateOrConnectWithoutBloodDonorInput | HospitalRequestCreateOrConnectWithoutBloodDonorInput[]
+    createMany?: HospitalRequestCreateManyBloodDonorInputEnvelope
+    connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+  }
+
+  export type HospitalDonationRecordCreateNestedManyWithoutBloodDonorInput = {
+    create?: XOR<HospitalDonationRecordCreateWithoutBloodDonorInput, HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput> | HospitalDonationRecordCreateWithoutBloodDonorInput[] | HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput | HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput[]
+    createMany?: HospitalDonationRecordCreateManyBloodDonorInputEnvelope
+    connect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+  }
+
+  export type OrganisationVolunteerCreateNestedManyWithoutBloodDonorInput = {
+    create?: XOR<OrganisationVolunteerCreateWithoutBloodDonorInput, OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput> | OrganisationVolunteerCreateWithoutBloodDonorInput[] | OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput | OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput[]
+    createMany?: OrganisationVolunteerCreateManyBloodDonorInputEnvelope
+    connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+  }
+
+  export type DonationHistoryUncheckedCreateNestedManyWithoutBloodDonorInput = {
+    create?: XOR<DonationHistoryCreateWithoutBloodDonorInput, DonationHistoryUncheckedCreateWithoutBloodDonorInput> | DonationHistoryCreateWithoutBloodDonorInput[] | DonationHistoryUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: DonationHistoryCreateOrConnectWithoutBloodDonorInput | DonationHistoryCreateOrConnectWithoutBloodDonorInput[]
+    createMany?: DonationHistoryCreateManyBloodDonorInputEnvelope
+    connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+  }
+
+  export type HospitalRequestUncheckedCreateNestedManyWithoutBloodDonorInput = {
+    create?: XOR<HospitalRequestCreateWithoutBloodDonorInput, HospitalRequestUncheckedCreateWithoutBloodDonorInput> | HospitalRequestCreateWithoutBloodDonorInput[] | HospitalRequestUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: HospitalRequestCreateOrConnectWithoutBloodDonorInput | HospitalRequestCreateOrConnectWithoutBloodDonorInput[]
+    createMany?: HospitalRequestCreateManyBloodDonorInputEnvelope
+    connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+  }
+
+  export type HospitalDonationRecordUncheckedCreateNestedManyWithoutBloodDonorInput = {
+    create?: XOR<HospitalDonationRecordCreateWithoutBloodDonorInput, HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput> | HospitalDonationRecordCreateWithoutBloodDonorInput[] | HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput | HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput[]
+    createMany?: HospitalDonationRecordCreateManyBloodDonorInputEnvelope
+    connect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+  }
+
+  export type OrganisationVolunteerUncheckedCreateNestedManyWithoutBloodDonorInput = {
+    create?: XOR<OrganisationVolunteerCreateWithoutBloodDonorInput, OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput> | OrganisationVolunteerCreateWithoutBloodDonorInput[] | OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput | OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput[]
+    createMany?: OrganisationVolunteerCreateManyBloodDonorInputEnvelope
+    connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneWithoutBloodDonorNestedInput = {
+    create?: XOR<UserCreateWithoutBloodDonorInput, UserUncheckedCreateWithoutBloodDonorInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBloodDonorInput
+    upsert?: UserUpsertWithoutBloodDonorInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBloodDonorInput, UserUpdateWithoutBloodDonorInput>, UserUncheckedUpdateWithoutBloodDonorInput>
+  }
+
+  export type DonationHistoryUpdateManyWithoutBloodDonorNestedInput = {
+    create?: XOR<DonationHistoryCreateWithoutBloodDonorInput, DonationHistoryUncheckedCreateWithoutBloodDonorInput> | DonationHistoryCreateWithoutBloodDonorInput[] | DonationHistoryUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: DonationHistoryCreateOrConnectWithoutBloodDonorInput | DonationHistoryCreateOrConnectWithoutBloodDonorInput[]
+    upsert?: DonationHistoryUpsertWithWhereUniqueWithoutBloodDonorInput | DonationHistoryUpsertWithWhereUniqueWithoutBloodDonorInput[]
+    createMany?: DonationHistoryCreateManyBloodDonorInputEnvelope
+    set?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+    disconnect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+    delete?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+    connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+    update?: DonationHistoryUpdateWithWhereUniqueWithoutBloodDonorInput | DonationHistoryUpdateWithWhereUniqueWithoutBloodDonorInput[]
+    updateMany?: DonationHistoryUpdateManyWithWhereWithoutBloodDonorInput | DonationHistoryUpdateManyWithWhereWithoutBloodDonorInput[]
+    deleteMany?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
+  }
+
+  export type HospitalRequestUpdateManyWithoutBloodDonorNestedInput = {
+    create?: XOR<HospitalRequestCreateWithoutBloodDonorInput, HospitalRequestUncheckedCreateWithoutBloodDonorInput> | HospitalRequestCreateWithoutBloodDonorInput[] | HospitalRequestUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: HospitalRequestCreateOrConnectWithoutBloodDonorInput | HospitalRequestCreateOrConnectWithoutBloodDonorInput[]
+    upsert?: HospitalRequestUpsertWithWhereUniqueWithoutBloodDonorInput | HospitalRequestUpsertWithWhereUniqueWithoutBloodDonorInput[]
+    createMany?: HospitalRequestCreateManyBloodDonorInputEnvelope
+    set?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+    disconnect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+    delete?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+    connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+    update?: HospitalRequestUpdateWithWhereUniqueWithoutBloodDonorInput | HospitalRequestUpdateWithWhereUniqueWithoutBloodDonorInput[]
+    updateMany?: HospitalRequestUpdateManyWithWhereWithoutBloodDonorInput | HospitalRequestUpdateManyWithWhereWithoutBloodDonorInput[]
+    deleteMany?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
+  }
+
+  export type HospitalDonationRecordUpdateManyWithoutBloodDonorNestedInput = {
+    create?: XOR<HospitalDonationRecordCreateWithoutBloodDonorInput, HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput> | HospitalDonationRecordCreateWithoutBloodDonorInput[] | HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput | HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput[]
+    upsert?: HospitalDonationRecordUpsertWithWhereUniqueWithoutBloodDonorInput | HospitalDonationRecordUpsertWithWhereUniqueWithoutBloodDonorInput[]
+    createMany?: HospitalDonationRecordCreateManyBloodDonorInputEnvelope
+    set?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    disconnect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    delete?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    connect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    update?: HospitalDonationRecordUpdateWithWhereUniqueWithoutBloodDonorInput | HospitalDonationRecordUpdateWithWhereUniqueWithoutBloodDonorInput[]
+    updateMany?: HospitalDonationRecordUpdateManyWithWhereWithoutBloodDonorInput | HospitalDonationRecordUpdateManyWithWhereWithoutBloodDonorInput[]
+    deleteMany?: HospitalDonationRecordScalarWhereInput | HospitalDonationRecordScalarWhereInput[]
+  }
+
+  export type OrganisationVolunteerUpdateManyWithoutBloodDonorNestedInput = {
+    create?: XOR<OrganisationVolunteerCreateWithoutBloodDonorInput, OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput> | OrganisationVolunteerCreateWithoutBloodDonorInput[] | OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput | OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput[]
+    upsert?: OrganisationVolunteerUpsertWithWhereUniqueWithoutBloodDonorInput | OrganisationVolunteerUpsertWithWhereUniqueWithoutBloodDonorInput[]
+    createMany?: OrganisationVolunteerCreateManyBloodDonorInputEnvelope
+    set?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+    disconnect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+    delete?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+    connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+    update?: OrganisationVolunteerUpdateWithWhereUniqueWithoutBloodDonorInput | OrganisationVolunteerUpdateWithWhereUniqueWithoutBloodDonorInput[]
+    updateMany?: OrganisationVolunteerUpdateManyWithWhereWithoutBloodDonorInput | OrganisationVolunteerUpdateManyWithWhereWithoutBloodDonorInput[]
+    deleteMany?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
+  }
+
+  export type DonationHistoryUncheckedUpdateManyWithoutBloodDonorNestedInput = {
+    create?: XOR<DonationHistoryCreateWithoutBloodDonorInput, DonationHistoryUncheckedCreateWithoutBloodDonorInput> | DonationHistoryCreateWithoutBloodDonorInput[] | DonationHistoryUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: DonationHistoryCreateOrConnectWithoutBloodDonorInput | DonationHistoryCreateOrConnectWithoutBloodDonorInput[]
+    upsert?: DonationHistoryUpsertWithWhereUniqueWithoutBloodDonorInput | DonationHistoryUpsertWithWhereUniqueWithoutBloodDonorInput[]
+    createMany?: DonationHistoryCreateManyBloodDonorInputEnvelope
+    set?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+    disconnect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+    delete?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+    connect?: DonationHistoryWhereUniqueInput | DonationHistoryWhereUniqueInput[]
+    update?: DonationHistoryUpdateWithWhereUniqueWithoutBloodDonorInput | DonationHistoryUpdateWithWhereUniqueWithoutBloodDonorInput[]
+    updateMany?: DonationHistoryUpdateManyWithWhereWithoutBloodDonorInput | DonationHistoryUpdateManyWithWhereWithoutBloodDonorInput[]
+    deleteMany?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
+  }
+
+  export type HospitalRequestUncheckedUpdateManyWithoutBloodDonorNestedInput = {
+    create?: XOR<HospitalRequestCreateWithoutBloodDonorInput, HospitalRequestUncheckedCreateWithoutBloodDonorInput> | HospitalRequestCreateWithoutBloodDonorInput[] | HospitalRequestUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: HospitalRequestCreateOrConnectWithoutBloodDonorInput | HospitalRequestCreateOrConnectWithoutBloodDonorInput[]
+    upsert?: HospitalRequestUpsertWithWhereUniqueWithoutBloodDonorInput | HospitalRequestUpsertWithWhereUniqueWithoutBloodDonorInput[]
+    createMany?: HospitalRequestCreateManyBloodDonorInputEnvelope
+    set?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+    disconnect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+    delete?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+    connect?: HospitalRequestWhereUniqueInput | HospitalRequestWhereUniqueInput[]
+    update?: HospitalRequestUpdateWithWhereUniqueWithoutBloodDonorInput | HospitalRequestUpdateWithWhereUniqueWithoutBloodDonorInput[]
+    updateMany?: HospitalRequestUpdateManyWithWhereWithoutBloodDonorInput | HospitalRequestUpdateManyWithWhereWithoutBloodDonorInput[]
+    deleteMany?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
+  }
+
+  export type HospitalDonationRecordUncheckedUpdateManyWithoutBloodDonorNestedInput = {
+    create?: XOR<HospitalDonationRecordCreateWithoutBloodDonorInput, HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput> | HospitalDonationRecordCreateWithoutBloodDonorInput[] | HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput | HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput[]
+    upsert?: HospitalDonationRecordUpsertWithWhereUniqueWithoutBloodDonorInput | HospitalDonationRecordUpsertWithWhereUniqueWithoutBloodDonorInput[]
+    createMany?: HospitalDonationRecordCreateManyBloodDonorInputEnvelope
+    set?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    disconnect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    delete?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    connect?: HospitalDonationRecordWhereUniqueInput | HospitalDonationRecordWhereUniqueInput[]
+    update?: HospitalDonationRecordUpdateWithWhereUniqueWithoutBloodDonorInput | HospitalDonationRecordUpdateWithWhereUniqueWithoutBloodDonorInput[]
+    updateMany?: HospitalDonationRecordUpdateManyWithWhereWithoutBloodDonorInput | HospitalDonationRecordUpdateManyWithWhereWithoutBloodDonorInput[]
+    deleteMany?: HospitalDonationRecordScalarWhereInput | HospitalDonationRecordScalarWhereInput[]
+  }
+
+  export type OrganisationVolunteerUncheckedUpdateManyWithoutBloodDonorNestedInput = {
+    create?: XOR<OrganisationVolunteerCreateWithoutBloodDonorInput, OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput> | OrganisationVolunteerCreateWithoutBloodDonorInput[] | OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput[]
+    connectOrCreate?: OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput | OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput[]
+    upsert?: OrganisationVolunteerUpsertWithWhereUniqueWithoutBloodDonorInput | OrganisationVolunteerUpsertWithWhereUniqueWithoutBloodDonorInput[]
+    createMany?: OrganisationVolunteerCreateManyBloodDonorInputEnvelope
+    set?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+    disconnect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+    delete?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+    connect?: OrganisationVolunteerWhereUniqueInput | OrganisationVolunteerWhereUniqueInput[]
+    update?: OrganisationVolunteerUpdateWithWhereUniqueWithoutBloodDonorInput | OrganisationVolunteerUpdateWithWhereUniqueWithoutBloodDonorInput[]
+    updateMany?: OrganisationVolunteerUpdateManyWithWhereWithoutBloodDonorInput | OrganisationVolunteerUpdateManyWithWhereWithoutBloodDonorInput[]
+    deleteMany?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutHospitalRecordsInput = {
+    create?: XOR<UserCreateWithoutHospitalRecordsInput, UserUncheckedCreateWithoutHospitalRecordsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutHospitalRecordsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type BloodDonorCreateNestedOneWithoutHospitalRecordsInput = {
+    create?: XOR<BloodDonorCreateWithoutHospitalRecordsInput, BloodDonorUncheckedCreateWithoutHospitalRecordsInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutHospitalRecordsInput
+    connect?: BloodDonorWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutHospitalRecordsNestedInput = {
+    create?: XOR<UserCreateWithoutHospitalRecordsInput, UserUncheckedCreateWithoutHospitalRecordsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutHospitalRecordsInput
+    upsert?: UserUpsertWithoutHospitalRecordsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHospitalRecordsInput, UserUpdateWithoutHospitalRecordsInput>, UserUncheckedUpdateWithoutHospitalRecordsInput>
+  }
+
+  export type BloodDonorUpdateOneRequiredWithoutHospitalRecordsNestedInput = {
+    create?: XOR<BloodDonorCreateWithoutHospitalRecordsInput, BloodDonorUncheckedCreateWithoutHospitalRecordsInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutHospitalRecordsInput
+    upsert?: BloodDonorUpsertWithoutHospitalRecordsInput
+    connect?: BloodDonorWhereUniqueInput
+    update?: XOR<XOR<BloodDonorUpdateToOneWithWhereWithoutHospitalRecordsInput, BloodDonorUpdateWithoutHospitalRecordsInput>, BloodDonorUncheckedUpdateWithoutHospitalRecordsInput>
+  }
+
   export type PostCreateimagesInput = {
     set: string[]
   }
@@ -19694,10 +24298,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
   }
 
-  export type UserCreateNestedOneWithoutDonationsAsDonorInput = {
-    create?: XOR<UserCreateWithoutDonationsAsDonorInput, UserUncheckedCreateWithoutDonationsAsDonorInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDonationsAsDonorInput
-    connect?: UserWhereUniqueInput
+  export type BloodDonorCreateNestedOneWithoutDonationsInput = {
+    create?: XOR<BloodDonorCreateWithoutDonationsInput, BloodDonorUncheckedCreateWithoutDonationsInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutDonationsInput
+    connect?: BloodDonorWhereUniqueInput
   }
 
   export type UserCreateNestedOneWithoutDonationsAsReceiverInput = {
@@ -19706,12 +24310,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutDonationsAsDonorNestedInput = {
-    create?: XOR<UserCreateWithoutDonationsAsDonorInput, UserUncheckedCreateWithoutDonationsAsDonorInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDonationsAsDonorInput
-    upsert?: UserUpsertWithoutDonationsAsDonorInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDonationsAsDonorInput, UserUpdateWithoutDonationsAsDonorInput>, UserUncheckedUpdateWithoutDonationsAsDonorInput>
+  export type BloodDonorUpdateOneRequiredWithoutDonationsNestedInput = {
+    create?: XOR<BloodDonorCreateWithoutDonationsInput, BloodDonorUncheckedCreateWithoutDonationsInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutDonationsInput
+    upsert?: BloodDonorUpsertWithoutDonationsInput
+    connect?: BloodDonorWhereUniqueInput
+    update?: XOR<XOR<BloodDonorUpdateToOneWithWhereWithoutDonationsInput, BloodDonorUpdateWithoutDonationsInput>, BloodDonorUncheckedUpdateWithoutDonationsInput>
   }
 
   export type UserUpdateOneWithoutDonationsAsReceiverNestedInput = {
@@ -19730,10 +24334,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutOrganisationVolunteersInput = {
-    create?: XOR<UserCreateWithoutOrganisationVolunteersInput, UserUncheckedCreateWithoutOrganisationVolunteersInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOrganisationVolunteersInput
-    connect?: UserWhereUniqueInput
+  export type BloodDonorCreateNestedOneWithoutOrganisationVolsInput = {
+    create?: XOR<BloodDonorCreateWithoutOrganisationVolsInput, BloodDonorUncheckedCreateWithoutOrganisationVolsInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutOrganisationVolsInput
+    connect?: BloodDonorWhereUniqueInput
   }
 
   export type EnumRequestStatusFieldUpdateOperationsInput = {
@@ -19748,12 +24352,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrganisationManagedInput, UserUpdateWithoutOrganisationManagedInput>, UserUncheckedUpdateWithoutOrganisationManagedInput>
   }
 
-  export type UserUpdateOneRequiredWithoutOrganisationVolunteersNestedInput = {
-    create?: XOR<UserCreateWithoutOrganisationVolunteersInput, UserUncheckedCreateWithoutOrganisationVolunteersInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOrganisationVolunteersInput
-    upsert?: UserUpsertWithoutOrganisationVolunteersInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrganisationVolunteersInput, UserUpdateWithoutOrganisationVolunteersInput>, UserUncheckedUpdateWithoutOrganisationVolunteersInput>
+  export type BloodDonorUpdateOneRequiredWithoutOrganisationVolsNestedInput = {
+    create?: XOR<BloodDonorCreateWithoutOrganisationVolsInput, BloodDonorUncheckedCreateWithoutOrganisationVolsInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutOrganisationVolsInput
+    upsert?: BloodDonorUpsertWithoutOrganisationVolsInput
+    connect?: BloodDonorWhereUniqueInput
+    update?: XOR<XOR<BloodDonorUpdateToOneWithWhereWithoutOrganisationVolsInput, BloodDonorUpdateWithoutOrganisationVolsInput>, BloodDonorUncheckedUpdateWithoutOrganisationVolsInput>
   }
 
   export type UserCreateNestedOneWithoutRequestedByHospitalsInput = {
@@ -19762,10 +24366,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutHospitalRequestsInput = {
-    create?: XOR<UserCreateWithoutHospitalRequestsInput, UserUncheckedCreateWithoutHospitalRequestsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutHospitalRequestsInput
-    connect?: UserWhereUniqueInput
+  export type BloodDonorCreateNestedOneWithoutHospitalRequestsInput = {
+    create?: XOR<BloodDonorCreateWithoutHospitalRequestsInput, BloodDonorUncheckedCreateWithoutHospitalRequestsInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutHospitalRequestsInput
+    connect?: BloodDonorWhereUniqueInput
   }
 
   export type UserUpdateOneRequiredWithoutRequestedByHospitalsNestedInput = {
@@ -19776,12 +24380,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRequestedByHospitalsInput, UserUpdateWithoutRequestedByHospitalsInput>, UserUncheckedUpdateWithoutRequestedByHospitalsInput>
   }
 
-  export type UserUpdateOneRequiredWithoutHospitalRequestsNestedInput = {
-    create?: XOR<UserCreateWithoutHospitalRequestsInput, UserUncheckedCreateWithoutHospitalRequestsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutHospitalRequestsInput
-    upsert?: UserUpsertWithoutHospitalRequestsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHospitalRequestsInput, UserUpdateWithoutHospitalRequestsInput>, UserUncheckedUpdateWithoutHospitalRequestsInput>
+  export type BloodDonorUpdateOneRequiredWithoutHospitalRequestsNestedInput = {
+    create?: XOR<BloodDonorCreateWithoutHospitalRequestsInput, BloodDonorUncheckedCreateWithoutHospitalRequestsInput>
+    connectOrCreate?: BloodDonorCreateOrConnectWithoutHospitalRequestsInput
+    upsert?: BloodDonorUpsertWithoutHospitalRequestsInput
+    connect?: BloodDonorWhereUniqueInput
+    update?: XOR<XOR<BloodDonorUpdateToOneWithWhereWithoutHospitalRequestsInput, BloodDonorUpdateWithoutHospitalRequestsInput>, BloodDonorUncheckedUpdateWithoutHospitalRequestsInput>
   }
 
   export type UserCreateNestedOneWithoutNotificationsInput = {
@@ -20225,6 +24829,7 @@ export namespace Prisma {
     upazila?: string | null
     requiredDate?: Date | string | null
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: number | null
     raisedAmount?: number | null
     isDeleted?: boolean
@@ -20243,6 +24848,7 @@ export namespace Prisma {
     upazila?: string | null
     requiredDate?: Date | string | null
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: number | null
     raisedAmount?: number | null
     isDeleted?: boolean
@@ -20260,32 +24866,49 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type DonationHistoryCreateWithoutDonorInput = {
+  export type BloodDonorCreateWithoutUserInput = {
     id?: string
-    donationDate: Date | string
-    weightDuringDonation?: number | null
+    name: string
+    contactNumber: string
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
     isDeleted?: boolean
     createdAt?: Date | string
-    receiverOrg?: UserCreateNestedOneWithoutDonationsAsReceiverInput
+    updatedAt?: Date | string
+    donations?: DonationHistoryCreateNestedManyWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerCreateNestedManyWithoutBloodDonorInput
   }
 
-  export type DonationHistoryUncheckedCreateWithoutDonorInput = {
+  export type BloodDonorUncheckedCreateWithoutUserInput = {
     id?: string
-    receiverOrgId?: string | null
-    donationDate: Date | string
-    weightDuringDonation?: number | null
+    name: string
+    contactNumber: string
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
     isDeleted?: boolean
     createdAt?: Date | string
+    updatedAt?: Date | string
+    donations?: DonationHistoryUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerUncheckedCreateNestedManyWithoutBloodDonorInput
   }
 
-  export type DonationHistoryCreateOrConnectWithoutDonorInput = {
-    where: DonationHistoryWhereUniqueInput
-    create: XOR<DonationHistoryCreateWithoutDonorInput, DonationHistoryUncheckedCreateWithoutDonorInput>
-  }
-
-  export type DonationHistoryCreateManyDonorInputEnvelope = {
-    data: DonationHistoryCreateManyDonorInput | DonationHistoryCreateManyDonorInput[]
-    skipDuplicates?: boolean
+  export type BloodDonorCreateOrConnectWithoutUserInput = {
+    where: BloodDonorWhereUniqueInput
+    create: XOR<BloodDonorCreateWithoutUserInput, BloodDonorUncheckedCreateWithoutUserInput>
   }
 
   export type DonationHistoryCreateWithoutReceiverOrgInput = {
@@ -20294,12 +24917,12 @@ export namespace Prisma {
     weightDuringDonation?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
-    donor: UserCreateNestedOneWithoutDonationsAsDonorInput
+    bloodDonor: BloodDonorCreateNestedOneWithoutDonationsInput
   }
 
   export type DonationHistoryUncheckedCreateWithoutReceiverOrgInput = {
     id?: string
-    donorId: string
+    bloodDonorId: string
     donationDate: Date | string
     weightDuringDonation?: number | null
     isDeleted?: boolean
@@ -20316,46 +24939,18 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type HospitalRequestCreateWithoutUserInput = {
-    id?: string
-    status?: $Enums.RequestStatus
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    hospital: UserCreateNestedOneWithoutRequestedByHospitalsInput
-  }
-
-  export type HospitalRequestUncheckedCreateWithoutUserInput = {
-    id?: string
-    hospitalId: string
-    status?: $Enums.RequestStatus
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HospitalRequestCreateOrConnectWithoutUserInput = {
-    where: HospitalRequestWhereUniqueInput
-    create: XOR<HospitalRequestCreateWithoutUserInput, HospitalRequestUncheckedCreateWithoutUserInput>
-  }
-
-  export type HospitalRequestCreateManyUserInputEnvelope = {
-    data: HospitalRequestCreateManyUserInput | HospitalRequestCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type HospitalRequestCreateWithoutHospitalInput = {
     id?: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutHospitalRequestsInput
+    bloodDonor: BloodDonorCreateNestedOneWithoutHospitalRequestsInput
   }
 
   export type HospitalRequestUncheckedCreateWithoutHospitalInput = {
     id?: string
-    userId: string
+    bloodDonorId: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
@@ -20372,43 +24967,17 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type OrganisationVolunteerCreateWithoutVolunteerInput = {
-    id?: string
-    status?: $Enums.RequestStatus
-    isDeleted?: boolean
-    createdAt?: Date | string
-    organisation: UserCreateNestedOneWithoutOrganisationManagedInput
-  }
-
-  export type OrganisationVolunteerUncheckedCreateWithoutVolunteerInput = {
-    id?: string
-    organisationId: string
-    status?: $Enums.RequestStatus
-    isDeleted?: boolean
-    createdAt?: Date | string
-  }
-
-  export type OrganisationVolunteerCreateOrConnectWithoutVolunteerInput = {
-    where: OrganisationVolunteerWhereUniqueInput
-    create: XOR<OrganisationVolunteerCreateWithoutVolunteerInput, OrganisationVolunteerUncheckedCreateWithoutVolunteerInput>
-  }
-
-  export type OrganisationVolunteerCreateManyVolunteerInputEnvelope = {
-    data: OrganisationVolunteerCreateManyVolunteerInput | OrganisationVolunteerCreateManyVolunteerInput[]
-    skipDuplicates?: boolean
-  }
-
   export type OrganisationVolunteerCreateWithoutOrganisationInput = {
     id?: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
-    volunteer: UserCreateNestedOneWithoutOrganisationVolunteersInput
+    bloodDonor: BloodDonorCreateNestedOneWithoutOrganisationVolsInput
   }
 
   export type OrganisationVolunteerUncheckedCreateWithoutOrganisationInput = {
     id?: string
-    volunteerId: string
+    bloodDonorId: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
@@ -20421,6 +24990,36 @@ export namespace Prisma {
 
   export type OrganisationVolunteerCreateManyOrganisationInputEnvelope = {
     data: OrganisationVolunteerCreateManyOrganisationInput | OrganisationVolunteerCreateManyOrganisationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HospitalDonationRecordCreateWithoutHospitalInput = {
+    id?: string
+    donationDate?: Date | string
+    weight?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    bloodDonor: BloodDonorCreateNestedOneWithoutHospitalRecordsInput
+  }
+
+  export type HospitalDonationRecordUncheckedCreateWithoutHospitalInput = {
+    id?: string
+    bloodDonorId: string
+    donationDate?: Date | string
+    weight?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HospitalDonationRecordCreateOrConnectWithoutHospitalInput = {
+    where: HospitalDonationRecordWhereUniqueInput
+    create: XOR<HospitalDonationRecordCreateWithoutHospitalInput, HospitalDonationRecordUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type HospitalDonationRecordCreateManyHospitalInputEnvelope = {
+    data: HospitalDonationRecordCreateManyHospitalInput | HospitalDonationRecordCreateManyHospitalInput[]
     skipDuplicates?: boolean
   }
 
@@ -20668,6 +25267,7 @@ export namespace Prisma {
     upazila?: StringNullableFilter<"Post"> | string | null
     requiredDate?: DateTimeNullableFilter<"Post"> | Date | string | null
     isApproved?: BoolFilter<"Post"> | boolean
+    isResolved?: BoolFilter<"Post"> | boolean
     targetAmount?: FloatNullableFilter<"Post"> | number | null
     raisedAmount?: FloatNullableFilter<"Post"> | number | null
     isDeleted?: BoolFilter<"Post"> | boolean
@@ -20675,33 +25275,55 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Post"> | Date | string
   }
 
-  export type DonationHistoryUpsertWithWhereUniqueWithoutDonorInput = {
-    where: DonationHistoryWhereUniqueInput
-    update: XOR<DonationHistoryUpdateWithoutDonorInput, DonationHistoryUncheckedUpdateWithoutDonorInput>
-    create: XOR<DonationHistoryCreateWithoutDonorInput, DonationHistoryUncheckedCreateWithoutDonorInput>
+  export type BloodDonorUpsertWithoutUserInput = {
+    update: XOR<BloodDonorUpdateWithoutUserInput, BloodDonorUncheckedUpdateWithoutUserInput>
+    create: XOR<BloodDonorCreateWithoutUserInput, BloodDonorUncheckedCreateWithoutUserInput>
+    where?: BloodDonorWhereInput
   }
 
-  export type DonationHistoryUpdateWithWhereUniqueWithoutDonorInput = {
-    where: DonationHistoryWhereUniqueInput
-    data: XOR<DonationHistoryUpdateWithoutDonorInput, DonationHistoryUncheckedUpdateWithoutDonorInput>
+  export type BloodDonorUpdateToOneWithWhereWithoutUserInput = {
+    where?: BloodDonorWhereInput
+    data: XOR<BloodDonorUpdateWithoutUserInput, BloodDonorUncheckedUpdateWithoutUserInput>
   }
 
-  export type DonationHistoryUpdateManyWithWhereWithoutDonorInput = {
-    where: DonationHistoryScalarWhereInput
-    data: XOR<DonationHistoryUpdateManyMutationInput, DonationHistoryUncheckedUpdateManyWithoutDonorInput>
+  export type BloodDonorUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    donations?: DonationHistoryUpdateManyWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUpdateManyWithoutBloodDonorNestedInput
   }
 
-  export type DonationHistoryScalarWhereInput = {
-    AND?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
-    OR?: DonationHistoryScalarWhereInput[]
-    NOT?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
-    id?: StringFilter<"DonationHistory"> | string
-    donorId?: StringFilter<"DonationHistory"> | string
-    receiverOrgId?: StringNullableFilter<"DonationHistory"> | string | null
-    donationDate?: DateTimeFilter<"DonationHistory"> | Date | string
-    weightDuringDonation?: FloatNullableFilter<"DonationHistory"> | number | null
-    isDeleted?: BoolFilter<"DonationHistory"> | boolean
-    createdAt?: DateTimeFilter<"DonationHistory"> | Date | string
+  export type BloodDonorUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    donations?: DonationHistoryUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUncheckedUpdateManyWithoutBloodDonorNestedInput
   }
 
   export type DonationHistoryUpsertWithWhereUniqueWithoutReceiverOrgInput = {
@@ -20720,33 +25342,17 @@ export namespace Prisma {
     data: XOR<DonationHistoryUpdateManyMutationInput, DonationHistoryUncheckedUpdateManyWithoutReceiverOrgInput>
   }
 
-  export type HospitalRequestUpsertWithWhereUniqueWithoutUserInput = {
-    where: HospitalRequestWhereUniqueInput
-    update: XOR<HospitalRequestUpdateWithoutUserInput, HospitalRequestUncheckedUpdateWithoutUserInput>
-    create: XOR<HospitalRequestCreateWithoutUserInput, HospitalRequestUncheckedCreateWithoutUserInput>
-  }
-
-  export type HospitalRequestUpdateWithWhereUniqueWithoutUserInput = {
-    where: HospitalRequestWhereUniqueInput
-    data: XOR<HospitalRequestUpdateWithoutUserInput, HospitalRequestUncheckedUpdateWithoutUserInput>
-  }
-
-  export type HospitalRequestUpdateManyWithWhereWithoutUserInput = {
-    where: HospitalRequestScalarWhereInput
-    data: XOR<HospitalRequestUpdateManyMutationInput, HospitalRequestUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type HospitalRequestScalarWhereInput = {
-    AND?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
-    OR?: HospitalRequestScalarWhereInput[]
-    NOT?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
-    id?: StringFilter<"HospitalRequest"> | string
-    hospitalId?: StringFilter<"HospitalRequest"> | string
-    userId?: StringFilter<"HospitalRequest"> | string
-    status?: EnumRequestStatusFilter<"HospitalRequest"> | $Enums.RequestStatus
-    isDeleted?: BoolFilter<"HospitalRequest"> | boolean
-    createdAt?: DateTimeFilter<"HospitalRequest"> | Date | string
-    updatedAt?: DateTimeFilter<"HospitalRequest"> | Date | string
+  export type DonationHistoryScalarWhereInput = {
+    AND?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
+    OR?: DonationHistoryScalarWhereInput[]
+    NOT?: DonationHistoryScalarWhereInput | DonationHistoryScalarWhereInput[]
+    id?: StringFilter<"DonationHistory"> | string
+    bloodDonorId?: StringFilter<"DonationHistory"> | string
+    receiverOrgId?: StringNullableFilter<"DonationHistory"> | string | null
+    donationDate?: DateTimeFilter<"DonationHistory"> | Date | string
+    weightDuringDonation?: FloatNullableFilter<"DonationHistory"> | number | null
+    isDeleted?: BoolFilter<"DonationHistory"> | boolean
+    createdAt?: DateTimeFilter<"DonationHistory"> | Date | string
   }
 
   export type HospitalRequestUpsertWithWhereUniqueWithoutHospitalInput = {
@@ -20765,32 +25371,17 @@ export namespace Prisma {
     data: XOR<HospitalRequestUpdateManyMutationInput, HospitalRequestUncheckedUpdateManyWithoutHospitalInput>
   }
 
-  export type OrganisationVolunteerUpsertWithWhereUniqueWithoutVolunteerInput = {
-    where: OrganisationVolunteerWhereUniqueInput
-    update: XOR<OrganisationVolunteerUpdateWithoutVolunteerInput, OrganisationVolunteerUncheckedUpdateWithoutVolunteerInput>
-    create: XOR<OrganisationVolunteerCreateWithoutVolunteerInput, OrganisationVolunteerUncheckedCreateWithoutVolunteerInput>
-  }
-
-  export type OrganisationVolunteerUpdateWithWhereUniqueWithoutVolunteerInput = {
-    where: OrganisationVolunteerWhereUniqueInput
-    data: XOR<OrganisationVolunteerUpdateWithoutVolunteerInput, OrganisationVolunteerUncheckedUpdateWithoutVolunteerInput>
-  }
-
-  export type OrganisationVolunteerUpdateManyWithWhereWithoutVolunteerInput = {
-    where: OrganisationVolunteerScalarWhereInput
-    data: XOR<OrganisationVolunteerUpdateManyMutationInput, OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerInput>
-  }
-
-  export type OrganisationVolunteerScalarWhereInput = {
-    AND?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
-    OR?: OrganisationVolunteerScalarWhereInput[]
-    NOT?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
-    id?: StringFilter<"OrganisationVolunteer"> | string
-    organisationId?: StringFilter<"OrganisationVolunteer"> | string
-    volunteerId?: StringFilter<"OrganisationVolunteer"> | string
-    status?: EnumRequestStatusFilter<"OrganisationVolunteer"> | $Enums.RequestStatus
-    isDeleted?: BoolFilter<"OrganisationVolunteer"> | boolean
-    createdAt?: DateTimeFilter<"OrganisationVolunteer"> | Date | string
+  export type HospitalRequestScalarWhereInput = {
+    AND?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
+    OR?: HospitalRequestScalarWhereInput[]
+    NOT?: HospitalRequestScalarWhereInput | HospitalRequestScalarWhereInput[]
+    id?: StringFilter<"HospitalRequest"> | string
+    hospitalId?: StringFilter<"HospitalRequest"> | string
+    bloodDonorId?: StringFilter<"HospitalRequest"> | string
+    status?: EnumRequestStatusFilter<"HospitalRequest"> | $Enums.RequestStatus
+    isDeleted?: BoolFilter<"HospitalRequest"> | boolean
+    createdAt?: DateTimeFilter<"HospitalRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"HospitalRequest"> | Date | string
   }
 
   export type OrganisationVolunteerUpsertWithWhereUniqueWithoutOrganisationInput = {
@@ -20807,6 +25398,48 @@ export namespace Prisma {
   export type OrganisationVolunteerUpdateManyWithWhereWithoutOrganisationInput = {
     where: OrganisationVolunteerScalarWhereInput
     data: XOR<OrganisationVolunteerUpdateManyMutationInput, OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationInput>
+  }
+
+  export type OrganisationVolunteerScalarWhereInput = {
+    AND?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
+    OR?: OrganisationVolunteerScalarWhereInput[]
+    NOT?: OrganisationVolunteerScalarWhereInput | OrganisationVolunteerScalarWhereInput[]
+    id?: StringFilter<"OrganisationVolunteer"> | string
+    organisationId?: StringFilter<"OrganisationVolunteer"> | string
+    bloodDonorId?: StringFilter<"OrganisationVolunteer"> | string
+    status?: EnumRequestStatusFilter<"OrganisationVolunteer"> | $Enums.RequestStatus
+    isDeleted?: BoolFilter<"OrganisationVolunteer"> | boolean
+    createdAt?: DateTimeFilter<"OrganisationVolunteer"> | Date | string
+  }
+
+  export type HospitalDonationRecordUpsertWithWhereUniqueWithoutHospitalInput = {
+    where: HospitalDonationRecordWhereUniqueInput
+    update: XOR<HospitalDonationRecordUpdateWithoutHospitalInput, HospitalDonationRecordUncheckedUpdateWithoutHospitalInput>
+    create: XOR<HospitalDonationRecordCreateWithoutHospitalInput, HospitalDonationRecordUncheckedCreateWithoutHospitalInput>
+  }
+
+  export type HospitalDonationRecordUpdateWithWhereUniqueWithoutHospitalInput = {
+    where: HospitalDonationRecordWhereUniqueInput
+    data: XOR<HospitalDonationRecordUpdateWithoutHospitalInput, HospitalDonationRecordUncheckedUpdateWithoutHospitalInput>
+  }
+
+  export type HospitalDonationRecordUpdateManyWithWhereWithoutHospitalInput = {
+    where: HospitalDonationRecordScalarWhereInput
+    data: XOR<HospitalDonationRecordUpdateManyMutationInput, HospitalDonationRecordUncheckedUpdateManyWithoutHospitalInput>
+  }
+
+  export type HospitalDonationRecordScalarWhereInput = {
+    AND?: HospitalDonationRecordScalarWhereInput | HospitalDonationRecordScalarWhereInput[]
+    OR?: HospitalDonationRecordScalarWhereInput[]
+    NOT?: HospitalDonationRecordScalarWhereInput | HospitalDonationRecordScalarWhereInput[]
+    id?: StringFilter<"HospitalDonationRecord"> | string
+    hospitalId?: StringFilter<"HospitalDonationRecord"> | string
+    bloodDonorId?: StringFilter<"HospitalDonationRecord"> | string
+    donationDate?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
+    weight?: FloatNullableFilter<"HospitalDonationRecord"> | number | null
+    isDeleted?: BoolFilter<"HospitalDonationRecord"> | boolean
+    createdAt?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
+    updatedAt?: DateTimeFilter<"HospitalDonationRecord"> | Date | string
   }
 
   export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
@@ -20845,7 +25478,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -20858,12 +25490,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -20874,7 +25505,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -20887,12 +25517,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -20919,7 +25548,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20932,12 +25560,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -20948,7 +25575,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20961,12 +25587,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -20977,7 +25602,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -20990,12 +25614,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -21006,7 +25629,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21019,12 +25641,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -21051,7 +25672,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21064,12 +25684,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -21080,7 +25699,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21093,12 +25711,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -21109,7 +25726,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21122,12 +25738,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -21138,7 +25753,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21151,12 +25765,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -21183,7 +25796,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21196,12 +25808,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -21212,7 +25823,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21225,12 +25835,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -21241,7 +25850,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21254,12 +25862,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -21270,7 +25877,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21283,12 +25889,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -21315,7 +25920,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21328,12 +25932,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -21344,7 +25947,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21357,12 +25959,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -21373,7 +25974,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21386,12 +25986,11 @@ export namespace Prisma {
     organisation?: OrganisationCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -21402,7 +26001,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21415,12 +26013,11 @@ export namespace Prisma {
     organisation?: OrganisationUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -21447,7 +26044,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21460,12 +26056,11 @@ export namespace Prisma {
     organisation?: OrganisationUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -21476,7 +26071,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21489,12 +26083,11 @@ export namespace Prisma {
     organisation?: OrganisationUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -21505,7 +26098,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21518,12 +26110,11 @@ export namespace Prisma {
     organisation?: OrganisationCreateNestedOneWithoutUserInput
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -21534,7 +26125,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21547,12 +26137,11 @@ export namespace Prisma {
     organisation?: OrganisationUncheckedCreateNestedOneWithoutUserInput
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -21579,7 +26168,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21592,12 +26180,11 @@ export namespace Prisma {
     organisation?: OrganisationUpdateOneWithoutUserNestedInput
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -21608,7 +26195,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21621,23 +26207,21 @@ export namespace Prisma {
     organisation?: OrganisationUncheckedUpdateOneWithoutUserNestedInput
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type UserCreateWithoutPostsInput = {
+  export type UserCreateWithoutBloodDonorInput = {
     id?: string
     email?: string | null
     contactNumber: string
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21650,23 +26234,21 @@ export namespace Prisma {
     organisation?: OrganisationCreateNestedOneWithoutUserInput
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutPostsInput = {
+  export type UserUncheckedCreateWithoutBloodDonorInput = {
     id?: string
     email?: string | null
     contactNumber: string
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21679,12 +26261,531 @@ export namespace Prisma {
     organisation?: OrganisationUncheckedCreateNestedOneWithoutUserInput
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutBloodDonorInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBloodDonorInput, UserUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type DonationHistoryCreateWithoutBloodDonorInput = {
+    id?: string
+    donationDate: Date | string
+    weightDuringDonation?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    receiverOrg?: UserCreateNestedOneWithoutDonationsAsReceiverInput
+  }
+
+  export type DonationHistoryUncheckedCreateWithoutBloodDonorInput = {
+    id?: string
+    receiverOrgId?: string | null
+    donationDate: Date | string
+    weightDuringDonation?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+  }
+
+  export type DonationHistoryCreateOrConnectWithoutBloodDonorInput = {
+    where: DonationHistoryWhereUniqueInput
+    create: XOR<DonationHistoryCreateWithoutBloodDonorInput, DonationHistoryUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type DonationHistoryCreateManyBloodDonorInputEnvelope = {
+    data: DonationHistoryCreateManyBloodDonorInput | DonationHistoryCreateManyBloodDonorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HospitalRequestCreateWithoutBloodDonorInput = {
+    id?: string
+    status?: $Enums.RequestStatus
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    hospital: UserCreateNestedOneWithoutRequestedByHospitalsInput
+  }
+
+  export type HospitalRequestUncheckedCreateWithoutBloodDonorInput = {
+    id?: string
+    hospitalId: string
+    status?: $Enums.RequestStatus
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HospitalRequestCreateOrConnectWithoutBloodDonorInput = {
+    where: HospitalRequestWhereUniqueInput
+    create: XOR<HospitalRequestCreateWithoutBloodDonorInput, HospitalRequestUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type HospitalRequestCreateManyBloodDonorInputEnvelope = {
+    data: HospitalRequestCreateManyBloodDonorInput | HospitalRequestCreateManyBloodDonorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HospitalDonationRecordCreateWithoutBloodDonorInput = {
+    id?: string
+    donationDate?: Date | string
+    weight?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    hospital: UserCreateNestedOneWithoutHospitalRecordsInput
+  }
+
+  export type HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput = {
+    id?: string
+    hospitalId: string
+    donationDate?: Date | string
+    weight?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HospitalDonationRecordCreateOrConnectWithoutBloodDonorInput = {
+    where: HospitalDonationRecordWhereUniqueInput
+    create: XOR<HospitalDonationRecordCreateWithoutBloodDonorInput, HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type HospitalDonationRecordCreateManyBloodDonorInputEnvelope = {
+    data: HospitalDonationRecordCreateManyBloodDonorInput | HospitalDonationRecordCreateManyBloodDonorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OrganisationVolunteerCreateWithoutBloodDonorInput = {
+    id?: string
+    status?: $Enums.RequestStatus
+    isDeleted?: boolean
+    createdAt?: Date | string
+    organisation: UserCreateNestedOneWithoutOrganisationManagedInput
+  }
+
+  export type OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput = {
+    id?: string
+    organisationId: string
+    status?: $Enums.RequestStatus
+    isDeleted?: boolean
+    createdAt?: Date | string
+  }
+
+  export type OrganisationVolunteerCreateOrConnectWithoutBloodDonorInput = {
+    where: OrganisationVolunteerWhereUniqueInput
+    create: XOR<OrganisationVolunteerCreateWithoutBloodDonorInput, OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type OrganisationVolunteerCreateManyBloodDonorInputEnvelope = {
+    data: OrganisationVolunteerCreateManyBloodDonorInput | OrganisationVolunteerCreateManyBloodDonorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutBloodDonorInput = {
+    update: XOR<UserUpdateWithoutBloodDonorInput, UserUncheckedUpdateWithoutBloodDonorInput>
+    create: XOR<UserCreateWithoutBloodDonorInput, UserUncheckedCreateWithoutBloodDonorInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBloodDonorInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBloodDonorInput, UserUncheckedUpdateWithoutBloodDonorInput>
+  }
+
+  export type UserUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    superAdmin?: SuperAdminUpdateOneWithoutUserNestedInput
+    admin?: AdminUpdateOneWithoutUserNestedInput
+    hospital?: HospitalUpdateOneWithoutUserNestedInput
+    organisation?: OrganisationUpdateOneWithoutUserNestedInput
+    donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+    donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
+    requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
+    organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    superAdmin?: SuperAdminUncheckedUpdateOneWithoutUserNestedInput
+    admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
+    hospital?: HospitalUncheckedUpdateOneWithoutUserNestedInput
+    organisation?: OrganisationUncheckedUpdateOneWithoutUserNestedInput
+    donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
+    requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
+    organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type DonationHistoryUpsertWithWhereUniqueWithoutBloodDonorInput = {
+    where: DonationHistoryWhereUniqueInput
+    update: XOR<DonationHistoryUpdateWithoutBloodDonorInput, DonationHistoryUncheckedUpdateWithoutBloodDonorInput>
+    create: XOR<DonationHistoryCreateWithoutBloodDonorInput, DonationHistoryUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type DonationHistoryUpdateWithWhereUniqueWithoutBloodDonorInput = {
+    where: DonationHistoryWhereUniqueInput
+    data: XOR<DonationHistoryUpdateWithoutBloodDonorInput, DonationHistoryUncheckedUpdateWithoutBloodDonorInput>
+  }
+
+  export type DonationHistoryUpdateManyWithWhereWithoutBloodDonorInput = {
+    where: DonationHistoryScalarWhereInput
+    data: XOR<DonationHistoryUpdateManyMutationInput, DonationHistoryUncheckedUpdateManyWithoutBloodDonorInput>
+  }
+
+  export type HospitalRequestUpsertWithWhereUniqueWithoutBloodDonorInput = {
+    where: HospitalRequestWhereUniqueInput
+    update: XOR<HospitalRequestUpdateWithoutBloodDonorInput, HospitalRequestUncheckedUpdateWithoutBloodDonorInput>
+    create: XOR<HospitalRequestCreateWithoutBloodDonorInput, HospitalRequestUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type HospitalRequestUpdateWithWhereUniqueWithoutBloodDonorInput = {
+    where: HospitalRequestWhereUniqueInput
+    data: XOR<HospitalRequestUpdateWithoutBloodDonorInput, HospitalRequestUncheckedUpdateWithoutBloodDonorInput>
+  }
+
+  export type HospitalRequestUpdateManyWithWhereWithoutBloodDonorInput = {
+    where: HospitalRequestScalarWhereInput
+    data: XOR<HospitalRequestUpdateManyMutationInput, HospitalRequestUncheckedUpdateManyWithoutBloodDonorInput>
+  }
+
+  export type HospitalDonationRecordUpsertWithWhereUniqueWithoutBloodDonorInput = {
+    where: HospitalDonationRecordWhereUniqueInput
+    update: XOR<HospitalDonationRecordUpdateWithoutBloodDonorInput, HospitalDonationRecordUncheckedUpdateWithoutBloodDonorInput>
+    create: XOR<HospitalDonationRecordCreateWithoutBloodDonorInput, HospitalDonationRecordUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type HospitalDonationRecordUpdateWithWhereUniqueWithoutBloodDonorInput = {
+    where: HospitalDonationRecordWhereUniqueInput
+    data: XOR<HospitalDonationRecordUpdateWithoutBloodDonorInput, HospitalDonationRecordUncheckedUpdateWithoutBloodDonorInput>
+  }
+
+  export type HospitalDonationRecordUpdateManyWithWhereWithoutBloodDonorInput = {
+    where: HospitalDonationRecordScalarWhereInput
+    data: XOR<HospitalDonationRecordUpdateManyMutationInput, HospitalDonationRecordUncheckedUpdateManyWithoutBloodDonorInput>
+  }
+
+  export type OrganisationVolunteerUpsertWithWhereUniqueWithoutBloodDonorInput = {
+    where: OrganisationVolunteerWhereUniqueInput
+    update: XOR<OrganisationVolunteerUpdateWithoutBloodDonorInput, OrganisationVolunteerUncheckedUpdateWithoutBloodDonorInput>
+    create: XOR<OrganisationVolunteerCreateWithoutBloodDonorInput, OrganisationVolunteerUncheckedCreateWithoutBloodDonorInput>
+  }
+
+  export type OrganisationVolunteerUpdateWithWhereUniqueWithoutBloodDonorInput = {
+    where: OrganisationVolunteerWhereUniqueInput
+    data: XOR<OrganisationVolunteerUpdateWithoutBloodDonorInput, OrganisationVolunteerUncheckedUpdateWithoutBloodDonorInput>
+  }
+
+  export type OrganisationVolunteerUpdateManyWithWhereWithoutBloodDonorInput = {
+    where: OrganisationVolunteerScalarWhereInput
+    data: XOR<OrganisationVolunteerUpdateManyMutationInput, OrganisationVolunteerUncheckedUpdateManyWithoutBloodDonorInput>
+  }
+
+  export type UserCreateWithoutHospitalRecordsInput = {
+    id?: string
+    email?: string | null
+    contactNumber: string
+    password?: string | null
+    role?: $Enums.UserRole
+    accountStatus?: $Enums.AccountStatus
+    division?: string | null
+    district?: string | null
+    upazila?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    superAdmin?: SuperAdminCreateNestedOneWithoutUserInput
+    admin?: AdminCreateNestedOneWithoutUserInput
+    hospital?: HospitalCreateNestedOneWithoutUserInput
+    organisation?: OrganisationCreateNestedOneWithoutUserInput
+    donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    posts?: PostCreateNestedManyWithoutAuthorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
+    donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
+    requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
+    organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutHospitalRecordsInput = {
+    id?: string
+    email?: string | null
+    contactNumber: string
+    password?: string | null
+    role?: $Enums.UserRole
+    accountStatus?: $Enums.AccountStatus
+    division?: string | null
+    district?: string | null
+    upazila?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    superAdmin?: SuperAdminUncheckedCreateNestedOneWithoutUserInput
+    admin?: AdminUncheckedCreateNestedOneWithoutUserInput
+    hospital?: HospitalUncheckedCreateNestedOneWithoutUserInput
+    organisation?: OrganisationUncheckedCreateNestedOneWithoutUserInput
+    donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
+    donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
+    requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
+    organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutHospitalRecordsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutHospitalRecordsInput, UserUncheckedCreateWithoutHospitalRecordsInput>
+  }
+
+  export type BloodDonorCreateWithoutHospitalRecordsInput = {
+    id?: string
+    name: string
+    contactNumber: string
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutBloodDonorInput
+    donations?: DonationHistoryCreateNestedManyWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerCreateNestedManyWithoutBloodDonorInput
+  }
+
+  export type BloodDonorUncheckedCreateWithoutHospitalRecordsInput = {
+    id?: string
+    name: string
+    contactNumber: string
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
+    userId?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    donations?: DonationHistoryUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerUncheckedCreateNestedManyWithoutBloodDonorInput
+  }
+
+  export type BloodDonorCreateOrConnectWithoutHospitalRecordsInput = {
+    where: BloodDonorWhereUniqueInput
+    create: XOR<BloodDonorCreateWithoutHospitalRecordsInput, BloodDonorUncheckedCreateWithoutHospitalRecordsInput>
+  }
+
+  export type UserUpsertWithoutHospitalRecordsInput = {
+    update: XOR<UserUpdateWithoutHospitalRecordsInput, UserUncheckedUpdateWithoutHospitalRecordsInput>
+    create: XOR<UserCreateWithoutHospitalRecordsInput, UserUncheckedCreateWithoutHospitalRecordsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutHospitalRecordsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutHospitalRecordsInput, UserUncheckedUpdateWithoutHospitalRecordsInput>
+  }
+
+  export type UserUpdateWithoutHospitalRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    superAdmin?: SuperAdminUpdateOneWithoutUserNestedInput
+    admin?: AdminUpdateOneWithoutUserNestedInput
+    hospital?: HospitalUpdateOneWithoutUserNestedInput
+    organisation?: OrganisationUpdateOneWithoutUserNestedInput
+    donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
+    donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
+    requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
+    organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutHospitalRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    district?: NullableStringFieldUpdateOperationsInput | string | null
+    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    superAdmin?: SuperAdminUncheckedUpdateOneWithoutUserNestedInput
+    admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
+    hospital?: HospitalUncheckedUpdateOneWithoutUserNestedInput
+    organisation?: OrganisationUncheckedUpdateOneWithoutUserNestedInput
+    donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
+    donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
+    requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
+    organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type BloodDonorUpsertWithoutHospitalRecordsInput = {
+    update: XOR<BloodDonorUpdateWithoutHospitalRecordsInput, BloodDonorUncheckedUpdateWithoutHospitalRecordsInput>
+    create: XOR<BloodDonorCreateWithoutHospitalRecordsInput, BloodDonorUncheckedCreateWithoutHospitalRecordsInput>
+    where?: BloodDonorWhereInput
+  }
+
+  export type BloodDonorUpdateToOneWithWhereWithoutHospitalRecordsInput = {
+    where?: BloodDonorWhereInput
+    data: XOR<BloodDonorUpdateWithoutHospitalRecordsInput, BloodDonorUncheckedUpdateWithoutHospitalRecordsInput>
+  }
+
+  export type BloodDonorUpdateWithoutHospitalRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutBloodDonorNestedInput
+    donations?: DonationHistoryUpdateManyWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUpdateManyWithoutBloodDonorNestedInput
+  }
+
+  export type BloodDonorUncheckedUpdateWithoutHospitalRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    contactNumber?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    donations?: DonationHistoryUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUncheckedUpdateManyWithoutBloodDonorNestedInput
+  }
+
+  export type UserCreateWithoutPostsInput = {
+    id?: string
+    email?: string | null
+    contactNumber: string
+    password?: string | null
+    role?: $Enums.UserRole
+    accountStatus?: $Enums.AccountStatus
+    division?: string | null
+    district?: string | null
+    upazila?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    superAdmin?: SuperAdminCreateNestedOneWithoutUserInput
+    admin?: AdminCreateNestedOneWithoutUserInput
+    hospital?: HospitalCreateNestedOneWithoutUserInput
+    organisation?: OrganisationCreateNestedOneWithoutUserInput
+    donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
+    donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
+    requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
+    organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPostsInput = {
+    id?: string
+    email?: string | null
+    contactNumber: string
+    password?: string | null
+    role?: $Enums.UserRole
+    accountStatus?: $Enums.AccountStatus
+    division?: string | null
+    district?: string | null
+    upazila?: string | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    superAdmin?: SuperAdminUncheckedCreateNestedOneWithoutUserInput
+    admin?: AdminUncheckedCreateNestedOneWithoutUserInput
+    hospital?: HospitalUncheckedCreateNestedOneWithoutUserInput
+    organisation?: OrganisationUncheckedCreateNestedOneWithoutUserInput
+    donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
+    donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
+    requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
+    organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -21711,7 +26812,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21724,12 +26824,11 @@ export namespace Prisma {
     organisation?: OrganisationUpdateOneWithoutUserNestedInput
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -21740,7 +26839,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21753,76 +26851,57 @@ export namespace Prisma {
     organisation?: OrganisationUncheckedUpdateOneWithoutUserNestedInput
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type UserCreateWithoutDonationsAsDonorInput = {
+  export type BloodDonorCreateWithoutDonationsInput = {
     id?: string
-    email?: string | null
+    name: string
     contactNumber: string
-    password?: string | null
-    role?: $Enums.UserRole
-    accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
-    division?: string | null
-    district?: string | null
-    upazila?: string | null
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    superAdmin?: SuperAdminCreateNestedOneWithoutUserInput
-    admin?: AdminCreateNestedOneWithoutUserInput
-    hospital?: HospitalCreateNestedOneWithoutUserInput
-    organisation?: OrganisationCreateNestedOneWithoutUserInput
-    donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
-    requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
-    organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
+    user?: UserCreateNestedOneWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerCreateNestedManyWithoutBloodDonorInput
   }
 
-  export type UserUncheckedCreateWithoutDonationsAsDonorInput = {
+  export type BloodDonorUncheckedCreateWithoutDonationsInput = {
     id?: string
-    email?: string | null
+    name: string
     contactNumber: string
-    password?: string | null
-    role?: $Enums.UserRole
-    accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
-    division?: string | null
-    district?: string | null
-    upazila?: string | null
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
+    userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    superAdmin?: SuperAdminUncheckedCreateNestedOneWithoutUserInput
-    admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    hospital?: HospitalUncheckedCreateNestedOneWithoutUserInput
-    organisation?: OrganisationUncheckedCreateNestedOneWithoutUserInput
-    donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
-    requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
-    organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerUncheckedCreateNestedManyWithoutBloodDonorInput
   }
 
-  export type UserCreateOrConnectWithoutDonationsAsDonorInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutDonationsAsDonorInput, UserUncheckedCreateWithoutDonationsAsDonorInput>
+  export type BloodDonorCreateOrConnectWithoutDonationsInput = {
+    where: BloodDonorWhereUniqueInput
+    create: XOR<BloodDonorCreateWithoutDonationsInput, BloodDonorUncheckedCreateWithoutDonationsInput>
   }
 
   export type UserCreateWithoutDonationsAsReceiverInput = {
@@ -21832,7 +26911,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21846,11 +26924,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -21861,7 +26938,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -21875,11 +26951,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -21888,73 +26963,55 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutDonationsAsReceiverInput, UserUncheckedCreateWithoutDonationsAsReceiverInput>
   }
 
-  export type UserUpsertWithoutDonationsAsDonorInput = {
-    update: XOR<UserUpdateWithoutDonationsAsDonorInput, UserUncheckedUpdateWithoutDonationsAsDonorInput>
-    create: XOR<UserCreateWithoutDonationsAsDonorInput, UserUncheckedCreateWithoutDonationsAsDonorInput>
-    where?: UserWhereInput
+  export type BloodDonorUpsertWithoutDonationsInput = {
+    update: XOR<BloodDonorUpdateWithoutDonationsInput, BloodDonorUncheckedUpdateWithoutDonationsInput>
+    create: XOR<BloodDonorCreateWithoutDonationsInput, BloodDonorUncheckedCreateWithoutDonationsInput>
+    where?: BloodDonorWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutDonationsAsDonorInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutDonationsAsDonorInput, UserUncheckedUpdateWithoutDonationsAsDonorInput>
+  export type BloodDonorUpdateToOneWithWhereWithoutDonationsInput = {
+    where?: BloodDonorWhereInput
+    data: XOR<BloodDonorUpdateWithoutDonationsInput, BloodDonorUncheckedUpdateWithoutDonationsInput>
   }
 
-  export type UserUpdateWithoutDonationsAsDonorInput = {
+  export type BloodDonorUpdateWithoutDonationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
-    division?: NullableStringFieldUpdateOperationsInput | string | null
-    district?: NullableStringFieldUpdateOperationsInput | string | null
-    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    superAdmin?: SuperAdminUpdateOneWithoutUserNestedInput
-    admin?: AdminUpdateOneWithoutUserNestedInput
-    hospital?: HospitalUpdateOneWithoutUserNestedInput
-    organisation?: OrganisationUpdateOneWithoutUserNestedInput
-    donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
-    requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
-    organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    user?: UserUpdateOneWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUpdateManyWithoutBloodDonorNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutDonationsAsDonorInput = {
+  export type BloodDonorUncheckedUpdateWithoutDonationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
-    division?: NullableStringFieldUpdateOperationsInput | string | null
-    district?: NullableStringFieldUpdateOperationsInput | string | null
-    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    superAdmin?: SuperAdminUncheckedUpdateOneWithoutUserNestedInput
-    admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    hospital?: HospitalUncheckedUpdateOneWithoutUserNestedInput
-    organisation?: OrganisationUncheckedUpdateOneWithoutUserNestedInput
-    donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
-    requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
-    organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUncheckedUpdateManyWithoutBloodDonorNestedInput
   }
 
   export type UserUpsertWithoutDonationsAsReceiverInput = {
@@ -21975,7 +27032,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21989,11 +27045,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -22004,7 +27059,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22018,11 +27072,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -22033,7 +27086,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -22047,11 +27099,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -22062,7 +27113,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -22076,11 +27126,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -22089,67 +27138,49 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutOrganisationManagedInput, UserUncheckedCreateWithoutOrganisationManagedInput>
   }
 
-  export type UserCreateWithoutOrganisationVolunteersInput = {
+  export type BloodDonorCreateWithoutOrganisationVolsInput = {
     id?: string
-    email?: string | null
+    name: string
     contactNumber: string
-    password?: string | null
-    role?: $Enums.UserRole
-    accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
-    division?: string | null
-    district?: string | null
-    upazila?: string | null
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    superAdmin?: SuperAdminCreateNestedOneWithoutUserInput
-    admin?: AdminCreateNestedOneWithoutUserInput
-    hospital?: HospitalCreateNestedOneWithoutUserInput
-    organisation?: OrganisationCreateNestedOneWithoutUserInput
-    donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
-    donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
-    requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
+    user?: UserCreateNestedOneWithoutBloodDonorInput
+    donations?: DonationHistoryCreateNestedManyWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutBloodDonorInput
   }
 
-  export type UserUncheckedCreateWithoutOrganisationVolunteersInput = {
+  export type BloodDonorUncheckedCreateWithoutOrganisationVolsInput = {
     id?: string
-    email?: string | null
+    name: string
     contactNumber: string
-    password?: string | null
-    role?: $Enums.UserRole
-    accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
-    division?: string | null
-    district?: string | null
-    upazila?: string | null
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
+    userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    superAdmin?: SuperAdminUncheckedCreateNestedOneWithoutUserInput
-    admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    hospital?: HospitalUncheckedCreateNestedOneWithoutUserInput
-    organisation?: OrganisationUncheckedCreateNestedOneWithoutUserInput
-    donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
-    donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
-    requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    donations?: DonationHistoryUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutBloodDonorInput
   }
 
-  export type UserCreateOrConnectWithoutOrganisationVolunteersInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutOrganisationVolunteersInput, UserUncheckedCreateWithoutOrganisationVolunteersInput>
+  export type BloodDonorCreateOrConnectWithoutOrganisationVolsInput = {
+    where: BloodDonorWhereUniqueInput
+    create: XOR<BloodDonorCreateWithoutOrganisationVolsInput, BloodDonorUncheckedCreateWithoutOrganisationVolsInput>
   }
 
   export type UserUpsertWithoutOrganisationManagedInput = {
@@ -22170,7 +27201,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22184,11 +27214,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -22199,7 +27228,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22213,81 +27241,62 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUpsertWithoutOrganisationVolunteersInput = {
-    update: XOR<UserUpdateWithoutOrganisationVolunteersInput, UserUncheckedUpdateWithoutOrganisationVolunteersInput>
-    create: XOR<UserCreateWithoutOrganisationVolunteersInput, UserUncheckedCreateWithoutOrganisationVolunteersInput>
-    where?: UserWhereInput
+  export type BloodDonorUpsertWithoutOrganisationVolsInput = {
+    update: XOR<BloodDonorUpdateWithoutOrganisationVolsInput, BloodDonorUncheckedUpdateWithoutOrganisationVolsInput>
+    create: XOR<BloodDonorCreateWithoutOrganisationVolsInput, BloodDonorUncheckedCreateWithoutOrganisationVolsInput>
+    where?: BloodDonorWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutOrganisationVolunteersInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutOrganisationVolunteersInput, UserUncheckedUpdateWithoutOrganisationVolunteersInput>
+  export type BloodDonorUpdateToOneWithWhereWithoutOrganisationVolsInput = {
+    where?: BloodDonorWhereInput
+    data: XOR<BloodDonorUpdateWithoutOrganisationVolsInput, BloodDonorUncheckedUpdateWithoutOrganisationVolsInput>
   }
 
-  export type UserUpdateWithoutOrganisationVolunteersInput = {
+  export type BloodDonorUpdateWithoutOrganisationVolsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
-    division?: NullableStringFieldUpdateOperationsInput | string | null
-    district?: NullableStringFieldUpdateOperationsInput | string | null
-    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    superAdmin?: SuperAdminUpdateOneWithoutUserNestedInput
-    admin?: AdminUpdateOneWithoutUserNestedInput
-    hospital?: HospitalUpdateOneWithoutUserNestedInput
-    organisation?: OrganisationUpdateOneWithoutUserNestedInput
-    donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
-    donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
-    requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    user?: UserUpdateOneWithoutBloodDonorNestedInput
+    donations?: DonationHistoryUpdateManyWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutBloodDonorNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutOrganisationVolunteersInput = {
+  export type BloodDonorUncheckedUpdateWithoutOrganisationVolsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
-    division?: NullableStringFieldUpdateOperationsInput | string | null
-    district?: NullableStringFieldUpdateOperationsInput | string | null
-    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    superAdmin?: SuperAdminUncheckedUpdateOneWithoutUserNestedInput
-    admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    hospital?: HospitalUncheckedUpdateOneWithoutUserNestedInput
-    organisation?: OrganisationUncheckedUpdateOneWithoutUserNestedInput
-    donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
-    donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
-    requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    donations?: DonationHistoryUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutBloodDonorNestedInput
   }
 
   export type UserCreateWithoutRequestedByHospitalsInput = {
@@ -22297,7 +27306,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -22311,11 +27319,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
   }
 
@@ -22326,7 +27333,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -22340,11 +27346,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -22353,67 +27358,49 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutRequestedByHospitalsInput, UserUncheckedCreateWithoutRequestedByHospitalsInput>
   }
 
-  export type UserCreateWithoutHospitalRequestsInput = {
+  export type BloodDonorCreateWithoutHospitalRequestsInput = {
     id?: string
-    email?: string | null
+    name: string
     contactNumber: string
-    password?: string | null
-    role?: $Enums.UserRole
-    accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
-    division?: string | null
-    district?: string | null
-    upazila?: string | null
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    superAdmin?: SuperAdminCreateNestedOneWithoutUserInput
-    admin?: AdminCreateNestedOneWithoutUserInput
-    hospital?: HospitalCreateNestedOneWithoutUserInput
-    organisation?: OrganisationCreateNestedOneWithoutUserInput
-    donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
-    sessions?: SessionCreateNestedManyWithoutUserInput
-    posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
-    donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
-    organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
+    user?: UserCreateNestedOneWithoutBloodDonorInput
+    donations?: DonationHistoryCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerCreateNestedManyWithoutBloodDonorInput
   }
 
-  export type UserUncheckedCreateWithoutHospitalRequestsInput = {
+  export type BloodDonorUncheckedCreateWithoutHospitalRequestsInput = {
     id?: string
-    email?: string | null
+    name: string
     contactNumber: string
-    password?: string | null
-    role?: $Enums.UserRole
-    accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
-    division?: string | null
-    district?: string | null
-    upazila?: string | null
+    bloodGroup: string
+    gender: $Enums.Gender
+    lastDonationDate?: Date | string | null
+    isAvailable?: boolean
+    division: string
+    district: string
+    upazila: string
+    userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    superAdmin?: SuperAdminUncheckedCreateNestedOneWithoutUserInput
-    admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    hospital?: HospitalUncheckedCreateNestedOneWithoutUserInput
-    organisation?: OrganisationUncheckedCreateNestedOneWithoutUserInput
-    donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
-    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
-    donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
-    organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    donations?: DonationHistoryUncheckedCreateNestedManyWithoutBloodDonorInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutBloodDonorInput
+    organisationVols?: OrganisationVolunteerUncheckedCreateNestedManyWithoutBloodDonorInput
   }
 
-  export type UserCreateOrConnectWithoutHospitalRequestsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutHospitalRequestsInput, UserUncheckedCreateWithoutHospitalRequestsInput>
+  export type BloodDonorCreateOrConnectWithoutHospitalRequestsInput = {
+    where: BloodDonorWhereUniqueInput
+    create: XOR<BloodDonorCreateWithoutHospitalRequestsInput, BloodDonorUncheckedCreateWithoutHospitalRequestsInput>
   }
 
   export type UserUpsertWithoutRequestedByHospitalsInput = {
@@ -22434,7 +27421,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22448,11 +27434,10 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
   }
 
@@ -22463,7 +27448,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22477,81 +27461,62 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUpsertWithoutHospitalRequestsInput = {
-    update: XOR<UserUpdateWithoutHospitalRequestsInput, UserUncheckedUpdateWithoutHospitalRequestsInput>
-    create: XOR<UserCreateWithoutHospitalRequestsInput, UserUncheckedCreateWithoutHospitalRequestsInput>
-    where?: UserWhereInput
+  export type BloodDonorUpsertWithoutHospitalRequestsInput = {
+    update: XOR<BloodDonorUpdateWithoutHospitalRequestsInput, BloodDonorUncheckedUpdateWithoutHospitalRequestsInput>
+    create: XOR<BloodDonorCreateWithoutHospitalRequestsInput, BloodDonorUncheckedCreateWithoutHospitalRequestsInput>
+    where?: BloodDonorWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutHospitalRequestsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutHospitalRequestsInput, UserUncheckedUpdateWithoutHospitalRequestsInput>
+  export type BloodDonorUpdateToOneWithWhereWithoutHospitalRequestsInput = {
+    where?: BloodDonorWhereInput
+    data: XOR<BloodDonorUpdateWithoutHospitalRequestsInput, BloodDonorUncheckedUpdateWithoutHospitalRequestsInput>
   }
 
-  export type UserUpdateWithoutHospitalRequestsInput = {
+  export type BloodDonorUpdateWithoutHospitalRequestsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
-    division?: NullableStringFieldUpdateOperationsInput | string | null
-    district?: NullableStringFieldUpdateOperationsInput | string | null
-    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    superAdmin?: SuperAdminUpdateOneWithoutUserNestedInput
-    admin?: AdminUpdateOneWithoutUserNestedInput
-    hospital?: HospitalUpdateOneWithoutUserNestedInput
-    organisation?: OrganisationUpdateOneWithoutUserNestedInput
-    donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
-    sessions?: SessionUpdateManyWithoutUserNestedInput
-    posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
-    donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
-    organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    user?: UserUpdateOneWithoutBloodDonorNestedInput
+    donations?: DonationHistoryUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUpdateManyWithoutBloodDonorNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutHospitalRequestsInput = {
+  export type BloodDonorUncheckedUpdateWithoutHospitalRequestsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
-    division?: NullableStringFieldUpdateOperationsInput | string | null
-    district?: NullableStringFieldUpdateOperationsInput | string | null
-    upazila?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isAvailable?: BoolFieldUpdateOperationsInput | boolean
+    division?: StringFieldUpdateOperationsInput | string
+    district?: StringFieldUpdateOperationsInput | string
+    upazila?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    superAdmin?: SuperAdminUncheckedUpdateOneWithoutUserNestedInput
-    admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    hospital?: HospitalUncheckedUpdateOneWithoutUserNestedInput
-    organisation?: OrganisationUncheckedUpdateOneWithoutUserNestedInput
-    donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
-    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
-    donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
-    organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    donations?: DonationHistoryUncheckedUpdateManyWithoutBloodDonorNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutBloodDonorNestedInput
+    organisationVols?: OrganisationVolunteerUncheckedUpdateManyWithoutBloodDonorNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -22561,7 +27526,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -22575,12 +27539,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordCreateNestedManyWithoutHospitalInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -22590,7 +27553,6 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
-    isRegisteredUser?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -22604,12 +27566,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
-    donationsAsDonor?: DonationHistoryUncheckedCreateNestedManyWithoutDonorInput
+    bloodDonor?: BloodDonorUncheckedCreateNestedOneWithoutUserInput
     donationsAsReceiver?: DonationHistoryUncheckedCreateNestedManyWithoutReceiverOrgInput
-    hospitalRequests?: HospitalRequestUncheckedCreateNestedManyWithoutUserInput
     requestedByHospitals?: HospitalRequestUncheckedCreateNestedManyWithoutHospitalInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedCreateNestedManyWithoutVolunteerInput
     organisationManaged?: OrganisationVolunteerUncheckedCreateNestedManyWithoutOrganisationInput
+    hospitalRecords?: HospitalDonationRecordUncheckedCreateNestedManyWithoutHospitalInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -22635,7 +27596,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22649,12 +27609,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUpdateManyWithoutHospitalNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -22664,7 +27623,6 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-    isRegisteredUser?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22678,12 +27636,11 @@ export namespace Prisma {
     donorProfile?: DonorProfileUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
-    donationsAsDonor?: DonationHistoryUncheckedUpdateManyWithoutDonorNestedInput
+    bloodDonor?: BloodDonorUncheckedUpdateOneWithoutUserNestedInput
     donationsAsReceiver?: DonationHistoryUncheckedUpdateManyWithoutReceiverOrgNestedInput
-    hospitalRequests?: HospitalRequestUncheckedUpdateManyWithoutUserNestedInput
     requestedByHospitals?: HospitalRequestUncheckedUpdateManyWithoutHospitalNestedInput
-    organisationVolunteers?: OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerNestedInput
     organisationManaged?: OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationNestedInput
+    hospitalRecords?: HospitalDonationRecordUncheckedUpdateManyWithoutHospitalNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -22709,6 +27666,7 @@ export namespace Prisma {
     upazila?: string | null
     requiredDate?: Date | string | null
     isApproved?: boolean
+    isResolved?: boolean
     targetAmount?: number | null
     raisedAmount?: number | null
     isDeleted?: boolean
@@ -22716,56 +27674,40 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type DonationHistoryCreateManyDonorInput = {
-    id?: string
-    receiverOrgId?: string | null
-    donationDate: Date | string
-    weightDuringDonation?: number | null
-    isDeleted?: boolean
-    createdAt?: Date | string
-  }
-
   export type DonationHistoryCreateManyReceiverOrgInput = {
     id?: string
-    donorId: string
+    bloodDonorId: string
     donationDate: Date | string
     weightDuringDonation?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
-  }
-
-  export type HospitalRequestCreateManyUserInput = {
-    id?: string
-    hospitalId: string
-    status?: $Enums.RequestStatus
-    isDeleted?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type HospitalRequestCreateManyHospitalInput = {
     id?: string
-    userId: string
+    bloodDonorId: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type OrganisationVolunteerCreateManyVolunteerInput = {
+  export type OrganisationVolunteerCreateManyOrganisationInput = {
     id?: string
-    organisationId: string
+    bloodDonorId: string
     status?: $Enums.RequestStatus
     isDeleted?: boolean
     createdAt?: Date | string
   }
 
-  export type OrganisationVolunteerCreateManyOrganisationInput = {
+  export type HospitalDonationRecordCreateManyHospitalInput = {
     id?: string
-    volunteerId: string
-    status?: $Enums.RequestStatus
+    bloodDonorId: string
+    donationDate?: Date | string
+    weight?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type NotificationCreateManyUserInput = {
@@ -22824,6 +27766,7 @@ export namespace Prisma {
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
     requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22842,6 +27785,7 @@ export namespace Prisma {
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
     requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22860,38 +27804,12 @@ export namespace Prisma {
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
     requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DonationHistoryUpdateWithoutDonorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    receiverOrg?: UserUpdateOneWithoutDonationsAsReceiverNestedInput
-  }
-
-  export type DonationHistoryUncheckedUpdateWithoutDonorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    receiverOrgId?: NullableStringFieldUpdateOperationsInput | string | null
-    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type DonationHistoryUncheckedUpdateManyWithoutDonorInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    receiverOrgId?: NullableStringFieldUpdateOperationsInput | string | null
-    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DonationHistoryUpdateWithoutReceiverOrgInput = {
@@ -22900,12 +27818,12 @@ export namespace Prisma {
     weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    donor?: UserUpdateOneRequiredWithoutDonationsAsDonorNestedInput
+    bloodDonor?: BloodDonorUpdateOneRequiredWithoutDonationsNestedInput
   }
 
   export type DonationHistoryUncheckedUpdateWithoutReceiverOrgInput = {
     id?: StringFieldUpdateOperationsInput | string
-    donorId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
     weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -22914,38 +27832,11 @@ export namespace Prisma {
 
   export type DonationHistoryUncheckedUpdateManyWithoutReceiverOrgInput = {
     id?: StringFieldUpdateOperationsInput | string
-    donorId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
     weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HospitalRequestUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    hospital?: UserUpdateOneRequiredWithoutRequestedByHospitalsNestedInput
-  }
-
-  export type HospitalRequestUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    hospitalId?: StringFieldUpdateOperationsInput | string
-    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HospitalRequestUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    hospitalId?: StringFieldUpdateOperationsInput | string
-    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HospitalRequestUpdateWithoutHospitalInput = {
@@ -22954,12 +27845,12 @@ export namespace Prisma {
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutHospitalRequestsNestedInput
+    bloodDonor?: BloodDonorUpdateOneRequiredWithoutHospitalRequestsNestedInput
   }
 
   export type HospitalRequestUncheckedUpdateWithoutHospitalInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22968,35 +27859,11 @@ export namespace Prisma {
 
   export type HospitalRequestUncheckedUpdateManyWithoutHospitalInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrganisationVolunteerUpdateWithoutVolunteerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organisation?: UserUpdateOneRequiredWithoutOrganisationManagedNestedInput
-  }
-
-  export type OrganisationVolunteerUncheckedUpdateWithoutVolunteerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    organisationId?: StringFieldUpdateOperationsInput | string
-    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrganisationVolunteerUncheckedUpdateManyWithoutVolunteerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    organisationId?: StringFieldUpdateOperationsInput | string
-    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
-    isDeleted?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OrganisationVolunteerUpdateWithoutOrganisationInput = {
@@ -23004,12 +27871,12 @@ export namespace Prisma {
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    volunteer?: UserUpdateOneRequiredWithoutOrganisationVolunteersNestedInput
+    bloodDonor?: BloodDonorUpdateOneRequiredWithoutOrganisationVolsNestedInput
   }
 
   export type OrganisationVolunteerUncheckedUpdateWithoutOrganisationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    volunteerId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23017,10 +27884,40 @@ export namespace Prisma {
 
   export type OrganisationVolunteerUncheckedUpdateManyWithoutOrganisationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    volunteerId?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalDonationRecordUpdateWithoutHospitalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bloodDonor?: BloodDonorUpdateOneRequiredWithoutHospitalRecordsNestedInput
+  }
+
+  export type HospitalDonationRecordUncheckedUpdateWithoutHospitalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalDonationRecordUncheckedUpdateManyWithoutHospitalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    bloodDonorId?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type NotificationUpdateWithoutUserInput = {
@@ -23047,6 +27944,150 @@ export namespace Prisma {
     message?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DonationHistoryCreateManyBloodDonorInput = {
+    id?: string
+    receiverOrgId?: string | null
+    donationDate: Date | string
+    weightDuringDonation?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+  }
+
+  export type HospitalRequestCreateManyBloodDonorInput = {
+    id?: string
+    hospitalId: string
+    status?: $Enums.RequestStatus
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HospitalDonationRecordCreateManyBloodDonorInput = {
+    id?: string
+    hospitalId: string
+    donationDate?: Date | string
+    weight?: number | null
+    isDeleted?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OrganisationVolunteerCreateManyBloodDonorInput = {
+    id?: string
+    organisationId: string
+    status?: $Enums.RequestStatus
+    isDeleted?: boolean
+    createdAt?: Date | string
+  }
+
+  export type DonationHistoryUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    receiverOrg?: UserUpdateOneWithoutDonationsAsReceiverNestedInput
+  }
+
+  export type DonationHistoryUncheckedUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    receiverOrgId?: NullableStringFieldUpdateOperationsInput | string | null
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DonationHistoryUncheckedUpdateManyWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    receiverOrgId?: NullableStringFieldUpdateOperationsInput | string | null
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weightDuringDonation?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalRequestUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hospital?: UserUpdateOneRequiredWithoutRequestedByHospitalsNestedInput
+  }
+
+  export type HospitalRequestUncheckedUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hospitalId?: StringFieldUpdateOperationsInput | string
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalRequestUncheckedUpdateManyWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hospitalId?: StringFieldUpdateOperationsInput | string
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalDonationRecordUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hospital?: UserUpdateOneRequiredWithoutHospitalRecordsNestedInput
+  }
+
+  export type HospitalDonationRecordUncheckedUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hospitalId?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HospitalDonationRecordUncheckedUpdateManyWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hospitalId?: StringFieldUpdateOperationsInput | string
+    donationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrganisationVolunteerUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    organisation?: UserUpdateOneRequiredWithoutOrganisationManagedNestedInput
+  }
+
+  export type OrganisationVolunteerUncheckedUpdateWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    organisationId?: StringFieldUpdateOperationsInput | string
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrganisationVolunteerUncheckedUpdateManyWithoutBloodDonorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    organisationId?: StringFieldUpdateOperationsInput | string
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
