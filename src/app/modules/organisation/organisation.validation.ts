@@ -1,0 +1,25 @@
+import { z } from 'zod';
+import { Gender } from '../../../generated/prisma';
+
+const addVolunteerSchema = z.object({
+  body: z.object({
+    contactNumber: z.string({ message: 'contactNumber is required' }),
+    name: z.string().optional(),
+    email: z.string().email().optional(),
+    bloodGroup: z.string().optional(),
+    gender: z.enum([Gender.MALE, Gender.FEMALE, Gender.OTHER]).optional(),
+  }),
+});
+
+const updateDonationDateSchema = z.object({
+  body: z.object({
+    date: z.string({ message: 'date is required' }).refine((val) => !isNaN(Date.parse(val)), {
+      message: 'Invalid date format',
+    }),
+  }),
+});
+
+export const OrganisationValidation = {
+  addVolunteerSchema,
+  updateDonationDateSchema,
+};

@@ -1,7 +1,7 @@
 
 
 # Project Memory — Blood-Donors-Management-Backend
-> 237 notes | Score threshold: >40
+> 259 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -23,24 +23,24 @@
 - **⚠️ GOTCHA: Added JWT tokens authentication — ensures atomic multi-step database operations** — - import AppError from '../../errors/AppError';
 + import { JwtPayload 
 
-## Active: `src/app/routes`
+## Active: `prisma`
 
-- **🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x**
-- **Replaced auth PostRoutes — improves module reusability — confirmed 3x**
-- **Replaced auth HospitalRoutes — improves module reusability — confirmed 3x**
-- **Replaced auth Router — improves module reusability — confirmed 3x**
-- **what-changed in index.ts — confirmed 3x**
+- **Added session cookies authentication — confirmed 6x**
+- **what-changed in schema.prisma — confirmed 4x**
+- **Added session cookies authentication**
+- **🟢 Edited prisma/schema.prisma (27 changes, 2min)**
+- **what-changed in schema.prisma**
 
 ## Project Standards
 
-- 🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x
-- Replaced auth PostRoutes — improves module reusability — confirmed 3x
-- Replaced auth HospitalRoutes — improves module reusability — confirmed 3x
-- Replaced auth Router — improves module reusability — confirmed 3x
-- what-changed in index.ts — confirmed 3x
-- Updated API endpoint index — improves module reusability — confirmed 3x
+- Added session cookies authentication — confirmed 6x
+- what-changed in schema.prisma — confirmed 4x
+- Updated API endpoint OrganisationRoutes — confirmed 3x
+- what-changed in index.ts — confirmed 9x
+- Updated API endpoint HospitalRoutes — improves module reusability — confirmed 3x
 - Replaced auth PostControllers — confirmed 4x
 - Updated schema Request — confirmed 4x
+- 🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x
 
 ## Known Fixes
 
@@ -53,8 +53,9 @@
 - Optimized package — offloads heavy computation off the main thread
 - Optimized package — offloads heavy computation off the main thread
 
-## Verified Best Practices
+## Learned Patterns
 
+- Always: what-changed in index.ts — confirmed 9x (seen 2x)
 - Agent generates new migration for every change (squash related changes)
 - Agent installs packages without checking if already installed
 
