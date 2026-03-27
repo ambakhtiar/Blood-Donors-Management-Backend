@@ -1,7 +1,7 @@
 
 
 # Project Memory — Blood-Donors-Management-Backend
-> 81 notes | Score threshold: >40
+> 201 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -18,16 +18,32 @@
 
 **Stack:** JavaScript/TypeScript · Express · DB: PostgreSQL, Prisma
 
-## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Project Standards
+## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Active: `prisma`
 
-- convention in .gitignore
-- Use select/include to limit data fetched — avoid over-fetching
-- Use transactions for related database operations
-- Rate limit API endpoints to prevent abuse
-- Validate request body with a schema validator (Joi, Zod)
-- Use helmet for security headers
-- Enable strict mode in tsconfig.json
-- Prefer Array methods (map, filter, reduce) over manual loops
+- **what-changed in schema.prisma — confirmed 4x**
+- **Added session cookies authentication**
+- **🟢 Edited prisma/schema.prisma (27 changes, 2min)**
+- **what-changed in schema.prisma**
+- **what-changed in schema.prisma**
+
+## Project Standards
+
+- what-changed in schema.prisma — confirmed 4x
+- Strengthened types AppError — ensures atomic multi-step database operations
+- convention in sendEmail.ts
+- Added JWT tokens authentication — optimizes data fetching with relational que... — confirmed 3x
+- Strengthened types AppError — filters out falsy/null values explicitly
+- Added session cookies authentication — externalizes configuration for environ... — confirmed 6x
+- Added JWT tokens authentication — optimizes data fetching with relational que... — confirmed 3x
+- Replaced auth Public — confirmed 3x
+
+## Known Fixes
+
+- ❌ PrismaClientKnownRequestError, → ✅ problem-fix in index.js
+
+## Recent Decisions
+
+- Optimized package — offloads heavy computation off the main thread
 
 ## Verified Best Practices
 
