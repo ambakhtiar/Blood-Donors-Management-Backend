@@ -2,6 +2,46 @@
 > Dynamically loaded for active file: `src\app\routes\index.ts` (Domain: **Backend (API/Server)**)
 
 ### 📐 Backend (API/Server) Conventions & Fixes
+- **[what-changed] 🟢 Edited src/app/routes/index.ts (5 changes, 1min)**: Active editing session on src/app/routes/index.ts.
+5 content changes over 1 minutes.
+- **[what-changed] Replaced auth PostRoutes — improves module reusability**: - import { HospitalRoutes } from '../modules/hospital/hospital.route';
++ import { PostRoutes } from '../modules/post/post.route';
+- import { OrganisationRoutes } from '../modules/organisation/organisation.route';
++ 
+- import { PostRoutes } from '../modules/post/post.route';
++ const router = Router();
+- const router = Router();
++ const moduleRoutes = [
+- 
++     { path: '/auth', route: AuthRoutes },
+- const moduleRoutes = [
++     { path: '/users', route: UserRoutes },
+-     { path: '/auth', route: AuthRoutes },
++     { path: '/posts', route: PostRoutes },
+-     { path: '/users', route: UserRoutes },
++ ];
+-     { path: '/posts', route: PostRoutes },
++ 
+- ];
++ moduleRoutes.forEach((route) => router.use(route.path, route.route));
+- moduleRoutes.forEach((route) => router.use(route.path, route.route));
++ export default router;
+- 
+- export default router;
+
+📌 IDE AST Context: Modified symbols likely include [router, moduleRoutes, moduleRoutes.forEach() callback, default]
+- **[what-changed] Updated API endpoint HospitalRoutes — improves module reusability**: -     { path: '/hospital', route: HospitalRoutes },
++ ];
+-     { path: '/organisation', route: OrganisationRoutes },
++ 
+- ];
++ moduleRoutes.forEach((route) => router.use(route.path, route.route));
+- moduleRoutes.forEach((route) => router.use(route.path, route.route));
++ export default router;
+- 
+- export default router;
+
+📌 IDE AST Context: Modified symbols likely include [router, moduleRoutes, moduleRoutes.forEach() callback, default]
 - **[convention] 🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x**: Active editing session on src/app/routes/index.ts.
 5 content changes over 5 minutes.
 - **[convention] Replaced auth PostRoutes — improves module reusability — confirmed 3x**: - 
@@ -260,134 +300,3 @@
 … [diff truncated]
 
 📌 IDE AST Context: Modified symbols likely include [router, PostRoutes]
-- **[what-changed] Replaced auth Auth**: - import { PostControllers } from './post.controller';
-+ import validateRequest from '../../middlewares/validateRequest';
-- import validateRequest from '../../middlewares/validateRequest';
-+ import { createPostSchema, updatePostSchema } from './post.validation';
-- import { createPostSchema, updatePostSchema } from './post.validation';
-+ import auth from '../../middlewares/auth';
-- import auth from '../../middlewares/auth';
-+ import { USER_ROLE } from '../Auth/auth.constant';
-- import { USER_ROLE } from '../Auth/auth.constant';
-+ 
-- 
-+ const router = Router();
-- const router = Router();
-+ 
-- 
-+ router.post(
-- router.post(
-+   '/',
--   '/',
-+   auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL),
--   auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL),
-+   validateRequest(createPostSchema),
--   validateRequest(createPostSchema),
-+   PostControllers.createPost
--   PostControllers.createPost
-+ );
-- );
-+ 
-- 
-+ router.get('/', PostControllers.getAllPosts);
-- router.get('/', PostControllers.getAllPosts);
-+ router.get('/:id', PostControllers.getSinglePost);
-- router.get('/:id', PostControllers.getSinglePost);
-+ 
-- 
-+ router.patch(
-- router.patch(
-+   '/:id',
--   '/:id',
-+   auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
--   auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
-+   validateRequest(updatePostSchema),
--   validateRequest(updatePostSchema),
-+   PostControllers.updatePost
--   PostControllers.updatePost
-+ );
-- );
-+ 
-- 
-+ router.delete(
-- router.delete(
-+   '/:id',
--   '/:id',
-+   auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
--   auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
-+   PostControllers.deletePost
--   PostControllers.deletePost
-+ );
-- );
-+ 
-- 
-+ router.patch(
-- router.patch(
-+   '/:id/resolve',
--   '/:id
-… [diff truncated]
-
-📌 IDE AST Context: Modified symbols likely include [router, PostRoutes]
-- **[what-changed] 🟢 Edited src/app/modules/post/post.route.ts (6 changes, 3min)**: Active editing session on src/app/modules/post/post.route.ts.
-6 content changes over 3 minutes.
-- **[what-changed] Updated schema IPaginationOptions**: - 
-+ import { IPaginationOptions, IPostFilters } from './post.interface';
-- const createPost = catchAsync(async (req: Request, res: Response) => {
-+ 
--   const result = await PostServices.createPost(req.user, req.body);
-+ const createPost = catchAsync(async (req: Request, res: Response) => {
-- 
-+   const result = await PostServices.createPost(req.user, req.body);
--   sendResponse(res, {
-+ 
--     statusCode: httpStatus.CREATED,
-+   sendResponse(res, {
--     success: true,
-+     statusCode: httpStatus.CREATED,
--     message: 'Post created successfully',
-+     success: true,
--     data: result,
-+     message: 'Post created successfully',
--   });
-+     data: result,
-- });
-+   });
-- 
-+ });
-- const getAllPosts = catchAsync(async (req: Request, res: Response) => {
-+ 
--   const filters = pick(req.query, ['searchTerm', 'type', 'bloodGroup', 'division', 'district', 'upazila']) as IPostFilters;
-+ const getAllPosts = catchAsync(async (req: Request, res: Response) => {
--   const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']) as IPaginationOptions;
-+   const filters = pick(req.query, ['searchTerm', 'type', 'bloodGroup', 'division', 'district', 'upazila']) as IPostFilters;
-- 
-+   const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']) as IPaginationOptions;
--   const result = await PostServices.getAllPosts(filters, options);
-+ 
-- 
-+   const result = await PostServices.getAllPosts(filters, options);
--   sendResponse(res, {
-+ 
--     statusCode: httpStatus.OK,
-+   sendResponse(res, {
--     success: true,
-+     statusCode: httpStatus.OK,
--     message: 'Posts retrieved successfully',
-+     success: true,
--     meta: result.meta,
-+     message: 'Posts retrieved successfully',
--     data: result.data,
-+     meta: result.meta,
--   });
-+     data: result.data,
-- });
-+   });
-- 
-+ });
-- const getSinglePost = catchAsync(async (req: Request, res: Response) => {
-+ 
--   const result = await PostServices.getSinglePost(req.params.id as string);
-+ const getSi
-… [diff truncated]
-
-📌 IDE AST Context: Modified symbols likely include [createPost, getAllPosts, getSinglePost, updatePost, deletePost]
