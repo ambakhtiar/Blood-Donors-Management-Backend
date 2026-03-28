@@ -1,0 +1,1136 @@
+{
+	"info": {
+		"_postman_id": "8025e8ff-661b-46dd-b16c-4023d6000c11",
+		"name": "BloodLink API",
+		"description": "Comprehensive Postman Collection for BloodLink Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Auth Module",
+			"item": [
+				{
+					"name": "Register User (Donor)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"donor@example.com\",\n  \"password\": \"Password123\",\n  \"contactNumber\": \"+8801700000001\",\n  \"role\": \"USER\",\n  \"donorInfo\": {\n    \"name\": \"Alice Miller\",\n    \"bloodGroup\": \"O+\",\n    \"gender\": \"FEMALE\",\n    \"division\": \"Dhaka\",\n    \"district\": \"Dhaka\",\n    \"upazila\": \"Dhanmondi\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Hospital",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"hospital@example.com\",\n  \"password\": \"Password123\",\n  \"contactNumber\": \"+8801800000001\",\n  \"role\": \"HOSPITAL\",\n  \"hospitalInfo\": {\n    \"name\": \"City General Hospital\",\n    \"registrationNumber\": \"REG12345\",\n    \"address\": \"Main St, Mirpur\",\n    \"division\": \"Dhaka\",\n    \"district\": \"Dhaka\",\n    \"upazila\": \"Mirpur\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Organisation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"org@example.com\",\n  \"password\": \"Password123\",\n  \"contactNumber\": \"+8801900000001\",\n  \"role\": \"ORGANISATION\",\n  \"organisationInfo\": {\n    \"name\": \"Blood Alliance\",\n    \"registrationNumber\": \"ORG6789\",\n    \"establishedYear\": \"2010\",\n    \"division\": \"Dhaka\",\n    \"district\": \"Dhaka\",\n    \"upazila\": \"Gulshan\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    if (response.success && response.data.accessToken) {",
+									"        pm.collectionVariables.set(\"token\", response.data.accessToken);",
+									"        console.log(\"Token automatically saved to collection variable\");",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"donor@example.com\",\n  \"password\": \"Password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"refreshToken\": \"...\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/refresh-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"oldPassword\": \"Password123\",\n  \"newPassword\": \"NewPassword456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/change-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"donor@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/forgot-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"user_id_here\",\n  \"token\": \"6_digit_otp_here\",\n  \"newPassword\": \"NewPassword456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Super Admin Module",
+			"item": [
+				{
+					"name": "Create Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jane Admin\",\n  \"email\": \"jane@admin.com\",\n  \"contactNumber\": \"+8801500000002\",\n  \"password\": \"Admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/manage-admins",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"manage-admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/manage-admins",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"manage-admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/manage-admins/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"manage-admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "admin_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jane Updated Name\",\n  \"contactNumber\": \"+8801500000003\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/manage-admins/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"manage-admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "admin_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Admin Access",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountStatus\": \"BLOCKED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/manage-admins/:id/access",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"manage-admins",
+								":id",
+								"access"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "admin_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/manage-admins/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"manage-admins",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "admin_id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Admin Module",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/users?role=USER&accountStatus=ACTIVE",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "USER"
+								},
+								{
+									"key": "accountStatus",
+									"value": "ACTIVE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"ACTIVE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/users/:id/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								":id",
+								"status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "user_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get System Analytics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/analytics",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"analytics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. User & Donor Module",
+			"item": [
+				{
+					"name": "Get My Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"updated@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Donors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/users/donors?bloodGroup=B+&division=Dhaka",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"donors"
+							],
+							"query": [
+								{
+									"key": "bloodGroup",
+									"value": "B+"
+								},
+								{
+									"key": "division",
+									"value": "Dhaka"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Post Module",
+			"item": [
+				{
+					"name": "Create Blood Finding Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"BLOOD_FINDING\",\n  \"bloodGroup\": \"O+\",\n  \"bloodBags\": 2,\n  \"reason\": \"Emergency Surgery\",\n  \"donationTime\": \"2026-03-30T10:00:00Z\",\n  \"contactNumber\": \"+8801700000001\",\n  \"location\": \"Dhaka Medical College Hospital\",\n  \"content\": \"Urgent O+ blood needed for a surgery tomorrow.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Blood Donation Camp Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"BLOOD_DONATION\",\n  \"title\": \"Weekend Donation Camp\",\n  \"bloodGroup\": \"Any\",\n  \"donationTime\": \"2026-04-05T09:00:00Z\",\n  \"location\": \"Banani Community Center\",\n  \"content\": \"Community blood donation drive. All healthy donors welcome.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Helping Post (Crowdfunding)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"HELPING\",\n  \"title\": \"Medical Bill Support\",\n  \"reason\": \"Financial assistance for critical care\",\n  \"medicalIssues\": \"Bone marrow transplant required\",\n  \"contactNumber\": \"+8801800000001\",\n  \"targetAmount\": 500000,\n  \"location\": \"Evercare Hospital Dhaka\",\n  \"bkashNagadNumber\": \"01800000001\",\n  \"content\": \"Seeking small contributions from the community.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/posts?type=BLOOD_FINDING&bloodGroup=O+",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "BLOOD_FINDING"
+								},
+								{
+									"key": "bloodGroup",
+									"value": "O+"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/posts/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "post_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resolve Post",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/posts/:id/resolve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"resolve"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "post_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Helping Post",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/posts/:id/approve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"approve"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "post_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Post (Highlight)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/posts/:id/verify",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								":id",
+								"verify"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "post_id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Hospital Module",
+			"item": [
+				{
+					"name": "Record Donation (Hospital Only)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"contactNumber\": \"+8801700000001\",\n  \"name\": \"Alice Miller\",\n  \"bloodGroup\": \"O+\",\n  \"gender\": \"FEMALE\",\n  \"weight\": 65,\n  \"createPost\": true,\n  \"postContent\": \"Donated successfully at City General Hospital.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hospitals/record-donation",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hospitals",
+								"record-donation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Request Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"ACCEPTED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hospitals/requests/:requestId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hospitals",
+								"requests",
+								":requestId"
+							],
+							"variable": [
+								{
+									"key": "requestId",
+									"value": "request_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Donation Records",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/hospitals/donation-records",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hospitals",
+								"donation-records"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. Organisation Module",
+			"item": [
+				{
+					"name": "Add Volunteer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"contactNumber\": \"+8801999999999\",\n  \"name\": \"Bob Volunteer\",\n  \"email\": \"bob@example.com\",\n  \"bloodGroup\": \"A+\",\n  \"gender\": \"MALE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/organisations/volunteers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"organisations",
+								"volunteers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Volunteers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/organisations/volunteers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"organisations",
+								"volunteers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Volunteer Donation Date",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2026-03-28\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/organisations/volunteers/:bloodDonorId/donation-date",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"organisations",
+								"volunteers",
+								":bloodDonorId",
+								"donation-date"
+							],
+							"variable": [
+								{
+									"key": "bloodDonorId",
+									"value": "donor_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Volunteer History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/organisations/volunteers/history",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"organisations",
+								"volunteers",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "8. Payment Module",
+			"item": [
+				{
+					"name": "Initiate Donation Payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"postId\": \"patient_post_id_here\",\n  \"amount\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payments/initiate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"initiate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment Success Hook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payments/success?transactionId=TXN123",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"success"
+							],
+							"query": [
+								{
+									"key": "transactionId",
+									"value": "TXN123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment Fail Hook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payments/fail?transactionId=TXN123",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"fail"
+							],
+							"query": [
+								{
+									"key": "transactionId",
+									"value": "TXN123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment Cancel Hook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payments/cancel?transactionId=TXN123",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"cancel"
+							],
+							"query": [
+								{
+									"key": "transactionId",
+									"value": "TXN123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment IPN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/payments/ipn",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payments",
+								"ipn"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	}
+}

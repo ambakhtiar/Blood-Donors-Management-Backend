@@ -2,8 +2,9 @@ import httpStatus from 'http-status';
 import { prisma } from '../../lib/prisma';
 import AppError from '../../errors/AppError';
 import { IRecordDonationPayload, IUpdateRequestStatusPayload } from './hospital.interface';
-import { Gender, PostType, RequestStatus } from '../../../generated/prisma';
+import { Gender, PostType, RequestStatus, BloodGroup } from '../../../generated/prisma';
 import { sendNotificationEmail } from '../../utils/sendEmail';
+import { bloodGroupMap } from '../../helpers/bloodGroup.utils';
 
 const recordDonation = async (hospitalId: string, payload: IRecordDonationPayload) => {
   return await prisma.$transaction(async (tx) => {
@@ -19,11 +20,12 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
           'Name, blood group, and gender are required to register a new donor profile.'
         );
       }
+      const mappedBloodGroup = payload.bloodGroup ? (bloodGroupMap[payload.bloodGroup] || payload.bloodGroup) : undefined;
       bloodDonor = await tx.bloodDonor.create({
         data: {
-          name: payload.name,
+          name: payload.name as string,
           contactNumber: payload.contactNumber,
-          bloodGroup: payload.bloodGroup,
+          bloodGroup: mappedBloodGroup as BloodGroup,
           gender: payload.gender as Gender,
           isAvailable: true,
           division: payload.division || '',

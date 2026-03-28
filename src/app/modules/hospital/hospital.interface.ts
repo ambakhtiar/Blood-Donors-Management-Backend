@@ -1,9 +1,9 @@
-import { Gender, RequestStatus } from '../../../generated/prisma';
+import { BloodGroup, Gender, RequestStatus } from '../../../generated/prisma';
 
 export interface IRecordDonationPayload {
   contactNumber: string;
   name?: string;
-  bloodGroup?: string;
+  bloodGroup?: BloodGroup;
   gender?: Gender;
   weight?: number;
   createPost?: boolean;

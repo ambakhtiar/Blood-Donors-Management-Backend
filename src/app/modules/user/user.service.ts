@@ -2,8 +2,8 @@ import httpStatus from "http-status";
 import { prisma } from "../../lib/prisma";
 import AppError from "../../errors/AppError";
 import { IUpdateProfilePayload } from "./user.interface";
-import { Prisma, UserRole } from "../../../generated/prisma";
-
+import { Prisma, UserRole, BloodGroup } from "../../../generated/prisma";
+import { bloodGroupMap } from "../../helpers/bloodGroup.utils";
 const getMyProfile = async (userId: string, role: string) => {
   const result = await prisma.user.findUnique({
     where: {
@@ -69,7 +69,7 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
         data: hospitalInfo,
       });
     } else if (role === UserRole.ORGANISATION && organisationInfo) {
-       await tx.organisation.update({
+      await tx.organisation.update({
         where: { userId },
         data: organisationInfo,
       });
@@ -84,59 +84,60 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
 };
 
 const getDonorList = async (filters: Record<string, unknown>) => {
-    const { bloodGroup, division, district, upazila, searchTerm } = filters;
+  const { bloodGroup, division, district, upazila, searchTerm } = filters;
 
-    const andConditions = [];
+  const andConditions = [];
 
-    if (searchTerm) {
-        andConditions.push({
-            OR: [
-                { email: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
-                { contactNumber: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
-                { donorProfile: { name: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } } }
-            ]
-        });
-    }
-
-    if (bloodGroup) {
-        andConditions.push({
-            donorProfile: { bloodGroup: { equals: bloodGroup as string } }
-        });
-    }
-
-    if (division) {
-        andConditions.push({ division: { equals: division as string } });
-    }
-
-    if (district) {
-        andConditions.push({ district: { equals: district as string } });
-    }
-
-    if (upazila) {
-        andConditions.push({ upazila: { equals: upazila as string } });
-    }
-
-    // Always filter for USER role and not deleted
+  if (searchTerm) {
     andConditions.push({
-        role: UserRole.USER,
-        isDeleted: false,
-        donorProfile: {
-            isAvailableForDonation: true,
-            isDeleted: false
-        }
+      OR: [
+        { email: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
+        { contactNumber: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
+        { donorProfile: { name: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } } }
+      ]
     });
+  }
 
-    const whereConditions: Prisma.UserWhereInput = { AND: andConditions };
-
-    const result = await prisma.user.findMany({
-        where: whereConditions,
-        include: {
-            donorProfile: true
-        }
+  if (bloodGroup) {
+    const mappedBloodGroup = bloodGroupMap[bloodGroup as string] || bloodGroup;
+    andConditions.push({
+      donorProfile: { bloodGroup: { equals: mappedBloodGroup as BloodGroup } }
     });
+  }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    return result.map(({ password: _password, ...userWithoutPassword }) => userWithoutPassword);
+  if (division) {
+    andConditions.push({ division: { equals: division as string } });
+  }
+
+  if (district) {
+    andConditions.push({ district: { equals: district as string } });
+  }
+
+  if (upazila) {
+    andConditions.push({ upazila: { equals: upazila as string } });
+  }
+
+  // Always filter for USER role and not deleted
+  andConditions.push({
+    role: UserRole.USER,
+    isDeleted: false,
+    donorProfile: {
+      isAvailableForDonation: true,
+      isDeleted: false
+    }
+  });
+
+  const whereConditions: Prisma.UserWhereInput = { AND: andConditions };
+
+  const result = await prisma.user.findMany({
+    where: whereConditions,
+    include: {
+      donorProfile: true
+    }
+  });
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  return result.map(({ password: _password, ...userWithoutPassword }) => userWithoutPassword);
 };
 
 export const UserServices = {

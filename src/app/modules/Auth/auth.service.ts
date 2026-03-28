@@ -3,18 +3,19 @@ import httpStatus from 'http-status';
 import jwt from 'jsonwebtoken';
 import AppError from '../../errors/AppError';
 import { envVars } from '../../config/env';
+import { prisma } from '../../lib/prisma';
+import { AccountStatus, Gender, UserRole } from '../../../generated/prisma';
+import { sendOTPEmail } from '../../utils/sendEmail';
+import { createToken, verifyToken } from '../../utils/jwt.utils';
 import {
   IChangePassword,
   IForgotPassword,
   ILocationInfo,
   ILoginUser,
   IRegisterUser,
-  IResetPassword
+  IResetPassword,
 } from './auth.interface';
-import { prisma } from '../../lib/prisma';
-import { AccountStatus, Gender, UserRole } from '../../../generated/prisma';
-import { sendOTPEmail } from '../../utils/sendEmail';
-import { createToken, verifyToken } from '../../utils/jwt.utils';
+
 
 const registerUser = async (payload: IRegisterUser) => {
   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
@@ -101,12 +102,12 @@ const registerUser = async (payload: IRegisterUser) => {
         });
       }
     } else if (role === 'HOSPITAL' && hospitalInfo) {
-      const { ...restHospitalInfo } = hospitalInfo;
+      const { division, district, upazila, ...restHospitalInfo } = hospitalInfo;
       await tx.hospital.create({
         data: { ...restHospitalInfo, userId: user.id },
       });
     } else if (role === 'ORGANISATION' && organisationInfo) {
-      const { ...restOrgInfo } = organisationInfo;
+      const { division, district, upazila, ...restOrgInfo } = organisationInfo;
       await tx.organisation.create({
         data: { ...restOrgInfo, userId: user.id },
       });

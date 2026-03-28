@@ -22,6 +22,15 @@ const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
       const target = err.meta?.target as string[];
       errorDetails = target ? [{ path: target[0], message: `${target[0]} already exists` }] : err.meta;
     }
+  } else if (err instanceof Prisma.PrismaClientValidationError) {
+    statusCode = 400;
+    message = 'Validation Error (Database)';
+    // Extract a cleaner message from the Prisma validation error
+    const lines = err.message.split('\n');
+    message = lines[lines.length - 1] || 'Invalid data provided to database';
+  } else if (err?.name === 'JsonWebTokenError') {
+    statusCode = 401;
+    message = 'Invalid Token';
   } else if (err instanceof AppError) {
     statusCode = err?.statusCode;
     message = err.message;

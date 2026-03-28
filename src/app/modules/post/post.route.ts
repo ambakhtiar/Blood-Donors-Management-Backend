@@ -2,7 +2,7 @@ import { Router } from 'express';
 import validateRequest from '../../middlewares/validateRequest';
 import { createPostSchema, updatePostSchema } from './post.validation';
 import auth from '../../middlewares/auth';
-import { USER_ROLE } from '../Auth/auth.constant';
+import { USER_ROLE } from '../auth/auth.constant';
 import { PostControllers } from './post.controller';
 
 const router = Router();

@@ -1,6 +1,6 @@
 ---
 name: problem-fix
-description: "Problem Fix for Blood-Donors-Management-Backend. 13 error→fix pairs."
+description: "Problem Fix for Blood-Donors-Management-Backend. 15 error→fix pairs."
 domain: problem-fix
 composesFrom:
   - fix
@@ -20,8 +20,8 @@ Auto-compiled from **4 real patterns** in **Blood-Donors-Management-Backend**. T
 
 | Error Pattern | Fix | Seen |
 |-------|-----|------|
-| `PrismaClientKnownRequestError,` | problem-fix in index.js | 7x |
-| `"use strict";var h=Object.defineProperty;var T=Obj` | problem-fix in query_compiler_fast_bg.js | 4x |
+| `PrismaClientKnownRequestError,` | problem-fix in index.js | 9x |
+| `"use strict";var h=Object.defineProperty;var T=Obj` | problem-fix in query_compiler_fast_bg.js | 5x |
 | `-   } catch (error) {` | Fixed null crash in PORT — externalizes configuration for en | 3x |
 | `import AppError from '../../errors/AppError';` | problem-fix in organisation.service.ts | 2x |
 | `-     throw new AppError(httpStatus.NOT_FOUND, 'Ta` | Fixed null crash in AppError — externalizes configuration fo | 2x |
@@ -32,14 +32,16 @@ Auto-compiled from **4 real patterns** in **Blood-Donors-Management-Backend**. T
 | `-         throw new AppError(` | Fixed null crash in Scenario — prevents null/undefined runti | 2x |
 | `+     throw new AppError(httpStatus.NOT_FOUND, "Po` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `-             throw new AppError(status.INTERNAL_S` | Fixed null crash in EnvConfig — externalizes configuration f | 2x |
+| `-     bloodGroup: z.string({ required_error: 'Bloo` | problem-fix in post.validation.ts | 2x |
 | `+     throw new AppError(httpStatus.FORBIDDEN, "Yo` | Fixed null crash in IChangePassword — uses a proper password | 2x |
+| `-       donationTimeType: z.nativeEnum(DonationTim` | problem-fix in post.validation.ts | 2x |
 
 ## 📐 Conventions & Best Practices
 
 ### Compiled Rules
+- ✅ When encountering this, fix by: problem-fix in index.js (seen 2x)
 - ✅ When encountering this, fix by: problem-fix in query_compiler_fast_bg.js (seen 2x)
 - ✅ When encountering this, fix by: problem-fix in edge.js (seen 2x)
-- ✅ When encountering this, fix by: problem-fix in index.js (seen 2x)
 - ✅ When encountering this, fix by: problem-fix in .gitignore (seen 2x)
 
 ---

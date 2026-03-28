@@ -29,8 +29,6 @@ interface SendEmailOptions {
 }
 
 export const sendOTPEmail = async ({ subject, templateData, templateName, to, attachments }: SendEmailOptions) => {
-
-
   try {
     const templatePath = path.resolve(process.cwd(), `src/app/templates/${templateName}.ejs`);
 

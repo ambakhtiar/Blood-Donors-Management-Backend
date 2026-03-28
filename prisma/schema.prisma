@@ -51,6 +51,23 @@ enum PaymentStatus {
   CANCELLED
 }
 
+enum BloodGroup {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+}
+
+enum DonationTimeType {
+  EMERGENCY
+  FIXED
+  FLEXIBLE
+}
+
 // ================= Core User Model =================
 model User {
   id            String        @id @default(uuid(7))
@@ -137,7 +154,7 @@ model Organisation {
 model DonorProfile {
   id                     String    @id @default(uuid(7))
   name                   String
-  bloodGroup             String
+  bloodGroup             BloodGroup
   gender                 Gender
   weight                 Float?
   lastDonationDate       DateTime?
@@ -175,7 +192,7 @@ model BloodDonor {
   id               String    @id @default(uuid(7))
   name             String
   contactNumber    String    @unique
-  bloodGroup       String
+  bloodGroup       BloodGroup
   gender           Gender
   lastDonationDate DateTime?
   isAvailable      Boolean   @default(true)
@@ -233,9 +250,10 @@ model Post {
   longitude        Float?   
 
   // BLOOD_FINDING & BLOOD_DONATION specific
-  bloodGroup       String?
+  bloodGroup       BloodGroup?
   bloodBags        Int?
   reason           String?
+  donationTimeType DonationTimeType?
   donationTime     DateTime?
   hemoglobin       Float?   
 

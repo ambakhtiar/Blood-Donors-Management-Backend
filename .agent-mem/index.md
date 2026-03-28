@@ -1,16 +1,166 @@
 # Notes Index — Blood-Donors-Management-Backend
-> 735 total notes
+> 885 total notes
 
 ### 2026-03-28
 
 | # | Title | ~Tok |
 |---|---|---|
+| 885 | Replaced dependency BloodGroup | ~65 |
+| 884 | Replaced dependency DonationTimeType | ~57.5 |
+| 883 | 🟢 Edited src/app/modules/post/post.validation.... | ~30 |
+| 882 | problem-fix in post.validation.ts | ~79 |
+| 881 | what-changed in post.validation.ts | ~75.25 |
+| 880 | problem-fix in post.validation.ts | ~78.5 |
+| 879 | problem-fix in post.validation.ts | ~80.75 |
+| 878 | problem-fix in post.validation.ts | ~79 |
+| 877 | problem-fix in post.validation.ts | ~80.5 |
+| 876 | 🟢 Edited src/app/helpers/bloodGroup.utils.ts (... | ~30 |
+| 875 | Updated schema BloodGroup | ~478.75 |
+| 874 | what-changed in bloodGroup.utils.ts | ~70.75 |
+| 873 | what-changed in bloodGroup.utils.ts | ~70.75 |
+| 872 | what-changed in query_compiler_fast_bg.wasm-bas... | ~153 |
+| 871 | problem-fix in query_compiler_fast_bg.js | ~150 |
+| 870 | what-changed in wasm-compiler-edge.js | ~151.25 |
+| 869 | what-changed in client.js | ~148.25 |
+| 868 | what-changed in schema.prisma | ~147.5 |
+| 867 | what-changed in package.json | ~69.5 |
+| 866 | what-changed in wasm-worker-loader.mjs | ~70.25 |
+| 865 | what-changed in wasm-edge-light-loader.mjs | ~73 |
+| 864 | what-changed in index-browser.js | ~149.75 |
+| 863 | problem-fix in index.js | ~146.25 |
+| 862 | what-changed in index-browser.js | ~148.25 |
+| 861 | problem-fix in edge.js | ~146 |
+| 860 | what-changed in default.js | ~66.75 |
+| 859 | what-changed in client.js | ~62.5 |
+| 858 | what-changed in bloodGroup.utils.ts | ~46.75 |
+| 857 | 🟢 Edited src/app/modules/post/post.interface.t... | ~30 |
+| 856 | Replaced dependency bloodGrouputils | ~78 |
+| 855 | Replaced dependency bloodGrouputils | ~63.25 |
+| 854 | Replaced dependency bloodGrouputils | ~66.5 |
+| 853 | Strengthened types Prisma | ~533 |
+| 852 | Replaced dependency bloodGrouputils | ~63 |
+| 851 | Replaced dependency Either | ~278.75 |
+| 850 | Replaced dependency PostType | ~53.25 |
+| 849 | Replaced dependency PostType | ~60.75 |
+| 848 | Replaced auth Regenerate | ~406.5 |
+| 847 | discovery in organisation.validation.ts | ~152.5 |
+| 846 | discovery in hospital.validation.ts | ~150.5 |
+| 845 | discovery in hospital.service.ts | ~150 |
+| 844 | discovery in user.service.ts | ~65.5 |
+| 843 | what-changed in auth.interface.ts | ~148.25 |
+| 842 | Updated schema PostType | ~531.25 |
+| 841 | Added session cookies authentication — ensures ... | ~504.75 |
+| 840 | Replaced auth BloodGroup — ensures atomic multi... | ~504.75 |
+| 839 | Replaced auth Refactor — confirmed 3x | ~504.75 |
+| 838 | Replaced auth Refactor — evolves the database s... | ~504.75 |
+| 837 | Updated schema Validation | ~527.25 |
+| 836 | Fixed null crash in Email — prevents null/undef... | ~535.25 |
+| 835 | Added JWT tokens authentication | ~76 |
+| 834 | Updated schema Post | ~498.5 |
+| 833 | problem-fix in post.validation.ts — confirmed 3x | ~527.25 |
+| 832 | Strengthened types Improve | ~504.75 |
+| 831 | Strengthened types Post | ~504.75 |
+| 830 | problem-fix in globalErrorHandler.ts | ~149 |
+| 829 | what-changed in auth.service.ts — confirmed 3x | ~169 |
+| 828 | what-changed in auth.service.ts | ~169 |
+| 827 | what-changed in auth.service.ts | ~154.5 |
+| 826 | discovery in auth.service.ts | ~148 |
+| 825 | Replaced auth Verify | ~56.75 |
+| 824 | Replaced auth Verify | ~56.75 |
+| 823 | Replaced auth Rename — confirmed 3x | ~108.75 |
+| 822 | Replaced auth Rename | ~77.25 |
+| 821 | Replaced auth Rename | ~77.25 |
+| 820 | 🟢 Edited src/app/modules/Auth/auth.service.ts ... | ~30 |
+| 819 | Added JWT tokens authentication | ~233 |
+| 818 | ⚠️ GOTCHA: Fixed null crash in IChangePassword ... | ~533 |
+| 817 | ⚠️ GOTCHA: Fixed null crash in IChangePassword ... | ~533 |
+| 816 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 815 | ⚠️ GOTCHA: Fixed null crash in AccountStatus — ... | ~534.5 |
+| 814 | ⚠️ GOTCHA: Fixed null crash in AccountStatus — ... | ~534.5 |
+| 813 | Replaced auth AuthRoutes | ~59.25 |
+| 812 | Replaced auth Auth | ~44.75 |
+| 811 | Replaced auth AuthRoutes | ~59.25 |
+| 810 | Replaced auth Auth | ~44.75 |
+| 809 | Replaced auth AppError — improves module reusab... | ~522 |
+| 808 | what-changed in auth.ts | ~26.5 |
+| 807 | 🟢 Edited src/app/utils/jwt.utils.ts (54 change... | ~30 |
+| 806 | Replaced auth jwt.utils — confirmed 4x | ~50 |
+| 805 | Replaced auth jwt.utils | ~44.25 |
+| 804 | what-changed in jwt.utils.ts | ~37.75 |
+| 803 | Replaced auth jwt.utils | ~41.75 |
+| 802 | Replaced auth jwt.utils | ~38.75 |
+| 801 | Added JWT tokens authentication — confirmed 9x | ~68.75 |
+| 800 | what-changed in jwt.utils.ts | ~23 |
+| 799 | Added JWT tokens authentication | ~51 |
+| 798 | 🟢 Edited src/app/middlewares/auth.ts (6 change... | ~30 |
+| 797 | Added JWT tokens authentication — improves modu... | ~522 |
+| 796 | what-changed in auth.ts — confirmed 9x | ~27.25 |
+| 795 | what-changed in auth.ts | ~19.25 |
+| 794 | 🟢 Edited src/app/modules/Auth/auth.service.ts ... | ~30 |
+| 793 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 792 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 791 | ⚠️ GOTCHA: Fixed null crash in AccountStatus — ... | ~534.5 |
+| 790 | ⚠️ GOTCHA: Fixed null crash in AccountStatus — ... | ~534.5 |
+| 789 | what-changed in auth.service.ts — confirmed 3x | ~33 |
+| 788 | discovery in auth.service.ts | ~148 |
+| 787 | ⚠️ GOTCHA: Fixed null crash in IResetPassword —... | ~535.25 |
+| 786 | ⚠️ GOTCHA: Fixed null crash in AccountStatus — ... | ~536 |
+| 785 | ⚠️ GOTCHA: Fixed null crash in IResetPassword —... | ~535.25 |
+| 784 | ⚠️ GOTCHA: Fixed null crash in AccountStatus — ... | ~534.5 |
+| 783 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 782 | ⚠️ GOTCHA: Fixed null crash in IResetPassword —... | ~535.25 |
+| 781 | what-changed in auth.service.ts | ~37 |
+| 780 | ⚠️ GOTCHA: Fixed null crash in IResetPassword —... | ~534.5 |
+| 779 | ⚠️ GOTCHA: Fixed null crash in AccountStatus — ... | ~534.5 |
+| 778 | what-changed in auth.service.ts | ~39.5 |
+| 777 | Replaced auth AuthRoutes — confirmed 3x | ~59.25 |
+| 776 | Replaced auth Auth — confirmed 3x | ~44.75 |
+| 775 | 🟢 Edited src/app/middlewares/auth.ts (21 chang... | ~30 |
+| 774 | what-changed in auth.ts | ~34.5 |
+| 773 | what-changed in auth.ts | ~32.25 |
+| 772 | what-changed in auth.ts | ~31.5 |
+| 771 | what-changed in auth.ts | ~26 |
+| 770 | what-changed in auth.ts | ~20.75 |
+| 769 | Replaced auth AppError — improves module reusab... | ~522 |
+| 768 | what-changed in auth.ts | ~26 |
+| 767 | what-changed in auth.ts | ~25.75 |
+| 766 | Added JWT tokens authentication — improves modu... | ~522 |
+| 765 | Added JWT tokens authentication — improves modu... | ~522 |
+| 764 | Added JWT tokens authentication — improves modu... | ~522 |
+| 763 | Added JWT tokens authentication — improves modu... | ~522 |
+| 762 | Added JWT tokens authentication — improves modu... | ~522 |
+| 761 | Replaced auth Create | ~253.75 |
+| 760 | Added JWT tokens authentication — introduces AP... | ~503.75 |
+| 759 | 🟢 Edited src/generated/utils/sslcommerz.ts (16... | ~30 |
+| 758 | Git Commit: admin create and manage admin api i... | ~20 |
+| 757 | Strengthened types Record | ~380.5 |
+| 756 | Strengthened types Record | ~379.75 |
+| 755 | Replaced dependency sslcommerz | ~52.25 |
+| 754 | Replaced dependency sslcommerz — confirmed 9x | ~51.5 |
+| 753 | Replaced dependency config — confirmed 6x | ~50.75 |
+| 752 | Replaced dependency config | ~50.25 |
+| 751 | Replaced dependency confi | ~49.25 |
+| 750 | Replaced dependency sslcommerz | ~48 |
+| 749 | Replaced dependency sslcommerz | ~50 |
+| 748 | what-changed in index.ts | ~71.75 |
+| 747 | what-changed in index.ts | ~71.75 |
+| 746 | 🟢 Edited src/app/utils/sslcommerz.ts (5 change... | ~30 |
+| 745 | Replaced dependency sslcommerz | ~49.75 |
+| 744 | Replaced dependency config | ~48.75 |
+| 743 | Replaced dependency config | ~47.25 |
+| 742 | Replaced dependency sslcommerz | ~45.75 |
+| 741 | Replaced dependency sslcommerz | ~48 |
+| 740 | decision in hospital.validation.ts | ~65.5 |
+| 739 | what-changed in organisation.validation.ts | ~65.75 |
+| 738 | 🟢 Edited src/app/utils/sslcommerz.ts (6 change... | ~30 |
+| 737 | Strengthened types Record | ~367.25 |
+| 736 | what-changed in sslcommerz.ts | ~40.5 |
 | 735 | Replaced dependency sslcommerz | ~51.25 |
 | 734 | Replaced dependency Record | ~401.75 |
 | 733 | Replaced dependency sslcommerz | ~51.25 |
-| 732 | Added JWT tokens authentication | ~77 |
+| 732 | Added JWT tokens authentication — confirmed 5x | ~77 |
 | 731 | Added JWT tokens authentication | ~64 |
-| 730 | what-changed in index.ts | ~45.25 |
+| 730 | what-changed in index.ts — confirmed 3x | ~45.25 |
 | 729 | Replaced auth UserRoutes — improves module reus... | ~534.25 |
 | 728 | Replaced auth Router — improves module reusability | ~321.75 |
 | 727 | what-changed in index.ts | ~45.25 |
@@ -21,7 +171,7 @@
 | 722 | 🟢 Edited src/app/modules/Auth/auth.service.ts ... | ~30 |
 | 721 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
 | 720 | Added JWT tokens authentication | ~65.75 |
-| 719 | discovery in auth.service.ts | ~49.5 |
+| 719 | discovery in auth.service.ts — confirmed 3x | ~49.5 |
 | 718 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
 | 717 | ⚠️ GOTCHA: Fixed null crash in IChangePassword ... | ~536 |
 | 716 | discovery in auth.service.ts | ~49.5 |

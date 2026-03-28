@@ -125,7 +125,7 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
     andConditions.push({
       OR: [
         { content: { contains: searchTerm, mode: 'insensitive' } },
-        { bloodGroup: { contains: searchTerm, mode: 'insensitive' } },
+        { bloodGroup: { equals: searchTerm as any } },
       ],
     });
   }

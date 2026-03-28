@@ -1,4 +1,4 @@
-import { PostType } from "../../../generated/prisma";
+import { BloodGroup, DonationTimeType, PostType } from "../../../generated/prisma";
 
 export interface ICreatePost {
   type: PostType;
@@ -13,10 +13,11 @@ export interface ICreatePost {
   area?: string;
   latitude?: number;
   longitude?: number;
-  bloodGroup?: string;
+  bloodGroup?: BloodGroup;
   bloodBags?: number;
   reason?: string;
-  donationTime?: string;
+  donationTimeType?: DonationTimeType;
+  donationTime?: string | Date;
   hemoglobin?: number;
   medicalIssues?: string;
   targetAmount?: number;
@@ -26,7 +27,7 @@ export interface ICreatePost {
 export interface IPostFilters {
   searchTerm?: string;
   type?: PostType;
-  bloodGroup?: string;
+  bloodGroup?: BloodGroup;
   division?: string;
   district?: string;
   upazila?: string;

@@ -1,31 +1,31 @@
 {
   "typescript": {
     "enabled": true,
-    "lastGenerated": "2026-03-28T09:43:09.944Z",
-    "observationCount": 304,
+    "lastGenerated": "2026-03-28T17:37:32.433Z",
+    "observationCount": 424,
     "skillCount": 0,
     "domain": "typescript",
     "triggerGlobs": [
       "**/*.ts",
       "**/*.tsx"
     ],
-    "description": "Typescript for Blood-Donors-Management-Backend. 24 gotchas, 45 conventions, 27 fixes."
+    "description": "Typescript for Blood-Donors-Management-Backend. 41 gotchas, 64 conventions, 32 fixes."
   },
   "project": {
     "enabled": true,
-    "lastGenerated": "2026-03-28T09:43:09.945Z",
-    "observationCount": 344,
+    "lastGenerated": "2026-03-28T17:37:32.435Z",
+    "observationCount": 363,
     "skillCount": 0,
     "domain": "project",
     "triggerGlobs": [
       "**/*"
     ],
-    "description": "Project for Blood-Donors-Management-Backend. 26 gotchas, 106 conventions, 2 fixes."
+    "description": "Project for Blood-Donors-Management-Backend. 26 gotchas, 111 conventions, 2 fixes."
   },
   "config": {
     "enabled": true,
-    "lastGenerated": "2026-03-28T09:43:09.947Z",
-    "observationCount": 33,
+    "lastGenerated": "2026-03-28T17:37:32.435Z",
+    "observationCount": 34,
     "skillCount": 0,
     "domain": "config",
     "triggerGlobs": [
@@ -38,21 +38,21 @@
   },
   "javascript": {
     "enabled": true,
-    "lastGenerated": "2026-03-28T09:43:09.946Z",
-    "observationCount": 53,
+    "lastGenerated": "2026-03-28T17:37:32.434Z",
+    "observationCount": 63,
     "skillCount": 0,
     "domain": "javascript",
     "triggerGlobs": [
       "**/*.js",
       "**/*.jsx"
     ],
-    "description": "Javascript for Blood-Donors-Management-Backend. 1 gotchas, 13 conventions, 8 fixes."
+    "description": "Javascript for Blood-Donors-Management-Backend. 1 gotchas, 13 conventions, 11 fixes."
   },
   "convention": {
     "enabled": true,
-    "lastGenerated": "2026-03-28T09:43:09.949Z",
+    "lastGenerated": "2026-03-28T17:37:32.436Z",
     "observationCount": 0,
-    "skillCount": 16,
+    "skillCount": 18,
     "domain": "convention",
     "triggerGlobs": [
       "**/*"
@@ -61,20 +61,20 @@
   },
   "problem-fix": {
     "enabled": true,
-    "lastGenerated": "2026-03-28T09:43:09.948Z",
+    "lastGenerated": "2026-03-28T17:37:32.437Z",
     "observationCount": 0,
     "skillCount": 4,
     "domain": "problem-fix",
     "triggerGlobs": [
       "**/*"
     ],
-    "description": "Problem Fix for Blood-Donors-Management-Backend. 13 error→fix pairs."
+    "description": "Problem Fix for Blood-Donors-Management-Backend. 15 error→fix pairs."
   },
   "gotcha": {
     "enabled": true,
-    "lastGenerated": "2026-03-28T09:43:09.949Z",
+    "lastGenerated": "2026-03-28T17:37:32.438Z",
     "observationCount": 0,
-    "skillCount": 2,
+    "skillCount": 6,
     "domain": "gotcha",
     "triggerGlobs": [
       "**/*"

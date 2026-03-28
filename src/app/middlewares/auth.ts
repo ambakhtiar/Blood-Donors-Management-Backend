@@ -3,24 +3,31 @@ import httpStatus from 'http-status';
 import jwt from 'jsonwebtoken';
 import { envVars } from '../config/env';
 import AppError from '../errors/AppError';
-import { verifyToken } from '../utils/jwt.utils';
 import { prisma } from '../lib/prisma';
 import catchAsync from '../utils/catchAsync';
 import { UserRole } from '../../generated/prisma';
+import { verifyToken } from '../utils/jwt.utils';
 
 const auth = (...requiredRoles: UserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization;
-
+    const authHeader = req.headers.authorization;
+    
     // missing token
-    if (!token) {
+    if (!authHeader) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
+    }
+
+    const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
+
+    if (!token) {
+        throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid token format!');
     }
 
     const decoded = verifyToken(
       token,
       envVars.JWT.SECRET as string,
     ) as jwt.JwtPayload;
+
 
     const { role, userId } = decoded;
 

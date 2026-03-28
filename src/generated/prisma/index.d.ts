@@ -155,6 +155,29 @@ export const PaymentStatus: {
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 
+
+export const BloodGroup: {
+  A_POSITIVE: 'A_POSITIVE',
+  A_NEGATIVE: 'A_NEGATIVE',
+  B_POSITIVE: 'B_POSITIVE',
+  B_NEGATIVE: 'B_NEGATIVE',
+  AB_POSITIVE: 'AB_POSITIVE',
+  AB_NEGATIVE: 'AB_NEGATIVE',
+  O_POSITIVE: 'O_POSITIVE',
+  O_NEGATIVE: 'O_NEGATIVE'
+};
+
+export type BloodGroup = (typeof BloodGroup)[keyof typeof BloodGroup]
+
+
+export const DonationTimeType: {
+  EMERGENCY: 'EMERGENCY',
+  FIXED: 'FIXED',
+  FLEXIBLE: 'FLEXIBLE'
+};
+
+export type DonationTimeType = (typeof DonationTimeType)[keyof typeof DonationTimeType]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -180,6 +203,14 @@ export const RequestStatus: typeof $Enums.RequestStatus
 export type PaymentStatus = $Enums.PaymentStatus
 
 export const PaymentStatus: typeof $Enums.PaymentStatus
+
+export type BloodGroup = $Enums.BloodGroup
+
+export const BloodGroup: typeof $Enums.BloodGroup
+
+export type DonationTimeType = $Enums.DonationTimeType
+
+export const DonationTimeType: typeof $Enums.DonationTimeType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -8392,7 +8423,7 @@ export namespace Prisma {
   export type DonorProfileMinAggregateOutputType = {
     id: string | null
     name: string | null
-    bloodGroup: string | null
+    bloodGroup: $Enums.BloodGroup | null
     gender: $Enums.Gender | null
     weight: number | null
     lastDonationDate: Date | null
@@ -8406,7 +8437,7 @@ export namespace Prisma {
   export type DonorProfileMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    bloodGroup: string | null
+    bloodGroup: $Enums.BloodGroup | null
     gender: $Enums.Gender | null
     weight: number | null
     lastDonationDate: Date | null
@@ -8573,7 +8604,7 @@ export namespace Prisma {
   export type DonorProfileGroupByOutputType = {
     id: string
     name: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     weight: number | null
     lastDonationDate: Date | null
@@ -8681,7 +8712,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      bloodGroup: string
+      bloodGroup: $Enums.BloodGroup
       gender: $Enums.Gender
       weight: number | null
       lastDonationDate: Date | null
@@ -9116,7 +9147,7 @@ export namespace Prisma {
   interface DonorProfileFieldRefs {
     readonly id: FieldRef<"DonorProfile", 'String'>
     readonly name: FieldRef<"DonorProfile", 'String'>
-    readonly bloodGroup: FieldRef<"DonorProfile", 'String'>
+    readonly bloodGroup: FieldRef<"DonorProfile", 'BloodGroup'>
     readonly gender: FieldRef<"DonorProfile", 'Gender'>
     readonly weight: FieldRef<"DonorProfile", 'Float'>
     readonly lastDonationDate: FieldRef<"DonorProfile", 'DateTime'>
@@ -10698,7 +10729,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     contactNumber: string | null
-    bloodGroup: string | null
+    bloodGroup: $Enums.BloodGroup | null
     gender: $Enums.Gender | null
     lastDonationDate: Date | null
     isAvailable: boolean | null
@@ -10718,7 +10749,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     contactNumber: string | null
-    bloodGroup: string | null
+    bloodGroup: $Enums.BloodGroup | null
     gender: $Enums.Gender | null
     lastDonationDate: Date | null
     isAvailable: boolean | null
@@ -10917,7 +10948,7 @@ export namespace Prisma {
     id: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate: Date | null
     isAvailable: boolean
@@ -11069,7 +11100,7 @@ export namespace Prisma {
       id: string
       name: string
       contactNumber: string
-      bloodGroup: string
+      bloodGroup: $Enums.BloodGroup
       gender: $Enums.Gender
       lastDonationDate: Date | null
       isAvailable: boolean
@@ -11514,7 +11545,7 @@ export namespace Prisma {
     readonly id: FieldRef<"BloodDonor", 'String'>
     readonly name: FieldRef<"BloodDonor", 'String'>
     readonly contactNumber: FieldRef<"BloodDonor", 'String'>
-    readonly bloodGroup: FieldRef<"BloodDonor", 'String'>
+    readonly bloodGroup: FieldRef<"BloodDonor", 'BloodGroup'>
     readonly gender: FieldRef<"BloodDonor", 'Gender'>
     readonly lastDonationDate: FieldRef<"BloodDonor", 'DateTime'>
     readonly isAvailable: FieldRef<"BloodDonor", 'Boolean'>
@@ -13250,9 +13281,10 @@ export namespace Prisma {
     area: string | null
     latitude: number | null
     longitude: number | null
-    bloodGroup: string | null
+    bloodGroup: $Enums.BloodGroup | null
     bloodBags: number | null
     reason: string | null
+    donationTimeType: $Enums.DonationTimeType | null
     donationTime: Date | null
     hemoglobin: number | null
     medicalIssues: string | null
@@ -13281,9 +13313,10 @@ export namespace Prisma {
     area: string | null
     latitude: number | null
     longitude: number | null
-    bloodGroup: string | null
+    bloodGroup: $Enums.BloodGroup | null
     bloodBags: number | null
     reason: string | null
+    donationTimeType: $Enums.DonationTimeType | null
     donationTime: Date | null
     hemoglobin: number | null
     medicalIssues: string | null
@@ -13316,6 +13349,7 @@ export namespace Prisma {
     bloodGroup: number
     bloodBags: number
     reason: number
+    donationTimeType: number
     donationTime: number
     hemoglobin: number
     medicalIssues: number
@@ -13367,6 +13401,7 @@ export namespace Prisma {
     bloodGroup?: true
     bloodBags?: true
     reason?: true
+    donationTimeType?: true
     donationTime?: true
     hemoglobin?: true
     medicalIssues?: true
@@ -13398,6 +13433,7 @@ export namespace Prisma {
     bloodGroup?: true
     bloodBags?: true
     reason?: true
+    donationTimeType?: true
     donationTime?: true
     hemoglobin?: true
     medicalIssues?: true
@@ -13430,6 +13466,7 @@ export namespace Prisma {
     bloodGroup?: true
     bloodBags?: true
     reason?: true
+    donationTimeType?: true
     donationTime?: true
     hemoglobin?: true
     medicalIssues?: true
@@ -13546,9 +13583,10 @@ export namespace Prisma {
     area: string | null
     latitude: number | null
     longitude: number | null
-    bloodGroup: string | null
+    bloodGroup: $Enums.BloodGroup | null
     bloodBags: number | null
     reason: string | null
+    donationTimeType: $Enums.DonationTimeType | null
     donationTime: Date | null
     hemoglobin: number | null
     medicalIssues: string | null
@@ -13600,6 +13638,7 @@ export namespace Prisma {
     bloodGroup?: boolean
     bloodBags?: boolean
     reason?: boolean
+    donationTimeType?: boolean
     donationTime?: boolean
     hemoglobin?: boolean
     medicalIssues?: boolean
@@ -13635,6 +13674,7 @@ export namespace Prisma {
     bloodGroup?: boolean
     bloodBags?: boolean
     reason?: boolean
+    donationTimeType?: boolean
     donationTime?: boolean
     hemoglobin?: boolean
     medicalIssues?: boolean
@@ -13668,6 +13708,7 @@ export namespace Prisma {
     bloodGroup?: boolean
     bloodBags?: boolean
     reason?: boolean
+    donationTimeType?: boolean
     donationTime?: boolean
     hemoglobin?: boolean
     medicalIssues?: boolean
@@ -13701,6 +13742,7 @@ export namespace Prisma {
     bloodGroup?: boolean
     bloodBags?: boolean
     reason?: boolean
+    donationTimeType?: boolean
     donationTime?: boolean
     hemoglobin?: boolean
     medicalIssues?: boolean
@@ -13715,7 +13757,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "type" | "title" | "content" | "images" | "contactNumber" | "location" | "division" | "district" | "upazila" | "area" | "latitude" | "longitude" | "bloodGroup" | "bloodBags" | "reason" | "donationTime" | "hemoglobin" | "medicalIssues" | "targetAmount" | "raisedAmount" | "bkashNagadNumber" | "isVerified" | "isApproved" | "isResolved" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "type" | "title" | "content" | "images" | "contactNumber" | "location" | "division" | "district" | "upazila" | "area" | "latitude" | "longitude" | "bloodGroup" | "bloodBags" | "reason" | "donationTimeType" | "donationTime" | "hemoglobin" | "medicalIssues" | "targetAmount" | "raisedAmount" | "bkashNagadNumber" | "isVerified" | "isApproved" | "isResolved" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     payments?: boolean | Post$paymentsArgs<ExtArgs>
@@ -13749,9 +13791,10 @@ export namespace Prisma {
       area: string | null
       latitude: number | null
       longitude: number | null
-      bloodGroup: string | null
+      bloodGroup: $Enums.BloodGroup | null
       bloodBags: number | null
       reason: string | null
+      donationTimeType: $Enums.DonationTimeType | null
       donationTime: Date | null
       hemoglobin: number | null
       medicalIssues: string | null
@@ -14203,9 +14246,10 @@ export namespace Prisma {
     readonly area: FieldRef<"Post", 'String'>
     readonly latitude: FieldRef<"Post", 'Float'>
     readonly longitude: FieldRef<"Post", 'Float'>
-    readonly bloodGroup: FieldRef<"Post", 'String'>
+    readonly bloodGroup: FieldRef<"Post", 'BloodGroup'>
     readonly bloodBags: FieldRef<"Post", 'Int'>
     readonly reason: FieldRef<"Post", 'String'>
+    readonly donationTimeType: FieldRef<"Post", 'DonationTimeType'>
     readonly donationTime: FieldRef<"Post", 'DateTime'>
     readonly hemoglobin: FieldRef<"Post", 'Float'>
     readonly medicalIssues: FieldRef<"Post", 'String'>
@@ -21411,6 +21455,7 @@ export namespace Prisma {
     bloodGroup: 'bloodGroup',
     bloodBags: 'bloodBags',
     reason: 'reason',
+    donationTimeType: 'donationTimeType',
     donationTime: 'donationTime',
     hemoglobin: 'hemoglobin',
     medicalIssues: 'medicalIssues',
@@ -21598,6 +21643,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'BloodGroup'
+   */
+  export type EnumBloodGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BloodGroup'>
+    
+
+
+  /**
+   * Reference to a field of type 'BloodGroup[]'
+   */
+  export type ListEnumBloodGroupFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BloodGroup[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Gender'
    */
   export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
@@ -21650,6 +21709,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DonationTimeType'
+   */
+  export type EnumDonationTimeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DonationTimeType'>
+    
+
+
+  /**
+   * Reference to a field of type 'DonationTimeType[]'
+   */
+  export type ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DonationTimeType[]'>
     
 
 
@@ -22084,7 +22157,7 @@ export namespace Prisma {
     NOT?: DonorProfileWhereInput | DonorProfileWhereInput[]
     id?: StringFilter<"DonorProfile"> | string
     name?: StringFilter<"DonorProfile"> | string
-    bloodGroup?: StringFilter<"DonorProfile"> | string
+    bloodGroup?: EnumBloodGroupFilter<"DonorProfile"> | $Enums.BloodGroup
     gender?: EnumGenderFilter<"DonorProfile"> | $Enums.Gender
     weight?: FloatNullableFilter<"DonorProfile"> | number | null
     lastDonationDate?: DateTimeNullableFilter<"DonorProfile"> | Date | string | null
@@ -22118,7 +22191,7 @@ export namespace Prisma {
     OR?: DonorProfileWhereInput[]
     NOT?: DonorProfileWhereInput | DonorProfileWhereInput[]
     name?: StringFilter<"DonorProfile"> | string
-    bloodGroup?: StringFilter<"DonorProfile"> | string
+    bloodGroup?: EnumBloodGroupFilter<"DonorProfile"> | $Enums.BloodGroup
     gender?: EnumGenderFilter<"DonorProfile"> | $Enums.Gender
     weight?: FloatNullableFilter<"DonorProfile"> | number | null
     lastDonationDate?: DateTimeNullableFilter<"DonorProfile"> | Date | string | null
@@ -22154,7 +22227,7 @@ export namespace Prisma {
     NOT?: DonorProfileScalarWhereWithAggregatesInput | DonorProfileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"DonorProfile"> | string
     name?: StringWithAggregatesFilter<"DonorProfile"> | string
-    bloodGroup?: StringWithAggregatesFilter<"DonorProfile"> | string
+    bloodGroup?: EnumBloodGroupWithAggregatesFilter<"DonorProfile"> | $Enums.BloodGroup
     gender?: EnumGenderWithAggregatesFilter<"DonorProfile"> | $Enums.Gender
     weight?: FloatNullableWithAggregatesFilter<"DonorProfile"> | number | null
     lastDonationDate?: DateTimeNullableWithAggregatesFilter<"DonorProfile"> | Date | string | null
@@ -22252,7 +22325,7 @@ export namespace Prisma {
     id?: StringFilter<"BloodDonor"> | string
     name?: StringFilter<"BloodDonor"> | string
     contactNumber?: StringFilter<"BloodDonor"> | string
-    bloodGroup?: StringFilter<"BloodDonor"> | string
+    bloodGroup?: EnumBloodGroupFilter<"BloodDonor"> | $Enums.BloodGroup
     gender?: EnumGenderFilter<"BloodDonor"> | $Enums.Gender
     lastDonationDate?: DateTimeNullableFilter<"BloodDonor"> | Date | string | null
     isAvailable?: BoolFilter<"BloodDonor"> | boolean
@@ -22306,7 +22379,7 @@ export namespace Prisma {
     OR?: BloodDonorWhereInput[]
     NOT?: BloodDonorWhereInput | BloodDonorWhereInput[]
     name?: StringFilter<"BloodDonor"> | string
-    bloodGroup?: StringFilter<"BloodDonor"> | string
+    bloodGroup?: EnumBloodGroupFilter<"BloodDonor"> | $Enums.BloodGroup
     gender?: EnumGenderFilter<"BloodDonor"> | $Enums.Gender
     lastDonationDate?: DateTimeNullableFilter<"BloodDonor"> | Date | string | null
     isAvailable?: BoolFilter<"BloodDonor"> | boolean
@@ -22358,7 +22431,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"BloodDonor"> | string
     name?: StringWithAggregatesFilter<"BloodDonor"> | string
     contactNumber?: StringWithAggregatesFilter<"BloodDonor"> | string
-    bloodGroup?: StringWithAggregatesFilter<"BloodDonor"> | string
+    bloodGroup?: EnumBloodGroupWithAggregatesFilter<"BloodDonor"> | $Enums.BloodGroup
     gender?: EnumGenderWithAggregatesFilter<"BloodDonor"> | $Enums.Gender
     lastDonationDate?: DateTimeNullableWithAggregatesFilter<"BloodDonor"> | Date | string | null
     isAvailable?: BoolWithAggregatesFilter<"BloodDonor"> | boolean
@@ -22467,9 +22540,10 @@ export namespace Prisma {
     area?: StringNullableFilter<"Post"> | string | null
     latitude?: FloatNullableFilter<"Post"> | number | null
     longitude?: FloatNullableFilter<"Post"> | number | null
-    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    bloodGroup?: EnumBloodGroupNullableFilter<"Post"> | $Enums.BloodGroup | null
     bloodBags?: IntNullableFilter<"Post"> | number | null
     reason?: StringNullableFilter<"Post"> | string | null
+    donationTimeType?: EnumDonationTimeTypeNullableFilter<"Post"> | $Enums.DonationTimeType | null
     donationTime?: DateTimeNullableFilter<"Post"> | Date | string | null
     hemoglobin?: FloatNullableFilter<"Post"> | number | null
     medicalIssues?: StringNullableFilter<"Post"> | string | null
@@ -22504,6 +22578,7 @@ export namespace Prisma {
     bloodGroup?: SortOrderInput | SortOrder
     bloodBags?: SortOrderInput | SortOrder
     reason?: SortOrderInput | SortOrder
+    donationTimeType?: SortOrderInput | SortOrder
     donationTime?: SortOrderInput | SortOrder
     hemoglobin?: SortOrderInput | SortOrder
     medicalIssues?: SortOrderInput | SortOrder
@@ -22538,9 +22613,10 @@ export namespace Prisma {
     area?: StringNullableFilter<"Post"> | string | null
     latitude?: FloatNullableFilter<"Post"> | number | null
     longitude?: FloatNullableFilter<"Post"> | number | null
-    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    bloodGroup?: EnumBloodGroupNullableFilter<"Post"> | $Enums.BloodGroup | null
     bloodBags?: IntNullableFilter<"Post"> | number | null
     reason?: StringNullableFilter<"Post"> | string | null
+    donationTimeType?: EnumDonationTimeTypeNullableFilter<"Post"> | $Enums.DonationTimeType | null
     donationTime?: DateTimeNullableFilter<"Post"> | Date | string | null
     hemoglobin?: FloatNullableFilter<"Post"> | number | null
     medicalIssues?: StringNullableFilter<"Post"> | string | null
@@ -22575,6 +22651,7 @@ export namespace Prisma {
     bloodGroup?: SortOrderInput | SortOrder
     bloodBags?: SortOrderInput | SortOrder
     reason?: SortOrderInput | SortOrder
+    donationTimeType?: SortOrderInput | SortOrder
     donationTime?: SortOrderInput | SortOrder
     hemoglobin?: SortOrderInput | SortOrder
     medicalIssues?: SortOrderInput | SortOrder
@@ -22612,9 +22689,10 @@ export namespace Prisma {
     area?: StringNullableWithAggregatesFilter<"Post"> | string | null
     latitude?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     longitude?: FloatNullableWithAggregatesFilter<"Post"> | number | null
-    bloodGroup?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    bloodGroup?: EnumBloodGroupNullableWithAggregatesFilter<"Post"> | $Enums.BloodGroup | null
     bloodBags?: IntNullableWithAggregatesFilter<"Post"> | number | null
     reason?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    donationTimeType?: EnumDonationTimeTypeNullableWithAggregatesFilter<"Post"> | $Enums.DonationTimeType | null
     donationTime?: DateTimeNullableWithAggregatesFilter<"Post"> | Date | string | null
     hemoglobin?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     medicalIssues?: StringNullableWithAggregatesFilter<"Post"> | string | null
@@ -23475,7 +23553,7 @@ export namespace Prisma {
   export type DonorProfileCreateInput = {
     id?: string
     name: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     weight?: number | null
     lastDonationDate?: Date | string | null
@@ -23489,7 +23567,7 @@ export namespace Prisma {
   export type DonorProfileUncheckedCreateInput = {
     id?: string
     name: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     weight?: number | null
     lastDonationDate?: Date | string | null
@@ -23503,7 +23581,7 @@ export namespace Prisma {
   export type DonorProfileUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     weight?: NullableFloatFieldUpdateOperationsInput | number | null
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23517,7 +23595,7 @@ export namespace Prisma {
   export type DonorProfileUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     weight?: NullableFloatFieldUpdateOperationsInput | number | null
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23531,7 +23609,7 @@ export namespace Prisma {
   export type DonorProfileCreateManyInput = {
     id?: string
     name: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     weight?: number | null
     lastDonationDate?: Date | string | null
@@ -23545,7 +23623,7 @@ export namespace Prisma {
   export type DonorProfileUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     weight?: NullableFloatFieldUpdateOperationsInput | number | null
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23558,7 +23636,7 @@ export namespace Prisma {
   export type DonorProfileUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     weight?: NullableFloatFieldUpdateOperationsInput | number | null
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23663,7 +23741,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -23687,7 +23765,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -23711,7 +23789,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -23735,7 +23813,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -23759,7 +23837,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -23779,7 +23857,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -23798,7 +23876,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -23903,9 +23981,10 @@ export namespace Prisma {
     area?: string | null
     latitude?: number | null
     longitude?: number | null
-    bloodGroup?: string | null
+    bloodGroup?: $Enums.BloodGroup | null
     bloodBags?: number | null
     reason?: string | null
+    donationTimeType?: $Enums.DonationTimeType | null
     donationTime?: Date | string | null
     hemoglobin?: number | null
     medicalIssues?: string | null
@@ -23937,9 +24016,10 @@ export namespace Prisma {
     area?: string | null
     latitude?: number | null
     longitude?: number | null
-    bloodGroup?: string | null
+    bloodGroup?: $Enums.BloodGroup | null
     bloodBags?: number | null
     reason?: string | null
+    donationTimeType?: $Enums.DonationTimeType | null
     donationTime?: Date | string | null
     hemoglobin?: number | null
     medicalIssues?: string | null
@@ -23969,9 +24049,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24003,9 +24084,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24036,9 +24118,10 @@ export namespace Prisma {
     area?: string | null
     latitude?: number | null
     longitude?: number | null
-    bloodGroup?: string | null
+    bloodGroup?: $Enums.BloodGroup | null
     bloodBags?: number | null
     reason?: string | null
+    donationTimeType?: $Enums.DonationTimeType | null
     donationTime?: Date | string | null
     hemoglobin?: number | null
     medicalIssues?: string | null
@@ -24067,9 +24150,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24099,9 +24183,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24946,6 +25031,13 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumBloodGroupFilter<$PrismaModel = never> = {
+    equals?: $Enums.BloodGroup | EnumBloodGroupFieldRefInput<$PrismaModel>
+    in?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel>
+    not?: NestedEnumBloodGroupFilter<$PrismaModel> | $Enums.BloodGroup
+  }
+
   export type EnumGenderFilter<$PrismaModel = never> = {
     equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
     in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
@@ -25023,6 +25115,16 @@ export namespace Prisma {
 
   export type DonorProfileSumOrderByAggregateInput = {
     weight?: SortOrder
+  }
+
+  export type EnumBloodGroupWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BloodGroup | EnumBloodGroupFieldRefInput<$PrismaModel>
+    in?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel>
+    not?: NestedEnumBloodGroupWithAggregatesFilter<$PrismaModel> | $Enums.BloodGroup
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBloodGroupFilter<$PrismaModel>
+    _max?: NestedEnumBloodGroupFilter<$PrismaModel>
   }
 
   export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
@@ -25240,6 +25342,13 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type EnumBloodGroupNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.BloodGroup | EnumBloodGroupFieldRefInput<$PrismaModel> | null
+    in?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumBloodGroupNullableFilter<$PrismaModel> | $Enums.BloodGroup | null
+  }
+
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -25249,6 +25358,13 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type EnumDonationTimeTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.DonationTimeType | EnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.DonationTimeType[] | ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.DonationTimeType[] | ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumDonationTimeTypeNullableFilter<$PrismaModel> | $Enums.DonationTimeType | null
   }
 
   export type PostCountOrderByAggregateInput = {
@@ -25269,6 +25385,7 @@ export namespace Prisma {
     bloodGroup?: SortOrder
     bloodBags?: SortOrder
     reason?: SortOrder
+    donationTimeType?: SortOrder
     donationTime?: SortOrder
     hemoglobin?: SortOrder
     medicalIssues?: SortOrder
@@ -25309,6 +25426,7 @@ export namespace Prisma {
     bloodGroup?: SortOrder
     bloodBags?: SortOrder
     reason?: SortOrder
+    donationTimeType?: SortOrder
     donationTime?: SortOrder
     hemoglobin?: SortOrder
     medicalIssues?: SortOrder
@@ -25340,6 +25458,7 @@ export namespace Prisma {
     bloodGroup?: SortOrder
     bloodBags?: SortOrder
     reason?: SortOrder
+    donationTimeType?: SortOrder
     donationTime?: SortOrder
     hemoglobin?: SortOrder
     medicalIssues?: SortOrder
@@ -25373,6 +25492,16 @@ export namespace Prisma {
     _max?: NestedEnumPostTypeFilter<$PrismaModel>
   }
 
+  export type EnumBloodGroupNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BloodGroup | EnumBloodGroupFieldRefInput<$PrismaModel> | null
+    in?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumBloodGroupNullableWithAggregatesFilter<$PrismaModel> | $Enums.BloodGroup | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumBloodGroupNullableFilter<$PrismaModel>
+    _max?: NestedEnumBloodGroupNullableFilter<$PrismaModel>
+  }
+
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -25387,6 +25516,16 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type EnumDonationTimeTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DonationTimeType | EnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.DonationTimeType[] | ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.DonationTimeType[] | ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumDonationTimeTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.DonationTimeType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumDonationTimeTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumDonationTimeTypeNullableFilter<$PrismaModel>
   }
 
   export type DonationHistoryCountOrderByAggregateInput = {
@@ -26267,6 +26406,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type EnumBloodGroupFieldUpdateOperationsInput = {
+    set?: $Enums.BloodGroup
+  }
+
   export type EnumGenderFieldUpdateOperationsInput = {
     set?: $Enums.Gender
   }
@@ -26550,12 +26693,20 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type NullableEnumBloodGroupFieldUpdateOperationsInput = {
+    set?: $Enums.BloodGroup | null
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableEnumDonationTimeTypeFieldUpdateOperationsInput = {
+    set?: $Enums.DonationTimeType | null
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -26894,6 +27045,13 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumBloodGroupFilter<$PrismaModel = never> = {
+    equals?: $Enums.BloodGroup | EnumBloodGroupFieldRefInput<$PrismaModel>
+    in?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel>
+    not?: NestedEnumBloodGroupFilter<$PrismaModel> | $Enums.BloodGroup
+  }
+
   export type NestedEnumGenderFilter<$PrismaModel = never> = {
     equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
     in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
@@ -26921,6 +27079,16 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedEnumBloodGroupWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BloodGroup | EnumBloodGroupFieldRefInput<$PrismaModel>
+    in?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel>
+    not?: NestedEnumBloodGroupWithAggregatesFilter<$PrismaModel> | $Enums.BloodGroup
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBloodGroupFilter<$PrismaModel>
+    _max?: NestedEnumBloodGroupFilter<$PrismaModel>
   }
 
   export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
@@ -26970,6 +27138,20 @@ export namespace Prisma {
     not?: NestedEnumPostTypeFilter<$PrismaModel> | $Enums.PostType
   }
 
+  export type NestedEnumBloodGroupNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.BloodGroup | EnumBloodGroupFieldRefInput<$PrismaModel> | null
+    in?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumBloodGroupNullableFilter<$PrismaModel> | $Enums.BloodGroup | null
+  }
+
+  export type NestedEnumDonationTimeTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.DonationTimeType | EnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.DonationTimeType[] | ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.DonationTimeType[] | ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumDonationTimeTypeNullableFilter<$PrismaModel> | $Enums.DonationTimeType | null
+  }
+
   export type NestedEnumPostTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PostType | EnumPostTypeFieldRefInput<$PrismaModel>
     in?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
@@ -26978,6 +27160,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPostTypeFilter<$PrismaModel>
     _max?: NestedEnumPostTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumBloodGroupNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BloodGroup | EnumBloodGroupFieldRefInput<$PrismaModel> | null
+    in?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.BloodGroup[] | ListEnumBloodGroupFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumBloodGroupNullableWithAggregatesFilter<$PrismaModel> | $Enums.BloodGroup | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumBloodGroupNullableFilter<$PrismaModel>
+    _max?: NestedEnumBloodGroupNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -26994,6 +27186,16 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumDonationTimeTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DonationTimeType | EnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.DonationTimeType[] | ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.DonationTimeType[] | ListEnumDonationTimeTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumDonationTimeTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.DonationTimeType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumDonationTimeTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumDonationTimeTypeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumRequestStatusFilter<$PrismaModel = never> = {
@@ -27152,7 +27354,7 @@ export namespace Prisma {
   export type DonorProfileCreateWithoutUserInput = {
     id?: string
     name: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     weight?: number | null
     lastDonationDate?: Date | string | null
@@ -27165,7 +27367,7 @@ export namespace Prisma {
   export type DonorProfileUncheckedCreateWithoutUserInput = {
     id?: string
     name: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     weight?: number | null
     lastDonationDate?: Date | string | null
@@ -27228,9 +27430,10 @@ export namespace Prisma {
     area?: string | null
     latitude?: number | null
     longitude?: number | null
-    bloodGroup?: string | null
+    bloodGroup?: $Enums.BloodGroup | null
     bloodBags?: number | null
     reason?: string | null
+    donationTimeType?: $Enums.DonationTimeType | null
     donationTime?: Date | string | null
     hemoglobin?: number | null
     medicalIssues?: string | null
@@ -27260,9 +27463,10 @@ export namespace Prisma {
     area?: string | null
     latitude?: number | null
     longitude?: number | null
-    bloodGroup?: string | null
+    bloodGroup?: $Enums.BloodGroup | null
     bloodBags?: number | null
     reason?: string | null
+    donationTimeType?: $Enums.DonationTimeType | null
     donationTime?: Date | string | null
     hemoglobin?: number | null
     medicalIssues?: string | null
@@ -27292,7 +27496,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -27315,7 +27519,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -27639,7 +27843,7 @@ export namespace Prisma {
   export type DonorProfileUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     weight?: NullableFloatFieldUpdateOperationsInput | number | null
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27652,7 +27856,7 @@ export namespace Prisma {
   export type DonorProfileUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     weight?: NullableFloatFieldUpdateOperationsInput | number | null
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27728,9 +27932,10 @@ export namespace Prisma {
     area?: StringNullableFilter<"Post"> | string | null
     latitude?: FloatNullableFilter<"Post"> | number | null
     longitude?: FloatNullableFilter<"Post"> | number | null
-    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    bloodGroup?: EnumBloodGroupNullableFilter<"Post"> | $Enums.BloodGroup | null
     bloodBags?: IntNullableFilter<"Post"> | number | null
     reason?: StringNullableFilter<"Post"> | string | null
+    donationTimeType?: EnumDonationTimeTypeNullableFilter<"Post"> | $Enums.DonationTimeType | null
     donationTime?: DateTimeNullableFilter<"Post"> | Date | string | null
     hemoglobin?: FloatNullableFilter<"Post"> | number | null
     medicalIssues?: StringNullableFilter<"Post"> | string | null
@@ -27760,7 +27965,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -27783,7 +27988,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -29144,7 +29349,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -29167,7 +29372,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -29275,7 +29480,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -29298,7 +29503,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -29499,7 +29704,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -29522,7 +29727,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -29624,7 +29829,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -29647,7 +29852,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -29802,7 +30007,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -29825,7 +30030,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -29933,7 +30138,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -29956,7 +30161,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -30042,7 +30247,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -30065,7 +30270,7 @@ export namespace Prisma {
     id?: string
     name: string
     contactNumber: string
-    bloodGroup: string
+    bloodGroup: $Enums.BloodGroup
     gender: $Enums.Gender
     lastDonationDate?: Date | string | null
     isAvailable?: boolean
@@ -30173,7 +30378,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -30196,7 +30401,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     contactNumber?: StringFieldUpdateOperationsInput | string
-    bloodGroup?: StringFieldUpdateOperationsInput | string
+    bloodGroup?: EnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     lastDonationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isAvailable?: BoolFieldUpdateOperationsInput | boolean
@@ -30361,9 +30566,10 @@ export namespace Prisma {
     area?: string | null
     latitude?: number | null
     longitude?: number | null
-    bloodGroup?: string | null
+    bloodGroup?: $Enums.BloodGroup | null
     bloodBags?: number | null
     reason?: string | null
+    donationTimeType?: $Enums.DonationTimeType | null
     donationTime?: Date | string | null
     hemoglobin?: number | null
     medicalIssues?: string | null
@@ -30394,9 +30600,10 @@ export namespace Prisma {
     area?: string | null
     latitude?: number | null
     longitude?: number | null
-    bloodGroup?: string | null
+    bloodGroup?: $Enums.BloodGroup | null
     bloodBags?: number | null
     reason?: string | null
+    donationTimeType?: $Enums.DonationTimeType | null
     donationTime?: Date | string | null
     hemoglobin?: number | null
     medicalIssues?: string | null
@@ -30504,9 +30711,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30537,9 +30745,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30649,9 +30858,10 @@ export namespace Prisma {
     area?: string | null
     latitude?: number | null
     longitude?: number | null
-    bloodGroup?: string | null
+    bloodGroup?: $Enums.BloodGroup | null
     bloodBags?: number | null
     reason?: string | null
+    donationTimeType?: $Enums.DonationTimeType | null
     donationTime?: Date | string | null
     hemoglobin?: number | null
     medicalIssues?: string | null
@@ -30771,9 +30981,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30803,9 +31014,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30835,9 +31047,10 @@ export namespace Prisma {
     area?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodGroup?: NullableEnumBloodGroupFieldUpdateOperationsInput | $Enums.BloodGroup | null
     bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTimeType?: NullableEnumDonationTimeTypeFieldUpdateOperationsInput | $Enums.DonationTimeType | null
     donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
     medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null

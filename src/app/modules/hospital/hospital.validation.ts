@@ -1,11 +1,12 @@
 import { z } from 'zod';
 import { Gender, RequestStatus } from '../../../generated/prisma';
+import { bloodGroupMap } from '../../helpers/bloodGroup.utils';
 
 const recordDonationSchema = z.object({
   body: z.object({
     contactNumber: z.string({ message: 'contactNumber is required' }),
     name: z.string().optional(),
-    bloodGroup: z.string().optional(),
+    bloodGroup: z.string().transform((val) => bloodGroupMap[val] || val).optional(),
     gender: z.enum([Gender.MALE, Gender.FEMALE]).optional(),
     weight: z.number().optional(),
     createPost: z.boolean().optional(),

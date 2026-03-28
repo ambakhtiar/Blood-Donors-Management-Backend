@@ -1,4 +1,4 @@
-import { Gender, UserRole } from "../../../generated/prisma";
+import { BloodGroup, Gender, UserRole } from "../../../generated/prisma";
 
 
 export interface ILocationInfo {
@@ -9,7 +9,7 @@ export interface ILocationInfo {
 
 export interface IDonorInfo extends ILocationInfo {
     name: string;
-    bloodGroup: string;
+    bloodGroup: BloodGroup;
     gender: Gender;
     weight?: number;
     lastDonationDate?: string | Date;
