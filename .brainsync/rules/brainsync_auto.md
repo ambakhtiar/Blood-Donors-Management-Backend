@@ -1,7 +1,7 @@
 
 
 # Project Memory — Blood-Donors-Management-Backend
-> 536 notes | Score threshold: >40
+> 623 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -20,48 +20,58 @@
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
-- **⚠️ GOTCHA: Added JWT tokens authentication** — - const verifyPost = async (postId: string, user: JwtPayload) => {
-+ 
-
-- **⚠️ GOTCHA: Fixed null crash in Date — ensures atomic multi-step database operations** — -           content: payload.postContent || `Donation received from ${
-- **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -         
-+         'BACKEND_URL',
+- **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -         'SUPER_ADMIN_PASSWORD',
++         
 -     ]
-+         'FRINTEND_URL
++         'SUP
+- **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -         
++         'SUPER_ADMIN_EMAIL',
+-     ]
++         'SUPER_
 - **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -     ]
 +         
 - 
 +     ]
 -     requireEnvVariable.forEach((va
-- **⚠️ GOTCHA: Replaced session cookies with JWT tokens — reduces initial bundle size with c...** — -   FEMALE: 'FEMALE',
-+   FEMALE: 'FEMALE'
--   OTHER: 'OTHER'
-+ };
+- **⚠️ GOTCHA: Fixed null crash in EMAIL — externalizes configuration for environment flexib...** — -     
++     SUPER_ADMIN: {
 - }
-- **⚠️ GOTCHA: problem-fix in env.ts** — -             // throw new Error(`Environment variable ${variable} is 
++         EMAIL: string;
+- 
++    
+- **⚠️ GOTCHA: Fixed null crash in EnvConfig — externalizes configuration for environment fl...** — -     }
++     },
+- }
++     
+- 
++ }
+- const loadEnvVariables = ()
+- **⚠️ GOTCHA: Added JWT tokens authentication** — - const verifyPost = async (postId: string, user: JwtPayload) => {
++ 
+
 
 ## Active: `.`
 
+- **🟢 Edited .gitignore (13 changes, 27min) — confirmed 3x**
 - **convention in .gitignore**
-- **what-changed in .gitignore — confirmed 28x**
-- **trade-off in .gitignore — confirmed 4x**
+- **convention in .gitignore**
 - **convention in .gitignore**
 - **convention in .gitignore**
 
 ## Project Standards
 
+- 🟢 Edited .gitignore (13 changes, 27min) — confirmed 3x
+- convention in .gitignore
+- convention in .gitignore
+- convention in .gitignore
 - convention in .gitignore
 - what-changed in .gitignore — confirmed 28x
 - trade-off in .gitignore — confirmed 4x
 - convention in .gitignore
-- convention in .gitignore
-- convention in .gitignore
-- convention in .gitignore
-- convention in .gitignore
 
 ## Known Fixes
 
-- ❌ PrismaClientKnownRequestError, → ✅ problem-fix in edge.js
+- ❌ PrismaClientKnownRequestError, → ✅ problem-fix in index.js
 - ❌ "use strict";var h=Object.defineProperty;var T=Object.getOwnPropertyDescriptor;var M=Object.getOwnPr → ✅ problem-fix in query_compiler_fast_bg.js
 - ❌ import AppError from '../../errors/AppError'; → ✅ problem-fix in organisation.service.ts
 - ❌ -     throw new AppError(httpStatus.NOT_FOUND, 'Target user not found'); → ✅ Fixed null crash in AppError — externalizes configuration for environment fle...
@@ -76,9 +86,9 @@
 
 ## Learned Patterns
 
-- Always: convention in .gitignore (seen 4x)
 - When encountering this, fix by: problem-fix in query_compiler_fast_bg.js (seen 2x)
 - When encountering this, fix by: problem-fix in edge.js (seen 2x)
+- Always: convention in .gitignore (seen 3x)
 - Agent generates new migration for every change (squash related changes)
 - Agent installs packages without checking if already installed
 

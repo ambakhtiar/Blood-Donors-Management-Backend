@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: "Typescript for Blood-Donors-Management-Backend. 8 gotchas, 29 conventions, 20 fixes."
+description: "Typescript for Blood-Donors-Management-Backend. 13 gotchas, 37 conventions, 21 fixes."
 domain: typescript
 triggers:
   - glob: "**/*.ts"
@@ -11,7 +11,7 @@ enabled: true
 
 # Typescript
 
-Auto-compiled from **190 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
+Auto-compiled from **240 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -19,6 +19,11 @@ Auto-compiled from **190 real patterns** in **Blood-Donors-Management-Backend**.
 
 | ❌ Don't | Details |
 |----------|----------|
+| ⚠️ GOTCHA: Fixed null crash in AppError — external | -         'SUPER_ADMIN_PASSWORD', +          -     ] +         'SUPER_ADMIN_PASSWORD', -  +     |
+| ⚠️ GOTCHA: Fixed null crash in AppError — external | -          +         'SUPER_ADMIN_EMAIL', -     ] +         'SUPER_ADMIN_PASSWORD', -  +        |
+| ⚠️ GOTCHA: Fixed null crash in AppError — external | -     ] +          -  +     ] -     requireEnvVariable.forEach((variable) => { +  -         if |
+| ⚠️ GOTCHA: Fixed null crash in EMAIL — externalize | -      +     SUPER_ADMIN: { - } +         EMAIL: string; -  +         [REDACTED] -  +         |
+| ⚠️ GOTCHA: Fixed null crash in EnvConfig — externa | -     } +     }, - } +      -  + } - const loadEnvVariables = (): EnvConfig => { +  -  + co |
 | ⚠️ GOTCHA: Added JWT tokens authentication | - const verifyPost = async (postId: string, user: JwtPayload) => { +  -   const { role } = user; + c |
 | ⚠️ GOTCHA: Fixed null crash in Date — ensures atom | -           content: payload.postContent -- `Donation received from ${bloodDonor.name}`, +           |
 | ⚠️ GOTCHA: Fixed null crash in AppError — external | -          +         'BACKEND_URL', -     ] +         'FRINTEND_URL', -  +     ] -     require |
@@ -29,6 +34,26 @@ Auto-compiled from **190 real patterns** in **Blood-Donors-Management-Backend**.
 | ⚠️ GOTCHA: Added JWT tokens authentication — ensur | - import AppError from '../../errors/AppError'; + import { JwtPayload } from 'jsonwebtoken'; - impor |
 
 ## 🔧 Problem Playbooks
+
+### Fixed null crash in AppError — externalizes configuration for environment fle...
+-         'SUPER_ADMIN_CONTACT_NUMBER',
++     ]
+-     ]
++ 
+- 
++     requireEnvVariable.forEach((variable) => {
+-     requireEnvVariable.forEach((variable) => {
++         if (!process.env[variable]) {
+-         if (!process.env[variable]) {
++             throw new AppError(status.INTERNAL_SERVER_ERROR, `Environment variable ${variable} is required but not set in .env file.`);
+-           
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AppError
+3. identifier: Environment
+4. identifier: PORT
+5. identifier: Number
 
 ### Fixed null crash in ILoginUser — uses a proper password hashing algorithm
 -   const { [REDACTED] ...userWithoutPassword } = result;
@@ -295,46 +320,6 @@ const addVolunteer = async (orgI
 + import jwt, { Secret } from 'jsonwebtoken';
 - import AppError from '../../errors/AppError';
 + import AppError from '../../errors/AppError';
-- import config from '../../config';
-+ import config from '../../
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: Secret
-3. identifier: AppError
-4. identifier: IChangePassword
-5. identifier: IForgotPassword
-
-### Fixed null crash in IRegisterUser — uses a proper password hashing algorithm
-- import crypto from 'crypto';
-+ 
-- 
-+ const registerUser = async (payload: IRegisterUser) => {
-- const registerUser = async (payload: IRegisterUser) => {
-+   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
--   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
-+ 
-- 
-+   // Check if user exists
--   // Check if use
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: IRegisterUser
-3. identifier: Check
-4. identifier: AppError
-5. identifier: CONFLICT
-
-### Fixed null crash in IRecordDonationPayload — filters out falsy/null values ex...
-- import { IBloodRequestPayload, IUpdateRequestStatusPayload } from './hospital.interface';
-+ import { IRecordDonationPayload, IUpdateRequestStatusPayload } from './hospital.interface';
-- import { RequestStatus } from '../../../generated/prisma';
-+ import { PostType, RequestStatus } from '../../../generated/prisma';
-- const sendBloodRequest = async (hospitalId: string, payload: IBloodRequestPayloa
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: IRecordDonationPayload
-3. identifier: IUpdateRequestStatusPay
+- import config from '../../config
 
 ... [Truncated — see individual observations for full content]

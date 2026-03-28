@@ -1,10 +1,98 @@
 # Notes Index — Blood-Donors-Management-Backend
-> 535 total notes
+> 623 total notes
 
 ### 2026-03-28
 
 | # | Title | ~Tok |
 |---|---|---|
+| 623 | what-changed in server.ts | ~32.5 |
+| 622 | Added session cookies authentication — external... | ~551.25 |
+| 621 | convention in migration_lock.toml | ~54.75 |
+| 620 | what-changed in env.ts | ~41.25 |
+| 619 | what-changed in env.ts | ~38.25 |
+| 618 | what-changed in env.ts | ~38.25 |
+| 617 | 🟢 Edited src/app/config/env.ts (15 changes, 1min) | ~30 |
+| 616 | what-changed in env.ts | ~39.5 |
+| 615 | what-changed in env.ts | ~39.25 |
+| 614 | what-changed in env.ts | ~39.25 |
+| 613 | what-changed in env.ts | ~39.25 |
+| 612 | what-changed in env.ts | ~38.25 |
+| 611 | what-changed in env.ts | ~33.25 |
+| 610 | ⚠️ GOTCHA: Fixed null crash in AppError — exter... | ~518.25 |
+| 609 | Fixed null crash in AppError — externalizes con... | ~521.5 |
+| 608 | 🟢 Edited src/app/db/index.ts (14 changes, 1min) | ~30 |
+| 607 | what-changed in index.ts — confirmed 11x | ~70.75 |
+| 606 | what-changed in index.ts | ~37.25 |
+| 605 | what-changed in index.ts | ~34.5 |
+| 604 | what-changed in index.ts | ~34 |
+| 603 | Updated configuration UserRole — uses a proper ... | ~516.25 |
+| 602 | what-changed in index.ts | ~31 |
+| 601 | what-changed in index.ts | ~34.75 |
+| 600 | what-changed in index.ts | ~52.5 |
+| 599 | what-changed in index.ts | ~31.25 |
+| 598 | Updated configuration CLIENT_URL — externalizes... | ~65 |
+| 597 | Updated configuration EMAIL — externalizes conf... | ~112.25 |
+| 596 | what-changed in env.ts — confirmed 3x | ~57.25 |
+| 595 | ⚠️ GOTCHA: Fixed null crash in AppError — exter... | ~518.25 |
+| 594 | ⚠️ GOTCHA: Fixed null crash in AppError — exter... | ~518.25 |
+| 593 | ⚠️ GOTCHA: Fixed null crash in EMAIL — external... | ~526 |
+| 592 | ⚠️ GOTCHA: Fixed null crash in EnvConfig — exte... | ~527.75 |
+| 591 | 🟢 Edited .env (113 changes, 2min) | ~30 |
+| 590 | Added session cookies authentication — reduces ... | ~551.25 |
+| 589 | Added session cookies authentication — ensures ... | ~529 |
+| 588 | what-changed in package.json | ~69.5 |
+| 587 | Added session cookies authentication — ensures ... | ~504.75 |
+| 586 | Updated configuration UserRole — uses a proper ... | ~516.75 |
+| 585 | 🟢 Edited prisma/schema.prisma (16 changes, 1min) | ~30 |
+| 584 | what-changed in schema.prisma — confirmed 8x | ~23.5 |
+| 583 | what-changed in schema.prisma | ~20 |
+| 582 | what-changed in schema.prisma | ~16.5 |
+| 581 | what-changed in schema.prisma | ~16 |
+| 580 | what-changed in schema.prisma | ~14.75 |
+| 579 | what-changed in schema.prisma | ~13 |
+| 578 | what-changed in schema.prisma | ~7.25 |
+| 577 | Added session cookies authentication — ensures ... | ~504.75 |
+| 576 | Updated configuration UserRole — uses a proper ... | ~516.75 |
+| 575 | Replaced dependency UserRole | ~72 |
+| 574 | Fixed null crash in PORT — externalizes configu... | ~218.5 |
+| 573 | Removed @prisma/client dependency | ~65.5 |
+| 572 | what-changed in query_compiler_fast_bg.wasm-bas... | ~153 |
+| 571 | problem-fix in query_compiler_fast_bg.js | ~150 |
+| 570 | what-changed in schema.prisma | ~147.5 |
+| 569 | what-changed in wasm-compiler-edge.js | ~151.25 |
+| 568 | what-changed in client.js | ~148.25 |
+| 567 | what-changed in wasm-worker-loader.mjs | ~70.25 |
+| 566 | what-changed in wasm-edge-light-loader.mjs | ~73 |
+| 565 | problem-fix in index.js — confirmed 3x | ~146.25 |
+| 564 | what-changed in index-browser.js | ~149.75 |
+| 563 | problem-fix in edge.js | ~146 |
+| 562 | what-changed in index-browser.js — confirmed 4x | ~148.25 |
+| 561 | what-changed in client.js — confirmed 4x | ~62.5 |
+| 560 | 🟢 Edited src/app/db/index.ts (58 changes, 2min) | ~30 |
+| 559 | Updated configuration UserRole — uses a proper ... | ~502.75 |
+| 558 | what-changed in index.ts | ~34.5 |
+| 557 | Updated configuration UserRole — uses a proper ... | ~502.75 |
+| 556 | what-changed in index.ts | ~136.5 |
+| 555 | trade-off in index.ts | ~339.5 |
+| 554 | what-changed in index.ts | ~48.75 |
+| 553 | Updated configuration AccountStatus — uses a pr... | ~502.75 |
+| 552 | Updated configuration UserRole — uses a proper ... | ~502.75 |
+| 551 | Updated configuration UserRole — uses a proper ... | ~502.75 |
+| 550 | Updated configuration UserRole — uses a proper ... | ~502.75 |
+| 549 | Updated configuration UserRole — uses a proper ... | ~502.75 |
+| 548 | what-changed in index.ts — confirmed 3x | ~32.75 |
+| 547 | Updated configuration UserRole — uses a proper ... | ~502.75 |
+| 546 | what-changed in index.ts | ~136.5 |
+| 545 | 🟢 Edited .gitignore (13 changes, 27min) — conf... | ~30 |
+| 544 | what-changed in .gitignore | ~4 |
+| 543 | Git Commit: chore: stop tracking ignored files | ~17 |
+| 542 | convention in .gitignore | ~74.5 |
+| 541 | problem-fix in .gitignore | ~37.25 |
+| 540 | problem-fix in .gitignore | ~37.25 |
+| 539 | Git Commit: prisma model change and ggole locat... | ~24 |
+| 538 | convention in .gitignore | ~74.5 |
+| 537 | convention in .gitignore | ~22.5 |
+| 536 | convention in .gitignore | ~64 |
 | 535 | Git Commit: feat: implement user profile manage... | ~45 |
 | 534 | Git Commit: feat: implement user profile manage... | ~45 |
 | 533 | Strengthened types IUpdateProfilePayload — ensu... | ~528 |

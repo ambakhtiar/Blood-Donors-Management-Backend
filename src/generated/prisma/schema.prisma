@@ -53,12 +53,13 @@ enum PaymentStatus {
 
 // ================= Core User Model =================
 model User {
-  id            String        @id @default(uuid(7))
-  email         String?       @unique
-  contactNumber String        @unique
-  password      String?
-  role          UserRole      @default(USER)
-  accountStatus AccountStatus @default(PENDING)
+  id                  String        @id @default(uuid(7))
+  email               String?       @unique
+  contactNumber       String        @unique
+  password            String?
+  role                UserRole      @default(USER)
+  accountStatus       AccountStatus @default(PENDING)
+  needsPasswordChange Boolean       @default(false)
 
   // Shared Location Details
   division String?

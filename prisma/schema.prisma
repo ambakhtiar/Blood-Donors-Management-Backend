@@ -59,6 +59,7 @@ model User {
   password      String?
   role          UserRole      @default(USER)
   accountStatus AccountStatus @default(PENDING)
+  needsPasswordChange Boolean @default(false)
 
   // Shared Location Details
   division String?

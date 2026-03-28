@@ -21,6 +21,11 @@ interface EnvConfig {
         STORE_ID: string;
         STORE_PASSWORD: string;
         IS_LIVE: boolean;
+    },
+    SUPER_ADMIN: {
+        EMAIL: string;
+        PASSWORD: string;
+        CONTACT_NUMBER: string;
     }
 }
 
@@ -41,6 +46,9 @@ const loadEnvVariables = (): EnvConfig => {
         'SSL_COMMERZ_IS_LIVE',
         'BACKEND_URL',
         'FRINTEND_URL',
+        'SUPER_ADMIN_EMAIL',
+        'SUPER_ADMIN_CONTACT_NUMBER',
+        'SUPER_ADMIN_PASSWORD',
     ]
 
     requireEnvVariable.forEach((variable) => {
@@ -67,6 +75,11 @@ const loadEnvVariables = (): EnvConfig => {
         },
         BACKEND_URL: process.env.BACKEND_URL as string,
         FRINTEND_URL: process.env.FRINTEND_URL as string,
+        SUPER_ADMIN: {
+            EMAIL: process.env.SUPER_ADMIN_EMAIL as string,
+            PASSWORD: process.env.SUPER_ADMIN_PASSWORD as string,
+            CONTACT_NUMBER: process.env.SUPER_ADMIN_CONTACT_NUMBER as string,
+        }
     }
 }
 

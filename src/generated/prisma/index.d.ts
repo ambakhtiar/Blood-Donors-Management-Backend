@@ -2517,6 +2517,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole | null
     accountStatus: $Enums.AccountStatus | null
+    needsPasswordChange: boolean | null
     division: string | null
     district: string | null
     upazila: string | null
@@ -2532,6 +2533,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole | null
     accountStatus: $Enums.AccountStatus | null
+    needsPasswordChange: boolean | null
     division: string | null
     district: string | null
     upazila: string | null
@@ -2547,6 +2549,7 @@ export namespace Prisma {
     password: number
     role: number
     accountStatus: number
+    needsPasswordChange: number
     division: number
     district: number
     upazila: number
@@ -2564,6 +2567,7 @@ export namespace Prisma {
     password?: true
     role?: true
     accountStatus?: true
+    needsPasswordChange?: true
     division?: true
     district?: true
     upazila?: true
@@ -2579,6 +2583,7 @@ export namespace Prisma {
     password?: true
     role?: true
     accountStatus?: true
+    needsPasswordChange?: true
     division?: true
     district?: true
     upazila?: true
@@ -2594,6 +2599,7 @@ export namespace Prisma {
     password?: true
     role?: true
     accountStatus?: true
+    needsPasswordChange?: true
     division?: true
     district?: true
     upazila?: true
@@ -2682,6 +2688,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole
     accountStatus: $Enums.AccountStatus
+    needsPasswordChange: boolean
     division: string | null
     district: string | null
     upazila: string | null
@@ -2714,6 +2721,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     accountStatus?: boolean
+    needsPasswordChange?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
@@ -2744,6 +2752,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     accountStatus?: boolean
+    needsPasswordChange?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
@@ -2759,6 +2768,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     accountStatus?: boolean
+    needsPasswordChange?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
@@ -2774,6 +2784,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     accountStatus?: boolean
+    needsPasswordChange?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
@@ -2782,7 +2793,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "contactNumber" | "password" | "role" | "accountStatus" | "division" | "district" | "upazila" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "contactNumber" | "password" | "role" | "accountStatus" | "needsPasswordChange" | "division" | "district" | "upazila" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     superAdmin?: boolean | User$superAdminArgs<ExtArgs>
     admin?: boolean | User$adminArgs<ExtArgs>
@@ -2828,6 +2839,7 @@ export namespace Prisma {
       password: string | null
       role: $Enums.UserRole
       accountStatus: $Enums.AccountStatus
+      needsPasswordChange: boolean
       division: string | null
       district: string | null
       upazila: string | null
@@ -3277,6 +3289,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
     readonly accountStatus: FieldRef<"User", 'AccountStatus'>
+    readonly needsPasswordChange: FieldRef<"User", 'Boolean'>
     readonly division: FieldRef<"User", 'String'>
     readonly district: FieldRef<"User", 'String'>
     readonly upazila: FieldRef<"User", 'String'>
@@ -21246,6 +21259,7 @@ export namespace Prisma {
     password: 'password',
     role: 'role',
     accountStatus: 'accountStatus',
+    needsPasswordChange: 'needsPasswordChange',
     division: 'division',
     district: 'district',
     upazila: 'upazila',
@@ -21680,6 +21694,7 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     accountStatus?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
+    needsPasswordChange?: BoolFilter<"User"> | boolean
     division?: StringNullableFilter<"User"> | string | null
     district?: StringNullableFilter<"User"> | string | null
     upazila?: StringNullableFilter<"User"> | string | null
@@ -21709,6 +21724,7 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
+    needsPasswordChange?: SortOrder
     division?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
     upazila?: SortOrderInput | SortOrder
@@ -21741,6 +21757,7 @@ export namespace Prisma {
     password?: StringNullableFilter<"User"> | string | null
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     accountStatus?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
+    needsPasswordChange?: BoolFilter<"User"> | boolean
     division?: StringNullableFilter<"User"> | string | null
     district?: StringNullableFilter<"User"> | string | null
     upazila?: StringNullableFilter<"User"> | string | null
@@ -21770,6 +21787,7 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
+    needsPasswordChange?: SortOrder
     division?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
     upazila?: SortOrderInput | SortOrder
@@ -21791,6 +21809,7 @@ export namespace Prisma {
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     accountStatus?: EnumAccountStatusWithAggregatesFilter<"User"> | $Enums.AccountStatus
+    needsPasswordChange?: BoolWithAggregatesFilter<"User"> | boolean
     division?: StringNullableWithAggregatesFilter<"User"> | string | null
     district?: StringNullableWithAggregatesFilter<"User"> | string | null
     upazila?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -23016,6 +23035,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -23045,6 +23065,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -23074,6 +23095,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23103,6 +23125,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23132,6 +23155,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -23147,6 +23171,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23162,6 +23187,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24676,6 +24702,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
+    needsPasswordChange?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
@@ -24691,6 +24718,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
+    needsPasswordChange?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
@@ -24706,6 +24734,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     accountStatus?: SortOrder
+    needsPasswordChange?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
@@ -27955,6 +27984,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -27983,6 +28013,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28027,6 +28058,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28055,6 +28087,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28083,6 +28116,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28111,6 +28145,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28155,6 +28190,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28183,6 +28219,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28211,6 +28248,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28239,6 +28277,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28283,6 +28322,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28311,6 +28351,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28339,6 +28380,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28367,6 +28409,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28411,6 +28454,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28439,6 +28483,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28467,6 +28512,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28495,6 +28541,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28539,6 +28586,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28567,6 +28615,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28595,6 +28644,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28623,6 +28673,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28667,6 +28718,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28695,6 +28747,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28723,6 +28776,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28751,6 +28805,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -28907,6 +28962,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28935,6 +28991,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29027,6 +29084,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29055,6 +29113,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29150,6 +29209,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29178,6 +29238,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29263,6 +29324,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29291,6 +29353,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29365,6 +29428,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29393,6 +29457,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29488,6 +29553,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29516,6 +29582,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29617,6 +29684,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29645,6 +29713,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29673,6 +29742,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29701,6 +29771,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29796,6 +29867,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29824,6 +29896,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29909,6 +29982,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -29937,6 +30011,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -30032,6 +30107,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30060,6 +30136,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30145,6 +30222,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -30173,6 +30251,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -30217,6 +30296,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30245,6 +30325,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30342,6 +30423,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -30370,6 +30452,7 @@ export namespace Prisma {
     password?: string | null
     role?: $Enums.UserRole
     accountStatus?: $Enums.AccountStatus
+    needsPasswordChange?: boolean
     division?: string | null
     district?: string | null
     upazila?: string | null
@@ -30489,6 +30572,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30517,6 +30601,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     accountStatus?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    needsPasswordChange?: BoolFieldUpdateOperationsInput | boolean
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
