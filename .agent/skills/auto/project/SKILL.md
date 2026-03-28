@@ -1,6 +1,6 @@
 ---
 name: project
-description: "Project for Blood-Donors-Management-Backend. 26 gotchas, 68 conventions."
+description: "Project for Blood-Donors-Management-Backend. 26 gotchas, 82 conventions."
 domain: project
 triggers:
   - glob: "**/*"
@@ -10,7 +10,7 @@ enabled: true
 
 # Project
 
-Auto-compiled from **209 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on project files.
+Auto-compiled from **272 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on project files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -48,6 +48,55 @@ Auto-compiled from **209 real patterns** in **Blood-Donors-Management-Backend**.
 ## 📐 Conventions & Best Practices
 
 ### Project Conventions
+- 📐 **Strengthened types Update — externalizes configuration for environment flexib...** — - - [ ] Run `npx prisma generate` to sync types
++ - [x] Update `eslint.config.mjs` to ignore generat
+- 📐 **what-changed in eslint.config.mjs — confirmed 7x** — -         ignores: ['src/generated/**',
++         ignores: [
+-             'node_modules/**',
++  
+- 📐 **what-changed in wasm-edge-light-loader.mjs — confirmed 3x** — File updated (external): src/generated/prisma/wasm-edge-light-loader.mjs
+
+Content summary (5 lines):
+- 📐 **what-changed in schema.prisma — confirmed 3x** — File updated (external): src/generated/prisma/schema.prisma
+
+Content summary (326 lines):
+// This is
+- 📐 **what-changed in wasm-worker-loader.mjs — confirmed 3x** — File updated (external): src/generated/prisma/wasm-worker-loader.mjs
+
+Content summary (5 lines):
+
+/*
+- 📐 **what-changed in .gitignore — confirmed 28x** — - .brainsync/
++ .brainsync/*
+- 📐 **trade-off in .gitignore — confirmed 4x** — - /.vscode
++ .vscode
+- 📐 **convention in .gitignore** — - CLAUDE.md.windsurfrules
++ CLAUDE.md
+- 
++ .windsurfrules
+- # Auto-generated agent rules (person
+- 📐 **convention in .gitignore** — - CLAUDE.md
++ CLAUDE.md.windsurfrules
+- .windsurfrules
++ 
+- 
++ # Auto-generated agent rules (pe
+- 📐 **convention in .gitignore** — - .agent-mem/
++ # Auto-generated agent rules (personalized per developer)
+- 
++ .brainsync/agent-r
+- 📐 **convention in .gitignore** — - .windsurf
++ .windsurfrules
+- 📐 **convention in .gitignore** — - .windsurf/rules
++ .windsurf
+- 📐 **what-changed in .gitignore** — - # .brainsync/**/*
++ .brainsync/**/*
+- 📐 **trade-off in .gitignore** — - # .agent/**/*
++ .agent/**/*
+- # .agent-mem/**/*
++ .agent-mem/**/*
+- # .agents/**/*
++ .agents/
 - 📐 **Added session cookies authentication — ensures atomic multi-step database ope... — confirmed 4x** — -   OTHER
 + }
 - }
@@ -167,20 +216,6 @@ Auto-compiled from **209 real patterns** in **Blood-Donors-Management-Backend**.
 - 📐 **Validate request body with a schema validator (Joi, Zod)** — Validate request body with a schema validator (Joi, Zod)
 - 📐 **Use helmet for security headers** — Use helmet for security headers
 - 📐 **Enable strict mode in tsconfig.json** — Enable strict mode in tsconfig.json
-- 📐 **Prefer Array methods (map, filter, reduce) over manual loops** — Prefer Array methods (map, filter, reduce) over manual loops
-- 📐 **Use template literals for string interpolation, not concatenation** — Use template literals for string interpolation, not concatenation
-- 📐 **Use optional chaining (?.) and nullish coalescing (??) for safe access** — Use optional chaining (?.) and nullish coalescing (??) for safe access
-- 📐 **Use const by default, let when reassignment needed, never var** — Use const by default, let when reassignment needed, never var
-- 📐 **Version your API from day 1 (/api/v1/)** — Version your API from day 1 (/api/v1/)
-- 📐 **Use consistent response format across all endpoints** — Use consistent response format across all endpoints
-- 📐 **Implement soft delete for important data — don't hard delete without confirmation** — Implement soft delete for important data — don't hard delete without confirmation
-- 📐 **Handle timezone correctly — store UTC, display in user's timezone** — Handle timezone correctly — store UTC, display in user's timezone
-- 📐 **Make layouts responsive from the start — mobile-first approach** — Make layouts responsive from the start — mobile-first approach
-- 📐 **Disable submit button during form submission — prevent double-submit** — Disable submit button during form submission — prevent double-submit
-- 📐 **Always add empty states ("No items yet" with call-to-action)** — Always add empty states ("No items yet" with call-to-action)
-- 📐 **Always add error states with retry button — not just blank screen** — Always add error states with retry button — not just blank screen
-- 📐 **Always add loading states for async operations (skeleton, spinner)** — Always add loading states for async operations (skeleton, spinner)
-- 📐 **Test edge cases: empty input, null, boundary values, error scenarios** — Test edge cases: empty input, null, boundary values, error scenarios
 
 ## 🔵 Architecture
 
@@ -196,6 +231,29 @@ e8491b5 auth.ts middleware add
 ### Dependency: dotenv (imported in 5 files)
 ## 🤔 Decisions & Trade-offs
 
+- **trade-off in .gitignore** — - /.agent/
++ /.agent
+- /.agent-mem/
++ /.agent-mem
+- /.agents/
++ /.agents
+- /.cursor/
++ /.curs
+- **trade-off in .gitignore** — - .agent/
++ /.agent/
+- .agent-mem/
++ /.agent-mem/
+- .agents/
++ /.agents/
+- .cursor/
++ /.curso
+- **trade-off in .gitignore** — - .agent/**/*
++ .agent/
+- .agent-mem/**/*
++ .agent-mem/
+- .agents/**/*
++ .agents/
+- .cursor/**
 - **trade-off in .gitignore** — - .agent
 + .agent/**/*
 - .agent-mem
@@ -213,8 +271,6 @@ e8491b5 auth.ts middleware add
 - .cursor
 + # .cursor
 
-- **trade-off in .gitignore** — - 
-+ .vscode
 
 ---
-*Auto-generated by BrainSync 🧠 | 209 patterns | 2026-03-27*
+*Auto-generated by BrainSync 🧠 | 272 patterns | 2026-03-28*

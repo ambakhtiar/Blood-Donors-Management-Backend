@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
-import jwt, { Secret } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import AppError from '../../errors/AppError';
 import config from '../../config';
 import { createToken, verifyToken } from '../../utils/jwt.utils';
@@ -13,7 +13,7 @@ import {
   IResetPassword
 } from './auth.interface';
 import { prisma } from '../../lib/prisma';
-import { AccountStatus, UserRole } from '../../../generated/prisma';
+import { AccountStatus, Gender, UserRole } from '../../../generated/prisma';
 import { sendOTPEmail } from '../../utils/sendEmail';
 
 const registerUser = async (payload: IRegisterUser) => {
@@ -86,7 +86,7 @@ const registerUser = async (payload: IRegisterUser) => {
             name: restDonorInfo.name,
             contactNumber: user.contactNumber,
             bloodGroup: restDonorInfo.bloodGroup,
-            gender: restDonorInfo.gender as any,
+            gender: restDonorInfo.gender as Gender,
             lastDonationDate: restDonorInfo.lastDonationDate,
             isAvailable: true,
             division: division as string,
@@ -97,12 +97,12 @@ const registerUser = async (payload: IRegisterUser) => {
         });
       }
     } else if (role === 'HOSPITAL' && hospitalInfo) {
-      const { division, district, upazila, ...restHospitalInfo } = hospitalInfo;
+      const { ...restHospitalInfo } = hospitalInfo;
       await tx.hospital.create({
         data: { ...restHospitalInfo, userId: user.id },
       });
     } else if (role === 'ORGANISATION' && organisationInfo) {
-      const { division, district, upazila, ...restOrgInfo } = organisationInfo;
+      const { ...restOrgInfo } = organisationInfo;
       await tx.organisation.create({
         data: { ...restOrgInfo, userId: user.id },
       });
@@ -111,7 +111,8 @@ const registerUser = async (payload: IRegisterUser) => {
     return user;
   });
 
-  const { password: _, ...userWithoutPassword } = result;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password: _password, ...userWithoutPassword } = result;
   return userWithoutPassword;
 };
 
@@ -148,11 +149,6 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
   const isPasswordMatched = await bcrypt.compare(password, user.password as string);
   if (!isPasswordMatched) throw new AppError(httpStatus.UNAUTHORIZED, 'Incorrect password!');
 
-  const jwtPayload = {
-    userId: user.id,
-    role: user.role,
-  };
-
   const session = await prisma.session.create({
     data: {
       userId: user.id,
@@ -184,7 +180,8 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
     data: { refreshToken: hashedRefreshToken }
   });
 
-  const { password: _, ...userWithoutPassword } = user;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password: _password, ...userWithoutPassword } = user;
 
   return {
     user: userWithoutPassword,
@@ -197,7 +194,7 @@ const refreshToken = async (token: string) => {
   let decodedData;
   try {
     decodedData = verifyToken(token, config.jwt.refresh_secret as string) as jwt.JwtPayload;
-  } catch (error) {
+  } catch {
     throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
   }
 

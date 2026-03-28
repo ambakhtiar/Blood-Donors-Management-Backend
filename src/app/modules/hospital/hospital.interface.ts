@@ -8,6 +8,12 @@ export interface IRecordDonationPayload {
   weight?: number;
   createPost?: boolean;
   postContent?: string;
+  division?: string;
+  district?: string;
+  upazila?: string;
+  area?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface IUpdateRequestStatusPayload {

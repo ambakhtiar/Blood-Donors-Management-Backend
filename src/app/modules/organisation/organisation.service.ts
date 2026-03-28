@@ -2,7 +2,7 @@ import httpStatus from 'http-status';
 import { prisma } from '../../lib/prisma';
 import AppError from '../../errors/AppError';
 import { IAddVolunteerPayload } from './organisation.interface';
-import { RequestStatus } from '../../../generated/prisma';
+import { Gender, RequestStatus } from '../../../generated/prisma';
 
 const addVolunteer = async (orgId: string, payload: IAddVolunteerPayload) => {
   const bloodDonor = await prisma.bloodDonor.findUnique({
@@ -47,7 +47,7 @@ const addVolunteer = async (orgId: string, payload: IAddVolunteerPayload) => {
           name: payload.name as string,
           contactNumber: payload.contactNumber,
           bloodGroup: payload.bloodGroup as string,
-          gender: payload.gender as any,
+          gender: payload.gender as Gender,
           division: '',
           district: '',
           upazila: '',

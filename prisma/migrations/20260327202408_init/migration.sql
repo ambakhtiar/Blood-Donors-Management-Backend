@@ -5,13 +5,16 @@ CREATE TYPE "UserRole" AS ENUM ('SUPER_ADMIN', 'ADMIN', 'HOSPITAL', 'ORGANISATIO
 CREATE TYPE "AccountStatus" AS ENUM ('PENDING', 'ACTIVE', 'BLOCKED', 'REJECTED');
 
 -- CreateEnum
-CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE', 'OTHER');
+CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE');
 
 -- CreateEnum
 CREATE TYPE "PostType" AS ENUM ('BLOOD_FINDING', 'BLOOD_DONATION', 'HELPING');
 
 -- CreateEnum
-CREATE TYPE "RequestStatus" AS ENUM ('PENDING', 'ACCEPTED', 'REJECTED');
+CREATE TYPE "RequestStatus" AS ENUM ('PENDING', 'ACCEPTED', 'REJECTED', 'CANCELLED');
+
+-- CreateEnum
+CREATE TYPE "PaymentStatus" AS ENUM ('PENDING', 'SUCCESS', 'FAILED', 'CANCELLED');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -21,7 +24,6 @@ CREATE TABLE "User" (
     "password" TEXT,
     "role" "UserRole" NOT NULL DEFAULT 'USER',
     "accountStatus" "AccountStatus" NOT NULL DEFAULT 'PENDING',
-    "isRegisteredUser" BOOLEAN NOT NULL DEFAULT true,
     "division" TEXT,
     "district" TEXT,
     "upazila" TEXT,
@@ -118,17 +120,53 @@ CREATE TABLE "Session" (
 );
 
 -- CreateTable
+CREATE TABLE "BloodDonor" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "contactNumber" TEXT NOT NULL,
+    "bloodGroup" TEXT NOT NULL,
+    "gender" "Gender" NOT NULL,
+    "lastDonationDate" TIMESTAMP(3),
+    "isAvailable" BOOLEAN NOT NULL DEFAULT true,
+    "division" TEXT NOT NULL,
+    "district" TEXT NOT NULL,
+    "upazila" TEXT NOT NULL,
+    "userId" TEXT,
+    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "BloodDonor_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "HospitalDonationRecord" (
+    "id" TEXT NOT NULL,
+    "hospitalId" TEXT NOT NULL,
+    "bloodDonorId" TEXT NOT NULL,
+    "donationDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "weight" DOUBLE PRECISION,
+    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "HospitalDonationRecord_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "authorId" TEXT NOT NULL,
     "type" "PostType" NOT NULL,
     "content" TEXT NOT NULL,
+    "images" TEXT[] DEFAULT ARRAY[]::TEXT[],
     "bloodGroup" TEXT,
     "division" TEXT,
     "district" TEXT,
     "upazila" TEXT,
     "requiredDate" TIMESTAMP(3),
-    "isApproved" BOOLEAN NOT NULL DEFAULT false,
+    "isApproved" BOOLEAN NOT NULL DEFAULT true,
+    "isResolved" BOOLEAN NOT NULL DEFAULT false,
     "targetAmount" DOUBLE PRECISION,
     "raisedAmount" DOUBLE PRECISION DEFAULT 0,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
@@ -141,7 +179,7 @@ CREATE TABLE "Post" (
 -- CreateTable
 CREATE TABLE "DonationHistory" (
     "id" TEXT NOT NULL,
-    "donorId" TEXT NOT NULL,
+    "bloodDonorId" TEXT NOT NULL,
     "receiverOrgId" TEXT,
     "donationDate" TIMESTAMP(3) NOT NULL,
     "weightDuringDonation" DOUBLE PRECISION,
@@ -155,7 +193,7 @@ CREATE TABLE "DonationHistory" (
 CREATE TABLE "OrganisationVolunteer" (
     "id" TEXT NOT NULL,
     "organisationId" TEXT NOT NULL,
-    "volunteerId" TEXT NOT NULL,
+    "bloodDonorId" TEXT NOT NULL,
     "status" "RequestStatus" NOT NULL DEFAULT 'PENDING',
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -167,7 +205,7 @@ CREATE TABLE "OrganisationVolunteer" (
 CREATE TABLE "HospitalRequest" (
     "id" TEXT NOT NULL,
     "hospitalId" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
+    "bloodDonorId" TEXT NOT NULL,
     "status" "RequestStatus" NOT NULL DEFAULT 'PENDING',
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -187,6 +225,32 @@ CREATE TABLE "Notification" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Notification_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "VerificationToken" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "expiresAt" TIMESTAMP(3) NOT NULL,
+    "isUsed" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "VerificationToken_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Payment" (
+    "id" TEXT NOT NULL,
+    "amount" DOUBLE PRECISION NOT NULL,
+    "status" "PaymentStatus" NOT NULL DEFAULT 'PENDING',
+    "transactionId" TEXT NOT NULL,
+    "postId" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Payment_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -220,7 +284,22 @@ CREATE UNIQUE INDEX "DonorProfile_userId_key" ON "DonorProfile"("userId");
 CREATE UNIQUE INDEX "Session_refreshToken_key" ON "Session"("refreshToken");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "OrganisationVolunteer_organisationId_volunteerId_key" ON "OrganisationVolunteer"("organisationId", "volunteerId");
+CREATE UNIQUE INDEX "BloodDonor_contactNumber_key" ON "BloodDonor"("contactNumber");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "BloodDonor_userId_key" ON "BloodDonor"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "OrganisationVolunteer_organisationId_bloodDonorId_key" ON "OrganisationVolunteer"("organisationId", "bloodDonorId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VerificationToken_email_key" ON "VerificationToken"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Payment_transactionId_key" ON "Payment"("transactionId");
 
 -- AddForeignKey
 ALTER TABLE "SuperAdmin" ADD CONSTRAINT "SuperAdmin_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -241,10 +320,19 @@ ALTER TABLE "DonorProfile" ADD CONSTRAINT "DonorProfile_userId_fkey" FOREIGN KEY
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "BloodDonor" ADD CONSTRAINT "BloodDonor_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "HospitalDonationRecord" ADD CONSTRAINT "HospitalDonationRecord_hospitalId_fkey" FOREIGN KEY ("hospitalId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "HospitalDonationRecord" ADD CONSTRAINT "HospitalDonationRecord_bloodDonorId_fkey" FOREIGN KEY ("bloodDonorId") REFERENCES "BloodDonor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Post" ADD CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "DonationHistory" ADD CONSTRAINT "DonationHistory_donorId_fkey" FOREIGN KEY ("donorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "DonationHistory" ADD CONSTRAINT "DonationHistory_bloodDonorId_fkey" FOREIGN KEY ("bloodDonorId") REFERENCES "BloodDonor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "DonationHistory" ADD CONSTRAINT "DonationHistory_receiverOrgId_fkey" FOREIGN KEY ("receiverOrgId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -253,13 +341,19 @@ ALTER TABLE "DonationHistory" ADD CONSTRAINT "DonationHistory_receiverOrgId_fkey
 ALTER TABLE "OrganisationVolunteer" ADD CONSTRAINT "OrganisationVolunteer_organisationId_fkey" FOREIGN KEY ("organisationId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "OrganisationVolunteer" ADD CONSTRAINT "OrganisationVolunteer_volunteerId_fkey" FOREIGN KEY ("volunteerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "OrganisationVolunteer" ADD CONSTRAINT "OrganisationVolunteer_bloodDonorId_fkey" FOREIGN KEY ("bloodDonorId") REFERENCES "BloodDonor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "HospitalRequest" ADD CONSTRAINT "HospitalRequest_hospitalId_fkey" FOREIGN KEY ("hospitalId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "HospitalRequest" ADD CONSTRAINT "HospitalRequest_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "HospitalRequest" ADD CONSTRAINT "HospitalRequest_bloodDonorId_fkey" FOREIGN KEY ("bloodDonorId") REFERENCES "BloodDonor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Notification" ADD CONSTRAINT "Notification_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Payment" ADD CONSTRAINT "Payment_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Payment" ADD CONSTRAINT "Payment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,4 +1,4 @@
-import { Prisma, AccountStatus } from "../../../generated/prisma";
+import { Prisma, AccountStatus, UserRole } from "../../../generated/prisma";
 import httpStatus from "http-status";
 import AppError from "../../errors/AppError";
 import { prisma } from "../../lib/prisma";
@@ -23,7 +23,7 @@ const getAllUsers = async (filters: IUserFilters, options: IOptions) => {
 
   if (email) andConditions.push({ email: { contains: email, mode: "insensitive" } });
   if (contactNumber) andConditions.push({ contactNumber: { contains: contactNumber, mode: "insensitive" } });
-  if (role) andConditions.push({ role: role as any });
+  if (role) andConditions.push({ role: role as UserRole });
   if (accountStatus) andConditions.push({ accountStatus });
 
   andConditions.push({ isDeleted: false });

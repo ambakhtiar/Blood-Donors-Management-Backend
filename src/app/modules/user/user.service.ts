@@ -23,7 +23,8 @@ const getMyProfile = async (userId: string, role: string) => {
     throw new AppError(httpStatus.NOT_FOUND, "User profile not found!");
   }
 
-  const { password, ...userWithoutPassword } = result;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password: _password, ...userWithoutPassword } = result;
   return userWithoutPassword;
 };
 
@@ -31,7 +32,7 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
   const { donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
 
   const result = await prisma.$transaction(async (tx) => {
-    // 1. Update Core User table
+    // 1. Update Core User table (includes shared location fields: division, district, upazila)
     const updatedUser = await tx.user.update({
       where: { id: userId },
       data: userData,
@@ -43,6 +44,25 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
         where: { userId },
         data: donorInfo,
       });
+
+      // Synchronize BloodDonor if it exists
+      const bloodDonor = await tx.bloodDonor.findUnique({ where: { userId } });
+      if (bloodDonor) {
+        await tx.bloodDonor.update({
+          where: { userId },
+          data: {
+            name: donorInfo.name,
+            bloodGroup: donorInfo.bloodGroup,
+            gender: donorInfo.gender,
+            division: donorInfo.division || updatedUser.division || '',
+            district: donorInfo.district || updatedUser.district || '',
+            upazila: donorInfo.upazila || updatedUser.upazila || '',
+            area: donorInfo.area,
+            latitude: donorInfo.latitude,
+            longitude: donorInfo.longitude,
+          }
+        });
+      }
     } else if (role === UserRole.HOSPITAL && hospitalInfo) {
       await tx.hospital.update({
         where: { userId },
@@ -58,12 +78,13 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
     return updatedUser;
   });
 
-  const { password, ...userWithoutPassword } = result;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password: _password, ...userWithoutPassword } = result;
   return userWithoutPassword;
 };
 
 const getDonorList = async (filters: Record<string, unknown>) => {
-    const { bloodGroup, division, district, upazila, searchTerm, ...filterData } = filters;
+    const { bloodGroup, division, district, upazila, searchTerm } = filters;
 
     const andConditions = [];
 
@@ -114,7 +135,8 @@ const getDonorList = async (filters: Record<string, unknown>) => {
         }
     });
 
-    return result.map(({ password, ...userWithoutPassword }) => userWithoutPassword);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return result.map(({ password: _password, ...userWithoutPassword }) => userWithoutPassword);
 };
 
 export const UserServices = {

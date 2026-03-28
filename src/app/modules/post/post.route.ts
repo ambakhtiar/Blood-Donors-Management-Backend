@@ -42,4 +42,10 @@ router.patch(
   PostControllers.approvePost
 );
 
+router.patch(
+  '/:id/verify',
+  auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+  PostControllers.verifyPost
+);
+
 export const PostRoutes = router;

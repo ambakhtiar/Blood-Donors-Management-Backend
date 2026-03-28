@@ -1,0 +1,550 @@
+# Notes Index — Blood-Donors-Management-Backend
+> 535 total notes
+
+### 2026-03-28
+
+| # | Title | ~Tok |
+|---|---|---|
+| 535 | Git Commit: feat: implement user profile manage... | ~45 |
+| 534 | Git Commit: feat: implement user profile manage... | ~45 |
+| 533 | Strengthened types IUpdateProfilePayload — ensu... | ~528 |
+| 532 | Fixed null crash in ILoginUser — uses a proper ... | ~531 |
+| 531 | discovery in sslcommerz.ts | ~144.5 |
+| 530 | problem-fix in organisation.service.ts | ~152 |
+| 529 | 🟢 Edited src/app/modules/Auth/auth.service.ts ... | ~30 |
+| 528 | Updated schema IOptions | ~535.5 |
+| 527 | discovery in admin.controller.ts | ~149 |
+| 526 | discovery in notFound.ts | ~123 |
+| 525 | Added JWT tokens authentication | ~40 |
+| 524 | what-changed in user.service.ts — confirmed 3x | ~86.5 |
+| 523 | what-changed in user.service.ts | ~116.5 |
+| 522 | Fixed null crash in AccountStatus — uses a prop... | ~533.5 |
+| 521 | discovery in auth.service.ts — confirmed 3x | ~148 |
+| 520 | Strengthened types Gender | ~142.5 |
+| 519 | Strengthened types Update — externalizes config... | ~105.5 |
+| 518 | what-changed in hospital.service.ts | ~50.5 |
+| 517 | 🟢 Edited eslint.config.mjs (8 changes, 1min) | ~30 |
+| 516 | what-changed in eslint.config.mjs — confirmed 7x | ~135.5 |
+| 515 | what-changed in eslint.config.mjs | ~78 |
+| 514 | what-changed in eslint.config.mjs | ~66.75 |
+| 513 | what-changed in eslint.config.mjs | ~84.5 |
+| 512 | what-changed in eslint.config.mjs | ~94 |
+| 511 | what-changed in eslint.config.mjs | ~107 |
+| 510 | 🟢 Edited prisma/schema.prisma (29 changes, 4min) | ~30 |
+| 509 | 🟢 Edited package.json (122 changes, 5min) | ~30 |
+| 508 | 🟢 Edited package.json (16 changes, 2min) | ~30 |
+| 507 | Added JWT tokens authentication — uses a proper... | ~529 |
+| 506 | Added JWT tokens authentication — uses a proper... | ~529 |
+| 505 | what-changed in package.json — confirmed 8x | ~43.5 |
+| 504 | what-changed in package.json | ~42.75 |
+| 503 | what-changed in package.json | ~41.5 |
+| 502 | what-changed in package.json | ~39 |
+| 501 | what-changed in package.json | ~37.25 |
+| 500 | Updated configuration Update — externalizes con... | ~55.25 |
+| 499 | what-changed in query_compiler_fast_bg.wasm-bas... | ~153 |
+| 498 | problem-fix in query_compiler_fast_bg.js — conf... | ~150 |
+| 497 | Updated schema package | ~69.5 |
+| 496 | what-changed in wasm-compiler-edge.js — confirm... | ~151.25 |
+| 495 | what-changed in client.js | ~148.25 |
+| 494 | problem-fix in edge.js — confirmed 3x | ~146 |
+| 493 | what-changed in wasm-edge-light-loader.mjs — co... | ~73 |
+| 492 | what-changed in index-browser.js | ~149.75 |
+| 491 | what-changed in schema.prisma — confirmed 3x | ~147.5 |
+| 490 | what-changed in index-browser.js | ~148.25 |
+| 489 | what-changed in wasm-worker-loader.mjs — confir... | ~70.25 |
+| 488 | what-changed in default.js — confirmed 3x | ~66.75 |
+| 487 | what-changed in client.js | ~62.5 |
+| 486 | 🟢 Edited package.json (11 changes, 9min) | ~30 |
+| 485 | Added JWT tokens authentication — uses a proper... | ~305 |
+| 484 | what-changed in package.json | ~92.5 |
+| 483 | what-changed in package.json | ~91.75 |
+| 482 | what-changed in package.json | ~37.25 |
+| 481 | tool-pattern in package.json | ~38.25 |
+| 480 | tool-pattern in package.json | ~36 |
+| 479 | what-changed in package.json | ~30.75 |
+| 478 | Added JWT tokens authentication — uses a proper... | ~529 |
+| 477 | what-changed in eslint.config.mjs | ~78.5 |
+| 476 | what-changed in hospital.service.ts | ~50.5 |
+| 475 | Updated Prisma database schema | ~402.75 |
+| 474 | what-changed in user.service.ts | ~148 |
+| 473 | Replaced auth NextFunction — improves module re... | ~227.5 |
+| 472 | discovery in validateRequest.ts | ~111.75 |
+| 471 | ⚠️ GOTCHA: Added JWT tokens authentication | ~534.25 |
+| 470 | Added JWT tokens authentication | ~254.25 |
+| 469 | ⚠️ GOTCHA: Fixed null crash in Date — ensures a... | ~539 |
+| 468 | Fixed null crash in Scenario — prevents null/un... | ~539 |
+| 467 | what-changed in hospital.interface.ts | ~140.25 |
+| 466 | what-changed in user.interface.ts | ~148.25 |
+| 465 | Fixed null crash in AppError — ensures atomic m... | ~536.25 |
+| 464 | discovery in hospital.service.ts | ~150 |
+| 463 | problem-fix in post.validation.ts | ~63.5 |
+| 462 | problem-fix in post.validation.ts | ~65.5 |
+| 461 | problem-fix in post.validation.ts | ~504.5 |
+| 460 | problem-fix in post.validation.ts | ~148.5 |
+| 459 | decision in post.interface.ts | ~148.25 |
+| 458 | Updated architecture database schema | ~504.75 |
+| 457 | what-changed in .gitignore | ~4 |
+| 456 | 🟢 Edited .gitignore (19 changes, 2min) | ~30 |
+| 455 | what-changed in .gitignore — confirmed 28x | ~7.5 |
+| 454 | what-changed in .gitignore | ~7 |
+| 453 | what-changed in .gitignore | ~5.75 |
+| 452 | what-changed in .gitignore | ~3.25 |
+| 451 | what-changed in .gitignore | ~2.25 |
+| 450 | trade-off in .gitignore — confirmed 4x | ~5.5 |
+| 449 | what-changed in .gitignore | ~5.5 |
+| 448 | what-changed in .gitignore | ~5.5 |
+| 447 | what-changed in .gitignore | ~5 |
+| 446 | what-changed in .gitignore | ~7 |
+| 445 | what-changed in .gitignore | ~7 |
+| 444 | 🟢 Edited .gitignore (8 changes, 1min) | ~30 |
+| 443 | trade-off in .gitignore | ~32 |
+| 442 | what-changed in .gitignore | ~7.5 |
+| 441 | Git Commit: chore: remove AI-generated files fr... | ~21 |
+| 440 | what-changed in .gitignore | ~6.75 |
+| 439 | what-changed in .gitignore | ~6.75 |
+| 438 | trade-off in .gitignore | ~32 |
+| 437 | what-changed in .gitignore | ~7.5 |
+| 436 | what-changed in .gitignore | ~8.5 |
+| 435 | what-changed in .gitignore | ~8.5 |
+| 434 | what-changed in .gitignore | ~9.75 |
+| 433 | what-changed in .gitignore | ~10.5 |
+| 432 | what-changed in .gitignore | ~10 |
+| 431 | what-changed in .gitignore | ~9.5 |
+| 430 | what-changed in .gitignore | ~9 |
+| 429 | what-changed in .gitignore | ~8.5 |
+| 428 | what-changed in .gitignore | ~10 |
+| 427 | what-changed in .gitignore | ~7.75 |
+| 426 | what-changed in .gitignore | ~7.75 |
+| 425 | convention in .gitignore | ~62.75 |
+| 424 | convention in .gitignore | ~62.75 |
+| 423 | convention in .gitignore | ~51 |
+| 422 | trade-off in .gitignore | ~35.75 |
+| 421 | what-changed in .gitignore | ~8.25 |
+| 420 | what-changed in .gitignore | ~7 |
+| 419 | what-changed in .gitignore | ~7 |
+| 418 | Git Commit: ai automated file ignore | ~15 |
+| 417 | convention in .gitignore | ~7.5 |
+| 416 | convention in .gitignore | ~7.75 |
+| 415 | what-changed in .gitignore | ~9.75 |
+| 414 | trade-off in .gitignore | ~43.25 |
+| 413 | what-changed in default.js | ~66.75 |
+| 412 | Replaced auth CreateTable — speeds up database ... | ~504.75 |
+| 411 | convention in migration_lock.toml | ~54.75 |
+| 410 | 🟢 Edited src/app/modules/payment/payment.servi... | ~30 |
+| 409 | Git Commit: payment method sslcommerz api impli... | ~19 |
+| 408 | what-changed in payment.service.ts — confirmed 5x | ~61.5 |
+| 407 | what-changed in payment.service.ts | ~61.5 |
+| 406 | problem-fix in payment.service.ts | ~207 |
+| 405 | Fixed null crash in AppError — externalizes con... | ~536.25 |
+| 404 | what-changed in payment.service.ts | ~79.25 |
+| 403 | what-changed in payment.service.ts | ~78.5 |
+| 402 | what-changed in payment.service.ts | ~79.5 |
+| 401 | Updated configuration payment.service — externa... | ~205.75 |
+| 400 | 🟢 Edited src/app/config/env.ts (9 changes, 1min) | ~30 |
+| 399 | Updated configuration BACKEND_URL — externalize... | ~91 |
+| 398 | ⚠️ GOTCHA: Fixed null crash in AppError — exter... | ~518.25 |
+| 397 | ⚠️ GOTCHA: Fixed null crash in AppError — exter... | ~518.25 |
+| 396 | Fixed null crash in EnvConfig — externalizes co... | ~524.25 |
+| 395 | what-changed in env.ts | ~25.75 |
+| 394 | what-changed in env.ts | ~36.5 |
+| 393 | Fixed null crash in PORT — externalizes configu... | ~524.25 |
+| 392 | 🟢 Edited .env (45 changes, 4min) | ~30 |
+| 391 | Fixed null crash in AppError — ensures atomic m... | ~536.25 |
+| 390 | 🟢 Edited src/app/modules/payment/payment.contr... | ~30 |
+| 389 | problem-fix in payment.controller.ts | ~65.5 |
+| 388 | Updated schema PaymentStatus — externalizes con... | ~536.75 |
+| 387 | Added session cookies authentication — ensures ... | ~504.75 |
+| 386 | ⚠️ GOTCHA: Replaced session cookies with JWT to... | ~551.25 |
+| 385 | Replaced session cookies with JWT tokens — exte... | ~551.25 |
+| 384 | Added session cookies authentication | ~529 |
+| 383 | Updated schema package | ~69.5 |
+| 382 | Updated schema Request — externalizes configura... | ~536.75 |
+| 381 | Added session cookies authentication — ensures ... | ~504.75 |
+| 380 | Added session cookies authentication — ensures ... | ~504.75 |
+| 379 | 🟢 Edited .gitignore (12 changes, 4min) — confi... | ~30 |
+| 378 | convention in .gitignore | ~9 |
+| 377 | convention in .gitignore | ~9 |
+| 376 | trade-off in .gitignore — confirmed 4x | ~53.25 |
+| 375 | convention in .gitignore | ~9.25 |
+| 374 | convention in .gitignore | ~9.25 |
+| 373 | convention in .gitignore | ~7.75 |
+| 372 | 🟢 Edited .gitignore (6 changes, 1min) | ~30 |
+| 371 | what-changed in .gitignore — confirmed 7x | ~5.25 |
+| 370 | what-changed in .gitignore | ~3.75 |
+| 369 | what-changed in .gitignore | ~2.5 |
+| 368 | discovery in admin.service.ts | ~148.5 |
+| 367 | discovery in post.service.ts | ~148 |
+| 366 | Fixed null crash in IRecordDonationPayload — pr... | ~539 |
+| 365 | Replaced uuid with uuid | ~72.25 |
+| 364 | 🟢 Edited .gitignore (8 changes, 1min) | ~30 |
+| 363 | convention in .gitignore | ~46 |
+| 362 | convention in .gitignore | ~22.5 |
+| 361 | trade-off in .gitignore | ~34.5 |
+| 360 | what-changed in index.ts | ~144.5 |
+| 359 | what-changed in .gitignore | ~8.75 |
+| 358 | what-changed in .gitignore | ~7.75 |
+| 357 | what-changed in .gitignore | ~7 |
+| 356 | convention in .gitignore | ~10.5 |
+| 355 | 🟢 Edited prisma/schema.prisma (6 changes, 3min... | ~30 |
+| 354 | Git Commit: admin api impliment | ~14 |
+| 353 | discovery in auth.service.ts | ~148 |
+| 352 | what-changed in schema.prisma | ~19 |
+| 351 | Updated schema String | ~165.75 |
+| 350 | Updated schema String — ensures atomic multi-st... | ~393.25 |
+| 349 | Added error handling AppError — externalizes co... | ~508.75 |
+| 348 | ⚠️ GOTCHA: problem-fix in env.ts | ~53.75 |
+| 347 | 🟢 Edited src/app/config/env.ts (9 changes, 1min) | ~30 |
+| 346 | Updated configuration SSL_COMMERZ — externalize... | ~113 |
+| 345 | what-changed in env.ts — confirmed 3x | ~29.75 |
+| 344 | what-changed in env.ts | ~57.25 |
+| 343 | ⚠️ GOTCHA: Fixed null crash in Error — external... | ~527.75 |
+| 342 | what-changed in env.ts | ~29.75 |
+| 341 | ⚠️ GOTCHA: Fixed null crash in Error — external... | ~527.75 |
+| 340 | Fixed null crash in EnvConfig — externalizes co... | ~526 |
+| 339 | Fixed null crash in EnvConfig — externalizes co... | ~527.75 |
+| 338 | 🟢 Edited .env (17 changes, 1min) | ~30 |
+
+### 2026-03-27
+
+| # | Title | ~Tok |
+|---|---|---|
+| 337 | what-changed in query_compiler_fast_bg.wasm-bas... | ~153 |
+| 336 | problem-fix in query_compiler_fast_bg.js | ~150 |
+| 335 | Updated schema package — confirmed 3x | ~69.5 |
+| 334 | what-changed in wasm-compiler-edge.js | ~151.25 |
+| 333 | what-changed in client.js | ~148.25 |
+| 332 | what-changed in client.js — confirmed 4x | ~62.5 |
+| 331 | what-changed in wasm-worker-loader.mjs | ~70.25 |
+| 330 | what-changed in wasm-edge-light-loader.mjs | ~73 |
+| 329 | problem-fix in index.js | ~146.25 |
+| 328 | what-changed in schema.prisma | ~147.5 |
+| 327 | what-changed in index-browser.js — confirmed 4x | ~149.75 |
+| 326 | problem-fix in edge.js | ~146 |
+| 325 | what-changed in index-browser.js | ~148.25 |
+| 324 | Replaced auth AppError — protects against XSS a... | ~528.75 |
+| 323 | Replaced auth AppError — protects against XSS a... | ~528.75 |
+| 322 | 🟢 Edited prisma/schema.prisma (7 changes, 7min) | ~30 |
+| 321 | what-changed in .gitignore | ~4 |
+| 320 | Replaced auth DonationHistory — ensures atomic ... | ~504.75 |
+| 319 | Added session cookies authentication — ensures ... | ~504.75 |
+| 318 | Replaced auth Payment — ensures atomic multi-st... | ~504.75 |
+| 317 | Updated schema Payment — ensures atomic multi-s... | ~123.5 |
+| 316 | 🟢 Edited .gitignore (19 changes, 2min) — confi... | ~30 |
+| 315 | Updated configuration Auto | ~132 |
+| 314 | convention in .gitignore | ~45.75 |
+| 313 | convention in .gitignore | ~112.25 |
+| 312 | convention in .gitignore | ~14.75 |
+| 311 | trade-off in .gitignore | ~30.75 |
+| 310 | what-changed in .gitignore — confirmed 37x | ~4.25 |
+| 309 | what-changed in .gitignore | ~4.25 |
+| 308 | what-changed in .gitignore | ~4.5 |
+| 307 | 🟢 Edited .gitignore (74 changes, 3min) | ~30 |
+| 306 | what-changed in .gitignore | ~2.25 |
+| 305 | what-changed in .gitignore | ~2.5 |
+| 304 | what-changed in .gitignore | ~2.25 |
+| 303 | what-changed in .gitignore | ~2.25 |
+| 302 | what-changed in .gitignore | ~15 |
+| 301 | what-changed in .gitignore | ~2 |
+| 300 | trade-off in .gitignore | ~3.5 |
+| 299 | what-changed in .gitignore | ~14.75 |
+| 298 | what-changed in .gitignore | ~3.75 |
+| 297 | what-changed in .gitignore | ~4.75 |
+| 296 | what-changed in .gitignore | ~4.25 |
+| 295 | what-changed in .gitignore | ~29.75 |
+| 294 | what-changed in .gitignore | ~32.25 |
+| 293 | what-changed in .gitignore | ~4.5 |
+| 292 | what-changed in .gitignore | ~14.75 |
+| 291 | what-changed in .gitignore | ~3.5 |
+| 290 | what-changed in .gitignore | ~14.75 |
+| 289 | convention in .gitignore | ~59.5 |
+| 288 | convention in .gitignore | ~29.5 |
+| 287 | convention in .gitignore | ~25.25 |
+| 286 | what-changed in .gitignore | ~7.5 |
+| 285 | what-changed in .gitignore | ~14.75 |
+| 284 | what-changed in .gitignore | ~35.25 |
+| 283 | what-changed in .gitignore | ~4.25 |
+| 282 | what-changed in .gitignore | ~21.25 |
+| 281 | what-changed in .gitignore | ~8.25 |
+| 280 | what-changed in .gitignore | ~10.75 |
+| 279 | what-changed in .gitignore | ~28.5 |
+| 278 | what-changed in .gitignore | ~5 |
+| 277 | what-changed in .gitignore | ~4 |
+| 276 | what-changed in .gitignore | ~2.5 |
+| 275 | what-changed in .gitignore | ~22.25 |
+| 274 | what-changed in .gitignore | ~30.5 |
+| 273 | what-changed in .gitignore | ~3.25 |
+| 272 | what-changed in .gitignore | ~22.25 |
+| 271 | what-changed in .gitignore | ~3 |
+| 270 | what-changed in .gitignore | ~22.25 |
+| 269 | what-changed in .gitignore | ~11 |
+| 268 | convention in .gitignore | ~80.75 |
+| 267 | Added JWT tokens authentication — uses a proper... | ~316.5 |
+| 266 | what-changed in admin.controller.ts | ~67.5 |
+| 265 | Replaced auth AdminRoutes — improves module reu... | ~268 |
+| 264 | discovery in auth.ts | ~145.5 |
+| 263 | Fixed null crash in BLOCKED — uses a proper pas... | ~536 |
+| 262 | Added JWT tokens authentication — confirmed 3x | ~534.25 |
+| 261 | Git Commit: organization module add | ~15 |
+| 260 | Added session cookies authentication | ~504.75 |
+| 259 | 🟢 Edited src/app/routes/index.ts (38 changes, ... | ~30 |
+| 258 | Added API route: /organisations | ~60.5 |
+| 257 | Replaced auth OrganisationRoutes — improves mod... | ~264.75 |
+| 256 | Updated API endpoint OrganisationRoutes — confi... | ~61 |
+| 255 | Updated API endpoint OrganisationRoutes | ~60 |
+| 254 | Added API route: /organisations | ~49 |
+| 253 | what-changed in index.ts — confirmed 9x | ~38.25 |
+| 252 | what-changed in index.ts | ~37.25 |
+| 251 | what-changed in index.ts | ~36.5 |
+| 250 | what-changed in index.ts | ~35.25 |
+| 249 | Updated API endpoint index — improves module re... | ~87.75 |
+| 248 | Git Commit: hospital api add | ~13 |
+| 247 | Added API route: /hospitals | ~55.75 |
+| 246 | Replaced auth HospitalRoutes — improves module ... | ~228.75 |
+| 245 | Updated API endpoint OrganisationRoutes — impro... | ~100.25 |
+| 244 | Added API route: /hospitals — improves module r... | ~118 |
+| 243 | what-changed in index.ts | ~38.5 |
+| 242 | what-changed in index.ts | ~37.75 |
+| 241 | what-changed in index.ts | ~36.75 |
+| 240 | what-changed in index.ts | ~35.25 |
+| 239 | what-changed in index.ts | ~33.75 |
+| 238 | Updated API endpoint index — improves module re... | ~87.25 |
+| 237 | 🟢 Edited src/app/routes/index.ts (5 changes, 1... | ~30 |
+| 236 | Git Commit: post api impliment | ~13 |
+| 235 | Replaced auth PostRoutes — improves module reus... | ~249.75 |
+| 234 | Updated API endpoint HospitalRoutes — improves ... | ~111.75 |
+| 233 | Replaced auth PostControllers — confirmed 4x | ~523.25 |
+| 232 | Replaced auth Auth | ~523.25 |
+| 231 | 🟢 Edited src/app/modules/post/post.route.ts (6... | ~30 |
+| 230 | Updated schema IPaginationOptions | ~534.25 |
+| 229 | Updated schema IPostFilters | ~335.75 |
+| 228 | Replaced auth PostControllers | ~523.25 |
+| 227 | Updated API endpoint PostControllers | ~46.25 |
+| 226 | Replaced auth Auth | ~523.25 |
+| 225 | Updated schema PostServices | ~534.25 |
+| 224 | Updated schema Request — confirmed 4x | ~534.25 |
+| 223 | Replaced auth PostControllers | ~406.75 |
+| 222 | Updated schema Request | ~534.25 |
+| 221 | ⚠️ GOTCHA: Added JWT tokens authentication — en... | ~534.25 |
+| 220 | decision in post.interface.ts | ~104.75 |
+| 219 | 🟢 Edited src/app/routes/index.ts (5 changes, 5... | ~30 |
+| 218 | Updated schema post.validation | ~145.75 |
+| 217 | Replaced auth PostRoutes — improves module reus... | ~256.75 |
+| 216 | Replaced auth HospitalRoutes — improves module ... | ~334.75 |
+| 215 | Replaced auth Helping — ensures atomic multi-st... | ~533.75 |
+| 214 | Updated schema Request | ~468.25 |
+| 213 | Replaced auth PostControllers | ~205.75 |
+| 212 | Added session cookies authentication — reduces ... | ~551.25 |
+| 211 | Added session cookies authentication — ensures ... | ~529 |
+| 210 | Added session cookies authentication — external... | ~551.25 |
+| 209 | Optimized package — offloads heavy computation ... | ~527.5 |
+| 208 | Added session cookies authentication | ~504.75 |
+| 207 | 🟢 Edited src/app/modules/Auth/auth.controller.... | ~30 |
+| 206 | what-changed in auth.constant.ts | ~62.5 |
+| 205 | Fixed null crash in Secret — uses a proper pass... | ~536 |
+| 204 | Replaced auth PostRoutes — improves module reus... | ~255.75 |
+| 203 | Git Commit: blooddonor hospitalrecord model add | ~18 |
+| 202 | Added session cookies authentication — confirme... | ~504.75 |
+| 201 | 🟢 Edited src/app/routes/index.ts (31 changes, ... | ~30 |
+| 200 | Added session cookies authentication — ensures ... | ~529 |
+| 199 | Added session cookies authentication — reduces ... | ~551.25 |
+| 198 | Strengthened types AppError — ensures atomic mu... | ~533 |
+| 197 | Updated express database schema | ~533.75 |
+| 196 | Added JWT tokens authentication | ~219 |
+| 195 | Added JWT tokens authentication — optimizes dat... | ~534 |
+| 194 | Updated zod database schema | ~92 |
+| 193 | Optimized package — offloads heavy computation ... | ~527.5 |
+| 192 | Added session cookies authentication — external... | ~551.25 |
+| 191 | Fixed null crash in Secret — uses a proper pass... | ~536 |
+| 190 | Added session cookies authentication | ~504.75 |
+| 189 | trade-off in auth.constant.ts | ~43.75 |
+| 188 | Replaced auth Router — improves module reusabil... | ~186 |
+| 187 | Added session cookies authentication | ~504.75 |
+| 186 | convention in sendEmail.ts | ~145.25 |
+| 185 | Updated configuration Keep | ~165.5 |
+| 184 | Git Commit: post api impliment | ~13 |
+| 183 | Replaced auth PostRoutes — improves module reus... | ~198.75 |
+| 182 | Added API route: /posts | ~44.5 |
+| 181 | what-changed in index.ts — confirmed 3x | ~37.75 |
+| 180 | what-changed in index.ts | ~36.75 |
+| 179 | what-changed in index.ts | ~35.25 |
+| 178 | Updated API endpoint index — improves module re... | ~93.25 |
+| 177 | Updated API endpoint index — improves module re... | ~92.75 |
+| 176 | Updated API endpoint index — improves module re... | ~87.25 |
+| 175 | Updated API endpoint PostRoutes — improves modu... | ~96.75 |
+| 174 | Replaced auth Router — improves module reusability | ~238.75 |
+| 173 | Updated API endpoint HospitalRoutes — improves ... | ~111.75 |
+| 172 | what-changed in organisation.controller.ts | ~75.75 |
+| 171 | Updated schema Record | ~351.5 |
+| 170 | 🟢 Edited prisma/schema.prisma (27 changes, 2min) | ~30 |
+| 169 | Updated zod database schema | ~92 |
+| 168 | what-changed in schema.prisma — confirmed 4x | ~26 |
+| 167 | what-changed in schema.prisma | ~33.25 |
+| 166 | what-changed in schema.prisma | ~39 |
+| 165 | Fixed null crash in IRegisterUser — uses a prop... | ~533 |
+| 164 | Added JWT tokens authentication — optimizes dat... | ~534 |
+| 163 | Added JWT tokens authentication — optimizes dat... | ~565.5 |
+| 162 | Added JWT tokens authentication — prevents null... | ~288.25 |
+| 161 | Replaced auth BloodDonor — filters out falsy/nu... | ~504.75 |
+| 160 | Updated schema Gender | ~366.5 |
+| 159 | Updated schema HospitalValidation | ~105.25 |
+| 158 | Updated schema Request | ~380 |
+| 157 | Replaced dependency Gender — formalizes the dat... | ~171.75 |
+| 156 | Fixed null crash in IRecordDonationPayload — fi... | ~539 |
+| 155 | Updated schema Date | ~133 |
+| 154 | Replaced auth OrganisationValidation | ~219.75 |
+| 153 | Updated API endpoint Request | ~551.25 |
+| 152 | Strengthened types AppError — filters out falsy... | ~550.5 |
+| 151 | what-changed in post.service.ts | ~74.75 |
+| 150 | Updated BloodDonor database schema | ~98.75 |
+| 149 | what-changed in post.service.ts | ~328 |
+| 148 | Replaced auth Refactor | ~73.75 |
+| 147 | Added session cookies authentication — external... | ~551.25 |
+| 146 | Added session cookies authentication | ~529 |
+| 145 | Added session cookies authentication — reduces ... | ~551.25 |
+| 144 | Updated schema package | ~69.5 |
+| 143 | Added session cookies authentication | ~504.75 |
+| 142 | what-changed in default.js | ~66.75 |
+| 141 | Added session cookies authentication | ~504.75 |
+| 140 | Added session cookies authentication | ~504.75 |
+| 139 | Replaced auth Public | ~565.5 |
+| 138 | Added JWT tokens authentication — optimizes dat... | ~565.5 |
+| 137 | 🟢 Edited docs/req.md (12 changes, 7min) | ~30 |
+| 136 | Replaced auth Public — confirmed 3x | ~565.5 |
+| 135 | Added JWT tokens authentication | ~565.5 |
+| 134 | Replaced auth Public | ~549.75 |
+| 133 | Added JWT tokens authentication | ~549.75 |
+| 132 | Replaced auth Public | ~534 |
+| 131 | 🟢 Edited src/app/routes/index.ts (8 changes, 5... | ~30 |
+| 130 | Replaced auth HospitalRoutes — improves module ... | ~250.25 |
+| 129 | Updated API endpoint HospitalRoutes — improves ... | ~111.75 |
+| 128 | Replaced auth Router — improves module reusability | ~276.75 |
+| 127 | 🟢 Edited src/app/modules/post/post.controller.... | ~30 |
+| 126 | Replaced auth OrganisationRoutes — improves mod... | ~245.5 |
+| 125 | what-changed in hospital.controller.ts | ~54.5 |
+| 124 | problem-fix in hospital.validation.ts | ~100 |
+| 123 | Replaced auth HospitalRoutes — improves module ... | ~214 |
+| 122 | what-changed in post.controller.ts — confirmed 4x | ~37.25 |
+| 121 | Updated API endpoint PostServices | ~240.5 |
+| 120 | Replaced auth AppError — confirmed 4x | ~287 |
+| 119 | what-changed in post.controller.ts | ~36.75 |
+| 118 | Replaced auth AppError | ~533.25 |
+| 117 | Replaced auth ApiError | ~266.5 |
+| 116 | what-changed in post.controller.ts | ~34.75 |
+| 115 | Updated API endpoint PostServices | ~241.5 |
+| 114 | what-changed in query_compiler_fast_bg.wasm-bas... | ~153 |
+| 113 | problem-fix in query_compiler_fast_bg.js | ~150 |
+| 112 | Updated schema package | ~69.5 |
+| 111 | what-changed in wasm-compiler-edge.js | ~151.25 |
+| 110 | what-changed in client.js | ~148.25 |
+| 109 | what-changed in wasm-edge-light-loader.mjs | ~73 |
+| 108 | what-changed in wasm-worker-loader.mjs | ~70.25 |
+| 107 | what-changed in schema.prisma | ~147.5 |
+| 106 | problem-fix in index.js | ~146.25 |
+| 105 | problem-fix in edge.js | ~146 |
+| 104 | what-changed in index-browser.js | ~149.75 |
+| 103 | what-changed in index-browser.js | ~148.25 |
+| 102 | what-changed in client.js | ~62.5 |
+| 101 | Updated schema UserRole | ~533.25 |
+| 100 | what-changed in post.controller.ts | ~78.25 |
+| 99 | Updated schema Content | ~537.75 |
+| 98 | problem-fix in post.service.ts | ~148 |
+| 97 | 🟢 Edited .gitignore (26 changes, 1min) | ~30 |
+| 96 | what-changed in .gitignore — confirmed 7x | ~5.5 |
+| 95 | what-changed in .gitignore | ~4.5 |
+| 94 | what-changed in .gitignore | ~3.75 |
+| 93 | what-changed in .gitignore | ~2.25 |
+| 92 | what-changed in .gitignore | ~4 |
+| 91 | what-changed in .gitignore | ~2.75 |
+| 90 | convention in .gitignore | ~6.5 |
+| 89 | what-changed in .gitignore | ~2.25 |
+| 88 | 🟢 Edited .gitignore (5 changes, 1min) | ~30 |
+| 87 | what-changed in .gitignore — confirmed 3x | ~21.25 |
+| 86 | what-changed in .gitignore | ~10.5 |
+| 85 | what-changed in Protected | ~15.75 |
+| 84 | Replaced auth AppError — protects against XSS a... | ~528.75 |
+| 83 | Replaced auth AppError — protects against XSS a... | ~528.75 |
+| 82 | Git Commit: auth forget pass , reset and user a... | ~21 |
+| 81 | Replaced auth verificationToken | ~117.75 |
+| 80 | discovery in auth.service.ts | ~148 |
+| 79 | what-changed in .gitignore | ~9.75 |
+| 78 | Git hotspots: src/app/config/index.ts(3x), pack... | ~32 |
+| 77 | Git history: 5 recent commits | ~47 |
+| 76 | Found 1 TODO/FIXME/HACK comments across project | ~34 |
+| 75 | Dependency: zod (imported in 4 files) | ~10 |
+| 74 | Dependency: jsonwebtoken (imported in 4 files) | ~12 |
+| 73 | Dependency: dotenv (imported in 5 files) | ~10 |
+| 72 | Dependency: http-status (imported in 8 files) | ~12 |
+| 71 | Dependency: express (imported in 12 files) | ~11 |
+| 70 | Dependency: @prisma (imported in 35 files) | ~11 |
+| 69 | Project structure: docs, prisma, src | ~9 |
+| 68 | TypeScript strict mode enabled | ~8 |
+| 67 | ORM: Prisma detected | ~5 |
+| 66 | Backend: Express.js detected | ~7 |
+| 65 | Project: blood-donation-management-backend — 14... | ~48 |
+| 64 | Use prisma migrate deploy in production, not pr... | ~59 |
+| 63 | Use select/include to limit data fetched — avoi... | ~62 |
+| 62 | Use transactions for related database operations | ~48 |
+| 61 | Run prisma generate after schema changes | ~40 |
+| 60 | Rate limit API endpoints to prevent abuse | ~41 |
+| 59 | Use async error handler middleware — don't let ... | ~66 |
+| 58 | Validate request body with a schema validator (... | ~56 |
+| 57 | Use helmet for security headers | ~31 |
+| 56 | Enable strict mode in tsconfig.json | ~35 |
+| 55 | Prefer Array methods (map, filter, reduce) over... | ~60 |
+| 54 | Use template literals for string interpolation,... | ~65 |
+| 53 | Don't mix CommonJS (require) and ESM (import) i... | ~61 |
+| 52 | Use optional chaining (?.) and nullish coalesci... | ~70 |
+| 51 | Don't use "any" type in TypeScript — define pro... | ~67 |
+| 50 | Handle Promise rejections — always .catch() or ... | ~67 |
+| 49 | Use const by default, let when reassignment nee... | ~61 |
+| 48 | Use === not == — strict equality prevents type ... | ~60 |
+| 47 | Agent: follow existing project patterns — don't... | ~75 |
+| 46 | Agent: don't generate code with "any" type — de... | ~75 |
+| 45 | Agent: always handle loading/error states — don... | ~66 |
+| 44 | Agent: don't use deprecated APIs — check librar... | ~73 |
+| 43 | Agent: check existing code before creating util... | ~79 |
+| 42 | Don't expose database errors to clients — map t... | ~71 |
+| 41 | Version your API from day 1 (/api/v1/) | ~38 |
+| 40 | Use consistent response format across all endpo... | ~51 |
+| 39 | Implement soft delete for important data — don'... | ~81 |
+| 38 | Handle timezone correctly — store UTC, display ... | ~65 |
+| 37 | Always validate data on the SERVER — client val... | ~69 |
+| 36 | Make layouts responsive from the start — mobile... | ~62 |
+| 35 | Disable submit button during form submission — ... | ~68 |
+| 34 | Always add empty states ("No items yet" with ca... | ~60 |
+| 33 | Always add error states with retry button — not... | ~65 |
+| 32 | Always add loading states for async operations ... | ~66 |
+| 31 | Test edge cases: empty input, null, boundary va... | ~68 |
+| 30 | Each test should be independent — no shared mut... | ~71 |
+| 29 | Write tests for business logic — test behavior/... | ~81 |
+| 28 | Close resources (streams, connections, handles)... | ~57 |
+| 27 | Debounce user input handlers (search, resize, s... | ~53 |
+| 26 | Use pagination for lists over 100 items | ~39 |
+| 25 | Don't fetch data inside render loops or hot paths | ~49 |
+| 24 | Implement retry logic for transient failures wi... | ~69 |
+| 23 | Return proper HTTP status codes — not 500 for e... | ~56 |
+| 22 | Don't swallow errors silently — empty catch blo... | ~60 |
+| 21 | Always wrap async/await in try/catch | ~36 |
+| 20 | Hash passwords with cost factor ≥12 (bcrypt) or... | ~69 |
+| 19 | Implement rate limiting on login endpoints to p... | ~65 |
+| 18 | Never store session tokens in localStorage — us... | ~65 |
+| 17 | Use parameterized queries — never string concat... | ~62 |
+| 16 | Don't store passwords in plain text — use bcryp... | ~67 |
+| 15 | Don't use innerHTML — use textContent or saniti... | ~60 |
+| 14 | Sanitize ALL user input before database queries... | ~71 |
+| 13 | Never use eval(), exec(), or Function() with us... | ~55 |
+| 12 | Use constants for magic numbers and strings | ~43 |
+| 11 | Handle edge cases: empty arrays, empty strings,... | ~71 |
+| 10 | Keep functions under 50 lines and single-respon... | ~55 |
+| 9 | Remove unused imports, variables, and dead code | ~47 |
+| 8 | Don't hardcode API keys, passwords, database UR... | ~70 |
+| 7 | Don't leave console.log, print(), debugger, or ... | ~70 |
+| 6 | Always pull before push to avoid conflicts | ~42 |
+| 5 | Use meaningful commit messages in imperative mo... | ~84 |
+| 4 | Don't commit node_modules, __pycache__, build/,... | ~73 |
+| 3 | Don't commit .env, secrets, API keys, or creden... | ~72 |
+| 2 | Never force push to main, master, or production... | ~56 |
+| 1 | convention in .gitignore | ~72.25 |
+
+---
+For details: read `.agent-mem/observations/{id}.md`

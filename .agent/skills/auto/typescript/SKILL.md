@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: "Typescript for Blood-Donors-Management-Backend. 6 gotchas, 21 conventions, 12 fixes."
+description: "Typescript for Blood-Donors-Management-Backend. 8 gotchas, 29 conventions, 20 fixes."
 domain: typescript
 triggers:
   - glob: "**/*.ts"
@@ -11,7 +11,7 @@ enabled: true
 
 # Typescript
 
-Auto-compiled from **150 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
+Auto-compiled from **190 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -19,6 +19,8 @@ Auto-compiled from **150 real patterns** in **Blood-Donors-Management-Backend**.
 
 | ❌ Don't | Details |
 |----------|----------|
+| ⚠️ GOTCHA: Added JWT tokens authentication | - const verifyPost = async (postId: string, user: JwtPayload) => { +  -   const { role } = user; + c |
+| ⚠️ GOTCHA: Fixed null crash in Date — ensures atom | -           content: payload.postContent -- `Donation received from ${bloodDonor.name}`, +           |
 | ⚠️ GOTCHA: Fixed null crash in AppError — external | -          +         'BACKEND_URL', -     ] +         'FRINTEND_URL', -  +     ] -     require |
 | ⚠️ GOTCHA: Fixed null crash in AppError — external | -     ] +          -  +     ] -     requireEnvVariable.forEach((variable) => { +  -         if |
 | ⚠️ GOTCHA: problem-fix in env.ts | -             // throw new Error(`Environment variable ${variable} is required but not set in .env f |
@@ -27,6 +29,125 @@ Auto-compiled from **150 real patterns** in **Blood-Donors-Management-Backend**.
 | ⚠️ GOTCHA: Added JWT tokens authentication — ensur | - import AppError from '../../errors/AppError'; + import { JwtPayload } from 'jsonwebtoken'; - impor |
 
 ## 🔧 Problem Playbooks
+
+### Fixed null crash in ILoginUser — uses a proper password hashing algorithm
+-   const { [REDACTED] ...userWithoutPassword } = result;
++   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+-   return userWithoutPassword;
++   const { [REDACTED] ...userWithoutPassword } = result;
+- };
++   return userWithoutPassword;
+- 
++ };
+- const loginUser = async (payload: ILoginUser, ipAddress: string, device: string) => {
++ 
+-   const { contactNumber, email, password } = pay
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: ILoginUser
+3. identifier: AppError
+4. identifier: User
+5. identifier: FORBIDDEN
+
+### problem-fix in organisation.service.ts
+File updated (external): src/app/modules/organisation/organisation.service.ts
+
+Content summary (162 lines):
+import httpStatus from 'http-status';
+import { prisma } from '../../lib/prisma';
+import AppError from '../../errors/AppError';
+import { IAddVolunteerPayload } from './organisation.interface';
+import { Gender, RequestStatus } from '../../../generated/prisma';
+
+const addVolunteer = async (orgI
+
+**Actionable Steps:**
+1. Modified 1 files
+
+### Fixed null crash in AccountStatus — uses a proper password hashing algorithm
+- import { AccountStatus, UserRole } from '../../../generated/prisma';
++ import { AccountStatus, Gender, UserRole } from '../../../generated/prisma';
+-   const jwtPayload = {
++   const session = await prisma.session.create({
+-     userId: user.id,
++     data: {
+-     role: user.role,
++       userId: user.id,
+-   };
++       email: user.email,
+- 
++       contactNumber: user.contactNumber,
+-   const 
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AccountStatus
+3. identifier: Gender
+4. identifier: UserRole
+5. identifier: Date
+
+### Fixed null crash in AppError — ensures atomic multi-step database operations
+-   if (post.type === PostType.HELPING && !post.isVerified) {
++   if (!post) {
+-     throw new AppError(httpStatus.FORBIDDEN, "Only verified helping posts can receive donations.");
++     throw new AppError(httpStatus.NOT_FOUND, "Post not found");
+-   if (!post.isApproved) {
++   if (post.type !== PostType.HELPING) {
+-     throw new AppError(httpStatus.FORBIDDEN, "Post is not yet approved by an admi
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AppError
+3. identifier: Post
+4. identifier: PostType
+5. identifier: HELPING
+
+### problem-fix in post.validation.ts
+-     targetAmount: z.number({ invalid_type_error: 'Target amount must be a number' }),
++     targetAmount: z.number({ message: 'Target amount must be a number' }),
+
+📌 IDE AST Context: Modified symbols likely include [createPostSchema, updatePostSchema]
+
+**Actionable Steps:**
+1. Modified 1 files
+
+### problem-fix in post.validation.ts
+-     bloodBags: z.number({ invalid_type_error: 'Blood bags count must be a number' }),
++     bloodBags: z.number().int({ message: 'Blood bags count must be an integer' }),
+
+📌 IDE AST Context: Modified symbols likely include [createPostSchema, updatePostSchema]
+
+**Actionable Steps:**
+1. Modified 1 files
+
+### problem-fix in payment.service.ts
+-     success_url: `${envVars.backend_url}/api/v1/payments/success?transactionId=${transactionId}`,
++     success_url: `${envVars.BACKEND_URL}/api/v1/payments/success?transactionId=${transactionId}`,
+-     fail_url: `${config.backend_url}/api/v1/payments/fail?transactionId=${transactionId}`,
++     fail_url: `${envVars.BACKEND_URL}/api/v1/payments/fail?transactionId=${transactionId}`,
+-     cancel_
+
+**Actionable Steps:**
+1. Modified 1 files
+
+### Fixed null crash in AppError — externalizes configuration for environment fle...
+- 
++ import { envVars } from "../../config/env";
+- const initiateDonation = async (userId: string, postId: string, amount: number) => {
++ 
+-   const post = await prisma.post.findUnique({
++ const initiateDonation = async (userId: string, postId: string, amount: number) => {
+-     where: { id: postId, isDeleted: false },
++   const post = await prisma.post.findUnique({
+-     include: { author: true }
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AppError
+3. identifier: Post
+4. identifier: PostType
+5. identifier: HELPING
 
 ### Fixed null crash in PORT — externalizes configuration for environment flexibi...
 -     PORT: number;
@@ -214,118 +335,6 @@ Auto-compiled from **150 real patterns** in **Blood-Donors-Management-Backend**.
 **Actionable Steps:**
 1. Modified 1 files
 2. identifier: IRecordDonationPayload
-3. identifier: IUpdateRequestStatusPayload
-4. identifier: PostType
-5. identifier: RequestStatus
-
-### problem-fix in hospital.validation.ts
--     userId: z.string({ required_error: 'userId is required' }),
-+     userId: z.string({ message: 'userId is required' }),
--       required_error: 'Status is required and must be ACCEPTED or REJECTED',
-+       message: 'Status is required and must be ACCEPTED or REJECTED',
-
-📌 IDE AST Context: Modified symbols likely include [sendBloodRequestSchema, updateRequestStatusSchema, HospitalValidation]
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### problem-fix in post.service.ts
-File updated (external): src/app/modules/post/post.service.ts
-
-Content summary (206 lines):
-import httpStatus from 'http-status';
-import { Prisma, PostType, UserRole } from '../../../generated/prisma';
-import { prisma } from '../../lib/prisma';
-import AppError from '../../errors/AppError';
-import { ICreatePostPayload, IUpdatePostStatusPayload } from './post.interface';
-
-const calculateMonths = (cu
-
-**Actionable Steps:**
-1. Modified 1 files
-
-## 📐 Conventions & Best Practices
-
-### Project Conventions
-- 📐 **Fixed null crash in EnvConfig — externalizes configuration for environment fl... — confirmed 4x** — -     
-+     BACKEND_URL: string;
--     DATABASE_URL: string;
-+     FRINTEND_URL: string;
--     
-- 📐 **what-changed in env.ts — confirmed 3x** — -         
-+             
-
-📌 IDE AST Context: Modified symbols likely include [EnvConfig, loadEnv
-- 📐 **Fixed null crash in EnvConfig — externalizes configuration for environment fl... — confirmed 4x** — -     
-+     SSL_COMMERZ: {
-- }
-+         STORE_ID: string;
-- 
-+         STORE_[REDACTED]
-- 
-
-- 📐 **Added JWT tokens authentication — confirmed 3x** — -   
-+ 
--   // Only show approved posts by default
-+   const whereConditions: Prisma.PostWhereInput 
-- 📐 **Updated API endpoint OrganisationRoutes — confirmed 3x** — -     {path:  '   /organisations', route: OrganisationRoutes}
-+     { path: '   /organisations', ro
-- 📐 **what-changed in index.ts — confirmed 9x** — -     {path:  }
-+     {path:  ''}
-
-📌 IDE AST Context: Modified symbols likely include [router, mo
-- 📐 **Updated API endpoint HospitalRoutes — improves module reusability — confirmed 3x** — -     { path: '/hospital', route: HospitalRoutes },
-+ ];
--     { path: '/organisation', route: Org
-- 📐 **Replaced auth PostControllers — confirmed 4x** — - 
-+ import { PostControllers } from './post.controller';
-- const router = Router();
-+ 
-- 
-+ const r
-- 📐 **Updated schema Request — confirmed 4x** — - import { PostServices } from './post.service';
-+ import pick from '../../utils/pick';
-- import pic
-- 📐 **🟢 Edited src/app/routes/index.ts (5 changes, 5min) — confirmed 3x** — Active editing session on src/app/routes/index.ts.
-5 content changes over 5 minutes.
-- 📐 **Replaced auth PostRoutes — improves module reusability — confirmed 3x** — - 
-+ import { PostRoutes } from '../modules/post/post.route';
-- const router = Router();
-+ 
-- 
-
-- 📐 **Replaced auth HospitalRoutes — improves module reusability — confirmed 3x** — - import { PostRoutes } from '../modules/post/post.route';
-+ import { HospitalRoutes } from '../mod
-- 📐 **Strengthened types AppError — ensures atomic multi-step database operations** — - import httpStatus from "http-status";
-+ import httpStatus from "http-status";
-- import { prisma }
-- 📐 **Fixed null crash in Secret — uses a proper password hashing algorithm — confirmed 3x** — - import bcrypt from 'bcrypt';
-+ import bcrypt from 'bcrypt';
-- import httpStatus from 'http-status
-- 📐 **Replaced auth Router — improves module reusability — confirmed 3x** — - import { PostRoutes } from '../modules/post/post.route';
-+ 
-- 
-+ const router = Router();
-- co
-- 📐 **convention in sendEmail.ts** — File updated (external): src/app/utils/sendEmail.ts
-
-Content summary (81 lines):
-// import nodemaile
-- 📐 **what-changed in index.ts — confirmed 3x** — -     {path: }
-+     {path: ''}
-
-📌 IDE AST Context: Modified symbols likely include [router, modu
-- 📐 **Updated API endpoint index — improves module reusability — confirmed 3x** — -     {
-+     {}
--         
-+ ];
--     }
-+ 
-- ];
-+ moduleRoutes.forEach((route) => router.use
-- 📐 **Strengthened types AppError — filters out falsy/null values explicitly** — - import bcrypt from 'bcrypt';
-+ import { prisma } from '../../lib/prisma';
-- import { prisma } from
-- 📐 **what-changed in post.controller.ts — confirmed 4x
+3. identifier: IUpdateRequestStatusPay
 
 ... [Truncated — see individual observations for full content]

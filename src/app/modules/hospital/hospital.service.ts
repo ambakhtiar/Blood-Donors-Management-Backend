@@ -2,7 +2,7 @@ import httpStatus from 'http-status';
 import { prisma } from '../../lib/prisma';
 import AppError from '../../errors/AppError';
 import { IRecordDonationPayload, IUpdateRequestStatusPayload } from './hospital.interface';
-import { PostType, RequestStatus } from '../../../generated/prisma';
+import { Gender, PostType, RequestStatus } from '../../../generated/prisma';
 import { sendNotificationEmail } from '../../utils/sendEmail';
 
 const recordDonation = async (hospitalId: string, payload: IRecordDonationPayload) => {
@@ -24,11 +24,14 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
           name: payload.name,
           contactNumber: payload.contactNumber,
           bloodGroup: payload.bloodGroup,
-          gender: payload.gender as any,
+          gender: payload.gender as Gender,
           isAvailable: true,
-          division: '',
-          district: '',
-          upazila: '',
+          division: payload.division || '',
+          district: payload.district || '',
+          upazila: payload.upazila || '',
+          area: payload.area,
+          latitude: payload.latitude,
+          longitude: payload.longitude,
         },
       });
     }
@@ -74,12 +77,12 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
     }
 
     // Scenario B & C: Unregistered / New Donor
-    const updatedDonor = await tx.bloodDonor.update({
+    await tx.bloodDonor.update({
       where: { id: bloodDonor.id },
       data: { lastDonationDate: new Date() },
     });
 
-    const donationHistory = await tx.donationHistory.create({
+    await tx.donationHistory.create({
       data: {
         bloodDonorId: bloodDonor.id,
         receiverOrgId: hospitalId,
@@ -102,8 +105,11 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
         data: {
           authorId: hospitalId,
           type: PostType.BLOOD_DONATION,
-          content: payload.postContent || `Donation received from ${bloodDonor.name}`,
+          bloodGroup: bloodDonor.bloodGroup,
+          donationTime: new Date(),
+          content: payload.postContent || `Blood donation received from ${bloodDonor.name}`,
           isApproved: true,
+          isVerified: false,
         },
       });
     }
@@ -145,10 +151,12 @@ const updateRequestStatus = async (
         data: { status: RequestStatus.ACCEPTED },
       });
 
+      const donationDate = request.createdAt;
+
       // Update donor profile lastDonationDate
       await tx.bloodDonor.update({
         where: { id: bloodDonor.id },
-        data: { lastDonationDate: new Date() },
+        data: { lastDonationDate: donationDate },
       });
 
       // Automatically create a DonationHistory record
@@ -156,7 +164,7 @@ const updateRequestStatus = async (
         data: {
           bloodDonorId: bloodDonor.id,
           receiverOrgId: request.hospitalId,
-          donationDate: new Date(),
+          donationDate: donationDate,
         },
       });
 
@@ -165,7 +173,7 @@ const updateRequestStatus = async (
         data: {
           hospitalId: request.hospitalId,
           bloodDonorId: bloodDonor.id,
-          donationDate: new Date(),
+          donationDate: donationDate,
         },
       });
 
@@ -174,8 +182,11 @@ const updateRequestStatus = async (
         data: {
           authorId: userId,
           type: PostType.BLOOD_DONATION,
-          content: `I have just donated blood at ${request.hospitalId}. It feels great to save a life!`,
+          bloodGroup: request.bloodDonor.bloodGroup,
+          donationTime: donationDate,
+          content: `Successfully recorded a blood donation. It feels great to save a life!`,
           isApproved: true,
+          isVerified: false,
         }
       });
 

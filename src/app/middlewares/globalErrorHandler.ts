@@ -3,10 +3,10 @@ import { ZodError } from 'zod';
 import AppError from '../errors/AppError';
 import { Prisma } from '../../generated/prisma';
 
-const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
+const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   let statusCode = 500;
   let message = 'Something went wrong!';
-  let errorDetails: any = null;
+  let errorDetails: unknown = null;
 
   if (err instanceof ZodError) {
     statusCode = 400;

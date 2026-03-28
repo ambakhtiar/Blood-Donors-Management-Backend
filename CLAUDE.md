@@ -1,18 +1,19 @@
 # Blood-Donors-Management-Backend — Project Memory
-# Auto-synced | 537 observations
+
+> Auto-synced | 537 observations
 
 **Stack:** JavaScript/TypeScript · Express · DB: PostgreSQL, Prisma
 
-# 🛡️ GLOBAL SAFETY RULES
+## 🛡️ GLOBAL SAFETY RULES
 
 - **NEVER** run `git clean -fd` or `git reset --hard` without checking `git log` and verifying commits exist.
 - **NEVER** delete untracked files or folders blindly. Always backup or stash before bulk edits.
 
-# 🧭 ACTIVE CONTEXT
+## 🧭 ACTIVE CONTEXT
 
 > Always read `.cursor/active-context.md` for exact instructions on the specific file you are currently editing. It updates dynamically.
 
-# 🔴 CRITICAL — DO NOT IGNORE
+## 🔴 STOP — READ THESE FIRST
 
 - **Use prisma migrate deploy in production, not prisma db push** — Use prisma migrate deploy in production, not prisma db push
 - **Run prisma generate after schema changes** — Run prisma generate after schema changes
@@ -20,7 +21,7 @@
 - **Don't mix CommonJS (require) and ESM (import) in same project** — Don't mix CommonJS (require) and ESM (import) in same project
 - **Don't use "any" type in TypeScript — define proper types/interfaces** — Don't use "any" type in TypeScript — define proper types/interfaces
 
-# 📐 Conventions
+## 📐 Conventions
 
 - Use select/include to limit data fetched — avoid over-fetching
 - Use transactions for related database operations
@@ -31,7 +32,7 @@
 - Prefer Array methods (map, filter, reduce) over manual loops
 - Use template literals for string interpolation, not concatenation
 
-# ⚡ Available Tools (ON-DEMAND only)
+## ⚡ Available Tools (ON-DEMAND only)
 - `save(title, content, category)` — Save a note + auto-detect conflicts
 - `batch_save(items[])` — Save multiple notes in 1 call
 - `query(text)` — Search memory for architecture, past fixes, decisions

@@ -2,21 +2,10 @@ node_modules
 .env
 .env.*
 dist
-src/generated/prisma
+src/generated
 
 # Auto-generated agent rules (personalized per developer)
-# .brainsync/**/*
-# .agent/**/*
-# .agent-mem/**/*
-# .agents/**/*
-# .cursor/**/*
-# .vscode/**/*
 
-AGENT.md
-CLAUDE.md
-.windsurf/rules
-
-.agent-mem/
 
 # Auto-generated agent rules (personalized per developer)
 .brainsync/agent-rules.md

@@ -3,13 +3,14 @@ import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { AdminServices } from './admin.service';
+import { IOptions, IUserFilters } from './admin.interface';
 import pick from '../../../shared/pick';
 
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'role', 'accountStatus']);
   const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
 
-  const result = await AdminServices.getAllUsers(filters as any, options as any);
+  const result = await AdminServices.getAllUsers(filters as IUserFilters, options as IOptions);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

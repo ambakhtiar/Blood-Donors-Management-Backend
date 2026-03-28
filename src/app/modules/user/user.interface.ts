@@ -4,6 +4,9 @@ export interface ILocationUpdate {
     division?: string;
     district?: string;
     upazila?: string;
+    area?: string;
+    latitude?: number;
+    longitude?: number;
 }
 
 export interface IDonorUpdate extends ILocationUpdate {

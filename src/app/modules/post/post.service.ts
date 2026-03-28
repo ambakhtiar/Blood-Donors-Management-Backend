@@ -9,9 +9,6 @@ import { sendNotificationEmail } from '../../utils/sendEmail';
 const createPost = async (user: JwtPayload, payload: ICreatePost) => {
   const { userId, role } = user;
 
-  // Helping posts require admin approval
-  const isApproved = payload.type !== PostType.HELPING;
-
   // Rule Engine for Blood Donation Posts
   if (payload.type === PostType.BLOOD_DONATION) {
     if (role !== UserRole.USER) {
@@ -26,15 +23,17 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
       throw new AppError(httpStatus.NOT_FOUND, "Blood Donor profile not found");
     }
 
+    const donationDate = payload.donationTime ? new Date(payload.donationTime) : new Date();
+
     // Check eligibility based on last donation
     if (bloodDonor.lastDonationDate) {
       const lastDonation = new Date(bloodDonor.lastDonationDate);
-      const currentDate = new Date();
-      const monthDiff = (currentDate.getTime() - lastDonation.getTime()) / (1000 * 60 * 60 * 24 * 30);
+      const timeDiff = donationDate.getTime() - lastDonation.getTime();
+      const monthDiff = timeDiff / (1000 * 60 * 60 * 24 * 30);
       
       const requiredMonths = bloodDonor.gender === 'MALE' ? 2 : 3;
       
-      if (monthDiff < requiredMonths) {
+      if (monthDiff < requiredMonths && monthDiff >= 0) {
         throw new AppError(
           httpStatus.FORBIDDEN, 
           `You are not eligible to donate blood yet. Required waiting time: ${requiredMonths} months.`
@@ -47,32 +46,39 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
       const post = await tx.post.create({
         data: {
           ...payload,
+          donationTime: donationDate,
           authorId: userId,
-          isApproved
+          isApproved: true,
+          isVerified: false
         },
       });
 
       await tx.donationHistory.create({
         data: {
           bloodDonorId: bloodDonor.id,
-          donationDate: new Date(),
+          donationDate: donationDate,
         }
       });
 
       await tx.bloodDonor.update({
         where: { id: bloodDonor.id },
-        data: { lastDonationDate: new Date() },
+        data: { lastDonationDate: donationDate },
       });
 
       return post;
     });
   }
 
+  // Determine if post starts as verified (Helping posts start unverified)
+  const isVerified = payload.type !== PostType.HELPING;
+
   const result = await prisma.post.create({
     data: {
       ...payload,
+      donationTime: payload.donationTime ? new Date(payload.donationTime) : undefined,
       authorId: userId,
-      isApproved
+      isApproved: true,
+      isVerified
     },
   });
 
@@ -104,6 +110,7 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
 
   return result;
 };
+
 
 const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) => {
   const { searchTerm, type, bloodGroup, division, district, upazila } = filters;
@@ -275,6 +282,27 @@ const approvePost = async (postId: string, user: JwtPayload) => {
   });
 };
 
+const verifyPost = async (postId: string, user: JwtPayload) => {
+  const { role } = user;
+
+  if (role !== UserRole.ADMIN && role !== UserRole.SUPER_ADMIN) {
+    throw new AppError(httpStatus.FORBIDDEN, "Only admins can verify posts");
+  }
+
+  const post = await prisma.post.findUnique({
+    where: { id: postId, isDeleted: false },
+  });
+
+  if (!post) {
+    throw new AppError(httpStatus.NOT_FOUND, "Post not found");
+  }
+
+  return await prisma.post.update({
+    where: { id: postId },
+    data: { isVerified: true },
+  });
+};
+
 export const PostServices = {
   createPost,
   getAllPosts,
@@ -282,5 +310,6 @@ export const PostServices = {
   updatePost,
   deletePost,
   resolvePost,
-  approvePost
+  approvePost,
+  verifyPost,
 };

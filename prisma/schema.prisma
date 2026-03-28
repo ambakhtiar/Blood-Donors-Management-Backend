@@ -181,6 +181,9 @@ model BloodDonor {
   division         String
   district         String
   upazila          String
+  area             String?
+  latitude         Float?
+  longitude        Float?
 
   userId String? @unique
   user   User?   @relation(fields: [userId], references: [id])
@@ -209,28 +212,46 @@ model HospitalDonationRecord {
 }
 
 model Post {
-  id       String   @id @default(uuid(7))
-  authorId String
-  author   User     @relation(fields: [authorId], references: [id])
-  type     PostType
-  content  String
-  images   String[] @default([])
+  id               String   @id @default(uuid(7))
+  authorId         String
+  author           User     @relation(fields: [authorId], references: [id])
+  type             PostType
+  
+  title            String?  
+  content          String?   
+  images           String[] @default([])
+  contactNumber    String?
+  
+  // Location Data
+  location         String?  
+  division         String?
+  district         String?
+  upazila          String?
+  area             String?
+  latitude         Float?   
+  longitude        Float?   
 
-  bloodGroup   String?
-  division     String?
-  district     String?
-  upazila      String?
-  requiredDate DateTime?
+  // BLOOD_FINDING & BLOOD_DONATION specific
+  bloodGroup       String?
+  bloodBags        Int?
+  reason           String?
+  donationTime     DateTime?
+  hemoglobin       Float?   
 
-  isApproved   Boolean @default(true)
-  isResolved   Boolean @default(false)
-  targetAmount Float?
-  raisedAmount Float?  @default(0)
+  // HELPING specific
+  medicalIssues    String?
+  targetAmount     Float?
+  raisedAmount     Float?   @default(0)
+  bkashNagadNumber String?
 
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  payments  Payment[]
+  isVerified       Boolean  @default(false) 
+  isApproved       Boolean  @default(true) 
+  isResolved       Boolean  @default(false)
+  isDeleted        Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  payments         Payment[] 
 }
 
 model DonationHistory {

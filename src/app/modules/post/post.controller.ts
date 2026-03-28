@@ -87,6 +87,17 @@ const approvePost = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const verifyPost = catchAsync(async (req: Request, res: Response) => {
+  const result = await PostServices.verifyPost(req.params.id as string, req.user);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Post verified successfully',
+    data: result,
+  });
+});
+
 export const PostControllers = {
   createPost,
   getAllPosts,
@@ -95,4 +106,5 @@ export const PostControllers = {
   deletePost,
   resolvePost,
   approvePost,
+  verifyPost,
 };

@@ -1,7 +1,7 @@
 
 
 # Project Memory — Blood-Donors-Management-Backend
-> 401 notes | Score threshold: >40
+> 536 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -20,6 +20,10 @@
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
+- **⚠️ GOTCHA: Added JWT tokens authentication** — - const verifyPost = async (postId: string, user: JwtPayload) => {
++ 
+
+- **⚠️ GOTCHA: Fixed null crash in Date — ensures atomic multi-step database operations** — -           content: payload.postContent || `Donation received from ${
 - **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -         
 +         'BACKEND_URL',
 -     ]
@@ -35,45 +39,45 @@
 + };
 - }
 - **⚠️ GOTCHA: problem-fix in env.ts** — -             // throw new Error(`Environment variable ${variable} is 
-- **⚠️ GOTCHA: Fixed null crash in Error — externalizes configuration for environment flexib...** — -             
-+         'SSL_COMMERZ_STORE_ID',
--     ]
-+         
-- **⚠️ GOTCHA: Fixed null crash in Error — externalizes configuration for environment flexib...** — -     ]
-+         
-- 
-+     ]
--     requireEnvVariable.forEach((va
+
+## Active: `.`
+
+- **convention in .gitignore**
+- **what-changed in .gitignore — confirmed 28x**
+- **trade-off in .gitignore — confirmed 4x**
+- **convention in .gitignore**
+- **convention in .gitignore**
 
 ## Project Standards
 
-- Added session cookies authentication — ensures atomic multi-step database ope... — confirmed 4x
-- 🟢 Edited .gitignore (12 changes, 4min) — confirmed 3x
 - convention in .gitignore
-- convention in .gitignore
+- what-changed in .gitignore — confirmed 28x
 - trade-off in .gitignore — confirmed 4x
+- convention in .gitignore
+- convention in .gitignore
 - convention in .gitignore
 - convention in .gitignore
 - convention in .gitignore
 
 ## Known Fixes
 
-- ❌ PrismaClientKnownRequestError, → ✅ problem-fix in index.js
+- ❌ PrismaClientKnownRequestError, → ✅ problem-fix in edge.js
 - ❌ "use strict";var h=Object.defineProperty;var T=Object.getOwnPropertyDescriptor;var M=Object.getOwnPr → ✅ problem-fix in query_compiler_fast_bg.js
+- ❌ import AppError from '../../errors/AppError'; → ✅ problem-fix in organisation.service.ts
+- ❌ -     throw new AppError(httpStatus.NOT_FOUND, 'Target user not found'); → ✅ Fixed null crash in AppError — externalizes configuration for environment fle...
 - ❌ - import AppError from '../../errors/AppError'; → ✅ Fixed null crash in Secret — uses a proper password hashing algorithm
-- ❌ -             // throw new Error(`Environment variable ${variable} is required but not set in .env f → ✅ Fixed null crash in EnvConfig — externalizes configuration for environment fl...
-- ❌ -             throw new AppError(status.INTERNAL_SERVER_ERROR, `Environment variable ${variable} is  → ✅ Fixed null crash in EnvConfig — externalizes configuration for environment fl...
 
 ## Recent Decisions
 
+- decision in post.interface.ts
 - decision in post.interface.ts
 - Optimized package — offloads heavy computation off the main thread
 - Optimized package — offloads heavy computation off the main thread
 
 ## Learned Patterns
 
+- Always: convention in .gitignore (seen 4x)
 - When encountering this, fix by: problem-fix in query_compiler_fast_bg.js (seen 2x)
-- When encountering this, fix by: problem-fix in index.js (seen 2x)
 - When encountering this, fix by: problem-fix in edge.js (seen 2x)
 - Agent generates new migration for every change (squash related changes)
 - Agent installs packages without checking if already installed

@@ -2,14 +2,25 @@ import { PostType } from "../../../generated/prisma";
 
 export interface ICreatePost {
   type: PostType;
-  content: string;
+  title?: string;
+  content?: string;
   images?: string[];
-  bloodGroup?: string;
+  contactNumber?: string;
+  location?: string;
   division?: string;
   district?: string;
   upazila?: string;
-  requiredDate?: Date;
+  area?: string;
+  latitude?: number;
+  longitude?: number;
+  bloodGroup?: string;
+  bloodBags?: number;
+  reason?: string;
+  donationTime?: string;
+  hemoglobin?: number;
+  medicalIssues?: string;
   targetAmount?: number;
+  bkashNagadNumber?: string;
 }
 
 export interface IPostFilters {

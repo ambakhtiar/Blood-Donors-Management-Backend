@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import config from '../config';
 import AppError from '../errors/AppError';
 import { verifyToken } from '../utils/jwt.utils';

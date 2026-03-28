@@ -10665,8 +10665,20 @@ export namespace Prisma {
 
   export type AggregateBloodDonor = {
     _count: BloodDonorCountAggregateOutputType | null
+    _avg: BloodDonorAvgAggregateOutputType | null
+    _sum: BloodDonorSumAggregateOutputType | null
     _min: BloodDonorMinAggregateOutputType | null
     _max: BloodDonorMaxAggregateOutputType | null
+  }
+
+  export type BloodDonorAvgAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type BloodDonorSumAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
   }
 
   export type BloodDonorMinAggregateOutputType = {
@@ -10680,6 +10692,9 @@ export namespace Prisma {
     division: string | null
     district: string | null
     upazila: string | null
+    area: string | null
+    latitude: number | null
+    longitude: number | null
     userId: string | null
     isDeleted: boolean | null
     createdAt: Date | null
@@ -10697,6 +10712,9 @@ export namespace Prisma {
     division: string | null
     district: string | null
     upazila: string | null
+    area: string | null
+    latitude: number | null
+    longitude: number | null
     userId: string | null
     isDeleted: boolean | null
     createdAt: Date | null
@@ -10714,6 +10732,9 @@ export namespace Prisma {
     division: number
     district: number
     upazila: number
+    area: number
+    latitude: number
+    longitude: number
     userId: number
     isDeleted: number
     createdAt: number
@@ -10721,6 +10742,16 @@ export namespace Prisma {
     _all: number
   }
 
+
+  export type BloodDonorAvgAggregateInputType = {
+    latitude?: true
+    longitude?: true
+  }
+
+  export type BloodDonorSumAggregateInputType = {
+    latitude?: true
+    longitude?: true
+  }
 
   export type BloodDonorMinAggregateInputType = {
     id?: true
@@ -10733,6 +10764,9 @@ export namespace Prisma {
     division?: true
     district?: true
     upazila?: true
+    area?: true
+    latitude?: true
+    longitude?: true
     userId?: true
     isDeleted?: true
     createdAt?: true
@@ -10750,6 +10784,9 @@ export namespace Prisma {
     division?: true
     district?: true
     upazila?: true
+    area?: true
+    latitude?: true
+    longitude?: true
     userId?: true
     isDeleted?: true
     createdAt?: true
@@ -10767,6 +10804,9 @@ export namespace Prisma {
     division?: true
     district?: true
     upazila?: true
+    area?: true
+    latitude?: true
+    longitude?: true
     userId?: true
     isDeleted?: true
     createdAt?: true
@@ -10812,6 +10852,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: BloodDonorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BloodDonorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: BloodDonorMinAggregateInputType
@@ -10842,6 +10894,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: BloodDonorCountAggregateInputType | true
+    _avg?: BloodDonorAvgAggregateInputType
+    _sum?: BloodDonorSumAggregateInputType
     _min?: BloodDonorMinAggregateInputType
     _max?: BloodDonorMaxAggregateInputType
   }
@@ -10857,11 +10911,16 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area: string | null
+    latitude: number | null
+    longitude: number | null
     userId: string | null
     isDeleted: boolean
     createdAt: Date
     updatedAt: Date
     _count: BloodDonorCountAggregateOutputType | null
+    _avg: BloodDonorAvgAggregateOutputType | null
+    _sum: BloodDonorSumAggregateOutputType | null
     _min: BloodDonorMinAggregateOutputType | null
     _max: BloodDonorMaxAggregateOutputType | null
   }
@@ -10891,6 +10950,9 @@ export namespace Prisma {
     division?: boolean
     district?: boolean
     upazila?: boolean
+    area?: boolean
+    latitude?: boolean
+    longitude?: boolean
     userId?: boolean
     isDeleted?: boolean
     createdAt?: boolean
@@ -10914,6 +10976,9 @@ export namespace Prisma {
     division?: boolean
     district?: boolean
     upazila?: boolean
+    area?: boolean
+    latitude?: boolean
+    longitude?: boolean
     userId?: boolean
     isDeleted?: boolean
     createdAt?: boolean
@@ -10932,6 +10997,9 @@ export namespace Prisma {
     division?: boolean
     district?: boolean
     upazila?: boolean
+    area?: boolean
+    latitude?: boolean
+    longitude?: boolean
     userId?: boolean
     isDeleted?: boolean
     createdAt?: boolean
@@ -10950,13 +11018,16 @@ export namespace Prisma {
     division?: boolean
     district?: boolean
     upazila?: boolean
+    area?: boolean
+    latitude?: boolean
+    longitude?: boolean
     userId?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BloodDonorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "contactNumber" | "bloodGroup" | "gender" | "lastDonationDate" | "isAvailable" | "division" | "district" | "upazila" | "userId" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["bloodDonor"]>
+  export type BloodDonorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "contactNumber" | "bloodGroup" | "gender" | "lastDonationDate" | "isAvailable" | "division" | "district" | "upazila" | "area" | "latitude" | "longitude" | "userId" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["bloodDonor"]>
   export type BloodDonorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | BloodDonor$userArgs<ExtArgs>
     donations?: boolean | BloodDonor$donationsArgs<ExtArgs>
@@ -10992,6 +11063,9 @@ export namespace Prisma {
       division: string
       district: string
       upazila: string
+      area: string | null
+      latitude: number | null
+      longitude: number | null
       userId: string | null
       isDeleted: boolean
       createdAt: Date
@@ -11434,6 +11508,9 @@ export namespace Prisma {
     readonly division: FieldRef<"BloodDonor", 'String'>
     readonly district: FieldRef<"BloodDonor", 'String'>
     readonly upazila: FieldRef<"BloodDonor", 'String'>
+    readonly area: FieldRef<"BloodDonor", 'String'>
+    readonly latitude: FieldRef<"BloodDonor", 'Float'>
+    readonly longitude: FieldRef<"BloodDonor", 'Float'>
     readonly userId: FieldRef<"BloodDonor", 'String'>
     readonly isDeleted: FieldRef<"BloodDonor", 'Boolean'>
     readonly createdAt: FieldRef<"BloodDonor", 'DateTime'>
@@ -13129,11 +13206,19 @@ export namespace Prisma {
   }
 
   export type PostAvgAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+    bloodBags: number | null
+    hemoglobin: number | null
     targetAmount: number | null
     raisedAmount: number | null
   }
 
   export type PostSumAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+    bloodBags: number | null
+    hemoglobin: number | null
     targetAmount: number | null
     raisedAmount: number | null
   }
@@ -13142,16 +13227,28 @@ export namespace Prisma {
     id: string | null
     authorId: string | null
     type: $Enums.PostType | null
+    title: string | null
     content: string | null
-    bloodGroup: string | null
+    contactNumber: string | null
+    location: string | null
     division: string | null
     district: string | null
     upazila: string | null
-    requiredDate: Date | null
-    isApproved: boolean | null
-    isResolved: boolean | null
+    area: string | null
+    latitude: number | null
+    longitude: number | null
+    bloodGroup: string | null
+    bloodBags: number | null
+    reason: string | null
+    donationTime: Date | null
+    hemoglobin: number | null
+    medicalIssues: string | null
     targetAmount: number | null
     raisedAmount: number | null
+    bkashNagadNumber: string | null
+    isVerified: boolean | null
+    isApproved: boolean | null
+    isResolved: boolean | null
     isDeleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -13161,16 +13258,28 @@ export namespace Prisma {
     id: string | null
     authorId: string | null
     type: $Enums.PostType | null
+    title: string | null
     content: string | null
-    bloodGroup: string | null
+    contactNumber: string | null
+    location: string | null
     division: string | null
     district: string | null
     upazila: string | null
-    requiredDate: Date | null
-    isApproved: boolean | null
-    isResolved: boolean | null
+    area: string | null
+    latitude: number | null
+    longitude: number | null
+    bloodGroup: string | null
+    bloodBags: number | null
+    reason: string | null
+    donationTime: Date | null
+    hemoglobin: number | null
+    medicalIssues: string | null
     targetAmount: number | null
     raisedAmount: number | null
+    bkashNagadNumber: string | null
+    isVerified: boolean | null
+    isApproved: boolean | null
+    isResolved: boolean | null
     isDeleted: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -13180,17 +13289,29 @@ export namespace Prisma {
     id: number
     authorId: number
     type: number
+    title: number
     content: number
     images: number
-    bloodGroup: number
+    contactNumber: number
+    location: number
     division: number
     district: number
     upazila: number
-    requiredDate: number
-    isApproved: number
-    isResolved: number
+    area: number
+    latitude: number
+    longitude: number
+    bloodGroup: number
+    bloodBags: number
+    reason: number
+    donationTime: number
+    hemoglobin: number
+    medicalIssues: number
     targetAmount: number
     raisedAmount: number
+    bkashNagadNumber: number
+    isVerified: number
+    isApproved: number
+    isResolved: number
     isDeleted: number
     createdAt: number
     updatedAt: number
@@ -13199,11 +13320,19 @@ export namespace Prisma {
 
 
   export type PostAvgAggregateInputType = {
+    latitude?: true
+    longitude?: true
+    bloodBags?: true
+    hemoglobin?: true
     targetAmount?: true
     raisedAmount?: true
   }
 
   export type PostSumAggregateInputType = {
+    latitude?: true
+    longitude?: true
+    bloodBags?: true
+    hemoglobin?: true
     targetAmount?: true
     raisedAmount?: true
   }
@@ -13212,16 +13341,28 @@ export namespace Prisma {
     id?: true
     authorId?: true
     type?: true
+    title?: true
     content?: true
-    bloodGroup?: true
+    contactNumber?: true
+    location?: true
     division?: true
     district?: true
     upazila?: true
-    requiredDate?: true
-    isApproved?: true
-    isResolved?: true
+    area?: true
+    latitude?: true
+    longitude?: true
+    bloodGroup?: true
+    bloodBags?: true
+    reason?: true
+    donationTime?: true
+    hemoglobin?: true
+    medicalIssues?: true
     targetAmount?: true
     raisedAmount?: true
+    bkashNagadNumber?: true
+    isVerified?: true
+    isApproved?: true
+    isResolved?: true
     isDeleted?: true
     createdAt?: true
     updatedAt?: true
@@ -13231,16 +13372,28 @@ export namespace Prisma {
     id?: true
     authorId?: true
     type?: true
+    title?: true
     content?: true
-    bloodGroup?: true
+    contactNumber?: true
+    location?: true
     division?: true
     district?: true
     upazila?: true
-    requiredDate?: true
-    isApproved?: true
-    isResolved?: true
+    area?: true
+    latitude?: true
+    longitude?: true
+    bloodGroup?: true
+    bloodBags?: true
+    reason?: true
+    donationTime?: true
+    hemoglobin?: true
+    medicalIssues?: true
     targetAmount?: true
     raisedAmount?: true
+    bkashNagadNumber?: true
+    isVerified?: true
+    isApproved?: true
+    isResolved?: true
     isDeleted?: true
     createdAt?: true
     updatedAt?: true
@@ -13250,17 +13403,29 @@ export namespace Prisma {
     id?: true
     authorId?: true
     type?: true
+    title?: true
     content?: true
     images?: true
-    bloodGroup?: true
+    contactNumber?: true
+    location?: true
     division?: true
     district?: true
     upazila?: true
-    requiredDate?: true
-    isApproved?: true
-    isResolved?: true
+    area?: true
+    latitude?: true
+    longitude?: true
+    bloodGroup?: true
+    bloodBags?: true
+    reason?: true
+    donationTime?: true
+    hemoglobin?: true
+    medicalIssues?: true
     targetAmount?: true
     raisedAmount?: true
+    bkashNagadNumber?: true
+    isVerified?: true
+    isApproved?: true
+    isResolved?: true
     isDeleted?: true
     createdAt?: true
     updatedAt?: true
@@ -13357,17 +13522,29 @@ export namespace Prisma {
     id: string
     authorId: string
     type: $Enums.PostType
-    content: string
+    title: string | null
+    content: string | null
     images: string[]
-    bloodGroup: string | null
+    contactNumber: string | null
+    location: string | null
     division: string | null
     district: string | null
     upazila: string | null
-    requiredDate: Date | null
-    isApproved: boolean
-    isResolved: boolean
+    area: string | null
+    latitude: number | null
+    longitude: number | null
+    bloodGroup: string | null
+    bloodBags: number | null
+    reason: string | null
+    donationTime: Date | null
+    hemoglobin: number | null
+    medicalIssues: string | null
     targetAmount: number | null
     raisedAmount: number | null
+    bkashNagadNumber: string | null
+    isVerified: boolean
+    isApproved: boolean
+    isResolved: boolean
     isDeleted: boolean
     createdAt: Date
     updatedAt: Date
@@ -13396,17 +13573,29 @@ export namespace Prisma {
     id?: boolean
     authorId?: boolean
     type?: boolean
+    title?: boolean
     content?: boolean
     images?: boolean
-    bloodGroup?: boolean
+    contactNumber?: boolean
+    location?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
-    requiredDate?: boolean
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    bloodGroup?: boolean
+    bloodBags?: boolean
+    reason?: boolean
+    donationTime?: boolean
+    hemoglobin?: boolean
+    medicalIssues?: boolean
     targetAmount?: boolean
     raisedAmount?: boolean
+    bkashNagadNumber?: boolean
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -13419,17 +13608,29 @@ export namespace Prisma {
     id?: boolean
     authorId?: boolean
     type?: boolean
+    title?: boolean
     content?: boolean
     images?: boolean
-    bloodGroup?: boolean
+    contactNumber?: boolean
+    location?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
-    requiredDate?: boolean
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    bloodGroup?: boolean
+    bloodBags?: boolean
+    reason?: boolean
+    donationTime?: boolean
+    hemoglobin?: boolean
+    medicalIssues?: boolean
     targetAmount?: boolean
     raisedAmount?: boolean
+    bkashNagadNumber?: boolean
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -13440,17 +13641,29 @@ export namespace Prisma {
     id?: boolean
     authorId?: boolean
     type?: boolean
+    title?: boolean
     content?: boolean
     images?: boolean
-    bloodGroup?: boolean
+    contactNumber?: boolean
+    location?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
-    requiredDate?: boolean
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    bloodGroup?: boolean
+    bloodBags?: boolean
+    reason?: boolean
+    donationTime?: boolean
+    hemoglobin?: boolean
+    medicalIssues?: boolean
     targetAmount?: boolean
     raisedAmount?: boolean
+    bkashNagadNumber?: boolean
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -13461,23 +13674,35 @@ export namespace Prisma {
     id?: boolean
     authorId?: boolean
     type?: boolean
+    title?: boolean
     content?: boolean
     images?: boolean
-    bloodGroup?: boolean
+    contactNumber?: boolean
+    location?: boolean
     division?: boolean
     district?: boolean
     upazila?: boolean
-    requiredDate?: boolean
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: boolean
+    latitude?: boolean
+    longitude?: boolean
+    bloodGroup?: boolean
+    bloodBags?: boolean
+    reason?: boolean
+    donationTime?: boolean
+    hemoglobin?: boolean
+    medicalIssues?: boolean
     targetAmount?: boolean
     raisedAmount?: boolean
+    bkashNagadNumber?: boolean
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "type" | "content" | "images" | "bloodGroup" | "division" | "district" | "upazila" | "requiredDate" | "isApproved" | "isResolved" | "targetAmount" | "raisedAmount" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "type" | "title" | "content" | "images" | "contactNumber" | "location" | "division" | "district" | "upazila" | "area" | "latitude" | "longitude" | "bloodGroup" | "bloodBags" | "reason" | "donationTime" | "hemoglobin" | "medicalIssues" | "targetAmount" | "raisedAmount" | "bkashNagadNumber" | "isVerified" | "isApproved" | "isResolved" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     payments?: boolean | Post$paymentsArgs<ExtArgs>
@@ -13500,17 +13725,29 @@ export namespace Prisma {
       id: string
       authorId: string
       type: $Enums.PostType
-      content: string
+      title: string | null
+      content: string | null
       images: string[]
-      bloodGroup: string | null
+      contactNumber: string | null
+      location: string | null
       division: string | null
       district: string | null
       upazila: string | null
-      requiredDate: Date | null
-      isApproved: boolean
-      isResolved: boolean
+      area: string | null
+      latitude: number | null
+      longitude: number | null
+      bloodGroup: string | null
+      bloodBags: number | null
+      reason: string | null
+      donationTime: Date | null
+      hemoglobin: number | null
+      medicalIssues: string | null
       targetAmount: number | null
       raisedAmount: number | null
+      bkashNagadNumber: string | null
+      isVerified: boolean
+      isApproved: boolean
+      isResolved: boolean
       isDeleted: boolean
       createdAt: Date
       updatedAt: Date
@@ -13942,17 +14179,29 @@ export namespace Prisma {
     readonly id: FieldRef<"Post", 'String'>
     readonly authorId: FieldRef<"Post", 'String'>
     readonly type: FieldRef<"Post", 'PostType'>
+    readonly title: FieldRef<"Post", 'String'>
     readonly content: FieldRef<"Post", 'String'>
     readonly images: FieldRef<"Post", 'String[]'>
-    readonly bloodGroup: FieldRef<"Post", 'String'>
+    readonly contactNumber: FieldRef<"Post", 'String'>
+    readonly location: FieldRef<"Post", 'String'>
     readonly division: FieldRef<"Post", 'String'>
     readonly district: FieldRef<"Post", 'String'>
     readonly upazila: FieldRef<"Post", 'String'>
-    readonly requiredDate: FieldRef<"Post", 'DateTime'>
-    readonly isApproved: FieldRef<"Post", 'Boolean'>
-    readonly isResolved: FieldRef<"Post", 'Boolean'>
+    readonly area: FieldRef<"Post", 'String'>
+    readonly latitude: FieldRef<"Post", 'Float'>
+    readonly longitude: FieldRef<"Post", 'Float'>
+    readonly bloodGroup: FieldRef<"Post", 'String'>
+    readonly bloodBags: FieldRef<"Post", 'Int'>
+    readonly reason: FieldRef<"Post", 'String'>
+    readonly donationTime: FieldRef<"Post", 'DateTime'>
+    readonly hemoglobin: FieldRef<"Post", 'Float'>
+    readonly medicalIssues: FieldRef<"Post", 'String'>
     readonly targetAmount: FieldRef<"Post", 'Float'>
     readonly raisedAmount: FieldRef<"Post", 'Float'>
+    readonly bkashNagadNumber: FieldRef<"Post", 'String'>
+    readonly isVerified: FieldRef<"Post", 'Boolean'>
+    readonly isApproved: FieldRef<"Post", 'Boolean'>
+    readonly isResolved: FieldRef<"Post", 'Boolean'>
     readonly isDeleted: FieldRef<"Post", 'Boolean'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
     readonly updatedAt: FieldRef<"Post", 'DateTime'>
@@ -21104,6 +21353,9 @@ export namespace Prisma {
     division: 'division',
     district: 'district',
     upazila: 'upazila',
+    area: 'area',
+    latitude: 'latitude',
+    longitude: 'longitude',
     userId: 'userId',
     isDeleted: 'isDeleted',
     createdAt: 'createdAt',
@@ -21131,17 +21383,29 @@ export namespace Prisma {
     id: 'id',
     authorId: 'authorId',
     type: 'type',
+    title: 'title',
     content: 'content',
     images: 'images',
-    bloodGroup: 'bloodGroup',
+    contactNumber: 'contactNumber',
+    location: 'location',
     division: 'division',
     district: 'district',
     upazila: 'upazila',
-    requiredDate: 'requiredDate',
-    isApproved: 'isApproved',
-    isResolved: 'isResolved',
+    area: 'area',
+    latitude: 'latitude',
+    longitude: 'longitude',
+    bloodGroup: 'bloodGroup',
+    bloodBags: 'bloodBags',
+    reason: 'reason',
+    donationTime: 'donationTime',
+    hemoglobin: 'hemoglobin',
+    medicalIssues: 'medicalIssues',
     targetAmount: 'targetAmount',
     raisedAmount: 'raisedAmount',
+    bkashNagadNumber: 'bkashNagadNumber',
+    isVerified: 'isVerified',
+    isApproved: 'isApproved',
+    isResolved: 'isResolved',
     isDeleted: 'isDeleted',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -21362,6 +21626,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'RequestStatus'
    */
   export type EnumRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestStatus'>
@@ -21386,20 +21664,6 @@ export namespace Prisma {
    * Reference to a field of type 'PaymentStatus[]'
    */
   export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
   /**
    * Deep Input Types
@@ -21976,6 +22240,9 @@ export namespace Prisma {
     division?: StringFilter<"BloodDonor"> | string
     district?: StringFilter<"BloodDonor"> | string
     upazila?: StringFilter<"BloodDonor"> | string
+    area?: StringNullableFilter<"BloodDonor"> | string | null
+    latitude?: FloatNullableFilter<"BloodDonor"> | number | null
+    longitude?: FloatNullableFilter<"BloodDonor"> | number | null
     userId?: StringNullableFilter<"BloodDonor"> | string | null
     isDeleted?: BoolFilter<"BloodDonor"> | boolean
     createdAt?: DateTimeFilter<"BloodDonor"> | Date | string
@@ -21998,6 +22265,9 @@ export namespace Prisma {
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
+    area?: SortOrderInput | SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -22024,6 +22294,9 @@ export namespace Prisma {
     division?: StringFilter<"BloodDonor"> | string
     district?: StringFilter<"BloodDonor"> | string
     upazila?: StringFilter<"BloodDonor"> | string
+    area?: StringNullableFilter<"BloodDonor"> | string | null
+    latitude?: FloatNullableFilter<"BloodDonor"> | number | null
+    longitude?: FloatNullableFilter<"BloodDonor"> | number | null
     isDeleted?: BoolFilter<"BloodDonor"> | boolean
     createdAt?: DateTimeFilter<"BloodDonor"> | Date | string
     updatedAt?: DateTimeFilter<"BloodDonor"> | Date | string
@@ -22045,13 +22318,18 @@ export namespace Prisma {
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
+    area?: SortOrderInput | SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: BloodDonorCountOrderByAggregateInput
+    _avg?: BloodDonorAvgOrderByAggregateInput
     _max?: BloodDonorMaxOrderByAggregateInput
     _min?: BloodDonorMinOrderByAggregateInput
+    _sum?: BloodDonorSumOrderByAggregateInput
   }
 
   export type BloodDonorScalarWhereWithAggregatesInput = {
@@ -22068,6 +22346,9 @@ export namespace Prisma {
     division?: StringWithAggregatesFilter<"BloodDonor"> | string
     district?: StringWithAggregatesFilter<"BloodDonor"> | string
     upazila?: StringWithAggregatesFilter<"BloodDonor"> | string
+    area?: StringNullableWithAggregatesFilter<"BloodDonor"> | string | null
+    latitude?: FloatNullableWithAggregatesFilter<"BloodDonor"> | number | null
+    longitude?: FloatNullableWithAggregatesFilter<"BloodDonor"> | number | null
     userId?: StringNullableWithAggregatesFilter<"BloodDonor"> | string | null
     isDeleted?: BoolWithAggregatesFilter<"BloodDonor"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"BloodDonor"> | Date | string
@@ -22156,17 +22437,29 @@ export namespace Prisma {
     id?: StringFilter<"Post"> | string
     authorId?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
-    content?: StringFilter<"Post"> | string
+    title?: StringNullableFilter<"Post"> | string | null
+    content?: StringNullableFilter<"Post"> | string | null
     images?: StringNullableListFilter<"Post">
-    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    contactNumber?: StringNullableFilter<"Post"> | string | null
+    location?: StringNullableFilter<"Post"> | string | null
     division?: StringNullableFilter<"Post"> | string | null
     district?: StringNullableFilter<"Post"> | string | null
     upazila?: StringNullableFilter<"Post"> | string | null
-    requiredDate?: DateTimeNullableFilter<"Post"> | Date | string | null
-    isApproved?: BoolFilter<"Post"> | boolean
-    isResolved?: BoolFilter<"Post"> | boolean
+    area?: StringNullableFilter<"Post"> | string | null
+    latitude?: FloatNullableFilter<"Post"> | number | null
+    longitude?: FloatNullableFilter<"Post"> | number | null
+    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    bloodBags?: IntNullableFilter<"Post"> | number | null
+    reason?: StringNullableFilter<"Post"> | string | null
+    donationTime?: DateTimeNullableFilter<"Post"> | Date | string | null
+    hemoglobin?: FloatNullableFilter<"Post"> | number | null
+    medicalIssues?: StringNullableFilter<"Post"> | string | null
     targetAmount?: FloatNullableFilter<"Post"> | number | null
     raisedAmount?: FloatNullableFilter<"Post"> | number | null
+    bkashNagadNumber?: StringNullableFilter<"Post"> | string | null
+    isVerified?: BoolFilter<"Post"> | boolean
+    isApproved?: BoolFilter<"Post"> | boolean
+    isResolved?: BoolFilter<"Post"> | boolean
     isDeleted?: BoolFilter<"Post"> | boolean
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
@@ -22178,17 +22471,29 @@ export namespace Prisma {
     id?: SortOrder
     authorId?: SortOrder
     type?: SortOrder
-    content?: SortOrder
+    title?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
     images?: SortOrder
-    bloodGroup?: SortOrderInput | SortOrder
+    contactNumber?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
     division?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
     upazila?: SortOrderInput | SortOrder
-    requiredDate?: SortOrderInput | SortOrder
-    isApproved?: SortOrder
-    isResolved?: SortOrder
+    area?: SortOrderInput | SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
+    bloodGroup?: SortOrderInput | SortOrder
+    bloodBags?: SortOrderInput | SortOrder
+    reason?: SortOrderInput | SortOrder
+    donationTime?: SortOrderInput | SortOrder
+    hemoglobin?: SortOrderInput | SortOrder
+    medicalIssues?: SortOrderInput | SortOrder
     targetAmount?: SortOrderInput | SortOrder
     raisedAmount?: SortOrderInput | SortOrder
+    bkashNagadNumber?: SortOrderInput | SortOrder
+    isVerified?: SortOrder
+    isApproved?: SortOrder
+    isResolved?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22203,17 +22508,29 @@ export namespace Prisma {
     NOT?: PostWhereInput | PostWhereInput[]
     authorId?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
-    content?: StringFilter<"Post"> | string
+    title?: StringNullableFilter<"Post"> | string | null
+    content?: StringNullableFilter<"Post"> | string | null
     images?: StringNullableListFilter<"Post">
-    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    contactNumber?: StringNullableFilter<"Post"> | string | null
+    location?: StringNullableFilter<"Post"> | string | null
     division?: StringNullableFilter<"Post"> | string | null
     district?: StringNullableFilter<"Post"> | string | null
     upazila?: StringNullableFilter<"Post"> | string | null
-    requiredDate?: DateTimeNullableFilter<"Post"> | Date | string | null
-    isApproved?: BoolFilter<"Post"> | boolean
-    isResolved?: BoolFilter<"Post"> | boolean
+    area?: StringNullableFilter<"Post"> | string | null
+    latitude?: FloatNullableFilter<"Post"> | number | null
+    longitude?: FloatNullableFilter<"Post"> | number | null
+    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    bloodBags?: IntNullableFilter<"Post"> | number | null
+    reason?: StringNullableFilter<"Post"> | string | null
+    donationTime?: DateTimeNullableFilter<"Post"> | Date | string | null
+    hemoglobin?: FloatNullableFilter<"Post"> | number | null
+    medicalIssues?: StringNullableFilter<"Post"> | string | null
     targetAmount?: FloatNullableFilter<"Post"> | number | null
     raisedAmount?: FloatNullableFilter<"Post"> | number | null
+    bkashNagadNumber?: StringNullableFilter<"Post"> | string | null
+    isVerified?: BoolFilter<"Post"> | boolean
+    isApproved?: BoolFilter<"Post"> | boolean
+    isResolved?: BoolFilter<"Post"> | boolean
     isDeleted?: BoolFilter<"Post"> | boolean
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
@@ -22225,17 +22542,29 @@ export namespace Prisma {
     id?: SortOrder
     authorId?: SortOrder
     type?: SortOrder
-    content?: SortOrder
+    title?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
     images?: SortOrder
-    bloodGroup?: SortOrderInput | SortOrder
+    contactNumber?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
     division?: SortOrderInput | SortOrder
     district?: SortOrderInput | SortOrder
     upazila?: SortOrderInput | SortOrder
-    requiredDate?: SortOrderInput | SortOrder
-    isApproved?: SortOrder
-    isResolved?: SortOrder
+    area?: SortOrderInput | SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
+    bloodGroup?: SortOrderInput | SortOrder
+    bloodBags?: SortOrderInput | SortOrder
+    reason?: SortOrderInput | SortOrder
+    donationTime?: SortOrderInput | SortOrder
+    hemoglobin?: SortOrderInput | SortOrder
+    medicalIssues?: SortOrderInput | SortOrder
     targetAmount?: SortOrderInput | SortOrder
     raisedAmount?: SortOrderInput | SortOrder
+    bkashNagadNumber?: SortOrderInput | SortOrder
+    isVerified?: SortOrder
+    isApproved?: SortOrder
+    isResolved?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22253,17 +22582,29 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Post"> | string
     authorId?: StringWithAggregatesFilter<"Post"> | string
     type?: EnumPostTypeWithAggregatesFilter<"Post"> | $Enums.PostType
-    content?: StringWithAggregatesFilter<"Post"> | string
+    title?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    content?: StringNullableWithAggregatesFilter<"Post"> | string | null
     images?: StringNullableListFilter<"Post">
-    bloodGroup?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    contactNumber?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    location?: StringNullableWithAggregatesFilter<"Post"> | string | null
     division?: StringNullableWithAggregatesFilter<"Post"> | string | null
     district?: StringNullableWithAggregatesFilter<"Post"> | string | null
     upazila?: StringNullableWithAggregatesFilter<"Post"> | string | null
-    requiredDate?: DateTimeNullableWithAggregatesFilter<"Post"> | Date | string | null
-    isApproved?: BoolWithAggregatesFilter<"Post"> | boolean
-    isResolved?: BoolWithAggregatesFilter<"Post"> | boolean
+    area?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    latitude?: FloatNullableWithAggregatesFilter<"Post"> | number | null
+    longitude?: FloatNullableWithAggregatesFilter<"Post"> | number | null
+    bloodGroup?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    bloodBags?: IntNullableWithAggregatesFilter<"Post"> | number | null
+    reason?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    donationTime?: DateTimeNullableWithAggregatesFilter<"Post"> | Date | string | null
+    hemoglobin?: FloatNullableWithAggregatesFilter<"Post"> | number | null
+    medicalIssues?: StringNullableWithAggregatesFilter<"Post"> | string | null
     targetAmount?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     raisedAmount?: FloatNullableWithAggregatesFilter<"Post"> | number | null
+    bkashNagadNumber?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    isVerified?: BoolWithAggregatesFilter<"Post"> | boolean
+    isApproved?: BoolWithAggregatesFilter<"Post"> | boolean
+    isResolved?: BoolWithAggregatesFilter<"Post"> | boolean
     isDeleted?: BoolWithAggregatesFilter<"Post"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
@@ -23303,6 +23644,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23324,6 +23668,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
@@ -23345,6 +23692,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23366,6 +23716,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23387,6 +23740,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
@@ -23404,6 +23760,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23420,6 +23779,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23504,17 +23866,29 @@ export namespace Prisma {
   export type PostCreateInput = {
     id?: string
     type: $Enums.PostType
-    content: string
+    title?: string | null
+    content?: string | null
     images?: PostCreateimagesInput | string[]
-    bloodGroup?: string | null
+    contactNumber?: string | null
+    location?: string | null
     division?: string | null
     district?: string | null
     upazila?: string | null
-    requiredDate?: Date | string | null
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    bloodGroup?: string | null
+    bloodBags?: number | null
+    reason?: string | null
+    donationTime?: Date | string | null
+    hemoglobin?: number | null
+    medicalIssues?: string | null
     targetAmount?: number | null
     raisedAmount?: number | null
+    bkashNagadNumber?: string | null
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23526,17 +23900,29 @@ export namespace Prisma {
     id?: string
     authorId: string
     type: $Enums.PostType
-    content: string
+    title?: string | null
+    content?: string | null
     images?: PostCreateimagesInput | string[]
-    bloodGroup?: string | null
+    contactNumber?: string | null
+    location?: string | null
     division?: string | null
     district?: string | null
     upazila?: string | null
-    requiredDate?: Date | string | null
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    bloodGroup?: string | null
+    bloodBags?: number | null
+    reason?: string | null
+    donationTime?: Date | string | null
+    hemoglobin?: number | null
+    medicalIssues?: string | null
     targetAmount?: number | null
     raisedAmount?: number | null
+    bkashNagadNumber?: string | null
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23546,17 +23932,29 @@ export namespace Prisma {
   export type PostUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23568,17 +23966,29 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23589,17 +23999,29 @@ export namespace Prisma {
     id?: string
     authorId: string
     type: $Enums.PostType
-    content: string
+    title?: string | null
+    content?: string | null
     images?: PostCreateimagesInput | string[]
-    bloodGroup?: string | null
+    contactNumber?: string | null
+    location?: string | null
     division?: string | null
     district?: string | null
     upazila?: string | null
-    requiredDate?: Date | string | null
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    bloodGroup?: string | null
+    bloodBags?: number | null
+    reason?: string | null
+    donationTime?: Date | string | null
+    hemoglobin?: number | null
+    medicalIssues?: string | null
     targetAmount?: number | null
     raisedAmount?: number | null
+    bkashNagadNumber?: string | null
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23608,17 +24030,29 @@ export namespace Prisma {
   export type PostUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23628,17 +24062,29 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24645,10 +25091,18 @@ export namespace Prisma {
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
+    area?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     userId?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type BloodDonorAvgOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type BloodDonorMaxOrderByAggregateInput = {
@@ -24662,6 +25116,9 @@ export namespace Prisma {
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
+    area?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     userId?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
@@ -24679,10 +25136,18 @@ export namespace Prisma {
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
+    area?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     userId?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type BloodDonorSumOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type BloodDonorScalarRelationFilter = {
@@ -24746,27 +25211,54 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type PostCountOrderByAggregateInput = {
     id?: SortOrder
     authorId?: SortOrder
     type?: SortOrder
+    title?: SortOrder
     content?: SortOrder
     images?: SortOrder
-    bloodGroup?: SortOrder
+    contactNumber?: SortOrder
+    location?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
-    requiredDate?: SortOrder
-    isApproved?: SortOrder
-    isResolved?: SortOrder
+    area?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    bloodGroup?: SortOrder
+    bloodBags?: SortOrder
+    reason?: SortOrder
+    donationTime?: SortOrder
+    hemoglobin?: SortOrder
+    medicalIssues?: SortOrder
     targetAmount?: SortOrder
     raisedAmount?: SortOrder
+    bkashNagadNumber?: SortOrder
+    isVerified?: SortOrder
+    isApproved?: SortOrder
+    isResolved?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type PostAvgOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
+    bloodBags?: SortOrder
+    hemoglobin?: SortOrder
     targetAmount?: SortOrder
     raisedAmount?: SortOrder
   }
@@ -24775,16 +25267,28 @@ export namespace Prisma {
     id?: SortOrder
     authorId?: SortOrder
     type?: SortOrder
+    title?: SortOrder
     content?: SortOrder
-    bloodGroup?: SortOrder
+    contactNumber?: SortOrder
+    location?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
-    requiredDate?: SortOrder
-    isApproved?: SortOrder
-    isResolved?: SortOrder
+    area?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    bloodGroup?: SortOrder
+    bloodBags?: SortOrder
+    reason?: SortOrder
+    donationTime?: SortOrder
+    hemoglobin?: SortOrder
+    medicalIssues?: SortOrder
     targetAmount?: SortOrder
     raisedAmount?: SortOrder
+    bkashNagadNumber?: SortOrder
+    isVerified?: SortOrder
+    isApproved?: SortOrder
+    isResolved?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -24794,22 +25298,38 @@ export namespace Prisma {
     id?: SortOrder
     authorId?: SortOrder
     type?: SortOrder
+    title?: SortOrder
     content?: SortOrder
-    bloodGroup?: SortOrder
+    contactNumber?: SortOrder
+    location?: SortOrder
     division?: SortOrder
     district?: SortOrder
     upazila?: SortOrder
-    requiredDate?: SortOrder
-    isApproved?: SortOrder
-    isResolved?: SortOrder
+    area?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    bloodGroup?: SortOrder
+    bloodBags?: SortOrder
+    reason?: SortOrder
+    donationTime?: SortOrder
+    hemoglobin?: SortOrder
+    medicalIssues?: SortOrder
     targetAmount?: SortOrder
     raisedAmount?: SortOrder
+    bkashNagadNumber?: SortOrder
+    isVerified?: SortOrder
+    isApproved?: SortOrder
+    isResolved?: SortOrder
     isDeleted?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type PostSumOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
+    bloodBags?: SortOrder
+    hemoglobin?: SortOrder
     targetAmount?: SortOrder
     raisedAmount?: SortOrder
   }
@@ -24822,6 +25342,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPostTypeFilter<$PrismaModel>
     _max?: NestedEnumPostTypeFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type DonationHistoryCountOrderByAggregateInput = {
@@ -25985,6 +26521,14 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
     create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
     connectOrCreate?: UserCreateOrConnectWithoutPostsInput
@@ -26407,6 +26951,22 @@ export namespace Prisma {
     _max?: NestedEnumPostTypeFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumRequestStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.RequestStatus | EnumRequestStatusFieldRefInput<$PrismaModel>
     in?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
@@ -26628,17 +27188,29 @@ export namespace Prisma {
   export type PostCreateWithoutAuthorInput = {
     id?: string
     type: $Enums.PostType
-    content: string
+    title?: string | null
+    content?: string | null
     images?: PostCreateimagesInput | string[]
-    bloodGroup?: string | null
+    contactNumber?: string | null
+    location?: string | null
     division?: string | null
     district?: string | null
     upazila?: string | null
-    requiredDate?: Date | string | null
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    bloodGroup?: string | null
+    bloodBags?: number | null
+    reason?: string | null
+    donationTime?: Date | string | null
+    hemoglobin?: number | null
+    medicalIssues?: string | null
     targetAmount?: number | null
     raisedAmount?: number | null
+    bkashNagadNumber?: string | null
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26648,17 +27220,29 @@ export namespace Prisma {
   export type PostUncheckedCreateWithoutAuthorInput = {
     id?: string
     type: $Enums.PostType
-    content: string
+    title?: string | null
+    content?: string | null
     images?: PostCreateimagesInput | string[]
-    bloodGroup?: string | null
+    contactNumber?: string | null
+    location?: string | null
     division?: string | null
     district?: string | null
     upazila?: string | null
-    requiredDate?: Date | string | null
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    bloodGroup?: string | null
+    bloodBags?: number | null
+    reason?: string | null
+    donationTime?: Date | string | null
+    hemoglobin?: number | null
+    medicalIssues?: string | null
     targetAmount?: number | null
     raisedAmount?: number | null
+    bkashNagadNumber?: string | null
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26686,6 +27270,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26706,6 +27293,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -27098,17 +27688,29 @@ export namespace Prisma {
     id?: StringFilter<"Post"> | string
     authorId?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
-    content?: StringFilter<"Post"> | string
+    title?: StringNullableFilter<"Post"> | string | null
+    content?: StringNullableFilter<"Post"> | string | null
     images?: StringNullableListFilter<"Post">
-    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    contactNumber?: StringNullableFilter<"Post"> | string | null
+    location?: StringNullableFilter<"Post"> | string | null
     division?: StringNullableFilter<"Post"> | string | null
     district?: StringNullableFilter<"Post"> | string | null
     upazila?: StringNullableFilter<"Post"> | string | null
-    requiredDate?: DateTimeNullableFilter<"Post"> | Date | string | null
-    isApproved?: BoolFilter<"Post"> | boolean
-    isResolved?: BoolFilter<"Post"> | boolean
+    area?: StringNullableFilter<"Post"> | string | null
+    latitude?: FloatNullableFilter<"Post"> | number | null
+    longitude?: FloatNullableFilter<"Post"> | number | null
+    bloodGroup?: StringNullableFilter<"Post"> | string | null
+    bloodBags?: IntNullableFilter<"Post"> | number | null
+    reason?: StringNullableFilter<"Post"> | string | null
+    donationTime?: DateTimeNullableFilter<"Post"> | Date | string | null
+    hemoglobin?: FloatNullableFilter<"Post"> | number | null
+    medicalIssues?: StringNullableFilter<"Post"> | string | null
     targetAmount?: FloatNullableFilter<"Post"> | number | null
     raisedAmount?: FloatNullableFilter<"Post"> | number | null
+    bkashNagadNumber?: StringNullableFilter<"Post"> | string | null
+    isVerified?: BoolFilter<"Post"> | boolean
+    isApproved?: BoolFilter<"Post"> | boolean
+    isResolved?: BoolFilter<"Post"> | boolean
     isDeleted?: BoolFilter<"Post"> | boolean
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
@@ -27136,6 +27738,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27156,6 +27761,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28484,6 +29092,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28504,6 +29115,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
@@ -28607,6 +29221,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28627,6 +29244,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28821,6 +29441,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -28841,6 +29464,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
@@ -28938,6 +29564,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28958,6 +29587,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29106,6 +29738,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29126,6 +29761,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
@@ -29229,6 +29867,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29249,6 +29890,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29330,6 +29974,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29350,6 +29997,9 @@ export namespace Prisma {
     division: string
     district: string
     upazila: string
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
     userId?: string | null
     isDeleted?: boolean
     createdAt?: Date | string
@@ -29453,6 +30103,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29473,6 +30126,9 @@ export namespace Prisma {
     division?: StringFieldUpdateOperationsInput | string
     district?: StringFieldUpdateOperationsInput | string
     upazila?: StringFieldUpdateOperationsInput | string
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29613,17 +30269,29 @@ export namespace Prisma {
   export type PostCreateWithoutPaymentsInput = {
     id?: string
     type: $Enums.PostType
-    content: string
+    title?: string | null
+    content?: string | null
     images?: PostCreateimagesInput | string[]
-    bloodGroup?: string | null
+    contactNumber?: string | null
+    location?: string | null
     division?: string | null
     district?: string | null
     upazila?: string | null
-    requiredDate?: Date | string | null
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    bloodGroup?: string | null
+    bloodBags?: number | null
+    reason?: string | null
+    donationTime?: Date | string | null
+    hemoglobin?: number | null
+    medicalIssues?: string | null
     targetAmount?: number | null
     raisedAmount?: number | null
+    bkashNagadNumber?: string | null
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29634,17 +30302,29 @@ export namespace Prisma {
     id?: string
     authorId: string
     type: $Enums.PostType
-    content: string
+    title?: string | null
+    content?: string | null
     images?: PostCreateimagesInput | string[]
-    bloodGroup?: string | null
+    contactNumber?: string | null
+    location?: string | null
     division?: string | null
     district?: string | null
     upazila?: string | null
-    requiredDate?: Date | string | null
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    bloodGroup?: string | null
+    bloodBags?: number | null
+    reason?: string | null
+    donationTime?: Date | string | null
+    hemoglobin?: number | null
+    medicalIssues?: string | null
     targetAmount?: number | null
     raisedAmount?: number | null
+    bkashNagadNumber?: string | null
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29730,17 +30410,29 @@ export namespace Prisma {
   export type PostUpdateWithoutPaymentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29751,17 +30443,29 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29849,17 +30553,29 @@ export namespace Prisma {
   export type PostCreateManyAuthorInput = {
     id?: string
     type: $Enums.PostType
-    content: string
+    title?: string | null
+    content?: string | null
     images?: PostCreateimagesInput | string[]
-    bloodGroup?: string | null
+    contactNumber?: string | null
+    location?: string | null
     division?: string | null
     district?: string | null
     upazila?: string | null
-    requiredDate?: Date | string | null
-    isApproved?: boolean
-    isResolved?: boolean
+    area?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    bloodGroup?: string | null
+    bloodBags?: number | null
+    reason?: string | null
+    donationTime?: Date | string | null
+    hemoglobin?: number | null
+    medicalIssues?: string | null
     targetAmount?: number | null
     raisedAmount?: number | null
+    bkashNagadNumber?: string | null
+    isVerified?: boolean
+    isApproved?: boolean
+    isResolved?: boolean
     isDeleted?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29959,17 +30675,29 @@ export namespace Prisma {
   export type PostUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29979,17 +30707,29 @@ export namespace Prisma {
   export type PostUncheckedUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29999,17 +30739,29 @@ export namespace Prisma {
   export type PostUncheckedUpdateManyWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
-    content?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
     images?: PostUpdateimagesInput | string[]
-    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    contactNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     district?: NullableStringFieldUpdateOperationsInput | string | null
     upazila?: NullableStringFieldUpdateOperationsInput | string | null
-    requiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isResolved?: BoolFieldUpdateOperationsInput | boolean
+    area?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    bloodGroup?: NullableStringFieldUpdateOperationsInput | string | null
+    bloodBags?: NullableIntFieldUpdateOperationsInput | number | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    donationTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    hemoglobin?: NullableFloatFieldUpdateOperationsInput | number | null
+    medicalIssues?: NullableStringFieldUpdateOperationsInput | string | null
     targetAmount?: NullableFloatFieldUpdateOperationsInput | number | null
     raisedAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    bkashNagadNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isResolved?: BoolFieldUpdateOperationsInput | boolean
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

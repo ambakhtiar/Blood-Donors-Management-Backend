@@ -19,6 +19,10 @@ const initiateDonation = async (userId: string, postId: string, amount: number) 
     throw new AppError(httpStatus.BAD_REQUEST, "Only helping posts support crowdfunding");
   }
 
+  if (!post.isVerified) {
+    throw new AppError(httpStatus.FORBIDDEN, "Only verified helping posts can receive donations.");
+  }
+
   if (!post.isApproved) {
     throw new AppError(httpStatus.FORBIDDEN, "Post is not yet approved by an administrator");
   }
