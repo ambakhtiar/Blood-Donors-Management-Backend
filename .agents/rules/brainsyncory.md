@@ -1,7 +1,7 @@
 
 
 # Project Memory — Blood-Donors-Management-Backend
-> 623 notes | Score threshold: >40
+> 748 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -20,68 +20,49 @@
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
-- **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -         'SUPER_ADMIN_PASSWORD',
-+         
--     ]
-+         'SUP
-- **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -         
-+         'SUPER_ADMIN_EMAIL',
--     ]
-+         'SUPER_
-- **⚠️ GOTCHA: Fixed null crash in AppError — externalizes configuration for environment fle...** — -     ]
-+         
-- 
-+     ]
--     requireEnvVariable.forEach((va
-- **⚠️ GOTCHA: Fixed null crash in EMAIL — externalizes configuration for environment flexib...** — -     
-+     SUPER_ADMIN: {
-- }
-+         EMAIL: string;
-- 
-+    
-- **⚠️ GOTCHA: Fixed null crash in EnvConfig — externalizes configuration for environment fl...** — -     }
-+     },
-- }
-+     
-- 
-+ }
-- const loadEnvVariables = ()
-- **⚠️ GOTCHA: Added JWT tokens authentication** — - const verifyPost = async (postId: string, user: JwtPayload) => {
+- **⚠️ GOTCHA: Fixed null crash in IRegisterUser — uses a proper password hashing algorithm** — - import { createToken, verifyToken } from '../../utils/jwt.utils';
 + 
-
-
-## Active: `.`
-
-- **🟢 Edited .gitignore (13 changes, 27min) — confirmed 3x**
-- **convention in .gitignore**
-- **convention in .gitignore**
-- **convention in .gitignore**
-- **convention in .gitignore**
+- **⚠️ GOTCHA: Fixed null crash in IRegisterUser — uses a proper password hashing algorithm** — - import { createToken, verifyToken } from '../../utils/jwt.utils';
++ 
+- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm** — - 
++ import {
+- import {
++   IChangePassword,
+-   IChangePassword,
++  
+- **⚠️ GOTCHA: Fixed null crash in IRegisterUser — uses a proper password hashing algorithm** — - 
++ import { createToken } from '../../utils/jwt.utils';
+- const regi
+- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm** — - import {
++ import { createToken, verifyToken } from '../../utils/jwt
+- **⚠️ GOTCHA: Fixed null crash in IRegisterUser — uses a proper password hashing algorithm** — - 
++ import { sendOTPEmail } from '../../utils/sendEmail';
+- const reg
 
 ## Project Standards
 
-- 🟢 Edited .gitignore (13 changes, 27min) — confirmed 3x
-- convention in .gitignore
-- convention in .gitignore
-- convention in .gitignore
-- convention in .gitignore
-- what-changed in .gitignore — confirmed 28x
-- trade-off in .gitignore — confirmed 4x
-- convention in .gitignore
+- Strengthened types Record
+- Added JWT tokens authentication — confirmed 5x
+- what-changed in index.ts — confirmed 3x
+- 🟢 Edited src/app/modules/Auth/auth.service.ts (12 changes, 1min) — confirmed 3x
+- discovery in auth.service.ts — confirmed 3x
+- Added JWT tokens authentication — uses a proper password hashing algorithm — confirmed 4x
+- Fixed null crash in AppError — externalizes configuration for environment fle... — confirmed 6x
+- Updated configuration server — externalizes configuration for environment fle... — confirmed 3x
 
 ## Known Fixes
 
 - ❌ PrismaClientKnownRequestError, → ✅ problem-fix in index.js
 - ❌ "use strict";var h=Object.defineProperty;var T=Object.getOwnPropertyDescriptor;var M=Object.getOwnPr → ✅ problem-fix in query_compiler_fast_bg.js
+- ❌ -   } catch (error) { → ✅ Fixed null crash in PORT — externalizes configuration for environment flexibi...
 - ❌ import AppError from '../../errors/AppError'; → ✅ problem-fix in organisation.service.ts
 - ❌ -     throw new AppError(httpStatus.NOT_FOUND, 'Target user not found'); → ✅ Fixed null crash in AppError — externalizes configuration for environment fle...
-- ❌ - import AppError from '../../errors/AppError'; → ✅ Fixed null crash in Secret — uses a proper password hashing algorithm
 
 ## Recent Decisions
 
+- decision in hospital.validation.ts
 - decision in post.interface.ts
 - decision in post.interface.ts
-- Optimized package — offloads heavy computation off the main thread
 - Optimized package — offloads heavy computation off the main thread
 
 ## Learned Patterns

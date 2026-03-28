@@ -1,6 +1,6 @@
 ---
 name: problem-fix
-description: "Problem Fix for Blood-Donors-Management-Backend. 10 error→fix pairs."
+description: "Problem Fix for Blood-Donors-Management-Backend. 13 error→fix pairs."
 domain: problem-fix
 composesFrom:
   - fix
@@ -22,6 +22,7 @@ Auto-compiled from **4 real patterns** in **Blood-Donors-Management-Backend**. T
 |-------|-----|------|
 | `PrismaClientKnownRequestError,` | problem-fix in index.js | 7x |
 | `"use strict";var h=Object.defineProperty;var T=Obj` | problem-fix in query_compiler_fast_bg.js | 4x |
+| `-   } catch (error) {` | Fixed null crash in PORT — externalizes configuration for en | 3x |
 | `import AppError from '../../errors/AppError';` | problem-fix in organisation.service.ts | 2x |
 | `-     throw new AppError(httpStatus.NOT_FOUND, 'Ta` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `- import AppError from '../../errors/AppError';` | Fixed null crash in Secret — uses a proper password hashing  | 2x |
@@ -29,7 +30,9 @@ Auto-compiled from **4 real patterns** in **Blood-Donors-Management-Backend**. T
 | `-             // throw new Error(`Environment vari` | Fixed null crash in EnvConfig — externalizes configuration f | 2x |
 | `+             throw new AppError(status.INTERNAL_S` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `-         throw new AppError(` | Fixed null crash in Scenario — prevents null/undefined runti | 2x |
+| `+     throw new AppError(httpStatus.NOT_FOUND, "Po` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `-             throw new AppError(status.INTERNAL_S` | Fixed null crash in EnvConfig — externalizes configuration f | 2x |
+| `+     throw new AppError(httpStatus.FORBIDDEN, "Yo` | Fixed null crash in IChangePassword — uses a proper password | 2x |
 
 ## 📐 Conventions & Best Practices
 

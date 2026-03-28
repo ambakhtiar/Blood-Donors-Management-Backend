@@ -1,17 +1,129 @@
 # Notes Index — Blood-Donors-Management-Backend
-> 623 total notes
+> 735 total notes
 
 ### 2026-03-28
 
 | # | Title | ~Tok |
 |---|---|---|
+| 735 | Replaced dependency sslcommerz | ~51.25 |
+| 734 | Replaced dependency Record | ~401.75 |
+| 733 | Replaced dependency sslcommerz | ~51.25 |
+| 732 | Added JWT tokens authentication | ~77 |
+| 731 | Added JWT tokens authentication | ~64 |
+| 730 | what-changed in index.ts | ~45.25 |
+| 729 | Replaced auth UserRoutes — improves module reus... | ~534.25 |
+| 728 | Replaced auth Router — improves module reusability | ~321.75 |
+| 727 | what-changed in index.ts | ~45.25 |
+| 726 | Replaced auth UserRoutes — improves module reus... | ~534.25 |
+| 725 | what-changed in index.ts | ~46 |
+| 724 | Replaced auth AuthRoutes — improves module reus... | ~337.75 |
+| 723 | Replaced auth AuthRoutes | ~60 |
+| 722 | 🟢 Edited src/app/modules/Auth/auth.service.ts ... | ~30 |
+| 721 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 720 | Added JWT tokens authentication | ~65.75 |
+| 719 | discovery in auth.service.ts | ~49.5 |
+| 718 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 717 | ⚠️ GOTCHA: Fixed null crash in IChangePassword ... | ~536 |
+| 716 | discovery in auth.service.ts | ~49.5 |
+| 715 | Added JWT tokens authentication | ~61.75 |
+| 714 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 713 | Added JWT tokens authentication | ~65.75 |
+| 712 | what-changed in .gitignore | ~4 |
+| 711 | Replaced auth Rename | ~31.75 |
+| 710 | 🟢 Edited .gitignore (37 changes, 3min) — confi... | ~30 |
+| 709 | convention in .gitignore | ~61.25 |
+| 708 | convention in .gitignore | ~31 |
+| 707 | what-changed in .gitignore | ~8 |
+| 706 | convention in .gitignore | ~98 |
+| 705 | convention in .gitignore | ~92.5 |
+| 704 | convention in .gitignore | ~87 |
+| 703 | convention in .gitignore | ~81.25 |
+| 702 | convention in .gitignore | ~76.25 |
+| 701 | convention in .gitignore | ~71.25 |
+| 700 | 🟢 Edited src/app/modules/Auth/auth.service.ts ... | ~30 |
+| 699 | Replaced auth Date | ~108.75 |
+| 698 | ⚠️ GOTCHA: Fixed null crash in IChangePassword ... | ~536 |
+| 697 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 696 | ⚠️ GOTCHA: Fixed null crash in IRegisterUser — ... | ~533 |
+| 695 | Fixed null crash in IChangePassword — uses a pr... | ~536 |
+| 694 | discovery in auth.service.ts | ~48.75 |
+| 693 | Replaced dependency config — ensures atomic mul... | ~227.5 |
+| 692 | Replaced dependency config | ~125 |
+| 691 | Added JWT tokens authentication — uses a proper... | ~394.75 |
+| 690 | Added JWT tokens authentication | ~55 |
+| 689 | Added JWT tokens authentication — uses a proper... | ~140.75 |
+| 688 | discovery in payment.controller.ts | ~150 |
+| 687 | Replaced dependency PORT | ~51.75 |
+| 686 | Fixed null crash in AppError — uses a proper pa... | ~519.75 |
+| 685 | ⚠️ GOTCHA: Fixed null crash in SSLCommerzUtils ... | ~536.25 |
+| 684 | Fixed null crash in AppError — externalizes con... | ~536.25 |
+| 683 | Updated configuration EMAIL — externalizes conf... | ~104 |
+| 682 | Updated configuration config — externalizes con... | ~227.5 |
+| 681 | Updated configuration config — externalizes con... | ~126 |
+| 680 | Fixed null crash in AppError — uses a proper pa... | ~511 |
+| 679 | 🟢 Edited src/server.ts (30 changes, 1min) | ~30 |
+| 678 | Updated configuration PORT — externalizes confi... | ~34 |
+| 677 | Fixed null crash in PORT — externalizes configu... | ~181 |
+| 676 | Updated configuration server — externalizes con... | ~32 |
+| 675 | Updated configuration server — externalizes con... | ~30.75 |
+| 674 | Updated configuration server — externalizes con... | ~29.5 |
+| 673 | ⚠️ GOTCHA: Fixed null crash in PORT — externali... | ~212 |
+| 672 | what-changed in server.ts — confirmed 3x | ~27.75 |
+| 671 | what-changed in server.ts | ~23 |
+| 670 | Fixed null crash in PORT — externalizes configu... | ~174.75 |
+| 669 | ⚠️ GOTCHA: Fixed null crash in PORT — externali... | ~520.75 |
+| 668 | what-changed in env.ts | ~28.25 |
+| 667 | what-changed in env.ts | ~27 |
+| 666 | ⚠️ GOTCHA: Fixed null crash in PORT — externali... | ~520.75 |
+| 665 | Replaced dependency pick | ~51.25 |
+| 664 | Replaced dependency pick | ~50 |
+| 663 | Replaced dependency paginationHelper | ~65 |
+| 662 | Replaced auth Authentication | ~421.75 |
+| 661 | what-changed in manageAdmin.controller.ts | ~103 |
+| 660 | Updated schema Name | ~432.5 |
+| 659 | Fixed null crash in UserRole — uses a proper pa... | ~533 |
+| 658 | 🟢 Edited .gitignore (31 changes, 6min) | ~30 |
+| 657 | Git Commit: chore: initialize agent skill and m... | ~29 |
+| 656 | Updated configuration Auto | ~185.75 |
+| 655 | Git Commit: generated file remove | ~14 |
+| 654 | what-changed in .gitignore — confirmed 20x | ~9.5 |
+| 653 | 🟢 Edited .gitignore (63 changes, 9min) | ~30 |
+| 652 | what-changed in .gitignore | ~11.5 |
+| 651 | Git Commit: ai file remove from git | ~15 |
+| 650 | what-changed in .gitignore | ~10.5 |
+| 649 | Git Commit: ai file remove from git | ~15 |
+| 648 | trade-off in .gitignore | ~28.25 |
+| 647 | what-changed in .gitignore | ~14.25 |
+| 646 | what-changed in .gitignore | ~9 |
+| 645 | what-changed in .gitignore | ~8.5 |
+| 644 | Git Commit: super admin seed | ~13 |
+| 643 | what-changed in .gitignore | ~4 |
+| 642 | what-changed in .gitignore | ~7.5 |
+| 641 | convention in .gitignore | ~87 |
+| 640 | convention in .gitignore | ~84.25 |
+| 639 | convention in .gitignore | ~90.5 |
+| 638 | what-changed in .gitignore | ~6 |
+| 637 | convention in .gitignore | ~84.25 |
+| 636 | what-changed in .gitignore | ~6 |
+| 635 | what-changed in .gitignore | ~5 |
+| 634 | what-changed in .gitignore | ~5 |
+| 633 | convention in .gitignore | ~89.25 |
+| 632 | what-changed in .gitignore | ~7.5 |
+| 631 | convention in .gitignore | ~95 |
+| 630 | what-changed in .gitignore | ~5.5 |
+| 629 | convention in .gitignore | ~100.5 |
+| 628 | what-changed in .gitignore | ~8.25 |
+| 627 | what-changed in .gitignore | ~7.25 |
+| 626 | what-changed in .gitignore | ~6.5 |
+| 625 | convention in .gitignore | ~106 |
+| 624 | what-changed in .gitignore | ~8 |
 | 623 | what-changed in server.ts | ~32.5 |
 | 622 | Added session cookies authentication — external... | ~551.25 |
 | 621 | convention in migration_lock.toml | ~54.75 |
-| 620 | what-changed in env.ts | ~41.25 |
+| 620 | what-changed in env.ts — confirmed 9x | ~41.25 |
 | 619 | what-changed in env.ts | ~38.25 |
 | 618 | what-changed in env.ts | ~38.25 |
-| 617 | 🟢 Edited src/app/config/env.ts (15 changes, 1min) | ~30 |
+| 617 | 🟢 Edited src/app/config/env.ts (15 changes, 1m... | ~30 |
 | 616 | what-changed in env.ts | ~39.5 |
 | 615 | what-changed in env.ts | ~39.25 |
 | 614 | what-changed in env.ts | ~39.25 |

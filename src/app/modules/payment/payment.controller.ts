@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { PaymentServices } from './payment.service';
-import config from '../../config';
+import { envVars } from '../../config/env';
 import { PaymentStatus } from '../../../generated/prisma';
 
 const initiateDonation = catchAsync(async (req: Request, res: Response) => {
@@ -23,7 +23,7 @@ const paymentSuccess = catchAsync(async (req: Request, res: Response) => {
   await PaymentServices.paymentSuccess(transactionId as string);
 
   // Redirect to frontend success page
-  res.redirect(`${config.client_url}/donation-success?transactionId=${transactionId}`);
+  res.redirect(`${envVars.CLIENT_URL}/donation-success?transactionId=${transactionId}`);
 });
 
 const paymentFail = catchAsync(async (req: Request, res: Response) => {
@@ -31,7 +31,7 @@ const paymentFail = catchAsync(async (req: Request, res: Response) => {
   await PaymentServices.paymentStatusUpdate(transactionId as string, PaymentStatus.FAILED);
 
   // Redirect to frontend fail page
-  res.redirect(`${config.client_url}/donation-fail?transactionId=${transactionId}`);
+  res.redirect(`${envVars.CLIENT_URL}/donation-fail?transactionId=${transactionId}`);
 });
 
 const paymentCancel = catchAsync(async (req: Request, res: Response) => {
@@ -39,7 +39,7 @@ const paymentCancel = catchAsync(async (req: Request, res: Response) => {
   await PaymentServices.paymentStatusUpdate(transactionId as string, PaymentStatus.CANCELLED);
 
   // Redirect to frontend cancel page
-  res.redirect(`${config.client_url}/donation-cancel?transactionId=${transactionId}`);
+  res.redirect(`${envVars.CLIENT_URL}/donation-cancel?transactionId=${transactionId}`);
 });
 
 const paymentIPN = catchAsync(async (req: Request, res: Response) => {

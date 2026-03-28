@@ -2,8 +2,8 @@ import httpStatus from "http-status";
 import AppError from "../../errors/AppError";
 import { prisma } from "../../lib/prisma";
 import { PostType, PaymentStatus } from "../../../generated/prisma";
-import { SSLCommerzUtils } from "../../../utils/sslcommerz";
 import { envVars } from "../../config/env";
+import { SSLCommerzUtils } from "../../utils/sslcommerz";
 
 const initiateDonation = async (userId: string, postId: string, amount: number) => {
   const post = await prisma.post.findUnique({

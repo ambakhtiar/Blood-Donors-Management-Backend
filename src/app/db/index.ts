@@ -1,8 +1,7 @@
-import config from '../config';
+import { envVars } from '../config/env';
 import { UserRole, AccountStatus } from '../../generated/prisma';
 import bcrypt from 'bcrypt';
 import { prisma } from '../lib/prisma';
-import { envVars } from '../config/env';
 
 
 const superUser = {
@@ -20,7 +19,7 @@ const seedSuperAdmin = async () => {
     });
 
     if (!isExistSuperAdmin) {
-        const hashedPassword = await bcrypt.hash(superUser.password as string, Number(config.bcrypt_salt_rounds));
+        const hashedPassword = await bcrypt.hash(superUser.password as string, Number(envVars.BCRYPT_SALT_ROUNDS));
 
         await prisma.$transaction(async (tx) => {
             const user = await tx.user.create({

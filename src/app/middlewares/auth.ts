@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import jwt from 'jsonwebtoken';
-import config from '../config';
+import { envVars } from '../config/env';
 import AppError from '../errors/AppError';
 import { verifyToken } from '../utils/jwt.utils';
 import { prisma } from '../lib/prisma';
@@ -19,7 +19,7 @@ const auth = (...requiredRoles: UserRole[]) => {
 
     const decoded = verifyToken(
       token,
-      config.jwt.secret as string,
+      envVars.JWT.SECRET as string,
     ) as jwt.JwtPayload;
 
     const { role, userId } = decoded;

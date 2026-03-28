@@ -2,8 +2,7 @@ import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import jwt from 'jsonwebtoken';
 import AppError from '../../errors/AppError';
-import config from '../../config';
-import { createToken, verifyToken } from '../../utils/jwt.utils';
+import { envVars } from '../../config/env';
 import {
   IChangePassword,
   IForgotPassword,
@@ -15,9 +14,14 @@ import {
 import { prisma } from '../../lib/prisma';
 import { AccountStatus, Gender, UserRole } from '../../../generated/prisma';
 import { sendOTPEmail } from '../../utils/sendEmail';
+import { createToken, verifyToken } from '../../utils/jwt.utils';
 
 const registerUser = async (payload: IRegisterUser) => {
   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
+
+  if (role === UserRole.ADMIN || role === UserRole.SUPER_ADMIN) {
+    throw new AppError(httpStatus.FORBIDDEN, "You cannot register as an Admin or Super Admin");
+  }
 
   const userExists = await prisma.user.findFirst({
     where: {
@@ -32,7 +36,7 @@ const registerUser = async (payload: IRegisterUser) => {
     throw new AppError(httpStatus.CONFLICT, 'User with this email or contact already exists');
   }
 
-  const hashedPassword = await bcrypt.hash(password, Number(config.bcrypt_salt_rounds));
+  const hashedPassword = await bcrypt.hash(password, Number(envVars.BCRYPT_SALT_ROUNDS));
 
   let accountStatus: AccountStatus = AccountStatus.ACTIVE;
   let locationData: Partial<ILocationInfo> = {};
@@ -156,24 +160,24 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
       contactNumber: user.contactNumber,
       ipAddress,
       device,
-      refreshToken: '', 
-      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), 
+      refreshToken: '',
+      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
     },
   });
 
   const accessToken = createToken(
     { userId: user.id, role: user.role },
-    config.jwt.secret as string,
-    config.jwt.expires_in as string
+    envVars.JWT.SECRET as string,
+    envVars.JWT.EXPIRES_IN as string
   );
 
   const refreshToken = createToken(
     { userId: user.id, role: user.role, sessionId: session.id },
-    config.jwt.refresh_secret as string,
-    config.jwt.refresh_expires_in as string
+    envVars.JWT.REFRESH_SECRET as string,
+    envVars.JWT.REFRESH_EXPIRES_IN as string
   );
 
-  const hashedRefreshToken = await bcrypt.hash(refreshToken, Number(config.bcrypt_salt_rounds));
+  const hashedRefreshToken = await bcrypt.hash(refreshToken, Number(envVars.BCRYPT_SALT_ROUNDS));
 
   await prisma.session.update({
     where: { id: session.id },
@@ -193,7 +197,7 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
 const refreshToken = async (token: string) => {
   let decodedData;
   try {
-    decodedData = verifyToken(token, config.jwt.refresh_secret as string) as jwt.JwtPayload;
+    decodedData = verifyToken(token, envVars.JWT.REFRESH_SECRET as string) as jwt.JwtPayload;
   } catch {
     throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
   }
@@ -242,8 +246,8 @@ const refreshToken = async (token: string) => {
 
   const accessToken = createToken(
     jwtPayload,
-    config.jwt.secret as string,
-    config.jwt.expires_in as string,
+    envVars.JWT.SECRET as string,
+    envVars.JWT.EXPIRES_IN as string,
   );
 
   return {
@@ -273,7 +277,7 @@ const changePassword = async (userData: jwt.JwtPayload, payload: IChangePassword
 
   const newHashedPassword = await bcrypt.hash(
     payload.newPassword,
-    Number(config.bcrypt_salt_rounds),
+    Number(envVars.BCRYPT_SALT_ROUNDS),
   );
 
   await prisma.user.update({
@@ -282,6 +286,7 @@ const changePassword = async (userData: jwt.JwtPayload, payload: IChangePassword
     },
     data: {
       password: newHashedPassword,
+      needsPasswordChange: false,
     },
   });
 
@@ -312,8 +317,8 @@ const forgotPassword = async (payload: IForgotPassword) => {
   }
 
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  const hashedToken = await bcrypt.hash(otp, Number(config.bcrypt_salt_rounds));
-  const expiresAt = new Date(Date.now() + 3 * 60 * 1000); 
+  const hashedToken = await bcrypt.hash(otp, Number(envVars.BCRYPT_SALT_ROUNDS));
+  const expiresAt = new Date(Date.now() + 3 * 60 * 1000);
 
   await (prisma as any).verificationToken.upsert({
     where: { email: user.email as string },
@@ -371,7 +376,7 @@ const resetPassword = async (payload: IResetPassword) => {
 
   const newHashedPassword = await bcrypt.hash(
     payload.newPassword,
-    Number(config.bcrypt_salt_rounds),
+    Number(envVars.BCRYPT_SALT_ROUNDS),
   );
 
   await prisma.$transaction(async (tx) => {

@@ -1,6 +1,6 @@
 ---
 name: project
-description: "Project for Blood-Donors-Management-Backend. 26 gotchas, 88 conventions, 2 fixes."
+description: "Project for Blood-Donors-Management-Backend. 26 gotchas, 106 conventions, 2 fixes."
 domain: project
 triggers:
   - glob: "**/*"
@@ -10,7 +10,7 @@ enabled: true
 
 # Project
 
-Auto-compiled from **296 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on project files.
+Auto-compiled from **344 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on project files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -64,6 +64,172 @@ Auto-compiled from **296 real patterns** in **Blood-Donors-Management-Backend**.
 ## 📐 Conventions & Best Practices
 
 ### Project Conventions
+- 📐 **🟢 Edited .gitignore (37 changes, 3min) — confirmed 3x** — Active editing session on .gitignore.
+37 content changes over 3 minutes.
+- 📐 **convention in .gitignore** — - .agent
++ .brainsync/agent-rules.md
+- .agent-mem
++ .agent
+- .agents
++ .agent-mem
+- .cursor
++ .agent
+- 📐 **convention in .gitignore** — - 
++ .brainsync/agent-rules.md
+- # Auto-generated agent rules (personalized per developer)
++ 
+- .bra
+- 📐 **convention in .gitignore** — - .brainsync/*
++ .agent
+- .agent
++ .agent-mem
+- .agent-mem
++ .agents
+- .agents
++ .cursor
+- .cursor
++
+- 📐 **convention in .gitignore** — - .agent/*
++ .agent-mem
+- .agent-mem
++ .agents
+- .agents
++ .cursor
+- .cursor
++ .vscode
+- .vscode
++ 
+
+- 📐 **convention in .gitignore** — - .agent-mem/*
++ .agents
+- .agents
++ .cursor
+- .cursor
++ .vscode
+- .vscode
++ 
+- 
++ AGENT.md
+- AGENT.
+- 📐 **convention in .gitignore** — - .agents/*
++ .cursor
+- .cursor
++ .vscode
+- .vscode
++ 
+- 
++ AGENT.md
+- AGENT.md
++ CLAUDE.md
+- CLAUDE
+- 📐 **convention in .gitignore** — - .cursor/*
++ .vscode
+- .vscode
++ 
+- 
++ AGENT.md
+- AGENT.md
++ CLAUDE.md
+- CLAUDE.md
++ .windsurfrules
+- 📐 **convention in .gitignore** — - .vscode/*
++ 
+- 
++ AGENT.md
+- AGENT.md
++ CLAUDE.md
+- CLAUDE.md
++ .windsurfrules
+- .windsurfrules
++ 
+- 📐 **what-changed in .gitignore — confirmed 20x** — - src/generated/prisma
++ src/generated
+- 📐 **convention in .gitignore** — - .cursor
++ .cursor /**/*
+- 
++ .vscode/**/*
+- AGENT.md
++ 
+- CLAUDE.md
++ AGENT.md
+- .windsurfrules
++ 
+- 📐 **convention in .gitignore** — - .cursor
++ .vscode
+- .vscode
++ 
+- 
++ AGENT.md
+- AGENT.md
++ CLAUDE.md
+- CLAUDE.md
++ .windsurfrules
+-
+- 📐 **convention in .gitignore** — - .cursor/**/*
++ .cursor
+- .vscode
++ .cursor
+- 
++ .vscode
+- AGENT.md
++ 
+- CLAUDE.md
++ AGENT.md
+- .wi
+- 📐 **convention in .gitignore** — - .vscode
++ .cursor
+- 
++ .vscode
+- AGENT.md
++ 
+- CLAUDE.md
++ AGENT.md
+- .windsurfrules
++ CLAUDE.md
+-
+- 📐 **convention in .gitignore** — - .cursor
++ .agents
+- .vscode
++ .cursor
+- 
++ .vscode
+- AGENT.md
++ 
+- CLAUDE.md
++ AGENT.md
+- .windsur
+- 📐 **convention in .gitignore** — - .agents
++ .agent-mem
+- .cursor
++ .agents
+- .vscode
++ .cursor
+- 
++ .vscode
+- AGENT.md
++ 
+- CLAUDE.m
+- 📐 **convention in .gitignore** — - .agent-mem
++ .agent
+- .agents
++ .agent-mem
+- .cursor
++ .agents
+- .vscode
++ .cursor
+- 
++ .vscode
+- 
+- 📐 **convention in .gitignore** — - .agent
++ .brainsync
+- .agent-mem
++ .agent
+- .agents
++ .agent-mem
+- .cursor
++ .agents
+- .vscode
++ .
 - 📐 **what-changed in schema.prisma — confirmed 8x** — -   needsPasswordChange Boolean @default(true)
 +   needsPasswordChange Boolean @default(false)
 - 📐 **🟢 Edited .gitignore (13 changes, 27min) — confirmed 3x** — Active editing session on .gitignore.
@@ -179,80 +345,6 @@ Content summary (5 lines):
 + 
 - 📐 **convention in .gitignore** — - .brainsync/agent-rules.md
 + .brainsync
-- 📐 **🟢 Edited prisma/schema.prisma (6 changes, 3min) — confirmed 3x** — Active editing session on prisma/schema.prisma.
-6 content changes over 3 minutes.
-- 📐 **🟢 Edited .gitignore (19 changes, 2min) — confirmed 4x** — Active editing session on .gitignore.
-19 content changes over 2 minutes.
-- 📐 **convention in .gitignore** — - # .brainsync/agent-rules.md
-+ .brainsync/agent-rules.md
-- # .agent
-+ .agent
-- # .agent-mem
-+ 
-- 📐 **convention in .gitignore** — - 
-+ src/generated/prisma
-- src/generated/prisma
-+ 
-- 
-+ # Auto-generated agent rules (personal
-- 📐 **convention in .gitignore** — - .brainsync/agent-rules.md
-+ # .brainsync/agent-rules.md
-- 📐 **what-changed in .gitignore — confirmed 37x** — - 
-+ .agent-mem
-- 📐 **convention in .gitignore** — - .agent-mem/
-+ .agent-mem
-- .agent-mem/skills/
-+ 
-- .agent-mem/skills/auto/
-+ 
-- .agent-mem/s
-- 📐 **convention in .gitignore** — - 
-+ .agent-mem/skills/auto/convention/convention.md
-- AGENT.md
-+ 
-- CLAUDE.md
-+ 
-- 
-+ AGENT.m
-- 📐 **convention in .gitignore** — - 
-+ .agent-mem/skills/auto/convention/
-- AGENT.md
-+ 
-- CLAUDE.md
-+ AGENT.md
-- 
-+ CLAUDE.md
-+
-- 📐 **convention in .gitignore** — - /generated/prisma
-+ # Auto-generated agent rules (personalized per developer)
-- 
-+ .brainsync/a
-- 📐 **Added session cookies authentication — confirmed 6x** — - // This is your Prisma schema file,
-+ // This is your Prisma schema file,
-- // learn more about i
-- 📐 **what-changed in schema.prisma — confirmed 4x** — -   isAvailableForDonation Boolean   @default(true) 
-+   isAvailableForDonation Boolean   @default(t
-- 📐 **Added JWT tokens authentication — optimizes data fetching with relational que... — confirmed 3x** — - An industry-standard, highly scalable full-stack web application designed to create a seamless bri
-- 📐 **Added JWT tokens authentication — optimizes data fetching with relational que... — confirmed 3x** — - 
-+ 🩸 MASTER BLUEPRINT: Blood Donation & Crowdfunding Platform
-- 
-+ 1. Project Overview & Motiv
-- 📐 **Replaced auth Public — confirmed 3x** — - Public : 
-+ 
-- See Blood Finding Post 
-+ 
-- See Blood Donation Post 
-+ 
-- But Dont Like or C
-- 📐 **what-changed in .gitignore — confirmed 7x** — - .agent-
-+ .agent-mem
-- 📐 **convention in .gitignore** — - .win
-+ .windsurfrules
-+ 
-- 📐 **what-changed in .gitignore — confirmed 3x** — - /generated/prisma
-+ src/generated/prisma
-- /generated/prisma
-+ src/generated/prisma
 
 ## 🔵 Architecture
 
@@ -268,6 +360,13 @@ e8491b5 auth.ts middleware add
 ### Dependency: dotenv (imported in 5 files)
 ## 🤔 Decisions & Trade-offs
 
+- **trade-off in .gitignore** — - .agent-mem/**/*
++ .agent-mem/*
+- .agents/**/*
++ .agents/*
+- .cursor/**/*
++ .cursor/*
+- .vscode/**/
 - **trade-off in .gitignore** — - /.agent/
 + /.agent
 - /.agent-mem/
@@ -299,15 +398,6 @@ e8491b5 auth.ts middleware add
 + .agents/**/*
 - .cursor
 + .c
-- **trade-off in .gitignore** — - .agent
-+ # .agent
-- .agent-mem
-+ # .agent-mem
-- .agents
-+ # .agents
-- .cursor
-+ # .cursor
-
 
 ---
-*Auto-generated by BrainSync 🧠 | 296 patterns | 2026-03-28*
+*Auto-generated by BrainSync 🧠 | 344 patterns | 2026-03-28*

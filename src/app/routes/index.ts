@@ -6,6 +6,7 @@ import { HospitalRoutes } from '../modules/hospital/hospital.route';
 import { OrganisationRoutes } from '../modules/organisation/organisation.route';
 import { AdminRoutes } from '../modules/admin/admin.route';
 import { PaymentRoutes } from '../modules/payment/payment.route';
+import { ManageAdminRoutes } from '../modules/manageAdmin/manageAdmin.route';
 
 const router = Router();
 
@@ -17,6 +18,7 @@ const moduleRoutes = [
     { path: '/organisations', route: OrganisationRoutes },
     { path: '/admin', route: AdminRoutes },
     { path: '/payments', route: PaymentRoutes },
+    { path: '/manage-admins', route: ManageAdminRoutes },
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

@@ -1,26 +1,22 @@
 node_modules
 .env
 .env.*
+!.env.example
 dist
-/src/generated
+
+src/generated
 
 # Auto-generated agent rules (personalized per developer)
 .brainsync
-.brainsync/**/*
+.brainsync/agent-rules.md
 .agent
-.agent/**/*
 .agent-mem
-.agent-mem/**/*
 .agents
-.agents/**/*
 .cursor
-.cursor/**/*
 .vscode
-.vscode/**/*
 
 AGENT.md
 CLAUDE.md
 .windsurfrules
 
-# Auto-generated agent rules (personalized per developer)
-.brainsync/agent-rules.md
+.agent-mem/

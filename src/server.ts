@@ -1,10 +1,11 @@
 import app from './app';
 import dotenv from 'dotenv';
 import seedSuperAdmin from './app/db';
+import { envVars } from './app/config/env';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = envVars.PORT;
 
 async function server() {
   try {

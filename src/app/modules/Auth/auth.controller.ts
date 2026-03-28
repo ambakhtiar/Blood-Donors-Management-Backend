@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { AuthServices } from './auth.service';
-import config from '../../config/index';
+import { envVars } from '../../config/env';
 
 const registerUser = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthServices.registerUser(req.body);
@@ -24,7 +24,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
   const { refreshToken, accessToken, user } = result;
 
   res.cookie('refreshToken', refreshToken, {
-    secure: config.env === 'production',
+    secure: envVars.NODE_ENV === 'production',
     httpOnly: true,
   });
 

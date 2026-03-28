@@ -1,5 +1,5 @@
 import SSLCommerzPayment from "sslcommerz-lts";
-import { envVars } from "../app/config/env";
+import { envVars } from "../config/env";
 
 const store_id = envVars.SSL_COMMERZ.STORE_ID;
 const store_passwd = envVars.SSL_COMMERZ.STORE_PASSWORD;

@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: "Typescript for Blood-Donors-Management-Backend. 13 gotchas, 37 conventions, 21 fixes."
+description: "Typescript for Blood-Donors-Management-Backend. 24 gotchas, 45 conventions, 27 fixes."
 domain: typescript
 triggers:
   - glob: "**/*.ts"
@@ -11,7 +11,7 @@ enabled: true
 
 # Typescript
 
-Auto-compiled from **240 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
+Auto-compiled from **304 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -19,6 +19,17 @@ Auto-compiled from **240 real patterns** in **Blood-Donors-Management-Backend**.
 
 | ❌ Don't | Details |
 |----------|----------|
+| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - import { createToken, verifyToken } from '../../utils/jwt.utils'; +  -  + const registerUser = asy |
+| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - import { createToken, verifyToken } from '../../utils/jwt.utils'; +  -  + import { createToken, ve |
+| ⚠️ GOTCHA: Fixed null crash in IChangePassword — u | -  + import { - import { +   IChangePassword, -   IChangePassword, +   IForgotPassword, -   IForgotP |
+| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | -  + import { createToken } from '../../utils/jwt.utils'; - const registerUser = async (payload: IRe |
+| ⚠️ GOTCHA: Fixed null crash in IChangePassword — u | - import { + import { createToken, verifyToken } from '../../utils/jwt.utils'; -   IChangePassword,  |
+| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | -  + import { sendOTPEmail } from '../../utils/sendEmail'; - const registerUser = async (payload: IR |
+| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - import { sendOTPEmail } from '../../utils/sendEmail'; +  -  + const registerUser = async (payload: |
+| ⚠️ GOTCHA: Fixed null crash in SSLCommerzUtils — e | -  + import { SSLCommerzUtils } from "../../utils/sslcommerz"; - const initiateDonation = async (use |
+| ⚠️ GOTCHA: Fixed null crash in PORT — externalizes | -  + import config from './app/config'; - dotenv.config(); +  -  + dotenv.config(); - const port = c |
+| ⚠️ GOTCHA: Fixed null crash in PORT — externalizes | -     config +     NODE_ENV: string; -     NODE_ENV: string; +     PORT: number; -     PORT: num |
+| ⚠️ GOTCHA: Fixed null crash in PORT — externalizes | -     NODE_ENV: string; +     চ -     PORT: number; +     NODE_ENV: string; -     BACKEND_URL: s |
 | ⚠️ GOTCHA: Fixed null crash in AppError — external | -         'SUPER_ADMIN_PASSWORD', +          -     ] +         'SUPER_ADMIN_PASSWORD', -  +     |
 | ⚠️ GOTCHA: Fixed null crash in AppError — external | -          +         'SUPER_ADMIN_EMAIL', -     ] +         'SUPER_ADMIN_PASSWORD', -  +        |
 | ⚠️ GOTCHA: Fixed null crash in AppError — external | -     ] +          -  +     ] -     requireEnvVariable.forEach((variable) => { +  -         if |
@@ -34,6 +45,147 @@ Auto-compiled from **240 real patterns** in **Blood-Donors-Management-Backend**.
 | ⚠️ GOTCHA: Added JWT tokens authentication — ensur | - import AppError from '../../errors/AppError'; + import { JwtPayload } from 'jsonwebtoken'; - impor |
 
 ## 🔧 Problem Playbooks
+
+### Fixed null crash in IChangePassword — uses a proper password hashing algorithm
+- 
++ import {
+- import {
++   IChangePassword,
+-   IChangePassword,
++   IForgotPassword,
+-   IForgotPassword,
++   ILocationInfo,
+-   ILocationInfo,
++   ILoginUser,
+-   ILoginUser,
++   IRegisterUser,
+-   IRegisterUser,
++   IResetPassword
+-   IResetPassword
++ } from './auth.interface';
+- } from './auth.interface';
++ import { prisma } from '../../lib/prisma';
+- import { prisma } from '../../lib/prisma
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: IChangePassword
+3. identifier: IForgotPassword
+4. identifier: ILocationInfo
+5. identifier: ILoginUser
+
+### Fixed null crash in AppError — uses a proper password hashing algorithm
+- import dotenv from 'dotenv';
++ import dotenv from 'dotenv';
+- import status from 'http-status';
++ import path from 'path';
+- import AppError from '../errors/AppError';
++ import status from 'http-status';
+- 
++ import AppError from '../errors/AppError';
+- dotenv.config();
++ 
+- 
++ // Load .env first
+- interface EnvConfig {
++ dotenv.config({ path: path.join(process.cwd(), '.env') });
+-     NO
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AppError
+3. identifier: Load
+4. identifier: EnvConfig
+5. identifier: PORT
+
+### Fixed null crash in AppError — uses a proper password hashing algorithm
+- 
++ import status from 'http-status';
+- dotenv.config({ path: path.join(process.cwd(), '.env') });
++ import AppError from '../errors/AppError';
+- export default {
++ // Load .env first
+-   env: process.env.NODE_ENV,
++ dotenv.config({ path: path.join(process.cwd(), '.env') });
+-   port: process.env.PORT,
++ 
+-   jwt: {
++ interface Config {
+-     [REDACTED] || 'super-secure-secret-blood-donation',
++ 
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AppError
+3. identifier: Load
+4. identifier: Config
+5. identifier: PORT
+
+### Fixed null crash in PORT — externalizes configuration for environment flexibi...
+- const port = config.port;
++ const PORT = process.env.PORT || 5000;
+- const PORT = process.env.PORT || 5000;
++ async function server() {
+- 
++   try {
+- async function server() {
++     // await seedSuperAdmin();
+-   try {
++     app.listen(PORT, () => {
+-     // await seedSuperAdmin();
++       console.log(`Server is running on port ${PORT}`);
+-     app.listen(PORT, () => {
++     });
+-       console
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: PORT
+3. identifier: Server
+4. identifier: Failed
+
+### Fixed null crash in PORT — externalizes configuration for environment flexibi...
+- const PORT = process.env.PORT || 5000;
++ 
+- async function server() {
++ const PORT = process.env.PORT || 5000;
+-   try {
++ 
+-     // await seedSuperAdmin();
++ async function server() {
+-     app.listen(PORT, () => {
++   try {
+-       console.log(`Server is running on port ${PORT}`);
++     // await seedSuperAdmin();
+-     });
++     app.listen(PORT, () => {
+-   } catch (error) {
++       console.lo
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: PORT
+3. identifier: Server
+4. identifier: Failed
+
+### Fixed null crash in UserRole — uses a proper password hashing algorithm
+-   const userExists = await prisma.user.findFirst({
++   if (role === UserRole.ADMIN || role === UserRole.SUPER_ADMIN) {
+-     where: {
++     throw new AppError(httpStatus.FORBIDDEN, "You cannot register as an Admin or Super Admin");
+-       OR: [
++   }
+-         { contactNumber: userData.contactNumber },
++ 
+-         ...(userData.email ? [{ email: userData.email }] : []),
++   const userExists = a
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: UserRole
+3. identifier: ADMIN
+4. identifier: AppError
+5. identifier: FORBIDDEN
 
 ### Fixed null crash in AppError — externalizes configuration for environment fle...
 -         'SUPER_ADMIN_CONTACT_NUMBER',
@@ -148,178 +300,6 @@ const addVolunteer = async (orgI
 
 ### problem-fix in payment.service.ts
 -     success_url: `${envVars.backend_url}/api/v1/payments/success?transactionId=${transactionId}`,
-+     success_url: `${envVars.BACKEND_URL}/api/v1/payments/success?transactionId=${transactionId}`,
--     fail_url: `${config.backend_url}/api/v1/payments/fail?transactionId=${transactionId}`,
-+     fail_url: `${envVars.BACKEND_URL}/api/v1/payments/fail?transactionId=${transactionId}`,
--     cancel_
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### Fixed null crash in AppError — externalizes configuration for environment fle...
-- 
-+ import { envVars } from "../../config/env";
-- const initiateDonation = async (userId: string, postId: string, amount: number) => {
-+ 
--   const post = await prisma.post.findUnique({
-+ const initiateDonation = async (userId: string, postId: string, amount: number) => {
--     where: { id: postId, isDeleted: false },
-+   const post = await prisma.post.findUnique({
--     include: { author: true }
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: AppError
-3. identifier: Post
-4. identifier: PostType
-5. identifier: HELPING
-
-### Fixed null crash in PORT — externalizes configuration for environment flexibi...
--     PORT: number;
-+     PORT: number;,
--     DATABASE_URL: string;
-+     
--     EMAIL_SENDER: {
-+     DATABASE_URL: string;
--         SMTP_USER: string;
-+     EMAIL_SENDER: {
--         SMTP_PASS: string;
-+         SMTP_USER: string;
--         SMTP_HOST: string;
-+         SMTP_PASS: string;
--         SMTP_PORT: number;
-+         SMTP_HOST: string;
--         SMTP_FROM: string;
-+    
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: PORT
-3. identifier: EnvConfig
-4. identifier: AppError
-5. identifier: Environment
-
-### Fixed null crash in AppError — ensures atomic multi-step database operations
-- // import { v4 as uuidv4 } from 'uuid'; // Removed as it was unused and uninstalled
-+ 
-- 
-+ const initiateDonation = async (userId: string, postId: string, amount: number) => {
-- const initiateDonation = async (userId: string, postId: string, amount: number) => {
-+   const post = await prisma.post.findUnique({
--   const post = await prisma.post.findUnique({
-+     where: { id: postId, isDeleted: 
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: AppError
-3. identifier: Post
-4. identifier: PostType
-5. identifier: HELPING
-
-### problem-fix in payment.controller.ts
--    // IPN (Instant Payment Notification) callback logic if needed
-+   // IPN (Instant Payment Notification) callback logic if needed
-
-📌 IDE AST Context: Modified symbols likely include [initiateDonation, paymentSuccess, paymentFail, paymentCancel, paymentIPN]
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### Fixed null crash in IRecordDonationPayload — prevents null/undefined runtime ...
-- 
-+ import { sendNotificationEmail } from '../../utils/sendEmail';
-- const recordDonation = async (hospitalId: string, payload: IRecordDonationPayload) => {
-+ 
--   return await prisma.$transaction(async (tx) => {
-+ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayload) => {
--     // Find or create BloodDonor
-+   return await prisma.$transaction(async (tx) => {
--     le
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: IRecordDonationPayload
-3. identifier: Find
-4. identifier: BloodDonor
-5. identifier: AppError
-
-### Added error handling AppError — externalizes configuration for environment fl...
--            
-+             throw new AppError(status.INTERNAL_SERVER_ERROR, `Environment variable ${variable} is required but not set in .env file.`);
--             throw new AppError(status.INTERNAL_SERVER_ERROR, `Environment variable ${variable} is required but not set in .env file.`);
-+         }
--         }
-+     })
--     })
-+ 
-- 
-+     return {
--     return {
-+         NODE_ENV: p
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: AppError
-3. identifier: Environment
-4. identifier: PORT
-5. identifier: Number
-
-### Fixed null crash in EnvConfig — externalizes configuration for environment fl...
--     }
-+     },
-- }
-+     
-- 
-+ }
-- const loadEnvVariables = (): EnvConfig => {
-+ 
-- 
-+ const loadEnvVariables = (): EnvConfig => {
--     const requireEnvVariable = [
-+ 
--         'NODE_ENV',
-+     const requireEnvVariable = [
--         'PORT',
-+         'NODE_ENV',
--         'DATABASE_URL',
-+         'PORT',
--         'EMAIL_SENDER_SMTP_USER',
-+         'DATABASE_URL',
--     
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: EnvConfig
-3. identifier: PORT
-4. identifier: Error
-5. identifier: Environment
-
-### Fixed null crash in BLOCKED — uses a proper password hashing algorithm
--   if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
-+   if (user.accountStatus === 'BLOCKED') {
--     throw new AppError(httpStatus.FORBIDDEN, `Your account is ${user.accountStatus.toLowerCase()}`);
-+     throw new AppError(
--   }
-+       httpStatus.FORBIDDEN,
--   if (user.accountStatus === 'PENDING') {
-+       'Your account has been blocked by the administration due t
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: BLOCKED
-3. identifier: AppError
-4. identifier: FORBIDDEN
-5. identifier: Your
-
-### Fixed null crash in Secret — uses a proper password hashing algorithm
-- import bcrypt from 'bcrypt';
-+ import bcrypt from 'bcrypt';
-- import httpStatus from 'http-status';
-+ import httpStatus from 'http-status';
-- import jwt, { Secret } from 'jsonwebtoken';
-+ import jwt, { Secret } from 'jsonwebtoken';
-- import AppError from '../../errors/AppError';
-+ import AppError from '../../errors/AppError';
-- import config from '../../config
++     success_url: `${envVars.BACKEND_URL}/api/v1/payments/success?transactionId=${transacti
 
 ... [Truncated — see individual observations for full content]

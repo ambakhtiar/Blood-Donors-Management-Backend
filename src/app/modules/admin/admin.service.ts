@@ -3,7 +3,7 @@ import httpStatus from "http-status";
 import AppError from "../../errors/AppError";
 import { prisma } from "../../lib/prisma";
 import { IOptions, IUserFilters } from "./admin.interface";
-import { paginationHelper } from "../../../helpers/paginationHelper";
+import { paginationHelper } from "../../helpers/paginationHelper";
 import { sendNotificationEmail } from "../../utils/sendEmail";
 
 const getAllUsers = async (filters: IUserFilters, options: IOptions) => {

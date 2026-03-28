@@ -1,6 +1,6 @@
 ---
 name: config
-description: "Config for Blood-Donors-Management-Backend. 8 conventions, 4 error→fix pairs."
+description: "Config for Blood-Donors-Management-Backend. 8 conventions, 6 error→fix pairs."
 domain: config
 triggers:
   - glob: "**/*.yaml"
@@ -21,9 +21,11 @@ Auto-compiled from **33 real patterns** in **Blood-Donors-Management-Backend**. 
 
 | Error Pattern | Fix | Seen |
 |-------|-----|------|
+| `-   } catch (error) {` | Fixed null crash in PORT — externalizes configuration for en | 3x |
 | `-     throw new AppError(httpStatus.NOT_FOUND, 'Ta` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `-             // throw new Error(`Environment vari` | Fixed null crash in EnvConfig — externalizes configuration f | 2x |
 | `+             throw new AppError(status.INTERNAL_S` | Fixed null crash in AppError — externalizes configuration fo | 2x |
+| `+     throw new AppError(httpStatus.NOT_FOUND, "Po` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `-             throw new AppError(status.INTERNAL_S` | Fixed null crash in EnvConfig — externalizes configuration f | 2x |
 
 ## 📐 Conventions & Best Practices

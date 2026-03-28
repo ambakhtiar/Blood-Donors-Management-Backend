@@ -6,7 +6,7 @@ const recordDonationSchema = z.object({
     contactNumber: z.string({ message: 'contactNumber is required' }),
     name: z.string().optional(),
     bloodGroup: z.string().optional(),
-    gender: z.enum([Gender.MALE, Gender.FEMALE, Gender.OTHER]).optional(),
+    gender: z.enum([Gender.MALE, Gender.FEMALE]).optional(),
     weight: z.number().optional(),
     createPost: z.boolean().optional(),
     postContent: z.string().optional(),

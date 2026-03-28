@@ -7,7 +7,7 @@ const addVolunteerSchema = z.object({
     name: z.string().optional(),
     email: z.string().email().optional(),
     bloodGroup: z.string().optional(),
-    gender: z.enum([Gender.MALE, Gender.FEMALE, Gender.OTHER]).optional(),
+    gender: z.enum([Gender.MALE, Gender.FEMALE]).optional(),
   }),
 });
 

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
-import pick from '../../../shared/pick';
+import pick from '../../shared/pick';
 import { PostServices } from './post.service';
 import { IPaginationOptions, IPostFilters } from './post.interface';
 
