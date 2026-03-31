@@ -21,6 +21,36 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllHospitals = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'accountStatus']);
+  const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
+
+  const result = await AdminServices.getAllHospitals(filters as IUserFilters, options as IOptions);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Hospitals retrieved successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
+
+const getAllOrganisations = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'accountStatus']);
+  const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
+
+  const result = await AdminServices.getAllOrganisations(filters as IUserFilters, options as IOptions);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Organisations retrieved successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
+
 const changeUserStatus = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const { status } = req.body;
@@ -46,8 +76,36 @@ const getSystemAnalytics = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const approveHospital = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await AdminServices.approveHospital(id as string);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Hospital account approved successfully',
+    data: result,
+  });
+});
+
+const approveOrganisation = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await AdminServices.approveOrganisation(id as string);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Organisation account approved successfully',
+    data: result,
+  });
+});
+
 export const AdminControllers = {
   getAllUsers,
   changeUserStatus,
   getSystemAnalytics,
+  getAllHospitals,
+  getAllOrganisations,
+  approveHospital,
+  approveOrganisation,
 };

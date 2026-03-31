@@ -61,6 +61,14 @@ const getAllUsers = async (filters: IUserFilters, options: IOptions) => {
   };
 };
 
+const getAllHospitals = async (filters: IUserFilters, options: IOptions) => {
+  return await getAllUsers({ ...filters, role: UserRole.HOSPITAL }, options);
+};
+
+const getAllOrganisations = async (filters: IUserFilters, options: IOptions) => {
+  return await getAllUsers({ ...filters, role: UserRole.ORGANISATION }, options);
+};
+
 const changeUserStatus = async (id: string, status: AccountStatus) => {
   const user = await prisma.user.findUnique({
     where: {
@@ -93,6 +101,30 @@ const changeUserStatus = async (id: string, status: AccountStatus) => {
   return result;
 };
 
+const approveHospital = async (id: string) => {
+  const user = await prisma.user.findUnique({
+    where: { id, role: UserRole.HOSPITAL, isDeleted: false },
+  });
+
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, "Hospital account not found!");
+  }
+
+  return await changeUserStatus(id, AccountStatus.ACTIVE);
+};
+
+const approveOrganisation = async (id: string) => {
+  const user = await prisma.user.findUnique({
+    where: { id, role: UserRole.ORGANISATION, isDeleted: false },
+  });
+
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, "Organisation account not found!");
+  }
+
+  return await changeUserStatus(id, AccountStatus.ACTIVE);
+};
+
 const getSystemAnalytics = async () => {
   const [totalUsers, totalPosts, totalBloodDonors, totalDonationHistories] = await Promise.all([
     prisma.user.count({ where: { isDeleted: false } }),
@@ -113,4 +145,8 @@ export const AdminServices = {
   getAllUsers,
   changeUserStatus,
   getSystemAnalytics,
+  getAllHospitals,
+  getAllOrganisations,
+  approveHospital,
+  approveOrganisation,
 };

@@ -1,5 +1,5 @@
 # Project Notes — Blood-Donors-Management-Backend
-> 886 notes | Updated: 3/28/2026
+> 1198 notes | Updated: 3/31/2026
 
 ## Safety Rules
 
@@ -7,8 +7,8 @@
 - **NEVER** delete untracked files or folders blindly. Always backup or stash before bulk edits.
 
 ## Quick Reference
-- 69 warnings → see `.agent-mem/gotchas.md`
-- 196 conventions → see `.agent-mem/patterns.md`
+- 121 warnings → see `.agent-mem/gotchas.md`
+- 236 conventions → see `.agent-mem/patterns.md`
 - Codebase map → see `.agent-mem/project-brief.md`
 - Active work → see `.agent-mem/active-context.md`
 
@@ -32,7 +32,7 @@ For observation details: `.agent-mem/observations/`
 *Auto-generated*
 
 # Project Memory — Blood-Donors-Management-Backend
-> 886 notes | Score threshold: >40
+> 1198 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -51,8 +51,9 @@ For observation details: `.agent-mem/observations/`
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
-- **⚠️ GOTCHA: Fixed null crash in Date — ensures atomic multi-step database operations** — -           content: payload.postContent || `Donation received from ${
-- **⚠️ GOTCHA: problem-fix in post.validation.ts** — -       donationTimeType: z.nativeEnum(DonationTimeType, { required_er
+- **⚠️ GOTCHA: Fixed null crash in JwtPayload — uses a proper password hashing algorithm** — -   const decodedAccessToken = jwt.decode(accessToken) as jwt.JwtPaylo
+- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm** — - import {
++ import { bloodGroupMap } from '../../helpers/bloodGroup';
 - **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm** — - import { IChangePassword,
 + import {
 -   IForgotPassword,
@@ -66,45 +67,45 @@ For observation details: `.agent-mem/observations/`
 + import { prisma } from '../../lib/prisma';
 - import { prisma } fr
 
-## Active: `src/app/modules/hospital`
+## Active: `src/app/modules/Auth`
 
-- **⚠️ GOTCHA: Fixed null crash in Date — ensures atomic multi-step database operations**
-- **Replaced dependency bloodGrouputils — confirmed 4x**
-- **decision in hospital.validation.ts**
-- **Strengthened types Gender**
-- **Fixed null crash in Scenario — prevents null/undefined runtime crashes — confirmed 3x**
+- **⚠️ GOTCHA: Fixed null crash in JwtPayload — uses a proper password hashing algorithm**
+- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm**
+- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm**
+- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm**
+- **⚠️ GOTCHA: Fixed null crash in IRegisterUser — uses a proper password hashing algorithm**
 
 ## Project Standards
 
-- Replaced dependency bloodGrouputils — confirmed 4x
-- Strengthened types Gender
-- Fixed null crash in Scenario — prevents null/undefined runtime crashes — confirmed 3x
-- problem-fix in post.validation.ts — confirmed 5x
-- what-changed in bloodGroup.utils.ts — confirmed 3x
-- Strengthened types Prisma
-- Fixed null crash in Email — prevents null/undefined runtime crashes — confirmed 3x
-- problem-fix in post.validation.ts — confirmed 3x
+- 🟢 Edited src/app/modules/Auth/auth.service.ts (32 changes, 4min) — confirmed 3x
+- Fixed null crash in Gender — uses a proper password hashing algorithm — confirmed 4x
+- what-changed in auth.service.ts — confirmed 10x
+- what-changed in auth.service.ts — confirmed 3x
+- what-changed in auth.service.ts — confirmed 3x
+- 🟢 Edited src/app/modules/Auth/auth.service.ts (12 changes, 1min) — confirmed 3x
+- discovery in auth.service.ts — confirmed 3x
+- Added JWT tokens authentication — uses a proper password hashing algorithm — confirmed 4x
 
 ## Known Fixes
 
 - ❌ PrismaClientKnownRequestError, → ✅ problem-fix in index.js
 - ❌ "use strict";var h=Object.defineProperty;var T=Object.getOwnPropertyDescriptor;var M=Object.getOwnPr → ✅ problem-fix in query_compiler_fast_bg.js
+- ❌ import AppError from '../../errors/AppError'; → ✅ problem-fix in organisation.service.ts
 - ❌ -   } catch (error) { → ✅ Fixed null crash in PORT — externalizes configuration for environment flexibi...
 - ❌ -       donationTimeType: z.nativeEnum(DonationTimeType, { required_error: 'Donation time type is re → ✅ problem-fix in post.validation.ts
-- ❌ import AppError from '../../errors/AppError'; → ✅ problem-fix in organisation.service.ts
 
 ## Recent Decisions
 
+- decision in post.validation.ts
+- decision in user.validation.ts
 - decision in hospital.validation.ts
-- decision in post.interface.ts
-- decision in post.interface.ts
-- Optimized package — offloads heavy computation off the main thread
+- decision in auth.validation.ts
 
 ## Learned Patterns
 
-- Always: convention in .gitignore (seen 3x)
 - When encountering this, fix by: problem-fix in index.js (seen 2x)
-- Always: convention in .gitignore (seen 4x)
+- Always: what-changed in .gitignore — confirmed 20x (seen 2x)
+- Always: what-changed in index.ts — confirmed 9x (seen 2x)
 - Agent generates new migration for every change (squash related changes)
 - Agent installs packages without checking if already installed
 

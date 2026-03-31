@@ -1,8 +1,21 @@
 # Blood-Donors-Management-Backend — Project Memory
 
-> Auto-synced | 886 observations
+> Auto-synced | 1198 observations
 
 **Stack:** JavaScript/TypeScript · Express · DB: PostgreSQL, Prisma
+
+## 🏛️ CORE ARCHITECTURE
+
+> **CRITICAL:** The following rules represent strict architectural boundaries defined by the user. NEVER violate them in your generated code or explanations.
+
+# Intellectual Property & Architecture Rules
+Write your strict architectural boundaries here. 
+BrainSync will automatically enforce these rules across all agents (Cursor, Windsurf, Cline) 
+and inject them into the memory context.
+
+Example:
+- NEVER use TailwindCSS. Only use vanilla CSS.
+- NEVER write class components. Only use functional React components.
 
 ## 🛡️ GLOBAL SAFETY RULES
 
@@ -23,6 +36,7 @@
 
 ## 📐 Conventions
 
+- Git Commit: feat: implement post management service with blood donation  — confirmed 3x
 - Use select/include to limit data fetched — avoid over-fetching
 - Use transactions for related database operations
 - Rate limit API endpoints to prevent abuse
@@ -30,7 +44,6 @@
 - Use helmet for security headers
 - Enable strict mode in tsconfig.json
 - Prefer Array methods (map, filter, reduce) over manual loops
-- Use template literals for string interpolation, not concatenation
 
 ## ⚡ Available Tools (ON-DEMAND only)
 - `save(title, content, category)` — Save a note + auto-detect conflicts
@@ -42,4 +55,4 @@
 > ℹ️ DO NOT call get_context() or get_gotchas() at startup — context above IS your context.
 
 ---
-*Auto-synced | 2026-03-28*
+*Auto-synced | 2026-03-31*

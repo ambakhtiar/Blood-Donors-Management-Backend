@@ -8,7 +8,6 @@ import { IPaginationOptions, IPostFilters } from './post.interface';
 
 const createPost = catchAsync(async (req: Request, res: Response) => {
   const result = await PostServices.createPost(req.user, req.body);
-
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
     success: true,

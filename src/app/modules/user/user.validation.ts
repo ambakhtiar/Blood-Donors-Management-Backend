@@ -1,13 +1,14 @@
 import { z } from 'zod';
 import { Gender } from '../../../generated/prisma';
+import { bloodGroupMap } from '../../helpers/bloodGroup';
 
 const locationSchema = {
     division: z.string().optional(),
     district: z.string().optional(),
     upazila: z.string().optional(),
     area: z.string().optional(),
-    latitude: z.number().optional(),
-    longitude: z.number().optional(),
+    latitude: z.coerce.number().optional(),
+    longitude: z.coerce.number().optional(),
 };
 
 const updateProfileSchema = z.object({
@@ -17,10 +18,10 @@ const updateProfileSchema = z.object({
         contactNumber: z.string().optional(),
         donorInfo: z.object({
             name: z.string().optional(),
-            bloodGroup: z.string().optional(),
+            bloodGroup: z.string().optional().transform(val => val ? (bloodGroupMap[val] || val) : val),
             gender: z.nativeEnum(Gender).optional(),
-            weight: z.number().optional(),
-            lastDonationDate: z.string().datetime().optional(),
+            weight: z.coerce.number().optional(),
+            lastDonationDate: z.coerce.date().optional(),
             isAvailableForDonation: z.boolean().optional(),
             ...locationSchema,
         }).optional(),

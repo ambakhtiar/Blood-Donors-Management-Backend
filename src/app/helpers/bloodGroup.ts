@@ -10,6 +10,11 @@ export const bloodGroupMap: Record<string, BloodGroup> = {
   'AB-': BloodGroup.AB_NEGATIVE,
   'O+': BloodGroup.O_POSITIVE,
   'O-': BloodGroup.O_NEGATIVE,
+  // Handle URL decoded spaces from '+'
+  'A ': BloodGroup.A_POSITIVE,
+  'B ': BloodGroup.B_POSITIVE,
+  'AB ': BloodGroup.AB_POSITIVE,
+  'O ': BloodGroup.O_POSITIVE,
 };
 
 export const reverseBloodGroupMap: Record<string, string> = Object.fromEntries(

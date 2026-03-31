@@ -7,6 +7,7 @@ import { prisma } from '../../lib/prisma';
 import { AccountStatus, Gender, UserRole } from '../../../generated/prisma';
 import { sendOTPEmail } from '../../utils/sendEmail';
 import { createToken, verifyToken } from '../../utils/jwt.utils';
+import { bloodGroupMap } from '../../helpers/bloodGroup';
 import {
   IChangePassword,
   IForgotPassword,
@@ -72,6 +73,11 @@ const registerUser = async (payload: IRegisterUser) => {
         restDonorInfo.lastDonationDate = new Date(restDonorInfo.lastDonationDate);
       }
 
+      // Map bloodGroup string (e.g., 'O+') to Prisma Enum (e.g., 'O_POSITIVE')
+      if (restDonorInfo.bloodGroup) {
+        restDonorInfo.bloodGroup = (bloodGroupMap[restDonorInfo.bloodGroup] || restDonorInfo.bloodGroup) as any;
+      }
+
       await tx.donorProfile.create({
         data: { ...restDonorInfo, userId: user.id },
       });
@@ -115,6 +121,44 @@ const registerUser = async (payload: IRegisterUser) => {
 
     return user;
   });
+
+  // Notify Admins/Super Admins if a Hospital or Organisation registers
+  if (role === UserRole.HOSPITAL || role === UserRole.ORGANISATION) {
+    const admins = await prisma.user.findMany({
+      where: {
+        role: { in: [UserRole.ADMIN, UserRole.SUPER_ADMIN] },
+        isDeleted: false,
+      },
+      select: { id: true, email: true },
+    });
+
+    const entityName = role === UserRole.HOSPITAL ? hospitalInfo?.name : organisationInfo?.name;
+    const title = `New ${role} Registration Alert`;
+    const message = `A new ${role.toLowerCase()} named "${entityName}" has registered and is pending approval. Please review and take action.`;
+
+    // Import email utility within the scope to avoid circular dependencies if any
+    const { sendNotificationEmail } = await import('../../utils/sendEmail');
+
+    // Create In-App Notifications and Send Emails
+    const notificationPromises = admins.map(async (admin) => {
+      // In-App Notification
+      await prisma.notification.create({
+        data: {
+          userId: admin.id,
+          title,
+          message,
+          type: "REGISTRATION_ALERT",
+        },
+      });
+
+      // Email Notification
+      if (admin.email) {
+        await sendNotificationEmail(admin.email as string, title, message);
+      }
+    });
+
+    await Promise.all(notificationPromises);
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { password: _password, ...userWithoutPassword } = result;

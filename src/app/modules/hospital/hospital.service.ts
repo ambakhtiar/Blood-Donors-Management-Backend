@@ -4,7 +4,7 @@ import AppError from '../../errors/AppError';
 import { IRecordDonationPayload, IUpdateRequestStatusPayload } from './hospital.interface';
 import { Gender, PostType, RequestStatus, BloodGroup } from '../../../generated/prisma';
 import { sendNotificationEmail } from '../../utils/sendEmail';
-import { bloodGroupMap } from '../../helpers/bloodGroup.utils';
+import { bloodGroupMap } from '../../helpers/bloodGroup';
 
 const recordDonation = async (hospitalId: string, payload: IRecordDonationPayload) => {
   return await prisma.$transaction(async (tx) => {
@@ -20,7 +20,7 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
           'Name, blood group, and gender are required to register a new donor profile.'
         );
       }
-      const mappedBloodGroup = payload.bloodGroup ? (bloodGroupMap[payload.bloodGroup] || payload.bloodGroup) : undefined;
+      const mappedBloodGroup = payload.bloodGroup ? (bloodGroupMap[payload.bloodGroup as keyof typeof bloodGroupMap] || (payload.bloodGroup as BloodGroup)) : undefined;
       bloodDonor = await tx.bloodDonor.create({
         data: {
           name: payload.name as string,

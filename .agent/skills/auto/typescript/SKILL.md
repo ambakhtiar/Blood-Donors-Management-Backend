@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: "Typescript for Blood-Donors-Management-Backend. 41 gotchas, 64 conventions, 32 fixes."
+description: "Typescript for Blood-Donors-Management-Backend. 94 gotchas, 100 conventions, 44 fixes."
 domain: typescript
 triggers:
   - glob: "**/*.ts"
@@ -11,7 +11,7 @@ enabled: true
 
 # Typescript
 
-Auto-compiled from **424 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
+Auto-compiled from **717 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -19,210 +19,189 @@ Auto-compiled from **424 real patterns** in **Blood-Donors-Management-Backend**.
 
 | ❌ Don't | Details |
 |----------|----------|
-| ⚠️ GOTCHA: Fixed null crash in IChangePassword — u | - import { IChangePassword, + import { -   IForgotPassword, +   IChangePassword, -   ILocationInfo,  |
-| ⚠️ GOTCHA: Fixed null crash in IChangePassword — u | - import { IRegisterUser } from './auth.interface'; + import { IChangePassword, -  +   IForgotPasswo |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | -  + import { IRegisterUser } from './auth.interface'; - const registerUser = async (payload: IRegis |
-| ⚠️ GOTCHA: Fixed null crash in AccountStatus — use | -  + import { prisma } from '../../lib/prisma'; - import { prisma } from '../../lib/prisma'; + impor |
-| ⚠️ GOTCHA: Fixed null crash in AccountStatus — use | - import { +  -   IChangePassword, + import { prisma } from '../../lib/prisma'; -   IForgotPassword, |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - const registerUser = async (payload: IRegisterUser) => { +  -   const { password, role, donorInfo, |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - const registerUser = async (payload: IRegisterUser) => { +  -   const { password, role, donorInfo, |
-| ⚠️ GOTCHA: Fixed null crash in AccountStatus — use | -  + } from './auth.interface'; - } from './auth.interface'; + import { prisma } from '../../lib/pri |
-| ⚠️ GOTCHA: Fixed null crash in AccountStatus — use | -  + } from './auth.interface'; - } from './auth.interface'; + import { prisma } from '../../lib/pri |
-| ⚠️ GOTCHA: Fixed null crash in IResetPassword — us | -    +   IResetPassword, - } from './auth.interface'; +    - import { prisma } from '../../lib/prism |
-| ⚠️ GOTCHA: Fixed null crash in AccountStatus — use | -   IResetPassword, +    -    + } from './auth.interface'; - } from './auth.interface'; + import { p |
-| ⚠️ GOTCHA: Fixed null crash in IResetPassword — us | -    +   IResetPassword, - } from './auth.interface'; +    - import { prisma } from '../../lib/prism |
-| ⚠️ GOTCHA: Fixed null crash in AccountStatus — use | -   IResetPassword, +    -    + } from './auth.interface'; - } from './auth.interface'; + import { p |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - const registerUser = async (payload: IRegisterUser) => { +  -   const { password, role, donorInfo, |
-| ⚠️ GOTCHA: Fixed null crash in IResetPassword — us | -    +   IResetPassword, - } from './auth.interface'; +    - import { prisma } from '../../lib/prism |
-| ⚠️ GOTCHA: Fixed null crash in IResetPassword — us | - }  +   IResetPassword - import { prisma } from '../../lib/prisma'; + } from './auth.interface'; -  |
-| ⚠️ GOTCHA: Fixed null crash in AccountStatus — use | -   IResetPassword + }  - }  + import { prisma } from '../../lib/prisma'; - import { prisma } from ' |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - import { createToken, verifyToken } from '../../utils/jwt.utils'; +  -  + const registerUser = asy |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - import { createToken, verifyToken } from '../../utils/jwt.utils'; +  -  + import { createToken, ve |
-| ⚠️ GOTCHA: Fixed null crash in IChangePassword — u | -  + import { - import { +   IChangePassword, -   IChangePassword, +   IForgotPassword, -   IForgotP |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | -  + import { createToken } from '../../utils/jwt.utils'; - const registerUser = async (payload: IRe |
-| ⚠️ GOTCHA: Fixed null crash in IChangePassword — u | - import { + import { createToken, verifyToken } from '../../utils/jwt.utils'; -   IChangePassword,  |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | -  + import { sendOTPEmail } from '../../utils/sendEmail'; - const registerUser = async (payload: IR |
-| ⚠️ GOTCHA: Fixed null crash in IRegisterUser — use | - import { sendOTPEmail } from '../../utils/sendEmail'; +  -  + const registerUser = async (payload: |
-| ⚠️ GOTCHA: Fixed null crash in SSLCommerzUtils — e | -  + import { SSLCommerzUtils } from "../../utils/sslcommerz"; - const initiateDonation = async (use |
-| ⚠️ GOTCHA: Fixed null crash in PORT — externalizes | -  + import config from './app/config'; - dotenv.config(); +  -  + dotenv.config(); - const port = c |
-| ⚠️ GOTCHA: Fixed null crash in PORT — externalizes | -     config +     NODE_ENV: string; -     NODE_ENV: string; +     PORT: number; -     PORT: num |
-| ⚠️ GOTCHA: Fixed null crash in PORT — externalizes | -     NODE_ENV: string; +     চ -     PORT: number; +     NODE_ENV: string; -     BACKEND_URL: s |
-| ⚠️ GOTCHA: Fixed null crash in AppError — external | -         'SUPER_ADMIN_PASSWORD', +          -     ] +         'SUPER_ADMIN_PASSWORD', -  +     |
-| ⚠️ GOTCHA: Fixed null crash in AppError — external | -          +         'SUPER_ADMIN_EMAIL', -     ] +         'SUPER_ADMIN_PASSWORD', -  +        |
-| ⚠️ GOTCHA: Fixed null crash in AppError — external | -     ] +          -  +     ] -     requireEnvVariable.forEach((variable) => { +  -         if |
-| ⚠️ GOTCHA: Fixed null crash in EMAIL — externalize | -      +     SUPER_ADMIN: { - } +         EMAIL: string; -  +         [REDACTED] -  +         |
-| ⚠️ GOTCHA: Fixed null crash in EnvConfig — externa | -     } +     }, - } +      -  + } - const loadEnvVariables = (): EnvConfig => { +  -  + co |
-| ⚠️ GOTCHA: Added JWT tokens authentication | - const verifyPost = async (postId: string, user: JwtPayload) => { +  -   const { role } = user; + c |
-| ⚠️ GOTCHA: Fixed null crash in Date — ensures atom | -           content: payload.postContent -- `Donation received from ${bloodDonor.name}`, +           |
-| ⚠️ GOTCHA: Fixed null crash in AppError — external | -          +         'BACKEND_URL', -     ] +         'FRINTEND_URL', -  +     ] -     require |
-| ⚠️ GOTCHA: Fixed null crash in AppError — external | -     ] +          -  +     ] -     requireEnvVariable.forEach((variable) => { +  -         if |
-| ⚠️ GOTCHA: problem-fix in env.ts | -             // throw new Error(`Environment variable ${variable} is required but not set in .env f |
-| ⚠️ GOTCHA: Fixed null crash in Error — externalize | -              +         'SSL_COMMERZ_STORE_ID', -     ] +         'SSL_COMMERZ_STORE_PASSWORD', |
-| ⚠️ GOTCHA: Fixed null crash in Error — externalize | -     ] +          -  +     ] -     requireEnvVariable.forEach((variable) => { +  -         if |
-| ⚠️ GOTCHA: Added JWT tokens authentication — ensur | - import AppError from '../../errors/AppError'; + import { JwtPayload } from 'jsonwebtoken'; - impor |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -     andConditions.push({ +     const searchBg = bloodGroupMap[searchTerm as keyof typeof bloodGro |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -     const bloodGroup = bg ? (bloodGroupMap[bg as keyof typeof bloodGroupMap] -- (bg as BloodGroup) |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -   const bloodGroup = bg ? bloodGroupMap[bg as keyof typeof bloodGroupMap] : undefined; +   const b |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -  +   console -   const andConditions = []; +  -  +   const andConditions = []; -   if (searc |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -     andConditions.push({ +     con -       donorProfile: { bloodGroup: { equals: bloodGroup as B |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -     andConditions.push({ +     const bloodGroup = bg ? (bloodGroupMap[bg as keyof typeof bloodGro |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -   console.log(bloodGroup) +   const andConditions = []; -   const andConditions = []; +  -  + |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -    +   console.log(bloodGroup) -   console.log(bloodGroup) +   const andConditions = []; -   c |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -     const mappedBloodGroup = bloodGroupMap[bloodGroup as string] -- bloodGroup; +     andConditio |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -     andConditions.push({ +     const mappedBloodGroup = bloodGroupMap[bloodGroup as string] -- bl |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -     const mappedBloodGroup = bloodGroupMap[bloodGroup as string] -- bloodGroup; +     andConditio |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -    +  -   const andConditions = []; +    -  +   const andConditions = []; -   if (searchTerm |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -   const andConditions = []; +    -  +   const andConditions = []; -   if (searchTerm) { +  - |
+| ⚠️ GOTCHA: Fixed null crash in JwtPayload — uses a | -   const decodedAccessToken = jwt.decode(accessToken) as jwt.JwtPayload; +   return { -   console.l |
+| ⚠️ GOTCHA: Fixed null crash in JwtPayload — uses a | -   const decodedAccessToken = jwt.decode(accessToken) as jwt.JwtPayload; +   return { -   console.l |
+| ⚠️ GOTCHA: Fixed null crash in BloodGroup | -       await tx.donorProfile.update({ +       // Map blood group and date -         where: { user |
+| ⚠️ GOTCHA: Fixed null crash in Update — ensures at | -   const result = await prisma.$transaction(async (tx) => { +    -     // 1. Update Core User tab |
+| ⚠️ GOTCHA: Fixed null crash in JwtPayload — ensure | - const getMyProfile = async (userId: string, role: string) => { + import { JwtPayload } from "json |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -  + const getDonationHistory = async (user: JwtPayload) => { -  +   const { userId } = user; -  |
+| ⚠️ GOTCHA: Updated schema PostServices | - const getDonationHistory = async (user: JwtPayload) => { +  -   const { userId } = user; +  -  + e |
+| ⚠️ GOTCHA: Fixed null crash in Fetch — prevents nu | -   // Convert blood group to enum  +   // Fetch donor profile to get blood group if missing and for |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -    +  -  +   const bloodGroup = bg ? bloodGroupMap[bg as keyof typeof bloodGroupMap] : undefined;  |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -  +    -   const andConditions: Prisma.PostWhereInput[] = []; +  -  +   const andConditions: Prisma |
+| ⚠️ GOTCHA: Fixed null crash in Convert — prevents  | -    +   // Convert blood group to enum  -   // Rule Engine for Blood Donation Posts  +   payload.bl |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -  +   // Determine if post starts as verified (Helping posts start unverified) -   // Determine if  |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -   // Convert blood group to enum  +  -   payload.bloodGroup = bloodGroupMap[payload.bloodGroup as  |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -   payload.bloodGroup = bloodGroupMap[payload.bloodGroup as keyof typeof bloodGroupMap]; +    -   / |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -  +   // Determine if post starts as verified (Helping posts start unverified) -   // Determine if  |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -   console.log("1 --------\n", payload); +   payload.bloodGroup = bloodGroupMap[payload.bloodGroup  |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -   console.log("2 --------\n", payload); +  -  +   // Determine if post starts as verified (Helping |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -  +   // Smart Area Alert for BLOOD_FINDING posts -   // Smart Area Alert for BLOOD_FINDING posts + |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -   const result = await prisma.post.create({ +    -     data: { +  -       ...payload, +   // Smart |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -       authorId: userId +        -     }, +       authorId: userId -   }); +     }, -   console.log |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -     }, +       authorId: userId, -   }); +     }, -   console.log("3 --------\n", result); +   }); |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -        +     }, -     }, +   }); -   }); +   console.log("3 --------\n", result); -   console.log( |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -       donationTime: payload.donationTime ? new Date(payload.donationTime) : undefined, +        -  |
+| ⚠️ GOTCHA: Fixed null crash in Date — prevents nul | -          +       ...payload, -   console.log("3 --------\n", result); +       donationTime: payloa |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -      +     data: { -   console.log("3 --------\n", result); +          -  +   console.log("3 ----- |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -   const result = await  +   const result = await prisma.post.create({ -   console.log("3 --------\ |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -   console.log("3 --------\n", result); +    -  +   console.log("3 --------\n", result); -   // Sma |
+| ⚠️ GOTCHA: Fixed null crash in Smart — prevents nu | -  +   clg -   // Smart Area Alert for BLOOD_FINDING posts +  -   if (payload.type === PostType.BLOO |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -  +   clg -   // Determine if post starts as verified (Helping posts start unverified) +  -   const |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -   const BloodGroupEnum = z.string().transform((val, ctx) => { +    -     const mapped = bloodGroup |
+| ⚠️ GOTCHA: Fixed null crash in BloodGroupEnum — pr | -    +   const BloodGroupEnum = z.string().transform((val, ctx) => { -  +     const mapped = bloodGr |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -  +    -   // Determine if post starts as verified (Helping posts start unverified) +  -   const is |
+| ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -   // Determine if post starts as verified (Helping posts start unverified) +  -   const isVerified |
+| ⚠️ GOTCHA: Fixed null crash in Transaction — preve | -  +     // Transaction to create post, history and update donor -     // Transaction to create post |
+| ⚠️ GOTCHA: Fixed null crash in Transaction — preve | -     // Transaction to create post, history and update donor +     console -     return await prism |
+| ⚠️ GOTCHA: Fixed null crash in Transaction — preve | -  +     // Transaction to create post, history and update donor -     console.log(payload); +     r |
+| ⚠️ GOTCHA: Fixed null crash in Transaction — preve | -     // Transaction to create post, history and update donor +      -     return await prisma.$tran |
 
 ## 🔧 Problem Playbooks
 
+### Fixed null crash in Notify — uses a proper password hashing algorithm
+-   // eslint-disable-next-line @typescript-eslint/no-unused-vars
++   // Notify Admins/Super Admins if a Hospital or Organisation registers
+-   const { [REDACTED] ...userWithoutPassword } = result;
++   if (role === UserRole.HOSPITAL || role === UserRole.ORGANISATION) {
+-   return userWithoutPassword;
++     const admins = await prisma.user.findMany({
+- };
++       where: {
+- 
++         role: { in: [
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: Notify
+3. identifier: Admins
+4. identifier: Super
+5. identifier: Hospital
+
+### problem-fix in organisation.service.ts
+File updated (external): src/app/modules/organisation/organisation.service.ts
+
+Content summary (164 lines):
+import httpStatus from 'http-status';
+import { prisma } from '../../lib/prisma';
+import AppError from '../../errors/AppError';
+import { IAddVolunteerPayload } from './organisation.interface';
+import { Gender, RequestStatus, BloodGroup } from '../../../generated/prisma';
+import { bloodGroupMa
+
+**Actionable Steps:**
+1. Modified 1 files
+
+### Fixed null crash in Handle
+- };
++   // Handle URL decoded spaces from '+'
+- 
++   'A ': BloodGroup.A_POSITIVE,
+- export const reverseBloodGroupMap: Record<string, string> = Object.fromEntries(
++   'B ': BloodGroup.B_POSITIVE,
+-   Object.entries(bloodGroupMap).map(([k, v]) => [v, k])
++   'AB ': BloodGroup.AB_POSITIVE,
+- );
++   'O ': BloodGroup.O_POSITIVE,
+- 
++ };
+- export const mapBloodGroupToEnum = (bloodGroup: string): Bloo
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: Handle
+3. identifier: URL
+4. identifier: BloodGroup
+5. identifier: Record
+
+### problem-fix in post.service.ts
+- 
++ export const PostServices = {
+- 
++   createPost,
+- export const PostServices = {
++   getAllPosts,
+-   createPost,
++   getSinglePost,
+-   getAllPosts,
++   updatePost,
+-   getSinglePost,
++   deletePost,
+-   updatePost,
++   resolvePost,
+-   deletePost,
++   approvePost,
+-   resolvePost,
++   verifyPost,
+-   approvePost,
++   getDonationHistory,
+-   verifyPost,
++ };
+-   getDonationHistory,
++ 
+- };
+-
+
+**Actionable Steps:**
+1. Modified 1 files
+
+### Fixed null crash in Rule — prevents null/undefined runtime crashes
+-   // Rule Engine for Blood Donation Posts 
++   
+-   if (payload.type === PostType.BLOOD_DONATION) {
++   // Rule Engine for Blood Donation Posts 
+-     if (role !== UserRole.USER) {
++   if (payload.type === PostType.BLOOD_DONATION) {
+-       throw new AppError(httpStatus.FORBIDDEN, "Only users can create blood donation posts");
++     if (role !== UserRole.USER) {
+-     }
++       throw new AppErro
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: Rule
+3. identifier: Engine
+4. identifier: Blood
+5. identifier: Donation
+
+### Fixed null crash in JwtPayload — prevents null/undefined runtime crashes
+- 
++ import { bloodGroupMap } from '../../helpers/bloodGroup';
+- const createPost = async (user: JwtPayload, payload: ICreatePost) => {
++ 
+-   const { userId, role } = user;
++ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
+- 
++   const { userId, role } = user;
+-   // Rule Engine for Blood Donation Posts 
++ 
+-   if (payload.type === PostType.BLOOD_DONATION) {
++   // Rule Eng
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: JwtPayload
+3. identifier: ICreatePost
+4. identifier: Rule
+5. identifier: Engine
+
 ### problem-fix in post.validation.ts
--       donationTimeType: z.nativeEnum(DonationTimeType, { required_error: 'Donation time type is required' }),
-+       donationTimeType: z.nativeEnum(DonationTimeType, {  'Donation time type is required' }),
-
-📌 IDE AST Context: Modified symbols likely include [BloodGroupEnum, createPostSchema, updatePostSchema]
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### problem-fix in post.validation.ts
--       donationTimeType: z.enum(DonationTimeType, { required_error: 'Donation time type is required' }),
-+       donationTimeType: z.nativeEnum(DonationTimeType, { required_error: 'Donation time type is required' }),
-
-📌 IDE AST Context: Modified symbols likely include [BloodGroupEnum, createPostSchema, updatePostSchema]
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### problem-fix in post.validation.ts
--       donationTimeType: z.enu(DonationTimeType, { required_error: 'Donation time type is required' }),
-+       donationTimeType: z.enum(DonationTimeType, { required_error: 'Donation time type is required' }),
-
-📌 IDE AST Context: Modified symbols likely include [BloodGroupEnum, createPostSchema, updatePostSchema]
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### problem-fix in post.validation.ts
--       donationTimeType: z.nativeEnum(DonationTimeType, { required_error: 'Donation time type is required' }),
-+       donationTimeType: z.enu(DonationTimeType, { required_error: 'Donation time type is required' }),
-
-📌 IDE AST Context: Modified symbols likely include [BloodGroupEnum, createPostSchema, updatePostSchema]
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### problem-fix in globalErrorHandler.ts
-File updated (external): src/app/middlewares/globalErrorHandler.ts
-
-Content summary (55 lines):
-import { ErrorRequestHandler } from 'express';
-import { ZodError } from 'zod';
-import AppError from '../errors/AppError';
-import { Prisma } from '../../generated/prisma';
-
-const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
-  let statusCode = 500;
-  let message = 'Something went
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### Fixed null crash in IChangePassword — uses a proper password hashing algorithm
-- 
-+ import {
-- import {
-+   IChangePassword,
--   IChangePassword,
-+   IForgotPassword,
--   IForgotPassword,
-+   ILocationInfo,
--   ILocationInfo,
-+   ILoginUser,
--   ILoginUser,
-+   IRegisterUser,
--   IRegisterUser,
-+   IResetPassword
--   IResetPassword
-+ } from './auth.interface';
-- } from './auth.interface';
-+ import { prisma } from '../../lib/prisma';
-- import { prisma } from '../../lib/prisma
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: IChangePassword
-3. identifier: IForgotPassword
-4. identifier: ILocationInfo
-5. identifier: ILoginUser
-
-### Fixed null crash in AppError — uses a proper password hashing algorithm
-- import dotenv from 'dotenv';
-+ import dotenv from 'dotenv';
-- import status from 'http-status';
-+ import path from 'path';
-- import AppError from '../errors/AppError';
-+ import status from 'http-status';
-- 
-+ import AppError from '../errors/AppError';
-- dotenv.config();
-+ 
-- 
-+ // Load .env first
-- interface EnvConfig {
-+ dotenv.config({ path: path.join(process.cwd(), '.env') });
--     NO
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: AppError
-3. identifier: Load
-4. identifier: EnvConfig
-5. identifier: PORT
-
-### Fixed null crash in AppError — uses a proper password hashing algorithm
-- 
-+ import status from 'http-status';
-- dotenv.config({ path: path.join(process.cwd(), '.env') });
-+ import AppError from '../errors/AppError';
-- export default {
-+ // Load .env first
--   env: process.env.NODE_ENV,
-+ dotenv.config({ path: path.join(process.cwd(), '.env') });
--   port: process.env.PORT,
-+ 
--   jwt: {
-+ interface Config {
--     [REDACTED] || 'super-secure-secret-blood-donation',
-+ 
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: AppError
-3. identifier: Load
-4. identifier: Config
-5. identifier: PORT
-
-### Fixed null crash in PORT — externalizes configuration for environment flexibi...
-- const port = config.port;
-+ const PORT = process.env.PORT || 5000;
-- const PORT = process.env.PORT || 5000;
-+ async function server() {
-- 
-+   try {
-- async function server() {
-+     // await seedSuperAdmin();
--   try {
-+     app.listen(PORT, () => {
--     // await seedSuperAdmin();
-+       console.log(`Server is running on port ${PORT}`);
--     app.listen(PORT, () => {
-+     });
--       console
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: PORT
-3. identifier: Server
-4. identifier: Failed
-
-### Fixed null crash in PORT — externalizes configuration for environment flexibi...
-- const PORT = process.env.PORT || 5000;
-+ 
-- async function server() {
-+ const PORT = process.env.PORT || 5000;
--   try {
-+ 
--     // await seedSuperAdmin();
-+ async function server() {
--     app.listen(PORT, () => {
-+   tr
+-   body: z.union([
++   body: z.discriminatedUnion('type', [
+-       bloodGroup: z.nativeEnum(BloodGroup, { message: 'Blood group is required' }),
++       bloo
 
 ... [Truncated — see individual observations for full content]

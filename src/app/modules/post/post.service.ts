@@ -3,39 +3,55 @@ import { JwtPayload } from 'jsonwebtoken';
 import AppError from '../../errors/AppError';
 import { prisma } from '../../lib/prisma';
 import { ICreatePost, IPaginationOptions, IPostFilters } from './post.interface';
-import { PostType, UserRole, Prisma } from '../../../generated/prisma';
+import { PostType, UserRole, Prisma, BloodGroup } from '../../../generated/prisma';
 import { sendNotificationEmail } from '../../utils/sendEmail';
+import { bloodGroupMap } from '../../helpers/bloodGroup';
 
 const createPost = async (user: JwtPayload, payload: ICreatePost) => {
   const { userId, role } = user;
 
-  // Rule Engine for Blood Donation Posts
+  // Fetch donor profile to get blood group if missing and for eligibility checks
+  const donorProfile = await prisma.donorProfile.findUnique({
+    where: { userId },
+  });
+
+  const bloodDonor = await prisma.bloodDonor.findUnique({
+    where: { userId },
+  });
+
+  // If role is USER, we can auto-populate bloodGroup if it's missing
+  if (role === UserRole.USER && !payload.bloodGroup) {
+    const profileBloodGroup = donorProfile?.bloodGroup || bloodDonor?.bloodGroup;
+    if (!profileBloodGroup) {
+      throw new AppError(httpStatus.BAD_REQUEST, "Blood group is required. Please complete your donor profile.");
+    }
+    payload.bloodGroup = profileBloodGroup;
+  } else if (payload.bloodGroup) {
+    // Convert blood group to enum 
+    payload.bloodGroup = bloodGroupMap[payload.bloodGroup as keyof typeof bloodGroupMap] || (payload.bloodGroup as BloodGroup);
+  }
+
+  // Rule Engine for Blood Donation Posts 
   if (payload.type === PostType.BLOOD_DONATION) {
-    if (role !== UserRole.USER) {
-      throw new AppError(httpStatus.FORBIDDEN, "Only users can create blood donation posts");
+    if (!bloodDonor && !donorProfile) {
+      throw new AppError(httpStatus.NOT_FOUND, "Donor profile not found. Please complete your profile to donate blood.");
     }
 
-    const bloodDonor = await prisma.bloodDonor.findUnique({
-      where: { userId },
-    });
-
-    if (!bloodDonor) {
-      throw new AppError(httpStatus.NOT_FOUND, "Blood Donor profile not found");
-    }
+    const currentDonor = bloodDonor || { lastDonationDate: donorProfile?.lastDonationDate, gender: donorProfile?.gender };
 
     const donationDate = payload.donationTime ? new Date(payload.donationTime) : new Date();
 
     // Check eligibility based on last donation
-    if (bloodDonor.lastDonationDate) {
-      const lastDonation = new Date(bloodDonor.lastDonationDate);
+    if (currentDonor.lastDonationDate) {
+      const lastDonation = new Date(currentDonor.lastDonationDate);
       const timeDiff = donationDate.getTime() - lastDonation.getTime();
       const monthDiff = timeDiff / (1000 * 60 * 60 * 24 * 30);
-      
-      const requiredMonths = bloodDonor.gender === 'MALE' ? 2 : 3;
-      
+
+      const requiredMonths = currentDonor.gender === 'MALE' ? 2 : 3;
+
       if (monthDiff < requiredMonths && monthDiff >= 0) {
         throw new AppError(
-          httpStatus.FORBIDDEN, 
+          httpStatus.FORBIDDEN,
           `You are not eligible to donate blood yet. Required waiting time: ${requiredMonths} months.`
         );
       }
@@ -53,17 +69,26 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
         },
       });
 
-      await tx.donationHistory.create({
-        data: {
-          bloodDonorId: bloodDonor.id,
-          donationDate: donationDate,
-        }
-      });
+      if (bloodDonor) {
+        await tx.donationHistory.create({
+          data: {
+            bloodDonorId: bloodDonor.id,
+            donationDate: donationDate,
+          }
+        });
 
-      await tx.bloodDonor.update({
-        where: { id: bloodDonor.id },
-        data: { lastDonationDate: donationDate },
-      });
+        await tx.bloodDonor.update({
+          where: { id: bloodDonor.id },
+          data: { lastDonationDate: donationDate },
+        });
+      }
+
+      if (donorProfile) {
+        await tx.donorProfile.update({
+          where: { id: donorProfile.id },
+          data: { lastDonationDate: donationDate },
+        });
+      }
 
       return post;
     });
@@ -113,19 +138,22 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
 
 
 const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) => {
-  const { searchTerm, type, bloodGroup, division, district, upazila } = filters;
+  const { searchTerm, type, bloodGroup: bg, division, district, upazila } = filters;
   const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc' } = options;
 
   const skip = (Number(page) - 1) * Number(limit);
   const take = Number(limit);
 
+  const bloodGroup = bg ? (bloodGroupMap[bg as keyof typeof bloodGroupMap] || (bg as BloodGroup)) : undefined;
+  
   const andConditions: Prisma.PostWhereInput[] = [];
 
   if (searchTerm) {
+    const searchBg = bloodGroupMap[searchTerm as keyof typeof bloodGroupMap];
     andConditions.push({
       OR: [
         { content: { contains: searchTerm, mode: 'insensitive' } },
-        { bloodGroup: { equals: searchTerm as any } },
+        ...(searchBg ? [{ bloodGroup: { equals: searchBg } }] : []),
       ],
     });
   }
@@ -174,7 +202,7 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
 
 const getSinglePost = async (postId: string) => {
   const result = await prisma.post.findUnique({
-    where: { 
+    where: {
       id: postId,
       isDeleted: false
     },
@@ -202,13 +230,13 @@ const getSinglePost = async (postId: string) => {
 
 const updatePost = async (postId: string, user: JwtPayload, payload: Partial<ICreatePost>) => {
   const { userId, role } = user;
-  
+
   const post = await prisma.post.findUnique({
     where: { id: postId, isDeleted: false },
   });
 
   if (!post) throw new AppError(httpStatus.NOT_FOUND, "Post not found");
-  
+
   // Authorization: Author or Admin
   if (post.authorId !== userId && role !== UserRole.ADMIN && role !== UserRole.SUPER_ADMIN) {
     throw new AppError(httpStatus.FORBIDDEN, "You do not have permission to update this post");
@@ -228,7 +256,7 @@ const deletePost = async (postId: string, user: JwtPayload) => {
   });
 
   if (!post) throw new AppError(httpStatus.NOT_FOUND, "Post not found");
-  
+
   // Authorization: Author or Admin
   if (post.authorId !== userId && role !== UserRole.ADMIN && role !== UserRole.SUPER_ADMIN) {
     throw new AppError(httpStatus.FORBIDDEN, "You do not have permission to delete this post");
@@ -248,11 +276,11 @@ const resolvePost = async (postId: string, user: JwtPayload) => {
   });
 
   if (!post) throw new AppError(httpStatus.NOT_FOUND, "Post not found");
-  
+
   if (post.type !== PostType.BLOOD_FINDING) {
     throw new AppError(httpStatus.BAD_REQUEST, "Only Blood Finding posts can be resolved");
   }
-  
+
   if (post.authorId !== userId) {
     throw new AppError(httpStatus.FORBIDDEN, "Only the author can resolve this post");
   }
@@ -275,7 +303,7 @@ const approvePost = async (postId: string, user: JwtPayload) => {
   });
 
   if (!post) throw new AppError(httpStatus.NOT_FOUND, "Post not found");
-  
+
   return await prisma.post.update({
     where: { id: postId },
     data: { isApproved: true },

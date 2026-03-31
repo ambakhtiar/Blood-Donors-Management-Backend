@@ -1,14 +1,342 @@
 # Notes Index — Blood-Donors-Management-Backend
-> 885 total notes
+> 1198 total notes
+
+### 2026-03-31
+
+| # | Title | ~Tok |
+|---|---|---|
+| 1198 | Added JWT tokens authentication — ensures atomi... | ~527 |
+| 1197 | what-changed in BloodLink_Postman_Collection.json | ~149.5 |
+| 1196 | Fixed null crash in Notify — uses a proper pass... | ~533.5 |
+| 1195 | discovery in auth.service.ts | ~148 |
+| 1194 | what-changed in admin.controller.ts | ~102.5 |
+| 1193 | Updated API endpoint Request | ~310 |
+| 1192 | discovery in admin.controller.ts | ~149 |
+| 1191 | Replaced auth Implementation — ensures atomic m... | ~504.75 |
+
+### 2026-03-30
+
+| # | Title | ~Tok |
+|---|---|---|
+| 1190 | what-changed in server.ts | ~32.5 |
+| 1189 | what-changed in server.ts | ~32.5 |
+| 1188 | 🟢 Edited .env (9 changes, 1min) | ~30 |
+| 1187 | 🟢 Edited src/app/modules/user/user.controller.... | ~30 |
+| 1186 | problem-fix in organisation.service.ts | ~152 |
+| 1185 | discovery in hospital.service.ts — confirmed 3x | ~150 |
+| 1184 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1183 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1182 | ⚠️ GOTCHA: Added JWT tokens authentication | ~534.25 |
+| 1181 | Fixed null crash in Handle | ~343 |
+| 1180 | Updated bloodGroupMap database schema — introdu... | ~504.75 |
+| 1179 | what-changed in user.controller.ts | ~42.5 |
+| 1178 | Updated schema UserServices | ~401.25 |
+| 1177 | 🟢 Edited src/app/modules/user/user.service.ts ... | ~30 |
+| 1176 | what-changed in user.service.ts — confirmed 25x | ~46.25 |
+| 1175 | what-changed in user.service.ts | ~44.5 |
+| 1174 | what-changed in user.service.ts | ~41.25 |
+| 1173 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1172 | what-changed in user.service.ts | ~50 |
+| 1171 | what-changed in user.service.ts | ~48.75 |
+| 1170 | what-changed in user.service.ts | ~46 |
+| 1169 | what-changed in user.service.ts | ~43 |
+| 1168 | what-changed in user.service.ts | ~41.5 |
+| 1167 | what-changed in user.service.ts | ~39.5 |
+| 1166 | ⚠️ GOTCHA: Added JWT tokens authentication | ~535.5 |
+| 1165 | what-changed in user.service.ts | ~42.5 |
+| 1164 | what-changed in user.service.ts | ~72.5 |
+| 1163 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1162 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1161 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1160 | what-changed in user.service.ts | ~63 |
+| 1159 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1158 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1157 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1156 | what-changed in user.service.ts | ~45.5 |
+| 1155 | what-changed in user.service.ts | ~42.5 |
+| 1154 | what-changed in user.service.ts | ~40 |
+| 1153 | what-changed in user.service.ts | ~38 |
+| 1152 | what-changed in user.service.ts | ~36.25 |
+| 1151 | Strengthened types BloodGroup | ~67.75 |
+| 1150 | what-changed in user.service.ts | ~45 |
+| 1149 | what-changed in user.service.ts | ~44 |
+| 1148 | what-changed in user.service.ts | ~43.25 |
+| 1147 | what-changed in user.service.ts | ~41.25 |
+| 1146 | what-changed in user.service.ts | ~38.75 |
+| 1145 | what-changed in user.service.ts | ~36.5 |
+| 1144 | what-changed in user.service.ts | ~73.75 |
+| 1143 | what-changed in user.service.ts | ~75.25 |
+| 1142 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1141 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1140 | 🟢 Edited .env (5 changes, 1min) — confirmed 3x | ~30 |
+| 1139 | ⚠️ GOTCHA: Fixed null crash in JwtPayload — use... | ~530 |
+| 1138 | ⚠️ GOTCHA: Fixed null crash in JwtPayload — use... | ~530 |
+| 1137 | discovery in auth.service.ts — confirmed 3x | ~148 |
+| 1136 | Added JWT tokens authentication | ~504.75 |
+| 1135 | Fixed null crash in SECRET — wraps unsafe opera... | ~522 |
+| 1134 | Added JWT tokens authentication — prevents null... | ~414.25 |
+| 1133 | Added JWT tokens authentication | ~186.5 |
+| 1132 | Added JWT tokens authentication | ~504.75 |
+| 1131 | what-changed in admin.route.ts | ~147.75 |
+| 1130 | what-changed in payment.route.ts | ~148.75 |
+| 1129 | Updated API endpoint Update | ~192 |
+| 1128 | Strengthened types Final | ~504.75 |
+| 1127 | 🟢 Edited src/app/modules/user/user.service.ts ... | ~30 |
+| 1126 | ⚠️ GOTCHA: Fixed null crash in BloodGroup | ~538 |
+| 1125 | what-changed in user.service.ts — confirmed 4x | ~35.5 |
+| 1124 | what-changed in task.md.resolved | ~208.75 |
+| 1123 | Updated payloads database schema | ~504.75 |
+| 1122 | ⚠️ GOTCHA: Fixed null crash in Update — ensures... | ~538 |
+| 1121 | ⚠️ GOTCHA: Fixed null crash in JwtPayload — ens... | ~533 |
+| 1120 | what-changed in user.controller.ts — confirmed 3x | ~41.5 |
+| 1119 | what-changed in user.controller.ts | ~37.75 |
+| 1118 | what-changed in user.controller.ts | ~68.25 |
+| 1117 | Strengthened types UserServices | ~166.75 |
+| 1116 | Updated API endpoint Request — confirmed 3x | ~170.25 |
+| 1115 | Updated API endpoint UserControllers | ~81.25 |
+| 1114 | what-changed in user.service.ts | ~41.75 |
+| 1113 | what-changed in user.service.ts | ~36.5 |
+| 1112 | ⚠️ GOTCHA: Added JWT tokens authentication | ~286.5 |
+| 1111 | what-changed in user.service.ts | ~79 |
+| 1110 | what-changed in post.service.ts | ~34.5 |
+| 1109 | what-changed in post.service.ts | ~36.5 |
+| 1108 | problem-fix in post.service.ts | ~129.75 |
+| 1107 | ⚠️ GOTCHA: Updated schema PostServices | ~323 |
+| 1106 | what-changed in post.controller.ts | ~39.25 |
+| 1105 | Updated API endpoint PostControllers — confirme... | ~131.25 |
+| 1104 | Updated API endpoint PostControllers | ~212.5 |
+| 1103 | 🟢 Edited src/app/modules/user/user.route.ts (9... | ~30 |
+| 1102 | Updated API endpoint UserControllers | ~37.75 |
+| 1101 | Replaced auth Router | ~420.5 |
+| 1100 | Replaced auth UserRole | ~96.25 |
+| 1099 | Replaced auth USER | ~190.75 |
+| 1098 | Replaced auth Donor | ~161.25 |
+| 1097 | Replaced auth PostControllers | ~484.75 |
+| 1096 | Replaced auth PostControllers | ~514.25 |
+| 1095 | Replaced auth USER | ~455.75 |
+| 1094 | Updated API endpoint Request | ~203.5 |
+| 1093 | ⚠️ GOTCHA: Fixed null crash in Fetch — prevents... | ~534.25 |
+| 1092 | decision in post.validation.ts | ~67.75 |
+| 1091 | 🟢 Edited src/app/modules/post/post.service.ts ... | ~30 |
+| 1090 | what-changed in post.service.ts — confirmed 10x | ~41.5 |
+| 1089 | what-changed in post.service.ts | ~31.5 |
+| 1088 | ⚠️ GOTCHA: Added JWT tokens authentication | ~534.25 |
+| 1087 | ⚠️ GOTCHA: Added JWT tokens authentication | ~534.25 |
+| 1086 | what-changed in post.service.ts | ~72.5 |
+| 1085 | what-changed in post.service.ts | ~72 |
+| 1084 | what-changed in post.service.ts | ~72.75 |
+| 1083 | what-changed in post.service.ts | ~73.5 |
+| 1082 | what-changed in post.service.ts | ~72.25 |
+| 1081 | Updated API endpoint Modify | ~296.75 |
+| 1080 | what-changed in post.service.ts | ~71 |
+| 1079 | what-changed in post.service.ts | ~71.25 |
+| 1078 | what-changed in post.service.ts | ~71.25 |
+| 1077 | 🟢 Edited src/app/modules/post/post.service.ts ... | ~30 |
+| 1076 | ⚠️ GOTCHA: Fixed null crash in Convert — preven... | ~534.25 |
+| 1075 | Fixed null crash in Rule — prevents null/undefi... | ~534.25 |
+| 1074 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1073 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1072 | what-changed in post.service.ts — confirmed 3x | ~47 |
+| 1071 | what-changed in post.service.ts | ~39.75 |
+| 1070 | what-changed in post.service.ts | ~32.25 |
+| 1069 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1068 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1067 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1066 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1065 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1064 | Replaced auth Date — confirmed 3x | ~166.5 |
+| 1063 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1062 | what-changed in post.service.ts — confirmed 11x | ~43.75 |
+| 1061 | 🟢 Edited src/app/modules/post/post.service.ts ... | ~30 |
+| 1060 | what-changed in post.service.ts | ~48.75 |
+| 1059 | Replaced dependency PostType | ~69.25 |
+| 1058 | what-changed in post.service.ts | ~50.25 |
+| 1057 | what-changed in post.service.ts | ~43.75 |
+| 1056 | what-changed in post.service.ts | ~42.25 |
+| 1055 | what-changed in post.service.ts | ~40.5 |
+| 1054 | what-changed in post.service.ts | ~39.25 |
+| 1053 | what-changed in post.service.ts | ~37.25 |
+| 1052 | 🟢 Edited src/app/modules/post/post.service.ts ... | ~30 |
+| 1051 | what-changed in post.service.ts | ~34.75 |
+| 1050 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1049 | Replaced auth post.service | ~42 |
+| 1048 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1047 | what-changed in post.service.ts | ~34.25 |
+| 1046 | what-changed in post.service.ts | ~34.25 |
+| 1045 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1044 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1043 | ⚠️ GOTCHA: Fixed null crash in Date — prevents ... | ~534.25 |
+| 1042 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1041 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1040 | what-changed in post.service.ts — confirmed 33x | ~42 |
+| 1039 | what-changed in post.service.ts | ~41.25 |
+| 1038 | what-changed in post.service.ts | ~40.5 |
+| 1037 | what-changed in post.service.ts | ~39.25 |
+| 1036 | what-changed in post.service.ts | ~35 |
+| 1035 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1034 | Replaced auth Date | ~164.5 |
+| 1033 | what-changed in post.service.ts | ~50 |
+| 1032 | what-changed in post.service.ts | ~50 |
+| 1031 | what-changed in post.service.ts | ~49.5 |
+| 1030 | what-changed in post.service.ts | ~49 |
+| 1029 | what-changed in post.service.ts | ~49.75 |
+| 1028 | what-changed in post.service.ts | ~49.75 |
+| 1027 | what-changed in post.service.ts | ~41 |
+| 1026 | ⚠️ GOTCHA: Fixed null crash in Smart — prevents... | ~534.25 |
+| 1025 | what-changed in post.service.ts | ~41.25 |
+| 1024 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1023 | Strengthened types post.service | ~66.75 |
+| 1022 | Fixed null crash in JwtPayload — prevents null/... | ~534.25 |
+| 1021 | what-changed in post.service.ts | ~50 |
+| 1020 | what-changed in post.service.ts | ~38.25 |
+| 1019 | what-changed in post.service.ts | ~35.5 |
+| 1018 | what-changed in post.service.ts | ~33.5 |
+| 1017 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1016 | ⚠️ GOTCHA: Fixed null crash in BloodGroupEnum —... | ~534.25 |
+| 1015 | 🟢 Edited src/app/modules/post/post.service.ts ... | ~30 |
+| 1014 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1013 | what-changed in post.service.ts | ~40.5 |
+| 1012 | what-changed in post.service.ts | ~33.25 |
+| 1011 | ⚠️ GOTCHA: Fixed null crash in Determine — prev... | ~534.25 |
+| 1010 | what-changed in post.service.ts | ~40 |
+| 1009 | what-changed in post.service.ts | ~40 |
+| 1008 | ⚠️ GOTCHA: Fixed null crash in Transaction — pr... | ~534.25 |
+| 1007 | what-changed in post.service.ts | ~40.5 |
+| 1006 | 🟢 Edited src/app/modules/post/post.service.ts ... | ~30 |
+| 1005 | what-changed in post.service.ts | ~49.75 |
+| 1004 | what-changed in post.service.ts | ~48.25 |
+| 1003 | what-changed in post.service.ts | ~46.75 |
+| 1002 | what-changed in post.service.ts | ~45.25 |
+| 1001 | what-changed in post.service.ts | ~43.75 |
+| 1000 | what-changed in post.service.ts | ~43 |
+| 999 | what-changed in post.service.ts | ~41.5 |
+| 998 | what-changed in post.service.ts | ~40.5 |
+| 997 | what-changed in post.service.ts | ~41 |
+| 996 | what-changed in post.service.ts | ~40.25 |
+| 995 | what-changed in post.service.ts | ~37.75 |
+| 994 | ⚠️ GOTCHA: Fixed null crash in Transaction — pr... | ~534.25 |
+| 993 | ⚠️ GOTCHA: Fixed null crash in Transaction — pr... | ~534.25 |
+| 992 | 🟢 Edited src/app/modules/post/post.controller.... | ~30 |
+| 991 | Updated schema PostServices — confirmed 3x | ~534.25 |
+| 990 | what-changed in post.controller.ts — confirmed 15x | ~42.5 |
+| 989 | what-changed in post.controller.ts | ~41.75 |
+| 988 | what-changed in post.controller.ts | ~40 |
+| 987 | what-changed in post.controller.ts | ~37 |
+| 986 | what-changed in post.controller.ts | ~33.75 |
+| 985 | what-changed in post.controller.ts | ~32.75 |
+| 984 | what-changed in post.controller.ts | ~33.5 |
+| 983 | what-changed in post.controller.ts | ~33.5 |
+| 982 | what-changed in post.controller.ts | ~32.5 |
+| 981 | Updated schema PostServices | ~534.25 |
+| 980 | Updated schema PostServices | ~534.25 |
+| 979 | what-changed in post.controller.ts | ~42.25 |
+| 978 | what-changed in post.controller.ts | ~76.75 |
+| 977 | what-changed in post.controller.ts | ~37 |
+| 976 | what-changed in post.controller.ts | ~31.5 |
+| 975 | Updated schema PostServices — confirmed 3x | ~534.25 |
+| 974 | 🟢 Edited src/app/modules/post/post.service.ts ... | ~30 |
+| 973 | what-changed in post.service.ts — confirmed 5x | ~37.75 |
+| 972 | what-changed in post.service.ts | ~34 |
+| 971 | ⚠️ GOTCHA: Fixed null crash in Transaction — pr... | ~534.25 |
+| 970 | what-changed in post.controller.ts | ~38 |
+| 969 | what-changed in post.controller.ts | ~33 |
+| 968 | Updated schema PostServices | ~534.25 |
+| 967 | what-changed in post.service.ts | ~72.25 |
+| 966 | convention in post.service.ts | ~51.5 |
+| 965 | decision in user.validation.ts | ~148.5 |
+| 964 | problem-fix in post.validation.ts | ~220.75 |
+| 963 | 🟢 Edited src/app/modules/post/post.validation.... | ~30 |
+| 962 | Replaced auth Optimized | ~504.75 |
+| 961 | Updated schema Validation — confirmed 3x | ~531.25 |
+| 960 | what-changed in post.validation.ts — confirmed 12x | ~35.5 |
+| 959 | what-changed in post.validation.ts | ~33.75 |
+| 958 | what-changed in post.validation.ts | ~30.5 |
+| 957 | what-changed in post.validation.ts | ~29.5 |
+| 956 | what-changed in post.validation.ts | ~29.5 |
+| 955 | Updated schema Validation | ~531.25 |
+| 954 | Updated schema PostType — confirmed 3x | ~531.25 |
+| 953 | what-changed in post.validation.ts | ~37.5 |
+| 952 | what-changed in post.validation.ts | ~36.5 |
+| 951 | what-changed in post.validation.ts | ~35.5 |
+| 950 | what-changed in post.validation.ts | ~34.75 |
+| 949 | what-changed in post.validation.ts | ~32.75 |
+| 948 | what-changed in post.validation.ts | ~31.75 |
+| 947 | what-changed in post.validation.ts | ~31.5 |
+| 946 | Updated schema PostType | ~531.25 |
+| 945 | decision in hospital.validation.ts | ~50.75 |
+| 944 | decision in auth.validation.ts | ~82 |
+| 943 | problem-fix in globalErrorHandler.ts | ~49.75 |
+| 942 | problem-fix in post.validation.ts | ~531.25 |
+| 941 | Added JWT tokens authentication — prevents null... | ~525.5 |
+
+### 2026-03-29
+
+| # | Title | ~Tok |
+|---|---|---|
+| 940 | Updated the database schema — evolves the datab... | ~504.75 |
+| 939 | 🟢 Edited src/app/modules/Auth/auth.service.ts ... | ~30 |
+| 938 | Updated auth database schema — evolves the data... | ~247.75 |
+| 937 | Updated the database schema — evolves the datab... | ~504.75 |
+| 936 | Fixed null crash in Gender — uses a proper pass... | ~536 |
+| 935 | Fixed null crash in Gender — uses a proper pass... | ~536 |
+| 934 | Fixed null crash in Gender — uses a proper pass... | ~536 |
+| 933 | Fixed null crash in Gender — uses a proper pass... | ~536 |
+| 932 | what-changed in auth.service.ts — confirmed 10x | ~48.75 |
+| 931 | what-changed in auth.service.ts | ~47 |
+| 930 | what-changed in auth.service.ts | ~40.5 |
+| 929 | what-changed in auth.service.ts | ~43 |
+| 928 | what-changed in auth.service.ts | ~39.75 |
+| 927 | what-changed in auth.service.ts | ~36 |
+| 926 | what-changed in auth.service.ts | ~33.5 |
+| 925 | what-changed in auth.service.ts | ~34.25 |
+| 924 | what-changed in auth.service.ts | ~34.25 |
+| 923 | what-changed in auth.service.ts | ~33.25 |
+| 922 | Replaced auth Update | ~399.75 |
+| 921 | ⚠️ GOTCHA: Fixed null crash in IChangePassword ... | ~533 |
+| 920 | ⚠️ GOTCHA: Fixed null crash in IChangePassword ... | ~533 |
+| 919 | what-changed in auth.validation.ts | ~68 |
+| 918 | 🟢 Edited src/app/modules/post/post.validation.... | ~30 |
 
 ### 2026-03-28
 
 | # | Title | ~Tok |
 |---|---|---|
+| 917 | Replaced dependency PostType — confirmed 3x | ~66.25 |
+| 916 | Replaced dependency bloodGroup — confirmed 8x | ~61.5 |
+| 915 | what-changed in post.validation.ts — confirmed 16x | ~70.75 |
+| 914 | what-changed in post.validation.ts | ~68.25 |
+| 913 | what-changed in post.validation.ts | ~68.75 |
+| 912 | Replaced dependency bloodGroup | ~77 |
+| 911 | Replaced dependency bloodGroup | ~65.5 |
+| 910 | Replaced dependency bloodGroup | ~60 |
+| 909 | Replaced dependency bloodGroup | ~62 |
+| 908 | Replaced dependency bloodGroup | ~62.25 |
+| 907 | Replaced dependency bloodGroup | ~68.25 |
+| 906 | 🟢 Edited src/app/modules/post/post.validation.... | ~30 |
+| 905 | Replaced dependency Blood | ~110.75 |
+| 904 | what-changed in post.validation.ts | ~69.75 |
+| 903 | what-changed in post.validation.ts | ~59.25 |
+| 902 | what-changed in post.validation.ts | ~49.75 |
+| 901 | what-changed in post.validation.ts | ~48.75 |
+| 900 | what-changed in post.validation.ts | ~48 |
+| 899 | what-changed in post.validation.ts | ~47.75 |
+| 898 | what-changed in post.validation.ts | ~47.5 |
+| 897 | what-changed in post.validation.ts | ~47.5 |
+| 896 | what-changed in post.validation.ts | ~47.25 |
+| 895 | what-changed in post.validation.ts | ~46 |
+| 894 | what-changed in post.validation.ts | ~44.75 |
+| 893 | what-changed in post.validation.ts | ~45.25 |
+| 892 | what-changed in post.validation.ts | ~55.25 |
+| 891 | what-changed in post.validation.ts — confirmed 4x | ~55.25 |
+| 890 | what-changed in post.validation.ts | ~45.75 |
+| 889 | what-changed in post.validation.ts | ~44.75 |
+| 888 | 🟢 Edited src/app/modules/hospital/hospital.val... | ~30 |
+| 887 | Git Commit: feat: implement post management ser... | ~37 |
+| 886 | ⚠️ GOTCHA: problem-fix in post.validation.ts | ~80.5 |
 | 885 | Replaced dependency BloodGroup | ~65 |
 | 884 | Replaced dependency DonationTimeType | ~57.5 |
 | 883 | 🟢 Edited src/app/modules/post/post.validation.... | ~30 |
-| 882 | problem-fix in post.validation.ts | ~79 |
+| 882 | problem-fix in post.validation.ts — confirmed 5x | ~79 |
 | 881 | what-changed in post.validation.ts | ~75.25 |
 | 880 | problem-fix in post.validation.ts | ~78.5 |
 | 879 | problem-fix in post.validation.ts | ~80.75 |
@@ -16,7 +344,7 @@
 | 877 | problem-fix in post.validation.ts | ~80.5 |
 | 876 | 🟢 Edited src/app/helpers/bloodGroup.utils.ts (... | ~30 |
 | 875 | Updated schema BloodGroup | ~478.75 |
-| 874 | what-changed in bloodGroup.utils.ts | ~70.75 |
+| 874 | what-changed in bloodGroup.utils.ts — confirmed 3x | ~70.75 |
 | 873 | what-changed in bloodGroup.utils.ts | ~70.75 |
 | 872 | what-changed in query_compiler_fast_bg.wasm-bas... | ~153 |
 | 871 | problem-fix in query_compiler_fast_bg.js | ~150 |
@@ -38,7 +366,7 @@
 | 855 | Replaced dependency bloodGrouputils | ~63.25 |
 | 854 | Replaced dependency bloodGrouputils | ~66.5 |
 | 853 | Strengthened types Prisma | ~533 |
-| 852 | Replaced dependency bloodGrouputils | ~63 |
+| 852 | Replaced dependency bloodGrouputils — confirmed 4x | ~63 |
 | 851 | Replaced dependency Either | ~278.75 |
 | 850 | Replaced dependency PostType | ~53.25 |
 | 849 | Replaced dependency PostType | ~60.75 |

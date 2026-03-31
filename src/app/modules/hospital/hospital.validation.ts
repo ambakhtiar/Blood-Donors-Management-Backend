@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { Gender, RequestStatus } from '../../../generated/prisma';
-import { bloodGroupMap } from '../../helpers/bloodGroup.utils';
+import { bloodGroupMap } from '../../helpers/bloodGroup';
 
 const recordDonationSchema = z.object({
   body: z.object({
@@ -8,7 +8,7 @@ const recordDonationSchema = z.object({
     name: z.string().optional(),
     bloodGroup: z.string().transform((val) => bloodGroupMap[val] || val).optional(),
     gender: z.enum([Gender.MALE, Gender.FEMALE]).optional(),
-    weight: z.number().optional(),
+    weight: z.coerce.number().optional(),
     createPost: z.boolean().optional(),
     postContent: z.string().optional(),
   }),

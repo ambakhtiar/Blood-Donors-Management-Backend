@@ -16,6 +16,12 @@ CREATE TYPE "RequestStatus" AS ENUM ('PENDING', 'ACCEPTED', 'REJECTED', 'CANCELL
 -- CreateEnum
 CREATE TYPE "PaymentStatus" AS ENUM ('PENDING', 'SUCCESS', 'FAILED', 'CANCELLED');
 
+-- CreateEnum
+CREATE TYPE "BloodGroup" AS ENUM ('A_POSITIVE', 'A_NEGATIVE', 'B_POSITIVE', 'B_NEGATIVE', 'AB_POSITIVE', 'AB_NEGATIVE', 'O_POSITIVE', 'O_NEGATIVE');
+
+-- CreateEnum
+CREATE TYPE "DonationTimeType" AS ENUM ('EMERGENCY', 'FIXED', 'FLEXIBLE');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
@@ -24,6 +30,7 @@ CREATE TABLE "User" (
     "password" TEXT,
     "role" "UserRole" NOT NULL DEFAULT 'USER',
     "accountStatus" "AccountStatus" NOT NULL DEFAULT 'PENDING',
+    "needsPasswordChange" BOOLEAN NOT NULL DEFAULT false,
     "division" TEXT,
     "district" TEXT,
     "upazila" TEXT,
@@ -90,7 +97,7 @@ CREATE TABLE "Organisation" (
 CREATE TABLE "DonorProfile" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "bloodGroup" TEXT NOT NULL,
+    "bloodGroup" "BloodGroup" NOT NULL,
     "gender" "Gender" NOT NULL,
     "weight" DOUBLE PRECISION,
     "lastDonationDate" TIMESTAMP(3),
@@ -124,13 +131,16 @@ CREATE TABLE "BloodDonor" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "contactNumber" TEXT NOT NULL,
-    "bloodGroup" TEXT NOT NULL,
+    "bloodGroup" "BloodGroup" NOT NULL,
     "gender" "Gender" NOT NULL,
     "lastDonationDate" TIMESTAMP(3),
     "isAvailable" BOOLEAN NOT NULL DEFAULT true,
     "division" TEXT NOT NULL,
     "district" TEXT NOT NULL,
     "upazila" TEXT NOT NULL,
+    "area" TEXT,
+    "latitude" DOUBLE PRECISION,
+    "longitude" DOUBLE PRECISION,
     "userId" TEXT,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -158,17 +168,30 @@ CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "authorId" TEXT NOT NULL,
     "type" "PostType" NOT NULL,
-    "content" TEXT NOT NULL,
+    "title" TEXT,
+    "content" TEXT,
     "images" TEXT[] DEFAULT ARRAY[]::TEXT[],
-    "bloodGroup" TEXT,
+    "contactNumber" TEXT,
+    "location" TEXT,
     "division" TEXT,
     "district" TEXT,
     "upazila" TEXT,
-    "requiredDate" TIMESTAMP(3),
-    "isApproved" BOOLEAN NOT NULL DEFAULT true,
-    "isResolved" BOOLEAN NOT NULL DEFAULT false,
+    "area" TEXT,
+    "latitude" DOUBLE PRECISION,
+    "longitude" DOUBLE PRECISION,
+    "bloodGroup" "BloodGroup",
+    "bloodBags" INTEGER,
+    "reason" TEXT,
+    "donationTimeType" "DonationTimeType",
+    "donationTime" TIMESTAMP(3),
+    "hemoglobin" DOUBLE PRECISION,
+    "medicalIssues" TEXT,
     "targetAmount" DOUBLE PRECISION,
     "raisedAmount" DOUBLE PRECISION DEFAULT 0,
+    "bkashNagadNumber" TEXT,
+    "isVerified" BOOLEAN NOT NULL DEFAULT false,
+    "isApproved" BOOLEAN NOT NULL DEFAULT true,
+    "isResolved" BOOLEAN NOT NULL DEFAULT false,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

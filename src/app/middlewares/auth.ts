@@ -23,10 +23,22 @@ const auth = (...requiredRoles: UserRole[]) => {
         throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid token format!');
     }
 
-    const decoded = verifyToken(
-      token,
-      envVars.JWT.SECRET as string,
-    ) as jwt.JwtPayload;
+    let decoded;
+    try {
+      decoded = verifyToken(
+        token,
+        envVars.JWT.SECRET as string,
+      ) as jwt.JwtPayload;
+    } catch (err: any) {
+      if (err.name === 'TokenExpiredError') {
+        const decodedExpired = jwt.decode(token) as jwt.JwtPayload;
+        console.error('[AUTH ERROR] Token expired.');
+        console.error('Current Server Time:', new Date().toISOString());
+        console.error('Token Expired At:', new Date((decodedExpired.exp as number) * 1000).toISOString());
+        console.error('Diff (seconds):', Math.floor(Date.now() / 1000) - (decodedExpired.exp as number));
+      }
+      throw err;
+    }
 
 
     const { role, userId } = decoded;

@@ -12,15 +12,15 @@ const userSignupValidationSchema = z
           /^\+8801[3-9]\d{8}$/,
           'Invalid Bangladeshi contact number. Must start with +8801...'
         ),
-      role: z.enum(UserRole),
+      role: z.nativeEnum(UserRole),
 
       donorInfo: z
         .object({
           name: z.string().min(1, 'Name is required for donors'),
           bloodGroup: z.string().min(1, 'Blood group is required'),
-          gender: z.enum(Gender),
-          weight: z.number().optional(),
-          lastDonationDate: z.string().optional(),
+          gender: z.nativeEnum(Gender),
+          weight: z.coerce.number().optional(),
+          lastDonationDate: z.coerce.date().optional(),
           division: z.string().min(1, 'Division is required'),
           district: z.string().min(1, 'District is required'),
           upazila: z.string().min(1, 'Upazila is required'),

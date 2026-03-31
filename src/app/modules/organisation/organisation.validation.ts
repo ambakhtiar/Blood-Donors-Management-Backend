@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { Gender } from '../../../generated/prisma';
-import { bloodGroupMap } from '../../helpers/bloodGroup.utils';
+import { bloodGroupMap } from '../../helpers/bloodGroup';
 
 const addVolunteerSchema = z.object({
   body: z.object({
@@ -14,9 +14,7 @@ const addVolunteerSchema = z.object({
 
 const updateDonationDateSchema = z.object({
   body: z.object({
-    date: z.string({ message: 'date is required' }).refine((val) => !isNaN(Date.parse(val)), {
-      message: 'Invalid date format',
-    }),
+    date: z.coerce.date({ message: 'Invalid date format' }),
   }),
 });
 

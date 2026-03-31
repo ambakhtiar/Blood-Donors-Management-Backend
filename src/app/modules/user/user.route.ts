@@ -2,6 +2,7 @@ import express from 'express';
 import { UserControllers } from './user.controller';
 import auth from '../../middlewares/auth';
 import { UserRole } from '../../../generated/prisma';
+import { USER_ROLE } from '../auth/auth.constant';
 
 const router = express.Router();
 
@@ -17,11 +18,17 @@ router.put(
   UserControllers.updateMyProfile
 );
 
+router.get(
+  '/donation-history',
+  auth(USER_ROLE.USER),
+  UserControllers.getDonationHistory
+);
+
 // Donor search - Accessible for registered/authenticated users
 router.get(
-    '/donors',
-    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.HOSPITAL, UserRole.ORGANISATION, UserRole.USER),
-    UserControllers.getDonorList
+  '/donors',
+  auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.HOSPITAL, UserRole.ORGANISATION, UserRole.USER),
+  UserControllers.getDonorList
 );
 
 export const UserRoutes = router;
