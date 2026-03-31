@@ -7,6 +7,13 @@ import { AdminValidation } from './admin.validation';
 
 const router = Router();
 
+
+router.get(
+  '/analytics',
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  AdminControllers.getSystemAnalytics
+);
+
 router.get(
   '/users',
   auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
@@ -21,15 +28,16 @@ router.patch(
 );
 
 router.get(
-  '/analytics',
-  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
-  AdminControllers.getSystemAnalytics
-);
-
-router.get(
   '/hospitals',
   auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
   AdminControllers.getAllHospitals
+);
+
+router.patch(
+  '/hospitals/:id/status',
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  validateRequest(AdminValidation.changeUserStatusSchema),
+  AdminControllers.updateHospitalStatus
 );
 
 router.get(
@@ -38,16 +46,12 @@ router.get(
   AdminControllers.getAllOrganisations
 );
 
-router.patch(
-  '/approve-hospital/:id',
-  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
-  AdminControllers.approveHospital
-);
 
 router.patch(
-  '/approve-organisation/:id',
+  '/organisations/:id/status',
   auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
-  AdminControllers.approveOrganisation
+  validateRequest(AdminValidation.changeUserStatusSchema),
+  AdminControllers.updateOrganisationStatus
 );
 
 export const AdminRoutes = router;

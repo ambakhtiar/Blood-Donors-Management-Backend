@@ -1,5 +1,5 @@
 # Learned Patterns — Blood-Donors-Management-Backend
-> 41 patterns extracted from your coding history.
+> 43 patterns extracted from your coding history.
 
 ## problem-fix
 
@@ -19,19 +19,21 @@
 - **Pattern**: Always: 🟢 Edited .gitignore (37 changes, 3min) — confirmed 3x (seen 2x). Also: Duration: 3 minutes
 - **Pattern**: Always: convention in .gitignore (seen 7x)
 - **Pattern**: Always: trade-off in .gitignore (seen 2x)
+- **Pattern**: Always: convention in .gitignore (seen 3x)
+- **Pattern**: Always: convention in migration_lock.toml (seen 2x)
+- **Pattern**: Always: what-changed in .gitignore — confirmed 28x (seen 2x)
+- **Pattern**: Always: problem-fix in post.validation.ts — confirmed 3x (seen 2x)
+- **Pattern**: Always: convention in .gitignore (seen 5x)
+- **Pattern**: Always: Updated configuration server — externalizes configuration for environment fle... — confirmed 3x (seen 2x)
+- **Pattern**: Always: Added JWT tokens authentication — uses a proper password hashing algorithm — confirmed 3x (seen 2x)
+- **Pattern**: Always: Updated schema UserServices — confirmed 4x (seen 2x)
+- **Pattern**: Always: what-changed in auth.controller.ts — confirmed 5x (seen 2x)
 - **Pattern**: Always: 🟢 Edited .env (5 changes, 1min) — confirmed 3x (seen 2x). Also: Duration: 1 minutes
 - **Pattern**: Always: discovery in auth.service.ts — confirmed 3x (seen 2x)
 - **Pattern**: Always: Updated schema PostServices — confirmed 3x (seen 2x)
-- **Pattern**: Always: problem-fix in post.validation.ts — confirmed 3x (seen 2x)
 - **Pattern**: Always: Strengthened types Record (seen 2x)
-- **Pattern**: Always: convention in .gitignore (seen 4x)
-- **Pattern**: Always: Updated configuration server — externalizes configuration for environment fle... — confirmed 3x (seen 2x)
-- **Pattern**: Always: convention in migration_lock.toml (seen 2x)
-- **Pattern**: Always: convention in .gitignore (seen 5x)
-- **Pattern**: Always: Added JWT tokens authentication — uses a proper password hashing algorithm — confirmed 3x (seen 2x)
-- **Pattern**: Always: what-changed in .gitignore — confirmed 28x (seen 2x)
 - **Pattern**: Always: convention in .gitignore (seen 2x)
-- **Pattern**: Always: convention in .gitignore (seen 3x)
+- **Pattern**: Always: convention in .gitignore (seen 4x)
 
 ## gotcha
 

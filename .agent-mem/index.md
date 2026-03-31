@@ -1,10 +1,108 @@
 # Notes Index — Blood-Donors-Management-Backend
-> 1198 total notes
+> 1296 total notes
 
 ### 2026-03-31
 
 | # | Title | ~Tok |
 |---|---|---|
+| 1296 | problem-fix in index.js | ~146.25 |
+| 1295 | problem-fix in edge.js | ~146 |
+| 1294 | what-changed in wasm-worker-loader.mjs | ~70.25 |
+| 1293 | what-changed in index-browser.js | ~148.25 |
+| 1292 | what-changed in wasm-edge-light-loader.mjs | ~73 |
+| 1291 | what-changed in default.js | ~66.75 |
+| 1290 | what-changed in client.js | ~62.5 |
+| 1289 | 🟢 Edited package.json (12 changes, 2min) | ~30 |
+| 1288 | what-changed in package.json — confirmed 9x | ~50 |
+| 1287 | what-changed in package.json | ~50.25 |
+| 1286 | what-changed in package.json | ~47.5 |
+| 1285 | what-changed in package.json | ~43.25 |
+| 1284 | Updated schema package — confirmed 4x | ~43.25 |
+| 1283 | what-changed in package.json | ~43.25 |
+| 1282 | Updated schema package | ~43.25 |
+| 1281 | what-changed in package.json | ~36.5 |
+| 1280 | what-changed in package.json | ~28 |
+| 1279 | Added JWT tokens authentication — uses a proper... | ~529 |
+| 1278 | ⚠️ GOTCHA: Fixed null crash in PORT — wraps uns... | ~199.5 |
+| 1277 | what-changed in index.ts — confirmed 5x | ~32.5 |
+| 1276 | what-changed in index.ts | ~28.25 |
+| 1275 | what-changed in index.ts | ~38.25 |
+| 1274 | Fixed null crash in PORT | ~119.5 |
+| 1273 | what-changed in server.ts — confirmed 4x | ~25 |
+| 1272 | what-changed in server.ts | ~32.5 |
+| 1271 | Replaced auth User — confirmed 3x | ~504.75 |
+| 1270 | what-changed in schema.prisma — confirmed 3x | ~39 |
+| 1269 | what-changed in schema.prisma | ~101.25 |
+| 1268 | Replaced auth User | ~504.75 |
+| 1267 | Added session cookies authentication — confirme... | ~504.75 |
+| 1266 | ⚠️ GOTCHA: Added JWT tokens authentication | ~538 |
+| 1265 | Updated schema UserServices — confirmed 4x | ~407 |
+| 1264 | Updated schema UserServices | ~407 |
+| 1263 | Updated schema UserServices | ~400.75 |
+| 1262 | what-changed in user.controller.ts | ~42 |
+| 1261 | Fixed null crash in AppError — wraps unsafe ope... | ~522 |
+| 1260 | 🟢 Edited src/app/modules/admin/admin.route.ts ... | ~30 |
+| 1259 | Replaced auth UserRole — confirmed 10x | ~265 |
+| 1258 | Replaced auth UserRole | ~212.5 |
+| 1257 | Replaced auth UserRole | ~145.25 |
+| 1256 | Replaced auth UserRole | ~197 |
+| 1255 | Replaced auth UserRole | ~523.5 |
+| 1254 | Replaced auth UserRole | ~523.5 |
+| 1253 | Replaced auth UserRole | ~523.5 |
+| 1252 | Replaced auth UserRole | ~375.5 |
+| 1251 | Replaced auth UserRole | ~409 |
+| 1250 | Added JWT tokens authentication — ensures atomi... | ~527 |
+| 1249 | what-changed in admin.controller.ts — confirmed 3x | ~79 |
+| 1248 | Replaced auth AdminValidation | ~180 |
+| 1247 | ⚠️ GOTCHA: Updated schema AccountStatus — paral... | ~541 |
+| 1246 | Updated API endpoint Request | ~495 |
+| 1245 | Updated Status database schema — formalizes the... | ~504.75 |
+| 1244 | Updated endpoint database schema | ~504.75 |
+| 1243 | problem-fix in globalErrorHandler.ts — confirme... | ~23.5 |
+| 1242 | 🟢 Edited src/app/middlewares/auth.ts (21 chang... | ~30 |
+| 1241 | Replaced auth auth — confirmed 7x | ~55.25 |
+| 1240 | Replaced auth auth | ~33.5 |
+| 1239 | Replaced auth auth | ~32.75 |
+| 1238 | ⚠️ GOTCHA: Fixed null crash in AppError — wraps... | ~522 |
+| 1237 | Replaced auth auth | ~32.75 |
+| 1236 | Replaced auth auth | ~30.25 |
+| 1235 | Replaced auth auth | ~26.5 |
+| 1234 | Replaced auth auth | ~24 |
+| 1233 | what-changed in auth.ts — confirmed 4x | ~22.5 |
+| 1232 | what-changed in auth.ts | ~22.25 |
+| 1231 | what-changed in auth.ts | ~22.25 |
+| 1230 | what-changed in auth.ts | ~21.25 |
+| 1229 | Fixed null crash in AppError — wraps unsafe ope... | ~522 |
+| 1228 | 🟢 Edited src/app/modules/auth/auth.controller.... | ~30 |
+| 1227 | what-changed in auth.controller.ts — confirmed 5x | ~33 |
+| 1226 | Replaced auth User — protects against XSS and C... | ~527.5 |
+| 1225 | Replaced auth refreshToken — confirmed 5x | ~53 |
+| 1224 | Replaced auth refreshToken | ~46.25 |
+| 1223 | Replaced auth refreshToken | ~43 |
+| 1222 | Replaced auth refreshToken | ~42.75 |
+| 1221 | Replaced auth refreshToken | ~47.25 |
+| 1220 | Replaced auth Date | ~54 |
+| 1219 | what-changed in auth.controller.ts | ~47.25 |
+| 1218 | what-changed in auth.controller.ts | ~34.25 |
+| 1217 | what-changed in auth.controller.ts | ~34.25 |
+| 1216 | what-changed in auth.controller.ts | ~33.25 |
+| 1215 | Fixed null crash in AppError — wraps unsafe ope... | ~522 |
+| 1214 | 🟢 Edited src/app/middlewares/auth.ts (24 chang... | ~30 |
+| 1213 | Replaced auth Date — confirmed 3x | ~46 |
+| 1212 | Replaced auth Date | ~45 |
+| 1211 | Replaced auth Date | ~38.5 |
+| 1210 | Replaced auth AppError | ~74.25 |
+| 1209 | Replaced auth auth — confirmed 3x | ~30 |
+| 1208 | what-changed in auth.ts — confirmed 4x | ~27.5 |
+| 1207 | what-changed in auth.ts | ~25.5 |
+| 1206 | what-changed in auth.ts | ~23.5 |
+| 1205 | Fixed null crash in AppError — wraps unsafe ope... | ~522 |
+| 1204 | 🟢 Edited src/app/modules/auth/auth.controller.... | ~30 |
+| 1203 | Replaced auth User — confirmed 5x | ~519 |
+| 1202 | Replaced auth User | ~519 |
+| 1201 | Replaced auth User | ~519 |
+| 1200 | 🟢 Edited src/app/modules/Auth/auth.service.ts ... | ~30 |
+| 1199 | Git Commit: implement core backend modules incl... | ~42 |
 | 1198 | Added JWT tokens authentication — ensures atomi... | ~527 |
 | 1197 | what-changed in BloodLink_Postman_Collection.json | ~149.5 |
 | 1196 | Fixed null crash in Notify — uses a proper pass... | ~533.5 |

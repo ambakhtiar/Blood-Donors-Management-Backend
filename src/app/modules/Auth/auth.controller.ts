@@ -22,6 +22,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
 
   const result = await AuthServices.loginUser(req.body, ipAddress as string, device as string);
   const { refreshToken, accessToken, user } = result;
+  console.log(refreshToken, accessToken);
 
   res.cookie('refreshToken', refreshToken, {
     secure: envVars.NODE_ENV === 'production',

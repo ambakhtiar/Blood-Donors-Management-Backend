@@ -1,6 +1,6 @@
 ---
 name: project
-description: "Project for Blood-Donors-Management-Backend. 26 gotchas, 115 conventions, 2 fixes."
+description: "Project for Blood-Donors-Management-Backend. 26 gotchas, 120 conventions, 2 fixes."
 domain: project
 triggers:
   - glob: "**/*"
@@ -10,7 +10,7 @@ enabled: true
 
 # Project
 
-Auto-compiled from **381 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on project files.
+Auto-compiled from **391 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on project files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -64,6 +64,20 @@ Auto-compiled from **381 real patterns** in **Blood-Donors-Management-Backend**.
 ## 📐 Conventions & Best Practices
 
 ### Project Conventions
+- 📐 **what-changed in wasm-worker-loader.mjs — confirmed 3x** — File updated (external): src/generated/prisma/wasm-worker-loader.mjs
+
+Content summary (5 lines):
+
+/*
+- 📐 **what-changed in wasm-edge-light-loader.mjs — confirmed 3x** — File updated (external): src/generated/prisma/wasm-edge-light-loader.mjs
+
+Content summary (5 lines):
+- 📐 **Replaced auth User — confirmed 3x** — -   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
++   user    
+- 📐 **what-changed in schema.prisma — confirmed 3x** — -   user      User     @relation(fields: [userId], references: [id])
++   user      User     @relatio
+- 📐 **Added session cookies authentication — confirmed 3x** — - # Implementation Plan: Flexible & Role-Specific Status Management
++ # Implementation Plan: Prisma 
 - 📐 **🟢 Edited .env (5 changes, 1min) — confirmed 3x** — Active editing session on .env.
 5 content changes over 1 minutes.
 - 📐 **Strengthened types Final** — - # Fix Type Errors in User Service
@@ -320,28 +334,6 @@ Content summary (5 lines):
 + .windsurfrules
 - 📐 **convention in .gitignore** — - .windsurf/rules
 + .windsurf
-- 📐 **what-changed in .gitignore** — - # .brainsync/**/*
-+ .brainsync/**/*
-- 📐 **trade-off in .gitignore** — - # .agent/**/*
-+ .agent/**/*
-- # .agent-mem/**/*
-+ .agent-mem/**/*
-- # .agents/**/*
-+ .agents/
-- 📐 **Added session cookies authentication — ensures atomic multi-step database ope... — confirmed 4x** — -   OTHER
-+ }
-- }
-+ 
-- 
-+ enum PostType {
-- enum PostType {
-+   BLOOD_FINDING
--   BLOOD_FINDING
-+   
-- 📐 **🟢 Edited .gitignore (12 changes, 4min) — confirmed 3x** — Active editing session on .gitignore.
-12 content changes over 4 minutes.
-- 📐 **convention in .gitignore** — - .windsurfrules
-+ .windsurf/rules
 
 ## 🔵 Architecture
 
@@ -372,16 +364,6 @@ e8491b5 auth.ts middleware add
 + /.agents
 - /.cursor/
 + /.curs
-- **trade-off in .gitignore** — - .agent/
-+ /.agent/
-- .agent-mem/
-+ /.agent-mem/
-- .agents/
-+ /.agents/
-- .cursor/
-+ /.curso
-- **trade-off in .gitignore** — - .agent/**/*
-+ .agent/
-- .age
+- **trade-off in .gitignore*
 
 ... [Truncated — see individual observations for full content]

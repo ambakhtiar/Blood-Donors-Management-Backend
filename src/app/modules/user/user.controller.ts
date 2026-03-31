@@ -29,7 +29,6 @@ const updateMyProfile = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getDonorList = catchAsync(async (req: Request, res: Response) => {
-  console.log(req.query);
   const result = await UserServices.getDonorList(req.query as Record<string, unknown>);
 
   sendResponse(res, {

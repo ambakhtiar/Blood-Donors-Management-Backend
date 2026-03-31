@@ -1,6 +1,6 @@
 ---
 name: typescript
-description: "Typescript for Blood-Donors-Management-Backend. 94 gotchas, 100 conventions, 44 fixes."
+description: "Typescript for Blood-Donors-Management-Backend. 98 gotchas, 118 conventions, 47 fixes."
 domain: typescript
 triggers:
   - glob: "**/*.ts"
@@ -11,7 +11,7 @@ enabled: true
 
 # Typescript
 
-Auto-compiled from **717 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
+Auto-compiled from **788 real patterns** in **Blood-Donors-Management-Backend**. This skill is auto-routed to agents when working on typescript files.
 
 ## ⚠️ Anti-Patterns & Gotchas
 
@@ -19,6 +19,10 @@ Auto-compiled from **717 real patterns** in **Blood-Donors-Management-Backend**.
 
 | ❌ Don't | Details |
 |----------|----------|
+| ⚠️ GOTCHA: Fixed null crash in PORT — wraps unsafe | - import seedSuperAdmin from './app/db'; + import { envVars } from './app/config/env'; - import { en |
+| ⚠️ GOTCHA: Added JWT tokens authentication | -   console.log(filters); +  -  +   const andConditions = []; -   const andConditions = []; +  |
+| ⚠️ GOTCHA: Updated schema AccountStatus — parallel | -   return result; + const updateHospitalStatus = async (id: string, status: AccountStatus) => { - } |
+| ⚠️ GOTCHA: Fixed null crash in AppError — wraps un | -  +     console.log(req.cookies); -     // missing token +  -     if (!authHeader) { +     // missi |
 | ⚠️ GOTCHA: Added JWT tokens authentication | -     andConditions.push({ +     const searchBg = bloodGroupMap[searchTerm as keyof typeof bloodGro |
 | ⚠️ GOTCHA: Added JWT tokens authentication | -     const bloodGroup = bg ? (bloodGroupMap[bg as keyof typeof bloodGroupMap] -- (bg as BloodGroup) |
 | ⚠️ GOTCHA: Added JWT tokens authentication | -   const bloodGroup = bg ? bloodGroupMap[bg as keyof typeof bloodGroupMap] : undefined; +   const b |
@@ -65,12 +69,83 @@ Auto-compiled from **717 real patterns** in **Blood-Donors-Management-Backend**.
 | ⚠️ GOTCHA: Fixed null crash in BloodGroupEnum — pr | -    +   const BloodGroupEnum = z.string().transform((val, ctx) => { -  +     const mapped = bloodGr |
 | ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -  +    -   // Determine if post starts as verified (Helping posts start unverified) +  -   const is |
 | ⚠️ GOTCHA: Fixed null crash in Determine — prevent | -   // Determine if post starts as verified (Helping posts start unverified) +  -   const isVerified |
-| ⚠️ GOTCHA: Fixed null crash in Transaction — preve | -  +     // Transaction to create post, history and update donor -     // Transaction to create post |
-| ⚠️ GOTCHA: Fixed null crash in Transaction — preve | -     // Transaction to create post, history and update donor +     console -     return await prism |
-| ⚠️ GOTCHA: Fixed null crash in Transaction — preve | -  +     // Transaction to create post, history and update donor -     console.log(payload); +     r |
-| ⚠️ GOTCHA: Fixed null crash in Transaction — preve | -     // Transaction to create post, history and update donor +      -     return await prisma.$tran |
 
 ## 🔧 Problem Playbooks
+
+### Fixed null crash in PORT
+- 
++     app.listen(PORT, () => {
+-     app.listen(PORT, () => {
++       console.log(`Server is running on port ${PORT}`);
+-       console.log(`Server is running on port ${PORT}`);
++     });
+-     });
++   } catch (error) {
+-   } catch (error) {
++     console.error('Failed to start server:', error);
+-     console.error('Failed to start server:', error);
++   }
+-   }
++ }
+- }
++ 
+- 
++ server();
+- serve
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: PORT
+3. identifier: Server
+4. identifier: Failed
+
+### Fixed null crash in AppError — wraps unsafe operation in error boundary
+- 
++     
+-     // missing token
++ 
+-     if (!authHeader) {
++     // missing token
+-       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
++     if (!authHeader) {
+-     }
++       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
+- 
++     }
+-     const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
++ 
+- 
++     const 
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AppError
+3. identifier: UNAUTHORIZED
+4. identifier: You
+5. identifier: Bearer
+
+### Fixed null crash in AppError — wraps unsafe operation in error boundary
+-     console.log((new Date().toISOString()), authHeader);
++ 
+- 
++     // missing token
+-     // missing token
++     if (!authHeader) {
+-     if (!authHeader) {
++       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
+-       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
++     }
+-     }
++ 
+- 
++     const token = authHeader.startsWith('Bearer ') ? au
+
+**Actionable Steps:**
+1. Modified 1 files
+2. identifier: AppError
+3. identifier: UNAUTHORIZED
+4. identifier: You
+5. identifier: Bearer
 
 ### Fixed null crash in Notify — uses a proper password hashing algorithm
 -   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -134,74 +209,6 @@ import { bloodGroupMa
 +   createPost,
 - export const PostServices = {
 +   getAllPosts,
--   createPost,
-+   getSinglePost,
--   getAllPosts,
-+   updatePost,
--   getSinglePost,
-+   deletePost,
--   updatePost,
-+   resolvePost,
--   deletePost,
-+   approvePost,
--   resolvePost,
-+   verifyPost,
--   approvePost,
-+   getDonationHistory,
--   verifyPost,
-+ };
--   getDonationHistory,
-+ 
-- };
 -
-
-**Actionable Steps:**
-1. Modified 1 files
-
-### Fixed null crash in Rule — prevents null/undefined runtime crashes
--   // Rule Engine for Blood Donation Posts 
-+   
--   if (payload.type === PostType.BLOOD_DONATION) {
-+   // Rule Engine for Blood Donation Posts 
--     if (role !== UserRole.USER) {
-+   if (payload.type === PostType.BLOOD_DONATION) {
--       throw new AppError(httpStatus.FORBIDDEN, "Only users can create blood donation posts");
-+     if (role !== UserRole.USER) {
--     }
-+       throw new AppErro
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: Rule
-3. identifier: Engine
-4. identifier: Blood
-5. identifier: Donation
-
-### Fixed null crash in JwtPayload — prevents null/undefined runtime crashes
-- 
-+ import { bloodGroupMap } from '../../helpers/bloodGroup';
-- const createPost = async (user: JwtPayload, payload: ICreatePost) => {
-+ 
--   const { userId, role } = user;
-+ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
-- 
-+   const { userId, role } = user;
--   // Rule Engine for Blood Donation Posts 
-+ 
--   if (payload.type === PostType.BLOOD_DONATION) {
-+   // Rule Eng
-
-**Actionable Steps:**
-1. Modified 1 files
-2. identifier: JwtPayload
-3. identifier: ICreatePost
-4. identifier: Rule
-5. identifier: Engine
-
-### problem-fix in post.validation.ts
--   body: z.union([
-+   body: z.discriminatedUnion('type', [
--       bloodGroup: z.nativeEnum(BloodGroup, { message: 'Blood group is required' }),
-+       bloo
 
 ... [Truncated — see individual observations for full content]

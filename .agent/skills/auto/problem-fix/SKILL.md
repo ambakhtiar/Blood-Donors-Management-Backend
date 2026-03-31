@@ -1,6 +1,6 @@
 ---
 name: problem-fix
-description: "Problem Fix for Blood-Donors-Management-Backend. 18 error→fix pairs."
+description: "Problem Fix for Blood-Donors-Management-Backend. 21 error→fix pairs."
 domain: problem-fix
 composesFrom:
   - fix
@@ -20,10 +20,12 @@ Auto-compiled from **5 real patterns** in **Blood-Donors-Management-Backend**. T
 
 | Error Pattern | Fix | Seen |
 |-------|-----|------|
-| `PrismaClientKnownRequestError,` | problem-fix in index.js | 9x |
+| `PrismaClientKnownRequestError,` | problem-fix in index.js | 11x |
 | `"use strict";var h=Object.defineProperty;var T=Obj` | problem-fix in query_compiler_fast_bg.js | 5x |
 | `import AppError from '../../errors/AppError';` | problem-fix in organisation.service.ts | 3x |
+| `📌 IDE AST Context: Modified symbols likely includ` | problem-fix in globalErrorHandler.ts | 3x |
 | `-   } catch (error) {` | Fixed null crash in PORT — externalizes configuration for en | 3x |
+| `+   } catch (error) {` | Fixed null crash in PORT | 3x |
 | `-       donationTimeType: z.nativeEnum(DonationTim` | problem-fix in post.validation.ts | 3x |
 | `-     throw new AppError(httpStatus.NOT_FOUND, 'Ta` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `- import AppError from '../../errors/AppError';` | Fixed null crash in Secret — uses a proper password hashing  | 2x |
@@ -31,21 +33,21 @@ Auto-compiled from **5 real patterns** in **Blood-Donors-Management-Backend**. T
 | `-             // throw new Error(`Environment vari` | Fixed null crash in EnvConfig — externalizes configuration f | 2x |
 | `+             throw new AppError(status.INTERNAL_S` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `-         throw new AppError(` | Fixed null crash in Scenario — prevents null/undefined runti | 2x |
-| `📌 IDE AST Context: Modified symbols likely includ` | problem-fix in globalErrorHandler.ts | 2x |
 | `+     throw new AppError(httpStatus.NOT_FOUND, "Po` | Fixed null crash in AppError — externalizes configuration fo | 2x |
 | `-             throw new AppError(status.INTERNAL_S` | Fixed null crash in EnvConfig — externalizes configuration f | 2x |
 | `-     bloodGroup: z.string({ required_error: 'Bloo` | problem-fix in post.validation.ts | 2x |
 | `-   if (!user) throw new AppError(httpStatus.NOT_F` | Fixed null crash in Notify — uses a proper password hashing  | 2x |
 | `+     throw new AppError(httpStatus.FORBIDDEN, "Yo` | Fixed null crash in IChangePassword — uses a proper password | 2x |
 | `-       throw new AppError(httpStatus.FORBIDDEN, "` | Fixed null crash in Rule — prevents null/undefined runtime c | 2x |
+| `-       throw new AppError(httpStatus.UNAUTHORIZED` | Fixed null crash in AppError — wraps unsafe operation in err | 2x |
 
 ## 📐 Conventions & Best Practices
 
 ### Compiled Rules
+- ✅ When encountering this, fix by: problem-fix in edge.js (seen 2x)
 - ✅ When encountering this, fix by: problem-fix in index.js (seen 2x)
 - ✅ When encountering this, fix by: problem-fix in organisation.service.ts (seen 2x)
 - ✅ When encountering this, fix by: problem-fix in query_compiler_fast_bg.js (seen 2x)
-- ✅ When encountering this, fix by: problem-fix in edge.js (seen 2x)
 - ✅ When encountering this, fix by: problem-fix in .gitignore (seen 2x)
 
 ---

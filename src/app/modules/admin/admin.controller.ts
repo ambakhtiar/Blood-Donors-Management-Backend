@@ -76,26 +76,28 @@ const getSystemAnalytics = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const approveHospital = catchAsync(async (req: Request, res: Response) => {
+const updateHospitalStatus = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await AdminServices.approveHospital(id as string);
+  const { status } = req.body;
+  const result = await AdminServices.updateHospitalStatus(id as string, status);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Hospital account approved successfully',
+    message: 'Hospital account status updated successfully',
     data: result,
   });
 });
 
-const approveOrganisation = catchAsync(async (req: Request, res: Response) => {
+const updateOrganisationStatus = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await AdminServices.approveOrganisation(id as string);
+  const { status } = req.body;
+  const result = await AdminServices.updateOrganisationStatus(id as string, status);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Organisation account approved successfully',
+    message: 'Organisation account status updated successfully',
     data: result,
   });
 });
@@ -106,6 +108,6 @@ export const AdminControllers = {
   getSystemAnalytics,
   getAllHospitals,
   getAllOrganisations,
-  approveHospital,
-  approveOrganisation,
+  updateHospitalStatus,
+  updateOrganisationStatus,
 };

@@ -95,7 +95,6 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
 
 const getDonorList = async (filters: Record<string, unknown>) => {
   const { bloodGroup: bg, division, district, upazila, searchTerm } = filters;
-  console.log(filters);
 
   const andConditions = [];
 

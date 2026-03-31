@@ -11,7 +11,7 @@ import { verifyToken } from '../utils/jwt.utils';
 const auth = (...requiredRoles: UserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
-    
+
     // missing token
     if (!authHeader) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
@@ -20,7 +20,7 @@ const auth = (...requiredRoles: UserRole[]) => {
     const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
 
     if (!token) {
-        throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid token format!');
+      throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid token format!');
     }
 
     let decoded;

@@ -23,11 +23,29 @@ const globalErrorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   } else if (err instanceof Prisma.PrismaClientKnownRequestError) {
     statusCode = 400;
     if (err.code === 'P2002') {
-      message = 'Duplicate field value entered';
-      const target = err.meta?.target as string[];
-      errorSources = target
-        ? [{ path: target[0], message: `${target[0]} already exists` }]
-        : [{ path: '', message: 'Unique constraint violation' }];
+      const fieldMap: Record<string, string> = {
+        email: 'Email',
+        contactNumber: 'Contact Number',
+        registrationNumber: 'Registration Number',
+        transactionId: 'Transaction ID',
+      };
+
+      let field = (err.meta?.target as string[])?.[0] || '';
+
+      // Fallback: Extract from message if target is missing
+      if (!field && err.message.includes('fields:')) {
+        const match = err.message.match(/fields: \(`"(.+)"`\)/);
+        if (match) field = match[1];
+      }
+
+      const readableField = fieldMap[field] || field || 'Field';
+      message = `${readableField} already exists`;
+      errorSources = [
+        {
+          path: field,
+          message: `The provided ${readableField.toLowerCase()} is already in use`,
+        },
+      ];
     } else if (err.code === 'P2025') {
       message = 'Record not found';
       errorSources = [{ path: '', message: err.message }];

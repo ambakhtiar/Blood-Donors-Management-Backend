@@ -909,19 +909,29 @@
 					"response": []
 				},
 				{
-					"name": "Approve Hospital",
+					"name": "Update Hospital Status",
 					"request": {
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"ACTIVE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/approve-hospital/:id",
+							"raw": "{{baseUrl}}/admin/hospitals/:id/status",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
-								"approve-hospital",
-								":id"
+								"hospitals",
+								":id",
+								"status"
 							],
 							"variable": [
 								{
@@ -934,19 +944,29 @@
 					"response": []
 				},
 				{
-					"name": "Approve Organisation",
+					"name": "Update Organisation Status",
 					"request": {
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"ACTIVE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/approve-organisation/:id",
+							"raw": "{{baseUrl}}/admin/organisations/:id/status",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
-								"approve-organisation",
-								":id"
+								"organisations",
+								":id",
+								"status"
 							],
 							"variable": [
 								{

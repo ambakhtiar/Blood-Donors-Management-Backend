@@ -101,7 +101,7 @@ const changeUserStatus = async (id: string, status: AccountStatus) => {
   return result;
 };
 
-const approveHospital = async (id: string) => {
+const updateHospitalStatus = async (id: string, status: AccountStatus) => {
   const user = await prisma.user.findUnique({
     where: { id, role: UserRole.HOSPITAL, isDeleted: false },
   });
@@ -110,10 +110,10 @@ const approveHospital = async (id: string) => {
     throw new AppError(httpStatus.NOT_FOUND, "Hospital account not found!");
   }
 
-  return await changeUserStatus(id, AccountStatus.ACTIVE);
+  return await changeUserStatus(id, status);
 };
 
-const approveOrganisation = async (id: string) => {
+const updateOrganisationStatus = async (id: string, status: AccountStatus) => {
   const user = await prisma.user.findUnique({
     where: { id, role: UserRole.ORGANISATION, isDeleted: false },
   });
@@ -122,7 +122,7 @@ const approveOrganisation = async (id: string) => {
     throw new AppError(httpStatus.NOT_FOUND, "Organisation account not found!");
   }
 
-  return await changeUserStatus(id, AccountStatus.ACTIVE);
+  return await changeUserStatus(id, status);
 };
 
 const getSystemAnalytics = async () => {
@@ -147,6 +147,6 @@ export const AdminServices = {
   getSystemAnalytics,
   getAllHospitals,
   getAllOrganisations,
-  approveHospital,
-  approveOrganisation,
+  updateHospitalStatus,
+  updateOrganisationStatus,
 };

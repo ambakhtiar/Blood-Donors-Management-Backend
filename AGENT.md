@@ -1,5 +1,5 @@
 # Project Notes — Blood-Donors-Management-Backend
-> 1198 notes | Updated: 3/31/2026
+> 1296 notes | Updated: 3/31/2026
 
 ## Safety Rules
 
@@ -7,8 +7,8 @@
 - **NEVER** delete untracked files or folders blindly. Always backup or stash before bulk edits.
 
 ## Quick Reference
-- 121 warnings → see `.agent-mem/gotchas.md`
-- 236 conventions → see `.agent-mem/patterns.md`
+- 125 warnings → see `.agent-mem/gotchas.md`
+- 260 conventions → see `.agent-mem/patterns.md`
 - Codebase map → see `.agent-mem/project-brief.md`
 - Active work → see `.agent-mem/active-context.md`
 
@@ -32,7 +32,7 @@ For observation details: `.agent-mem/observations/`
 *Auto-generated*
 
 # Project Memory — Blood-Donors-Management-Backend
-> 1198 notes | Score threshold: >40
+> 1296 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -51,48 +51,42 @@ For observation details: `.agent-mem/observations/`
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
-- **⚠️ GOTCHA: Fixed null crash in JwtPayload — uses a proper password hashing algorithm** — -   const decodedAccessToken = jwt.decode(accessToken) as jwt.JwtPaylo
-- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm** — - import {
-+ import { bloodGroupMap } from '../../helpers/bloodGroup';
-- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm** — - import { IChangePassword,
-+ import {
--   IForgotPassword,
-+   IChang
-- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm** — - import { IRegisterUser } from './auth.interface';
-+ import { IChange
-- **⚠️ GOTCHA: Fixed null crash in IRegisterUser — uses a proper password hashing algorithm** — - 
-+ import { IRegisterUser } from './auth.interface';
-- const registe
-- **⚠️ GOTCHA: Fixed null crash in AccountStatus — uses a proper password hashing algorithm** — - 
-+ import { prisma } from '../../lib/prisma';
-- import { prisma } fr
-
-## Active: `src/app/modules/Auth`
-
-- **⚠️ GOTCHA: Fixed null crash in JwtPayload — uses a proper password hashing algorithm**
-- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm**
-- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm**
-- **⚠️ GOTCHA: Fixed null crash in IChangePassword — uses a proper password hashing algorithm**
-- **⚠️ GOTCHA: Fixed null crash in IRegisterUser — uses a proper password hashing algorithm**
+- **⚠️ GOTCHA: Fixed null crash in PORT — wraps unsafe operation in error boundary** — - import seedSuperAdmin from './app/db';
++ import { envVars } from './
+- **⚠️ GOTCHA: Added JWT tokens authentication** — -   console.log(filters);
++ 
+- 
++   const andConditions = [];
+-   
+- **⚠️ GOTCHA: Updated schema AccountStatus — parallelizes async operations for speed** — -   return result;
++ const updateHospitalStatus = async (id: string, s
+- **⚠️ GOTCHA: Fixed null crash in AppError — wraps unsafe operation in error boundary** — - 
++     console.log(req.cookies);
+-     // missing token
++ 
+-     if 
+- **⚠️ GOTCHA: Added JWT tokens authentication** — -     andConditions.push({
++     const searchBg = bloodGroupMap[searc
+- **⚠️ GOTCHA: Added JWT tokens authentication** — -     const bloodGroup = bg ? (bloodGroupMap[bg as keyof typeof bloodG
 
 ## Project Standards
 
-- 🟢 Edited src/app/modules/Auth/auth.service.ts (32 changes, 4min) — confirmed 3x
-- Fixed null crash in Gender — uses a proper password hashing algorithm — confirmed 4x
-- what-changed in auth.service.ts — confirmed 10x
-- what-changed in auth.service.ts — confirmed 3x
-- what-changed in auth.service.ts — confirmed 3x
-- 🟢 Edited src/app/modules/Auth/auth.service.ts (12 changes, 1min) — confirmed 3x
-- discovery in auth.service.ts — confirmed 3x
-- Added JWT tokens authentication — uses a proper password hashing algorithm — confirmed 4x
+- what-changed in package.json — confirmed 9x
+- Updated schema package — confirmed 4x
+- what-changed in index.ts — confirmed 5x
+- what-changed in server.ts — confirmed 4x
+- Replaced auth User — confirmed 3x
+- what-changed in schema.prisma — confirmed 3x
+- Added session cookies authentication — confirmed 3x
+- Updated schema UserServices — confirmed 4x
 
 ## Known Fixes
 
 - ❌ PrismaClientKnownRequestError, → ✅ problem-fix in index.js
 - ❌ "use strict";var h=Object.defineProperty;var T=Object.getOwnPropertyDescriptor;var M=Object.getOwnPr → ✅ problem-fix in query_compiler_fast_bg.js
 - ❌ import AppError from '../../errors/AppError'; → ✅ problem-fix in organisation.service.ts
+- ❌ 📌 IDE AST Context: Modified symbols likely include [initiateDonation, paymentSuccess, paymentFail,  → ✅ problem-fix in globalErrorHandler.ts
 - ❌ -   } catch (error) { → ✅ Fixed null crash in PORT — externalizes configuration for environment flexibi...
-- ❌ -       donationTimeType: z.nativeEnum(DonationTimeType, { required_error: 'Donation time type is re → ✅ problem-fix in post.validation.ts
 
 ## Recent Decisions
 
