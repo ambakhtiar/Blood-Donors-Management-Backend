@@ -16,22 +16,30 @@ const updateProfileSchema = z.object({
         ...locationSchema,
         email: z.string().email().optional(),
         contactNumber: z.string().optional(),
-        donorInfo: z.object({
+        // Donor specific fields at root for convenience
+        name: z.string().optional(),
+        weight: z.coerce.number().optional(),
+        lastDonationDate: z.coerce.date().optional(),
+        isAvailableForDonation: z.boolean().optional(),
+        // Hospital/Organisation specific fields at root
+        registrationNumber: z.string().optional(),
+        address: z.string().optional(),
+        establishedYear: z.string().optional(),
+
+        donorProfile: z.object({
             name: z.string().optional(),
-            bloodGroup: z.string().optional().transform(val => val ? (bloodGroupMap[val] || val) : val),
-            gender: z.nativeEnum(Gender).optional(),
             weight: z.coerce.number().optional(),
             lastDonationDate: z.coerce.date().optional(),
             isAvailableForDonation: z.boolean().optional(),
             ...locationSchema,
         }).optional(),
-        hospitalInfo: z.object({
+        hospital: z.object({
             name: z.string().optional(),
             registrationNumber: z.string().optional(),
             address: z.string().optional(),
             ...locationSchema,
         }).optional(),
-        organisationInfo: z.object({
+        organisation: z.object({
             name: z.string().optional(),
             registrationNumber: z.string().optional(),
             establishedYear: z.string().optional(),

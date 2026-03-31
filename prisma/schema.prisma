@@ -280,6 +280,7 @@ model DonationHistory {
   receiverOrgId        String?
   receiverOrg          User?      @relation("ReceiverHistory", fields: [receiverOrgId], references: [id])
   donationDate         DateTime
+  donationCount        Int        @default(1)
   weightDuringDonation Float?
   isDeleted            Boolean    @default(false)
   createdAt            DateTime   @default(now())

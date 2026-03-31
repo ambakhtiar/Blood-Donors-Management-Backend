@@ -34,7 +34,7 @@ export interface IUpdateProfilePayload extends ILocationUpdate {
     email?: string;
     contactNumber?: string;
     role?: UserRole;
-    donorInfo?: IDonorUpdate;
-    hospitalInfo?: IHospitalUpdate;
-    organisationInfo?: IOrganisationUpdate;
+  donorProfile?: IDonorUpdate;
+  hospital?: IHospitalUpdate;
+  organisation?: IOrganisationUpdate;
 }

@@ -70,10 +70,16 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
       });
 
       if (bloodDonor) {
+        // Calculate the next donation count
+        const previousDonationsCount = await tx.donationHistory.count({
+          where: { bloodDonorId: bloodDonor.id, isDeleted: false },
+        });
+
         await tx.donationHistory.create({
           data: {
             bloodDonorId: bloodDonor.id,
             donationDate: donationDate,
+            donationCount: previousDonationsCount + 1,
           }
         });
 

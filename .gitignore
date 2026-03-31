@@ -6,9 +6,8 @@ dist
 
 src/generated
 
-# Auto-generated agent rules (personalized per developer)
+# AI / IDE files
 .brainsync
-.brainsync/agent-rules.md
 .agent
 .agent-mem
 .agents
@@ -18,5 +17,6 @@ src/generated
 AGENT.md
 CLAUDE.md
 .windsurfrules
+.cursorrules
 
-.agent-mem/
+.brainsync/agent-rules.md

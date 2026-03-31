@@ -3,6 +3,8 @@ import { UserControllers } from './user.controller';
 import auth from '../../middlewares/auth';
 import { UserRole } from '../../../generated/prisma';
 import { USER_ROLE } from '../auth/auth.constant';
+import validateRequest from '../../middlewares/validateRequest';
+import { UserValidations } from './user.validation';
 
 const router = express.Router();
 
@@ -15,6 +17,7 @@ router.get(
 router.put(
   '/me',
   auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.HOSPITAL, UserRole.ORGANISATION, UserRole.USER),
+  validateRequest(UserValidations.updateProfileSchema),
   UserControllers.updateMyProfile
 );
 

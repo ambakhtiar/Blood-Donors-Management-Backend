@@ -84,11 +84,16 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
       data: { lastDonationDate: new Date() },
     });
 
+    const previousDonationsCount = await tx.donationHistory.count({
+      where: { bloodDonorId: bloodDonor.id, isDeleted: false },
+    });
+
     await tx.donationHistory.create({
       data: {
         bloodDonorId: bloodDonor.id,
         receiverOrgId: hospitalId,
         donationDate: new Date(),
+        donationCount: previousDonationsCount + 1,
         weightDuringDonation: payload.weight,
       },
     });
@@ -162,11 +167,16 @@ const updateRequestStatus = async (
       });
 
       // Automatically create a DonationHistory record
+      const previousDonationsCount = await tx.donationHistory.count({
+        where: { bloodDonorId: bloodDonor.id, isDeleted: false },
+      });
+
       await tx.donationHistory.create({
         data: {
           bloodDonorId: bloodDonor.id,
           receiverOrgId: request.hospitalId,
           donationDate: donationDate,
+          donationCount: previousDonationsCount + 1,
         },
       });
 
