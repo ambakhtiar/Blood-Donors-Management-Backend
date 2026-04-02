@@ -195,7 +195,11 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
     throw new AppError(httpStatus.FORBIDDEN, 'Your account is currently pending approval from an administrator. You will be notified once it is activated.');
   }
 
-  const isPasswordMatched = await bcrypt.compare(password, user.password as string);
+  if (!user.password) {
+    throw new AppError(httpStatus.BAD_REQUEST, 'This account does not have a password set. Please use the forgot password option to create one.');
+  }
+
+  const isPasswordMatched = await bcrypt.compare(password, user.password);
   if (!isPasswordMatched) throw new AppError(httpStatus.UNAUTHORIZED, 'The password you entered is incorrect. Please try again or use "Forgot Password" to reset it.');
 
   const session = await prisma.session.create({
