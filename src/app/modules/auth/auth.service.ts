@@ -22,7 +22,7 @@ const registerUser = async (payload: IRegisterUser) => {
   const { password, role, donorInfo, hospitalInfo, organisationInfo, ...userData } = payload;
 
   if (role === UserRole.ADMIN || role === UserRole.SUPER_ADMIN) {
-    throw new AppError(httpStatus.FORBIDDEN, "You cannot register as an Admin or Super Admin");
+    throw new AppError(httpStatus.FORBIDDEN, "Admin and Super Admin accounts cannot be registered through this endpoint. Please contact the platform administrator.");
   }
 
   const userExists = await prisma.user.findFirst({
@@ -35,7 +35,7 @@ const registerUser = async (payload: IRegisterUser) => {
   });
 
   if (userExists) {
-    throw new AppError(httpStatus.CONFLICT, 'User with this email or contact already exists');
+    throw new AppError(httpStatus.CONFLICT, 'An account with this email address or contact number already exists. Please log in or use a different contact detail.');
   }
 
   const hashedPassword = await bcrypt.hash(password, Number(envVars.BCRYPT_SALT_ROUNDS));
@@ -177,8 +177,8 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
     },
   });
 
-  if (!user) throw new AppError(httpStatus.NOT_FOUND, 'User not found!');
-  if (user.isDeleted) throw new AppError(httpStatus.FORBIDDEN, 'User is deleted');
+  if (!user) throw new AppError(httpStatus.NOT_FOUND, 'No account found with this email or contact number. Please check your credentials or sign up.');
+  if (user.isDeleted) throw new AppError(httpStatus.FORBIDDEN, 'This account no longer exists. Please contact support if you believe this is a mistake.');
 
   if (user.accountStatus === 'BLOCKED') {
     throw new AppError(
@@ -188,15 +188,15 @@ const loginUser = async (payload: ILoginUser, ipAddress: string, device: string)
   }
 
   if (user.accountStatus === 'REJECTED') {
-    throw new AppError(httpStatus.FORBIDDEN, 'Your account request has been rejected.');
+    throw new AppError(httpStatus.FORBIDDEN, 'Your account registration was rejected. Please contact our support team for more information.');
   }
 
   if (user.accountStatus === 'PENDING') {
-    throw new AppError(httpStatus.FORBIDDEN, 'Your account is pending approval.');
+    throw new AppError(httpStatus.FORBIDDEN, 'Your account is currently pending approval from an administrator. You will be notified once it is activated.');
   }
 
   const isPasswordMatched = await bcrypt.compare(password, user.password as string);
-  if (!isPasswordMatched) throw new AppError(httpStatus.UNAUTHORIZED, 'Incorrect password!');
+  if (!isPasswordMatched) throw new AppError(httpStatus.UNAUTHORIZED, 'The password you entered is incorrect. Please try again or use "Forgot Password" to reset it.');
 
   const session = await prisma.session.create({
     data: {
@@ -244,7 +244,7 @@ const refreshToken = async (token: string) => {
   try {
     decodedData = verifyToken(token, envVars.JWT.REFRESH_SECRET as string) as jwt.JwtPayload;
   } catch {
-    throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
+    throw new AppError(httpStatus.UNAUTHORIZED, 'Your session is invalid or has expired. Please log in again to continue.');
   }
 
   const { userId, sessionId } = decodedData;
@@ -254,12 +254,12 @@ const refreshToken = async (token: string) => {
   });
 
   if (!session || !session.isValid || new Date() > session.expiresAt) {
-    throw new AppError(httpStatus.UNAUTHORIZED, 'Session is invalid or expired!');
+    throw new AppError(httpStatus.UNAUTHORIZED, 'Your session has expired. Please log in again to get a new access token.');
   }
 
   const isRefreshTokenMatched = await bcrypt.compare(token, session.refreshToken);
   if (!isRefreshTokenMatched) {
-    throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid refresh token!');
+    throw new AppError(httpStatus.UNAUTHORIZED, 'Your refresh token is invalid or has been tampered with. Please log in again.');
   }
 
   const user = await prisma.user.findUnique({
@@ -270,7 +270,7 @@ const refreshToken = async (token: string) => {
   });
 
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
+    throw new AppError(httpStatus.NOT_FOUND, 'The account associated with this session no longer exists. Please create a new account.');
   }
 
   if (user.accountStatus === 'BLOCKED') {
@@ -309,15 +309,15 @@ const changePassword = async (userData: jwt.JwtPayload, payload: IChangePassword
   });
 
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
+    throw new AppError(httpStatus.NOT_FOUND, 'Your account was not found. Please contact support.');
   }
 
   if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
-    throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
+    throw new AppError(httpStatus.FORBIDDEN, 'Your account is blocked or rejected. You cannot change your password. Please contact support.');
   }
 
   if (!(await bcrypt.compare(payload.oldPassword, user.password as string))) {
-    throw new AppError(httpStatus.FORBIDDEN, 'Password do not match');
+    throw new AppError(httpStatus.FORBIDDEN, 'Your current password is incorrect. Please enter the right password and try again.');
   }
 
   const newHashedPassword = await bcrypt.hash(
@@ -354,11 +354,11 @@ const forgotPassword = async (payload: IForgotPassword) => {
   });
 
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
+    throw new AppError(httpStatus.NOT_FOUND, 'No account found with this email address. Please check the email and try again.');
   }
 
   if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
-    throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
+    throw new AppError(httpStatus.FORBIDDEN, 'Your account is blocked or rejected. Password reset is not available. Please contact our support team.');
   }
 
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -401,11 +401,11 @@ const resetPassword = async (payload: IResetPassword) => {
   });
 
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
+    throw new AppError(httpStatus.NOT_FOUND, 'Account not found. The reset link may be invalid. Please try the forgot password process again.');
   }
 
   if (user.accountStatus === 'BLOCKED' || user.accountStatus === 'REJECTED') {
-    throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked!');
+    throw new AppError(httpStatus.FORBIDDEN, 'Your account is blocked or rejected. You cannot reset your password. Please contact support.');
   }
 
   const verificationToken = await (prisma as any).verificationToken.findUnique({
@@ -413,12 +413,12 @@ const resetPassword = async (payload: IResetPassword) => {
   });
 
   if (!verificationToken || verificationToken.isUsed || new Date() > verificationToken.expiresAt) {
-    throw new AppError(httpStatus.FORBIDDEN, 'Invalid or expired reset token!');
+    throw new AppError(httpStatus.FORBIDDEN, 'Your OTP has expired or has already been used. Please request a new OTP from the forgot password page.');
   }
 
   const isTokenMatched = await bcrypt.compare(payload.token, verificationToken.token);
   if (!isTokenMatched) {
-    throw new AppError(httpStatus.FORBIDDEN, 'Invalid reset token!');
+    throw new AppError(httpStatus.FORBIDDEN, 'The OTP you entered is incorrect. Please double-check the code sent to your email and try again.');
   }
 
   const newHashedPassword = await bcrypt.hash(

@@ -51,7 +51,7 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
       if (existingRequest) {
         throw new AppError(
           httpStatus.BAD_REQUEST,
-          'A pending request already exists for this donor.'
+          'A donation request has already been sent to this donor and is awaiting their response. Please wait for them to accept or decline before sending another.'
         );
       }
 
@@ -136,7 +136,7 @@ const updateRequestStatus = async (
   });
 
   if (!request) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Hospital request not found');
+    throw new AppError(httpStatus.NOT_FOUND, 'Donation request not found. It may have already been processed or the ID is incorrect.');
   }
 
   const bloodDonor = await prisma.bloodDonor.findUnique({
@@ -144,11 +144,11 @@ const updateRequestStatus = async (
   });
 
   if (!bloodDonor || request.bloodDonorId !== bloodDonor.id) {
-    throw new AppError(httpStatus.FORBIDDEN, 'You are not authorized to update this request');
+    throw new AppError(httpStatus.FORBIDDEN, 'You are not authorized to respond to this request. This request was not sent to your donor profile.');
   }
 
   if (request.status !== RequestStatus.PENDING) {
-    throw new AppError(httpStatus.BAD_REQUEST, 'This request has already been processed');
+    throw new AppError(httpStatus.BAD_REQUEST, 'This donation request has already been responded to and cannot be changed again.');
   }
 
   if (payload.status === RequestStatus.ACCEPTED) {

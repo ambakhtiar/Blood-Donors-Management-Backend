@@ -1216,6 +1216,93 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "9. Post Engagement Module",
+			"item": [
+				{
+					"name": "Toggle Like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"postId\": \"post_id_here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts/engagement/like",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								"engagement",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"postId\": \"post_id_here\",\n  \"content\": \"Great initiative!\",\n  \"parentId\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts/engagement/comment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								"engagement",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/posts/engagement/:postId/comments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								"engagement",
+								":postId",
+								"comments"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "post_id_here"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {

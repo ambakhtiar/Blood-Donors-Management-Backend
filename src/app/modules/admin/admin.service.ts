@@ -78,7 +78,7 @@ const changeUserStatus = async (id: string, status: AccountStatus) => {
   });
 
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, "User not found!");
+    throw new AppError(httpStatus.NOT_FOUND, 'User not found. The account may have been deleted or the ID is incorrect.');
   }
 
   const result = await prisma.user.update({
@@ -107,7 +107,7 @@ const updateHospitalStatus = async (id: string, status: AccountStatus) => {
   });
 
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, "Hospital account not found!");
+    throw new AppError(httpStatus.NOT_FOUND, 'Hospital account not found. Please verify the ID is correct.');
   }
 
   return await changeUserStatus(id, status);
@@ -119,7 +119,7 @@ const updateOrganisationStatus = async (id: string, status: AccountStatus) => {
   });
 
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, "Organisation account not found!");
+    throw new AppError(httpStatus.NOT_FOUND, 'Organisation account not found. Please verify the ID is correct.');
   }
 
   return await changeUserStatus(id, status);

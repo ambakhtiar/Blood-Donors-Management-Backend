@@ -19,7 +19,7 @@ const createAdmin = async (payload: any) => {
   });
 
   if (userExists) {
-    throw new AppError(httpStatus.CONFLICT, 'User with this email or contact already exists');
+    throw new AppError(httpStatus.CONFLICT, 'An account with this email address or contact number already exists. Please use different credentials.');
   }
 
   const hashedPassword = await bcrypt.hash(adminPassword, Number(envVars.BCRYPT_SALT_ROUNDS));
@@ -121,7 +121,7 @@ const getSingleAdmin = async (id: string) => {
   });
 
   if (!admin) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Admin not found');
+    throw new AppError(httpStatus.NOT_FOUND, 'Admin account not found. The ID may be incorrect or the account has been deleted.');
   }
 
   return admin;
@@ -136,7 +136,7 @@ const updateAdmin = async (id: string, payload: any) => {
   });
 
   if (!admin) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Admin not found');
+    throw new AppError(httpStatus.NOT_FOUND, 'Admin account not found. The ID may be incorrect or the account has been deleted.');
   }
 
   const result = await prisma.$transaction(async (tx) => {
@@ -152,7 +152,7 @@ const updateAdmin = async (id: string, payload: any) => {
       if (contactNumber !== admin.user.contactNumber) {
         const existing = await tx.user.findUnique({ where: { contactNumber } });
         if (existing) {
-          throw new AppError(httpStatus.CONFLICT, 'Contact number is already in use by another user');
+          throw new AppError(httpStatus.CONFLICT, 'This contact number is already registered to another account. Please use a different contact number.');
         }
       }
 
@@ -184,7 +184,7 @@ const changeAdminAccess = async (id: string, payload: { accountStatus: AccountSt
   });
 
   if (!admin) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Admin not found');
+    throw new AppError(httpStatus.NOT_FOUND, 'Admin account not found. The ID may be incorrect or the account has been deleted.');
   }
 
   await prisma.user.update({
@@ -201,7 +201,7 @@ const deleteAdmin = async (id: string) => {
   });
 
   if (!admin) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Admin not found');
+    throw new AppError(httpStatus.NOT_FOUND, 'Admin account not found. The ID may be incorrect or the account has been deleted.');
   }
 
   await prisma.$transaction(async (tx) => {

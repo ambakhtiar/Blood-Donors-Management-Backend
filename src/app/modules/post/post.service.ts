@@ -228,7 +228,7 @@ const getSinglePost = async (postId: string) => {
   });
 
   if (!result) {
-    throw new AppError(httpStatus.NOT_FOUND, "Post not found");
+    throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
   }
 
   return result;
@@ -241,11 +241,11 @@ const updatePost = async (postId: string, user: JwtPayload, payload: Partial<ICr
     where: { id: postId, isDeleted: false },
   });
 
-  if (!post) throw new AppError(httpStatus.NOT_FOUND, "Post not found");
+  if (!post) throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
 
   // Authorization: Author or Admin
   if (post.authorId !== userId && role !== UserRole.ADMIN && role !== UserRole.SUPER_ADMIN) {
-    throw new AppError(httpStatus.FORBIDDEN, "You do not have permission to update this post");
+    throw new AppError(httpStatus.FORBIDDEN, 'You are not authorized to update this post. Only the author or an admin can make changes.');
   }
 
   return await prisma.post.update({
@@ -261,11 +261,11 @@ const deletePost = async (postId: string, user: JwtPayload) => {
     where: { id: postId, isDeleted: false },
   });
 
-  if (!post) throw new AppError(httpStatus.NOT_FOUND, "Post not found");
+  if (!post) throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
 
   // Authorization: Author or Admin
   if (post.authorId !== userId && role !== UserRole.ADMIN && role !== UserRole.SUPER_ADMIN) {
-    throw new AppError(httpStatus.FORBIDDEN, "You do not have permission to delete this post");
+    throw new AppError(httpStatus.FORBIDDEN, 'You are not authorized to delete this post. Only the author or an admin can delete it.');
   }
 
   return await prisma.post.update({
@@ -281,14 +281,14 @@ const resolvePost = async (postId: string, user: JwtPayload) => {
     where: { id: postId, isDeleted: false },
   });
 
-  if (!post) throw new AppError(httpStatus.NOT_FOUND, "Post not found");
+  if (!post) throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
 
   if (post.type !== PostType.BLOOD_FINDING) {
-    throw new AppError(httpStatus.BAD_REQUEST, "Only Blood Finding posts can be resolved");
+    throw new AppError(httpStatus.BAD_REQUEST, 'Only "Blood Finding" posts can be marked as resolved. This action is not available for this post type.');
   }
 
   if (post.authorId !== userId) {
-    throw new AppError(httpStatus.FORBIDDEN, "Only the author can resolve this post");
+    throw new AppError(httpStatus.FORBIDDEN, 'Only the original author of this post can mark it as resolved.');
   }
 
   return await prisma.post.update({
@@ -301,14 +301,14 @@ const approvePost = async (postId: string, user: JwtPayload) => {
   const { role } = user;
 
   if (role !== UserRole.ADMIN && role !== UserRole.SUPER_ADMIN) {
-    throw new AppError(httpStatus.FORBIDDEN, "Only admins can approve posts");
+    throw new AppError(httpStatus.FORBIDDEN, 'Access denied. You do not have permission to approve posts.');
   }
 
   const post = await prisma.post.findUnique({
     where: { id: postId, isDeleted: false },
   });
 
-  if (!post) throw new AppError(httpStatus.NOT_FOUND, "Post not found");
+  if (!post) throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
 
   return await prisma.post.update({
     where: { id: postId },
@@ -320,7 +320,7 @@ const verifyPost = async (postId: string, user: JwtPayload) => {
   const { role } = user;
 
   if (role !== UserRole.ADMIN && role !== UserRole.SUPER_ADMIN) {
-    throw new AppError(httpStatus.FORBIDDEN, "Only admins can verify posts");
+    throw new AppError(httpStatus.FORBIDDEN, 'Access denied. You do not have permission to verify posts.');
   }
 
   const post = await prisma.post.findUnique({
@@ -328,7 +328,7 @@ const verifyPost = async (postId: string, user: JwtPayload) => {
   });
 
   if (!post) {
-    throw new AppError(httpStatus.NOT_FOUND, "Post not found");
+    throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
   }
 
   return await prisma.post.update({

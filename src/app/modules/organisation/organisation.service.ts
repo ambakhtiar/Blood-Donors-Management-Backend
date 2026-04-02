@@ -21,7 +21,7 @@ const addVolunteer = async (orgId: string, payload: IAddVolunteerPayload) => {
     });
 
     if (existingLink) {
-      throw new AppError(httpStatus.BAD_REQUEST, 'Volunteer is already linked or invited.');
+      throw new AppError(httpStatus.BAD_REQUEST, 'This volunteer is already linked to your organisation or has a pending invitation.');
     }
 
     const newLink = await prisma.organisationVolunteer.create({
@@ -85,13 +85,13 @@ const updateUnregisteredVolunteerDonation = async (
   });
 
   if (!volunteerLink || volunteerLink.isDeleted) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Volunteer link not found for this organisation.');
+    throw new AppError(httpStatus.NOT_FOUND, 'This volunteer is not linked to your organisation. Please verify the donor ID and try again.');
   }
 
   if (volunteerLink.bloodDonor.userId !== null) {
     throw new AppError(
       httpStatus.BAD_REQUEST,
-      'Cannot update donation date for a registered platform user.'
+      'This volunteer is a registered platform user. Their donation dates are updated automatically. Manual updates are only available for offline/unregistered volunteers.'
     );
   }
 

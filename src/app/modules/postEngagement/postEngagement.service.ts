@@ -22,7 +22,7 @@ const toggleLike = async (userId: string, payload: IToggleLikePayload) => {
   });
 
   if (!post) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Post not found!');
+    throw new AppError(httpStatus.NOT_FOUND, 'The post you are trying to like was not found. It may have been deleted.');
   }
 
   const existingLike = await prisma.like.findUnique({
@@ -60,7 +60,7 @@ const addComment = async (userId: string, payload: ICommentPayload) => {
   });
 
   if (!post) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Post not found!');
+    throw new AppError(httpStatus.NOT_FOUND, 'The post you are trying to comment on was not found. It may have been deleted.');
   }
 
   if (parentId) {
@@ -68,7 +68,7 @@ const addComment = async (userId: string, payload: ICommentPayload) => {
       where: { id: parentId },
     });
     if (!parentComment) {
-      throw new AppError(httpStatus.NOT_FOUND, 'Parent comment not found!');
+      throw new AppError(httpStatus.NOT_FOUND, 'The comment you are trying to reply to was not found. It may have been deleted.');
     }
   }
 
@@ -95,7 +95,7 @@ const getPostComments = async (postId: string) => {
   });
 
   if (!post) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Post not found!');
+    throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
   }
 
   const comments = await prisma.comment.findMany({

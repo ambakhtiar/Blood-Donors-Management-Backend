@@ -1,53 +1,68 @@
 import { z } from 'zod';
-import { Gender } from '../../../generated/prisma';
-import { bloodGroupMap } from '../../helpers/bloodGroup';
 
 const locationSchema = {
-    division: z.string().optional(),
-    district: z.string().optional(),
-    upazila: z.string().optional(),
-    area: z.string().optional(),
-    latitude: z.coerce.number().optional(),
-    longitude: z.coerce.number().optional(),
+  division: z.string().trim().optional(),
+  district: z.string().trim().optional(),
+  upazila: z.string().trim().optional(),
+  area: z.string().trim().optional(),
+  latitude: z.coerce.number().optional(),
+  longitude: z.coerce.number().optional(),
 };
 
 const updateProfileSchema = z.object({
-    body: z.object({
-        ...locationSchema,
-        email: z.string().email().optional(),
-        contactNumber: z.string().optional(),
-        // Donor specific fields at root for convenience
-        name: z.string().optional(),
-        weight: z.coerce.number().optional(),
+  body: z.object({
+    ...locationSchema,
+    email: z
+      .string()
+      .email('Please provide a valid email address')
+      .trim()
+      .optional(),
+    contactNumber: z
+      .string()
+      .regex(
+        /^\+8801[3-9]\d{8}$/,
+        'Please provide a valid Bangladeshi phone number starting with +8801'
+      )
+      .trim()
+      .optional(),
+    // Donor specific fields at root for convenience
+    name: z.string().trim().min(3, 'Name must be at least 3 characters long').max(100, 'Name cannot exceed 100 characters').optional(),
+    weight: z.coerce.number().min(40, 'Weight must be at least 40 kg').max(200, 'Weight seems out of range').optional(),
+    lastDonationDate: z.coerce.date().optional(),
+    isAvailableForDonation: z.boolean().optional(),
+    // Hospital/Organisation specific fields at root
+    registrationNumber: z.string().trim().optional(),
+    address: z.string().trim().optional(),
+    establishedYear: z.string().trim().optional(),
+
+    donorProfile: z
+      .object({
+        name: z.string().trim().min(3, 'Name must be at least 3 characters long').max(100, 'Name cannot exceed 100 characters').optional(),
+        weight: z.coerce.number().min(40, 'Weight must be at least 40 kg').max(200, 'Weight seems out of range').optional(),
         lastDonationDate: z.coerce.date().optional(),
         isAvailableForDonation: z.boolean().optional(),
-        // Hospital/Organisation specific fields at root
-        registrationNumber: z.string().optional(),
-        address: z.string().optional(),
-        establishedYear: z.string().optional(),
-
-        donorProfile: z.object({
-            name: z.string().optional(),
-            weight: z.coerce.number().optional(),
-            lastDonationDate: z.coerce.date().optional(),
-            isAvailableForDonation: z.boolean().optional(),
-            ...locationSchema,
-        }).optional(),
-        hospital: z.object({
-            name: z.string().optional(),
-            registrationNumber: z.string().optional(),
-            address: z.string().optional(),
-            ...locationSchema,
-        }).optional(),
-        organisation: z.object({
-            name: z.string().optional(),
-            registrationNumber: z.string().optional(),
-            establishedYear: z.string().optional(),
-            ...locationSchema,
-        }).optional(),
-    }),
+        ...locationSchema,
+      })
+      .optional(),
+    hospital: z
+      .object({
+        name: z.string().trim().min(3, 'Hospital name must be at least 3 characters long').max(150, 'Hospital name cannot exceed 150 characters').optional(),
+        registrationNumber: z.string().trim().optional(),
+        address: z.string().trim().optional(),
+        ...locationSchema,
+      })
+      .optional(),
+    organisation: z
+      .object({
+        name: z.string().trim().min(3, 'Organisation name must be at least 3 characters long').max(150, 'Organisation name cannot exceed 150 characters').optional(),
+        registrationNumber: z.string().trim().optional(),
+        establishedYear: z.string().trim().optional(),
+        ...locationSchema,
+      })
+      .optional(),
+  }),
 });
 
 export const UserValidations = {
-    updateProfileSchema,
+  updateProfileSchema,
 };

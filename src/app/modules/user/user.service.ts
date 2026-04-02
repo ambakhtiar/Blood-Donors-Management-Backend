@@ -21,7 +21,7 @@ const getMyProfile = async (userId: string, role: string) => {
   });
 
   if (!result) {
-    throw new AppError(httpStatus.NOT_FOUND, "User profile not found!");
+    throw new AppError(httpStatus.NOT_FOUND, 'Your profile could not be found. Please contact support.');
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -173,7 +173,7 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
   });
 
   if (!finalResult) {
-    throw new AppError(httpStatus.NOT_FOUND, "Updated User profile not found!");
+    throw new AppError(httpStatus.NOT_FOUND, 'Profile was updated but could not be retrieved. Please refresh and try again.');
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -248,7 +248,7 @@ const getDonationHistory = async (user: JwtPayload) => {
   });
 
   if (!bloodDonor) {
-    throw new AppError(httpStatus.NOT_FOUND, "Blood donor profile not found");
+    throw new AppError(httpStatus.NOT_FOUND, 'Donor profile not found. Please complete your donor profile setup to view donation history.');
   }
 
   const result = await prisma.donationHistory.findMany({

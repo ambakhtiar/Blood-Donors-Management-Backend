@@ -12,71 +12,91 @@ const auth = (...requiredRoles: UserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
 
-    // missing token
+    // ── Token Missing ─────────────────────────────────────────
     if (!authHeader) {
-      throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        'Access denied. Please log in to continue.',
+      );
     }
 
     const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
 
     if (!token) {
-      throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid token format!');
+      throw new AppError(
+        httpStatus.UNAUTHORIZED,
+        'Invalid authorization format. Please use: Bearer <token>',
+      );
     }
 
+    // ── Token Verification ────────────────────────────────────
     let decoded;
     try {
       decoded = verifyToken(
         token,
         envVars.JWT.SECRET as string,
       ) as jwt.JwtPayload;
-    } catch (err: any) {
-      if (err.name === 'TokenExpiredError') {
+    } catch (err: unknown) {
+      const error = err as { name?: string; expiredAt?: Date };
+      if (error?.name === 'TokenExpiredError') {
         const decodedExpired = jwt.decode(token) as jwt.JwtPayload;
-        console.error('[AUTH ERROR] Token expired.');
-        console.error('Current Server Time:', new Date().toISOString());
-        console.error('Token Expired At:', new Date((decodedExpired.exp as number) * 1000).toISOString());
-        console.error('Diff (seconds):', Math.floor(Date.now() / 1000) - (decodedExpired.exp as number));
+        console.error('[AUTH] Token expired at:', new Date((decodedExpired?.exp as number) * 1000).toISOString());
       }
+      // Re-throw so globalErrorHandler handles it with proper message
       throw err;
     }
 
-
     const { role, userId } = decoded;
 
-    // check user existence
+    // ── User Existence Check ──────────────────────────────────
     const user = await prisma.user.findUnique({
-      where: {
-        id: userId,
-      },
+      where: { id: userId },
     });
 
     if (!user) {
-      throw new AppError(httpStatus.NOT_FOUND, 'This user is not found!');
-    }
-
-    // check if user is deleted
-    if (user.isDeleted) {
-      throw new AppError(httpStatus.FORBIDDEN, 'This user is deleted!');
-    }
-
-    // check if user is blocked
-    if (user.accountStatus === 'BLOCKED') {
-      throw new AppError(httpStatus.FORBIDDEN, 'This account is blocked. Unauthorized access.');
-    }
-
-    if (user.accountStatus === 'REJECTED') {
-      throw new AppError(httpStatus.FORBIDDEN, 'This account is rejected.');
-    }
-
-    // role checking
-    if (requiredRoles && requiredRoles.length > 0 && !requiredRoles.includes(role as UserRole)) {
       throw new AppError(
-        httpStatus.UNAUTHORIZED,
-        'You have no access to this route',
+        httpStatus.NOT_FOUND,
+        'Account not found. The user associated with this token no longer exists.',
       );
     }
 
-    // attaching user payload to request
+    // ── Account Status Checks ─────────────────────────────────
+    if (user.isDeleted) {
+      throw new AppError(
+        httpStatus.FORBIDDEN,
+        'This account has been permanently deleted. Please contact support if you believe this is a mistake.',
+      );
+    }
+
+    if (user.accountStatus === 'BLOCKED') {
+      throw new AppError(
+        httpStatus.FORBIDDEN,
+        'Your account has been blocked due to a policy violation. Please contact our support team for assistance.',
+      );
+    }
+
+    if (user.accountStatus === 'REJECTED') {
+      throw new AppError(
+        httpStatus.FORBIDDEN,
+        'Your account registration was rejected. Please contact support for more information.',
+      );
+    }
+
+    if (user.accountStatus === 'PENDING') {
+      throw new AppError(
+        httpStatus.FORBIDDEN,
+        'Your account is pending approval. You will be notified once it is activated.',
+      );
+    }
+
+    // ── Role Authorization Check ──────────────────────────────
+    if (requiredRoles && requiredRoles.length > 0 && !requiredRoles.includes(role as UserRole)) {
+      throw new AppError(
+        httpStatus.FORBIDDEN,
+        'Access denied. You do not have permission to perform this action.',
+      );
+    }
+
     req.user = decoded;
     next();
   });
