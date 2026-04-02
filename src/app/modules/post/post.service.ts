@@ -100,16 +100,13 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
     });
   }
 
-  // Determine if post starts as verified (Helping posts start unverified)
-  const isVerified = payload.type !== PostType.HELPING;
-
   const result = await prisma.post.create({
     data: {
       ...payload,
       donationTime: payload.donationTime ? new Date(payload.donationTime) : undefined,
       authorId: userId,
       isApproved: true,
-      isVerified
+      isVerified: false
     },
   });
 
@@ -151,7 +148,7 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
   const take = Number(limit);
 
   const bloodGroup = bg ? (bloodGroupMap[bg as keyof typeof bloodGroupMap] || (bg as BloodGroup)) : undefined;
-  
+
   const andConditions: Prisma.PostWhereInput[] = [];
 
   if (searchTerm) {
@@ -186,6 +183,12 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
           bloodDonor: true,
           hospital: true,
           organisation: true
+        }
+      },
+      _count: {
+        select: {
+          likes: true,
+          comments: true,
         }
       }
     },
@@ -223,6 +226,95 @@ const getSinglePost = async (postId: string) => {
           hospital: true,
           organisation: true
         }
+      },
+      _count: {
+        select: {
+          likes: true,
+          comments: true,
+        }
+      },
+      likes: {
+        select: {
+          id: true,
+          createdAt: true,
+          user: {
+            select: {
+              id: true,
+              email: true,
+              contactNumber: true,
+              role: true,
+              donorProfile: { select: { name: true } },
+              hospital: { select: { name: true } },
+              organisation: { select: { name: true } },
+              admin: { select: { name: true } },
+            }
+          }
+        },
+        orderBy: { createdAt: 'desc' }
+      },
+      comments: {
+        where: { parentId: null },
+        select: {
+          id: true,
+          content: true,
+          createdAt: true,
+          updatedAt: true,
+          user: {
+            select: {
+              id: true,
+              email: true,
+              contactNumber: true,
+              role: true,
+              donorProfile: { select: { name: true } },
+              hospital: { select: { name: true } },
+              organisation: { select: { name: true } },
+              admin: { select: { name: true } },
+            }
+          },
+          replies: {
+            select: {
+              id: true,
+              content: true,
+              createdAt: true,
+              updatedAt: true,
+              user: {
+                select: {
+                  id: true,
+                  email: true,
+                  contactNumber: true,
+                  role: true,
+                  donorProfile: { select: { name: true } },
+                  hospital: { select: { name: true } },
+                  organisation: { select: { name: true } },
+                  admin: { select: { name: true } },
+                }
+              },
+              replies: {
+                select: {
+                  id: true,
+                  content: true,
+                  createdAt: true,
+                  updatedAt: true,
+                  user: {
+                    select: {
+                      id: true,
+                      email: true,
+                      contactNumber: true,
+                      role: true,
+                      donorProfile: { select: { name: true } },
+                      hospital: { select: { name: true } },
+                      organisation: { select: { name: true } },
+                      admin: { select: { name: true } },
+                    }
+                  },
+                },
+                orderBy: { createdAt: 'asc' }
+              },
+            },
+            orderBy: { createdAt: 'asc' }
+          },
+        },
+        orderBy: { createdAt: 'desc' }
       }
     }
   });
