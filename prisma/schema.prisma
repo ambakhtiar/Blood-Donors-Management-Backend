@@ -104,6 +104,8 @@ model User {
   hospitalRecords      HospitalDonationRecord[] @relation("HospitalRecords")
   notifications        Notification[]
   payments             Payment[]
+  likes                Like[]
+  comments             Comment[]
 }
 
 // ================= 1:1 Role Models =================
@@ -271,6 +273,8 @@ model Post {
   updatedAt        DateTime @updatedAt
   
   payments         Payment[] 
+  likes            Like[]
+  comments         Comment[]
 }
 
 model DonationHistory {
@@ -342,4 +346,32 @@ model Payment {
   user          User     @relation(fields: [userId], references: [id])
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+}
+
+// ================= Engagement Models =================
+model Like {
+  id        String   @id @default(uuid())
+  userId    String
+  postId    String
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
+model Comment {
+  id        String    @id @default(uuid())
+  content   String
+  userId    String
+  postId    String
+  parentId  String?
+  
+  user      User      @relation(fields: [userId], references: [id])
+  post      Post      @relation(fields: [postId], references: [id])
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies")
+  
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }

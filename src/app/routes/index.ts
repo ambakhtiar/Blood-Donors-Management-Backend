@@ -7,6 +7,7 @@ import { OrganisationRoutes } from '../modules/organisation/organisation.route';
 import { AdminRoutes } from '../modules/admin/admin.route';
 import { PaymentRoutes } from '../modules/payment/payment.route';
 import { ManageAdminRoutes } from '../modules/manageAdmin/manageAdmin.route';
+import { PostEngagementRoutes } from '../modules/postEngagement/postEngagement.route';
 
 const router = Router();
 
@@ -19,6 +20,7 @@ const moduleRoutes = [
     { path: '/admin', route: AdminRoutes },
     { path: '/payments', route: PaymentRoutes },
     { path: '/manage-admins', route: ManageAdminRoutes },
+    { path: '/posts/engagement', route: PostEngagementRoutes },
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
