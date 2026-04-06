@@ -85,6 +85,13 @@ export const createPostSchema = z.object({
       donationTime: z.coerce.date({
         message: 'Please specify a valid date for when you are available to donate',
       }),
+      contactNumber: z
+        .string({ message: 'A contact number is required' })
+        .regex(
+          /^\+8801[3-9]\d{8}$/,
+          'Please provide a valid Bangladeshi phone number starting with +8801'
+        )
+        .trim(),
       location: z.string().trim().optional(),
       division: z.string().trim().optional(),
       district: z.string().trim().optional(),

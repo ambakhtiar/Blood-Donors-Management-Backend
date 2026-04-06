@@ -2,376 +2,376 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+    provider = "prisma-client-js"
+    output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+    provider = "postgresql"
 }
 
 // ================= Enums =================
 enum UserRole {
-  SUPER_ADMIN
-  ADMIN
-  HOSPITAL
-  ORGANISATION
-  USER
+    SUPER_ADMIN
+    ADMIN
+    HOSPITAL
+    ORGANISATION
+    USER
 }
 
 enum AccountStatus {
-  PENDING
-  ACTIVE
-  BLOCKED
-  REJECTED
+    PENDING
+    ACTIVE
+    BLOCKED
+    REJECTED
 }
 
 enum Gender {
-  MALE
-  FEMALE
+    MALE
+    FEMALE
 }
 
 enum PostType {
-  BLOOD_FINDING
-  BLOOD_DONATION
-  HELPING
+    BLOOD_FINDING
+    BLOOD_DONATION
+    HELPING
 }
 
 enum RequestStatus {
-  PENDING
-  ACCEPTED
-  REJECTED
-  CANCELLED
+    PENDING
+    ACCEPTED
+    REJECTED
+    CANCELLED
 }
 
 enum PaymentStatus {
-  PENDING
-  SUCCESS
-  FAILED
-  CANCELLED
+    PENDING
+    SUCCESS
+    FAILED
+    CANCELLED
 }
 
 enum BloodGroup {
-  A_POSITIVE
-  A_NEGATIVE
-  B_POSITIVE
-  B_NEGATIVE
-  AB_POSITIVE
-  AB_NEGATIVE
-  O_POSITIVE
-  O_NEGATIVE
+    A_POSITIVE
+    A_NEGATIVE
+    B_POSITIVE
+    B_NEGATIVE
+    AB_POSITIVE
+    AB_NEGATIVE
+    O_POSITIVE
+    O_NEGATIVE
 }
 
 enum DonationTimeType {
-  EMERGENCY
-  FIXED
-  FLEXIBLE
+    EMERGENCY
+    FIXED
+    FLEXIBLE
 }
 
 // ================= Core User Model =================
 model User {
-  id            String        @id @default(uuid(7))
-  email         String?       @unique
-  contactNumber String        @unique
-  password      String?
-  role          UserRole      @default(USER)
-  accountStatus AccountStatus @default(PENDING)
-  needsPasswordChange Boolean @default(false)
+    id                  String        @id @default(uuid(7))
+    email               String?       @unique
+    contactNumber       String        @unique
+    password            String?
+    role                UserRole      @default(USER)
+    accountStatus       AccountStatus @default(PENDING)
+    needsPasswordChange Boolean       @default(false)
 
-  // Shared Location Details
-  division String?
-  district String?
-  upazila  String?
+    // Shared Location Details
+    division String
+    district String
+    upazila  String
 
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  // 1:1 Relations
-  superAdmin   SuperAdmin?
-  admin        Admin?
-  hospital     Hospital?
-  organisation Organisation?
-  donorProfile DonorProfile? // For regular users/donors
+    // 1:1 Relations
+    superAdmin   SuperAdmin?
+    admin        Admin?
+    hospital     Hospital?
+    organisation Organisation?
+    donorProfile DonorProfile? // For regular users/donors
 
-  // Other Relations
-  sessions             Session[]
-  posts                Post[]
-  bloodDonor           BloodDonor?
-  donationsAsReceiver  DonationHistory[]        @relation("ReceiverHistory")
-  requestedByHospitals HospitalRequest[]        @relation("HospitalRequests")
-  organisationManaged  OrganisationVolunteer[]  @relation("OrganisationVolunteers")
-  hospitalRecords      HospitalDonationRecord[] @relation("HospitalRecords")
-  notifications        Notification[]
-  payments             Payment[]
-  likes                Like[]
-  comments             Comment[]
+    // Other Relations
+    sessions             Session[]
+    posts                Post[]
+    bloodDonor           BloodDonor?
+    donationsAsReceiver  DonationHistory[]        @relation("ReceiverHistory")
+    requestedByHospitals HospitalRequest[]        @relation("HospitalRequests")
+    organisationManaged  OrganisationVolunteer[]  @relation("OrganisationVolunteers")
+    hospitalRecords      HospitalDonationRecord[] @relation("HospitalRecords")
+    notifications        Notification[]
+    payments             Payment[]
+    likes                Like[]
+    comments             Comment[]
 }
 
 // ================= 1:1 Role Models =================
 model SuperAdmin {
-  id        String   @id @default(uuid(7))
-  name      String
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    id        String   @id @default(uuid(7))
+    name      String
+    userId    String   @unique
+    user      User     @relation(fields: [userId], references: [id])
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Admin {
-  id        String   @id @default(uuid(7))
-  name      String
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    id        String   @id @default(uuid(7))
+    name      String
+    userId    String   @unique
+    user      User     @relation(fields: [userId], references: [id])
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Hospital {
-  id                 String   @id @default(uuid(7))
-  name               String
-  registrationNumber String?  @unique
-  address            String?
-  userId             String   @unique
-  user               User     @relation(fields: [userId], references: [id])
-  isDeleted          Boolean  @default(false)
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+    id                 String   @id @default(uuid(7))
+    name               String
+    registrationNumber String?  @unique
+    address            String?
+    userId             String   @unique
+    user               User     @relation(fields: [userId], references: [id])
+    isDeleted          Boolean  @default(false)
+    createdAt          DateTime @default(now())
+    updatedAt          DateTime @updatedAt
 }
 
 model Organisation {
-  id                 String   @id @default(uuid(7))
-  name               String
-  registrationNumber String?  @unique
-  establishedYear    String?
-  userId             String   @unique
-  user               User     @relation(fields: [userId], references: [id])
-  isDeleted          Boolean  @default(false)
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+    id                 String   @id @default(uuid(7))
+    name               String
+    registrationNumber String?  @unique
+    establishedYear    String?
+    userId             String   @unique
+    user               User     @relation(fields: [userId], references: [id])
+    isDeleted          Boolean  @default(false)
+    createdAt          DateTime @default(now())
+    updatedAt          DateTime @updatedAt
 }
 
 model DonorProfile {
-  id                     String    @id @default(uuid(7))
-  name                   String
-  bloodGroup             BloodGroup
-  gender                 Gender
-  weight                 Float?
-  lastDonationDate       DateTime?
-  isAvailableForDonation Boolean   @default(true)
+    id                     String     @id @default(uuid(7))
+    name                   String
+    bloodGroup             BloodGroup
+    gender                 Gender
+    weight                 Float?
+    lastDonationDate       DateTime?
+    isAvailableForDonation Boolean    @default(true)
 
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+    userId String @unique
+    user   User   @relation(fields: [userId], references: [id])
 
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 // ================= Auth & Sessions =================
 model Session {
-  id     String @id @default(uuid(7))
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+    id     String @id @default(uuid(7))
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
 
-  // Storing email & contact snapshot
-  email         String?
-  contactNumber String
+    // Storing email & contact snapshot
+    email         String?
+    contactNumber String
 
-  refreshToken String  @unique
-  device       String?
-  ipAddress    String?
+    refreshToken String  @unique
+    device       String?
+    ipAddress    String?
 
-  isValid   Boolean  @default(true)
-  expiresAt DateTime
-  createdAt DateTime @default(now())
+    isValid   Boolean  @default(true)
+    expiresAt DateTime
+    createdAt DateTime @default(now())
 }
 
 // ================= Business Logic Models =================
 model BloodDonor {
-  id               String    @id @default(uuid(7))
-  name             String
-  contactNumber    String    @unique
-  bloodGroup       BloodGroup
-  gender           Gender
-  lastDonationDate DateTime?
-  isAvailable      Boolean   @default(true)
-  division         String
-  district         String
-  upazila          String
-  area             String?
-  latitude         Float?
-  longitude        Float?
+    id               String     @id @default(uuid(7))
+    name             String
+    contactNumber    String     @unique
+    bloodGroup       BloodGroup
+    gender           Gender
+    lastDonationDate DateTime?
+    isAvailable      Boolean    @default(true)
+    division         String
+    district         String
+    upazila          String
+    area             String?
+    latitude         Float?
+    longitude        Float?
 
-  userId String? @unique
-  user   User?   @relation(fields: [userId], references: [id])
+    userId String? @unique
+    user   User?   @relation(fields: [userId], references: [id])
 
-  donations        DonationHistory[]
-  hospitalRequests HospitalRequest[]
-  hospitalRecords  HospitalDonationRecord[]
-  organisationVols OrganisationVolunteer[]
+    donations        DonationHistory[]
+    hospitalRequests HospitalRequest[]
+    hospitalRecords  HospitalDonationRecord[]
+    organisationVols OrganisationVolunteer[]
 
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model HospitalDonationRecord {
-  id           String     @id @default(uuid(7))
-  hospitalId   String
-  hospital     User       @relation("HospitalRecords", fields: [hospitalId], references: [id])
-  bloodDonorId String
-  bloodDonor   BloodDonor @relation(fields: [bloodDonorId], references: [id])
-  donationDate DateTime   @default(now())
-  weight       Float?
-  isDeleted    Boolean    @default(false)
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+    id           String     @id @default(uuid(7))
+    hospitalId   String
+    hospital     User       @relation("HospitalRecords", fields: [hospitalId], references: [id])
+    bloodDonorId String
+    bloodDonor   BloodDonor @relation(fields: [bloodDonorId], references: [id])
+    donationDate DateTime   @default(now())
+    weight       Float?
+    isDeleted    Boolean    @default(false)
+    createdAt    DateTime   @default(now())
+    updatedAt    DateTime   @updatedAt
 }
 
 model Post {
-  id               String   @id @default(uuid(7))
-  authorId         String
-  author           User     @relation(fields: [authorId], references: [id])
-  type             PostType
-  
-  title            String?  
-  content          String?   
-  images           String[] @default([])
-  contactNumber    String?
-  
-  // Location Data
-  location         String?  
-  division         String?
-  district         String?
-  upazila          String?
-  area             String?
-  latitude         Float?   
-  longitude        Float?   
+    id       String   @id @default(uuid(7))
+    authorId String
+    author   User     @relation(fields: [authorId], references: [id])
+    type     PostType
 
-  // BLOOD_FINDING & BLOOD_DONATION specific
-  bloodGroup       BloodGroup?
-  bloodBags        Int?
-  reason           String?
-  donationTimeType DonationTimeType?
-  donationTime     DateTime?
-  hemoglobin       Float?   
+    title         String?
+    content       String?
+    images        String[] @default([])
+    contactNumber String?
 
-  // HELPING specific
-  medicalIssues    String?
-  targetAmount     Float?
-  raisedAmount     Float?   @default(0)
-  bkashNagadNumber String?
+    // Location Data
+    location  String?
+    division  String?
+    district  String?
+    upazila   String?
+    area      String?
+    latitude  Float?
+    longitude Float?
 
-  isVerified       Boolean  @default(false) 
-  isApproved       Boolean  @default(true) 
-  isResolved       Boolean  @default(false)
-  isDeleted        Boolean  @default(false)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  
-  payments         Payment[] 
-  likes            Like[]
-  comments         Comment[]
+    // BLOOD_FINDING & BLOOD_DONATION specific
+    bloodGroup       BloodGroup?
+    bloodBags        Int?
+    reason           String?
+    donationTimeType DonationTimeType?
+    donationTime     DateTime?
+    hemoglobin       Float?
+
+    // HELPING specific
+    medicalIssues    String?
+    targetAmount     Float?
+    raisedAmount     Float?  @default(0)
+    bkashNagadNumber String?
+
+    isVerified Boolean  @default(false)
+    isApproved Boolean  @default(true)
+    isResolved Boolean  @default(false)
+    isDeleted  Boolean  @default(false)
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+
+    payments Payment[]
+    likes    Like[]
+    comments Comment[]
 }
 
 model DonationHistory {
-  id                   String     @id @default(uuid(7))
-  bloodDonorId         String
-  bloodDonor           BloodDonor @relation(fields: [bloodDonorId], references: [id])
-  receiverOrgId        String?
-  receiverOrg          User?      @relation("ReceiverHistory", fields: [receiverOrgId], references: [id])
-  donationDate         DateTime
-  donationCount        Int        @default(1)
-  weightDuringDonation Float?
-  isDeleted            Boolean    @default(false)
-  createdAt            DateTime   @default(now())
+    id                   String     @id @default(uuid(7))
+    bloodDonorId         String
+    bloodDonor           BloodDonor @relation(fields: [bloodDonorId], references: [id])
+    receiverOrgId        String?
+    receiverOrg          User?      @relation("ReceiverHistory", fields: [receiverOrgId], references: [id])
+    donationDate         DateTime
+    donationCount        Int        @default(1)
+    weightDuringDonation Float?
+    isDeleted            Boolean    @default(false)
+    createdAt            DateTime   @default(now())
 }
 
 model OrganisationVolunteer {
-  id             String        @id @default(uuid(7))
-  organisationId String
-  organisation   User          @relation("OrganisationVolunteers", fields: [organisationId], references: [id])
-  bloodDonorId   String
-  bloodDonor     BloodDonor    @relation(fields: [bloodDonorId], references: [id])
-  status         RequestStatus @default(PENDING)
-  isDeleted      Boolean       @default(false)
-  createdAt      DateTime      @default(now())
+    id             String        @id @default(uuid(7))
+    organisationId String
+    organisation   User          @relation("OrganisationVolunteers", fields: [organisationId], references: [id])
+    bloodDonorId   String
+    bloodDonor     BloodDonor    @relation(fields: [bloodDonorId], references: [id])
+    status         RequestStatus @default(PENDING)
+    isDeleted      Boolean       @default(false)
+    createdAt      DateTime      @default(now())
 
-  @@unique([organisationId, bloodDonorId])
+    @@unique([organisationId, bloodDonorId])
 }
 
 model HospitalRequest {
-  id           String        @id @default(uuid(7))
-  hospitalId   String
-  hospital     User          @relation("HospitalRequests", fields: [hospitalId], references: [id])
-  bloodDonorId String
-  bloodDonor   BloodDonor    @relation(fields: [bloodDonorId], references: [id])
-  status       RequestStatus @default(PENDING)
-  isDeleted    Boolean       @default(false)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+    id           String        @id @default(uuid(7))
+    hospitalId   String
+    hospital     User          @relation("HospitalRequests", fields: [hospitalId], references: [id])
+    bloodDonorId String
+    bloodDonor   BloodDonor    @relation(fields: [bloodDonorId], references: [id])
+    status       RequestStatus @default(PENDING)
+    isDeleted    Boolean       @default(false)
+    createdAt    DateTime      @default(now())
+    updatedAt    DateTime      @updatedAt
 }
 
 model Notification {
-  id        String   @id @default(uuid(7))
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  title     String
-  message   String
-  type      String
-  isRead    Boolean  @default(false)
-  createdAt DateTime @default(now())
+    id        String   @id @default(uuid(7))
+    userId    String
+    user      User     @relation(fields: [userId], references: [id])
+    title     String
+    message   String
+    type      String
+    isRead    Boolean  @default(false)
+    createdAt DateTime @default(now())
 }
 
 model VerificationToken {
-  id        String   @id @default(uuid(7))
-  email     String   @unique
-  token     String   @unique
-  expiresAt DateTime
-  isUsed    Boolean  @default(false)
-  createdAt DateTime @default(now())
+    id        String   @id @default(uuid(7))
+    email     String   @unique
+    token     String   @unique
+    expiresAt DateTime
+    isUsed    Boolean  @default(false)
+    createdAt DateTime @default(now())
 }
 
 model Payment {
-  id            String   @id @default(uuid())
-  amount        Float
-  status        PaymentStatus @default(PENDING)
-  transactionId String   @unique
-  postId        String
-  post          Post     @relation(fields: [postId], references: [id])
-  userId        String
-  user          User     @relation(fields: [userId], references: [id])
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+    id            String        @id @default(uuid())
+    amount        Float
+    status        PaymentStatus @default(PENDING)
+    transactionId String        @unique
+    postId        String
+    post          Post          @relation(fields: [postId], references: [id])
+    userId        String
+    user          User          @relation(fields: [userId], references: [id])
+    createdAt     DateTime      @default(now())
+    updatedAt     DateTime      @updatedAt
 }
 
 // ================= Engagement Models =================
 model Like {
-  id        String   @id @default(uuid())
-  userId    String
-  postId    String
-  user      User     @relation(fields: [userId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
-  createdAt DateTime @default(now())
+    id        String   @id @default(uuid())
+    userId    String
+    postId    String
+    user      User     @relation(fields: [userId], references: [id])
+    post      Post     @relation(fields: [postId], references: [id])
+    createdAt DateTime @default(now())
 
-  @@unique([userId, postId])
+    @@unique([userId, postId])
 }
 
 model Comment {
-  id        String    @id @default(uuid())
-  content   String
-  userId    String
-  postId    String
-  parentId  String?
-  
-  user      User      @relation(fields: [userId], references: [id])
-  post      Post      @relation(fields: [postId], references: [id])
-  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
-  replies   Comment[] @relation("CommentReplies")
-  
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+    id       String  @id @default(uuid())
+    content  String
+    userId   String
+    postId   String
+    parentId String?
+
+    user    User      @relation(fields: [userId], references: [id])
+    post    Post      @relation(fields: [postId], references: [id])
+    parent  Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+    replies Comment[] @relation("CommentReplies")
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }

@@ -358,7 +358,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"type\": \"BLOOD_DONATION\",\n  \"title\": \"Weekend Blood Drive\",\n  \"bloodGroup\": \"O+\",\n  \"donationTime\": \"2026-04-05T09:00:00Z\",\n  \"location\": \"Banani Community Center\",\n  \"content\": \"Join our community blood donation camp.\"\n}",
+							"raw": "{\n  \"type\": \"BLOOD_DONATION\",\n  \"title\": \"Weekend Blood Drive\",\n  \"bloodGroup\": \"O+\",\n  \"donationTime\": \"2026-04-05T09:00:00Z\",\n  \"contactNumber\": \"+8801700000001\",\n  \"location\": \"Banani Community Center\",\n  \"content\": \"Join our community blood donation camp.\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -10,54 +10,68 @@ import { bloodGroupMap } from '../../helpers/bloodGroup';
 const createPost = async (user: JwtPayload, payload: ICreatePost) => {
   const { userId, role } = user;
 
-  // Fetch donor profile to get blood group if missing and for eligibility checks
-  const donorProfile = await prisma.donorProfile.findUnique({
-    where: { userId },
+  // Convert blood group to enum if provided
+  if (payload.bloodGroup) {
+    payload.bloodGroup = (bloodGroupMap[payload.bloodGroup as keyof typeof bloodGroupMap] || (payload.bloodGroup as BloodGroup));
+  }
+
+  // Fetch author info for later use (checking if user-role creator didn't provide blood group)
+  const authorSnapshot = await prisma.user.findUnique({
+    where: { id: userId },
+    include: { donorProfile: true, bloodDonor: true }
   });
 
-  const bloodDonor = await prisma.bloodDonor.findUnique({
-    where: { userId },
-  });
-
-  // If role is USER, we can auto-populate bloodGroup if it's missing
   if (role === UserRole.USER && !payload.bloodGroup) {
-    const profileBloodGroup = donorProfile?.bloodGroup || bloodDonor?.bloodGroup;
+    const profileBloodGroup = authorSnapshot?.donorProfile?.bloodGroup || authorSnapshot?.bloodDonor?.bloodGroup;
     if (!profileBloodGroup) {
       throw new AppError(httpStatus.BAD_REQUEST, "Blood group is required. Please complete your donor profile.");
     }
     payload.bloodGroup = profileBloodGroup;
-  } else if (payload.bloodGroup) {
-    // Convert blood group to enum 
-    payload.bloodGroup = bloodGroupMap[payload.bloodGroup as keyof typeof bloodGroupMap] || (payload.bloodGroup as BloodGroup);
   }
 
   // Rule Engine for Blood Donation Posts 
   if (payload.type === PostType.BLOOD_DONATION) {
-    if (!bloodDonor && !donorProfile) {
-      throw new AppError(httpStatus.NOT_FOUND, "Donor profile not found. Please complete your profile to donate blood.");
+    const donorContactNumber = payload.contactNumber;
+    if (!donorContactNumber) {
+      throw new AppError(httpStatus.BAD_REQUEST, "Donor contact number is required for donation posts.");
     }
 
-    const currentDonor = bloodDonor || { lastDonationDate: donorProfile?.lastDonationDate, gender: donorProfile?.gender };
+    // Identify the Donor
+    const donorUser = await prisma.user.findUnique({
+      where: { contactNumber: donorContactNumber },
+      include: { donorProfile: true, bloodDonor: true }
+    });
+
+    const donorRecord = donorUser?.bloodDonor || await prisma.bloodDonor.findUnique({
+      where: { contactNumber: donorContactNumber }
+    });
+
+    const donorProfile = donorUser?.donorProfile;
 
     const donationDate = payload.donationTime ? new Date(payload.donationTime) : new Date();
 
-    // Check eligibility based on last donation
-    if (currentDonor.lastDonationDate) {
-      const lastDonation = new Date(currentDonor.lastDonationDate);
-      const timeDiff = donationDate.getTime() - lastDonation.getTime();
-      const monthDiff = timeDiff / (1000 * 60 * 60 * 24 * 30);
+    // Check Eligibility
+    if (donorRecord || donorProfile) {
+      const lastDonationDate = donorRecord?.lastDonationDate || donorProfile?.lastDonationDate;
+      const gender = donorRecord?.gender || donorProfile?.gender;
 
-      const requiredMonths = currentDonor.gender === 'MALE' ? 2 : 3;
+      if (lastDonationDate) {
+        const lastDonation = new Date(lastDonationDate);
+        const timeDiff = donationDate.getTime() - lastDonation.getTime();
+        const monthDiff = timeDiff / (1000 * 60 * 60 * 24 * 30);
 
-      if (monthDiff < requiredMonths && monthDiff >= 0) {
-        throw new AppError(
-          httpStatus.FORBIDDEN,
-          `You are not eligible to donate blood yet. Required waiting time: ${requiredMonths} months.`
-        );
+        const requiredMonths = gender === 'FEMALE' ? 3 : 2;
+
+        if (monthDiff < requiredMonths && monthDiff >= 0) {
+          throw new AppError(
+            httpStatus.FORBIDDEN,
+            `Donor is not eligible yet. Required waiting time: ${requiredMonths} months for ${gender?.toLowerCase() || 'this'} donor.`
+          );
+        }
       }
     }
 
-    // Transaction to create post, history and update donor
+    // Transaction for Post Creation and Donor Tracking
     return await prisma.$transaction(async (tx) => {
       const post = await tx.post.create({
         data: {
@@ -69,31 +83,76 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
         },
       });
 
-      if (bloodDonor) {
-        // Calculate the next donation count
-        const previousDonationsCount = await tx.donationHistory.count({
-          where: { bloodDonorId: bloodDonor.id, isDeleted: false },
-        });
+      let finalBloodDonorId: string;
 
-        await tx.donationHistory.create({
-          data: {
-            bloodDonorId: bloodDonor.id,
-            donationDate: donationDate,
-            donationCount: previousDonationsCount + 1,
-          }
-        });
-
+      if (donorRecord) {
+        finalBloodDonorId = donorRecord.id;
+        // Update BloodDonor
         await tx.bloodDonor.update({
-          where: { id: bloodDonor.id },
+          where: { id: donorRecord.id },
           data: { lastDonationDate: donationDate },
         });
+      } else {
+        // Create new BloodDonor if not exists
+        const newBloodDonor = await tx.bloodDonor.create({
+          data: {
+            name: donorUser?.donorProfile?.name || payload.title || "Unknown Donor",
+            contactNumber: donorContactNumber,
+            bloodGroup: payload.bloodGroup as BloodGroup,
+            gender: 'MALE', // Defaulting to MALE if unknown, can be updated later
+            lastDonationDate: donationDate,
+            division: payload.division || authorSnapshot?.division || "",
+            district: payload.district || authorSnapshot?.district || "",
+            upazila: payload.upazila || authorSnapshot?.upazila || "",
+            userId: donorUser?.id
+          }
+        });
+        finalBloodDonorId = newBloodDonor.id;
       }
 
+      // Add Donation History
+      const previousDonationsCount = await tx.donationHistory.count({
+        where: { bloodDonorId: finalBloodDonorId, isDeleted: false },
+      });
+
+      await tx.donationHistory.create({
+        data: {
+          bloodDonorId: finalBloodDonorId,
+          donationDate: donationDate,
+          donationCount: previousDonationsCount + 1,
+          receiverOrgId: role === UserRole.HOSPITAL || role === UserRole.ORGANISATION ? userId : undefined
+        }
+      });
+
+      // Update Donor Profile if User exists
       if (donorProfile) {
         await tx.donorProfile.update({
           where: { id: donorProfile.id },
           data: { lastDonationDate: donationDate },
         });
+      }
+
+      // Notification for Donor User
+      if (donorUser && donorUser.id !== userId) {
+        const title = "Heroic Contribution Recorded!";
+        const message = "You are a hero! Your blood donation has been recorded. Thank you for your life-saving contribution. Stay healthy and keep living for others.";
+        
+        await tx.notification.create({
+          data: {
+            userId: donorUser.id,
+            title,
+            message,
+            type: "DONATION_RECORDED"
+          }
+        });
+
+        if (donorUser.email) {
+          try {
+            await sendNotificationEmail(donorUser.email, title, message);
+          } catch (error) {
+            console.error("Failed to send donor notification email", error);
+          }
+        }
       }
 
       return post;
@@ -180,6 +239,7 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
           email: true,
           contactNumber: true,
           role: true,
+          donorProfile: true,
           bloodDonor: true,
           hospital: true,
           organisation: true
@@ -222,6 +282,7 @@ const getSinglePost = async (postId: string) => {
           email: true,
           contactNumber: true,
           role: true,
+          donorProfile: true,
           bloodDonor: true,
           hospital: true,
           organisation: true

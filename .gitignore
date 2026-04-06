@@ -5,6 +5,7 @@ node_modules
 dist
 
 src/generated
+api
 
 # AI / IDE files
 .brainsync
@@ -24,3 +25,9 @@ CLAUDE.md
 .agent-mem/
 
 .vercel
+
+# Auto-generated AI agent exclusions
+.clineRules
+.agent/
+.gemini/
+.cline/

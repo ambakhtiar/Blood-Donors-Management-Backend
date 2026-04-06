@@ -41,7 +41,7 @@ const registerUser = async (payload: IRegisterUser) => {
   const hashedPassword = await bcrypt.hash(password, Number(envVars.BCRYPT_SALT_ROUNDS));
 
   let accountStatus: AccountStatus = AccountStatus.ACTIVE;
-  let locationData: Partial<ILocationInfo> = {};
+  let locationData: ILocationInfo;
 
   if (role === UserRole.HOSPITAL && hospitalInfo) {
     accountStatus = AccountStatus.PENDING;
@@ -54,6 +54,11 @@ const registerUser = async (payload: IRegisterUser) => {
   } else if (role === UserRole.USER && donorInfo) {
     const { division, district, upazila } = donorInfo;
     locationData = { division, district, upazila };
+  } else {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      `Additional information is required for registering as a ${role.toLowerCase()}.`
+    );
   }
 
   const newUserData = {
@@ -369,7 +374,7 @@ const forgotPassword = async (payload: IForgotPassword) => {
   const hashedToken = await bcrypt.hash(otp, Number(envVars.BCRYPT_SALT_ROUNDS));
   const expiresAt = new Date(Date.now() + 3 * 60 * 1000);
 
-  await (prisma as any).verificationToken.upsert({
+  await prisma.verificationToken.upsert({
     where: { email: user.email as string },
     update: { token: hashedToken, expiresAt, isUsed: false },
     create: { email: user.email as string, token: hashedToken, expiresAt },
@@ -412,7 +417,7 @@ const resetPassword = async (payload: IResetPassword) => {
     throw new AppError(httpStatus.FORBIDDEN, 'Your account is blocked or rejected. You cannot reset your password. Please contact support.');
   }
 
-  const verificationToken = await (prisma as any).verificationToken.findUnique({
+  const verificationToken = await prisma.verificationToken.findUnique({
     where: { email: user.email as string },
   });
 
@@ -436,18 +441,45 @@ const resetPassword = async (payload: IResetPassword) => {
       data: { password: newHashedPassword },
     });
 
-    await (tx as any).verificationToken.update({
+    await tx.verificationToken.update({
       where: { email: user.email as string },
       data: { isUsed: true },
     });
   });
 };
 
+const logoutUser = async (token: string) => {
+  if (!token) return null;
+
+  let decodedData;
+  try {
+    decodedData = verifyToken(token, envVars.JWT.REFRESH_SECRET as string) as jwt.JwtPayload;
+  } catch {
+    return null;
+  }
+
+  const { sessionId } = decodedData;
+
+  const session = await prisma.session.findUnique({
+    where: { id: sessionId },
+  });
+
+  if (session) {
+    await prisma.session.update({
+      where: { id: sessionId },
+      data: { isValid: false },
+    });
+  }
+
+  return null;
+};
+
 export const AuthServices = {
   registerUser,
   loginUser,
+  logoutUser,
   refreshToken,
   changePassword,
   forgotPassword,
   resetPassword,
-};
+}; 
