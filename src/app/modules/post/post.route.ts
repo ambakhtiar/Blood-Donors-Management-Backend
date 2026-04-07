@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import validateRequest from '../../middlewares/validateRequest';
 import { createPostSchema, updatePostSchema } from './post.validation';
-import auth from '../../middlewares/auth';
+import auth, { AuthMiddleware } from '../../middlewares/auth';
 import { USER_ROLE } from '../auth/auth.constant';
 import { PostControllers } from './post.controller';
 
@@ -14,8 +14,8 @@ router.post(
   PostControllers.createPost
 );
 
-router.get('/', PostControllers.getAllPosts);
-router.get('/:id', PostControllers.getSinglePost);
+router.get('/', AuthMiddleware.authOptional(), PostControllers.getAllPosts);
+router.get('/:id', AuthMiddleware.authOptional(), PostControllers.getSinglePost);
 
 router.patch(
   '/:id',

@@ -20,7 +20,7 @@ const getAllPosts = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, ['searchTerm', 'type', 'bloodGroup', 'division', 'district', 'upazila']) as IPostFilters;
   const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']) as IPaginationOptions;
 
-  const result = await PostServices.getAllPosts(filters, options);
+  const result = await PostServices.getAllPosts(filters, options, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -32,7 +32,7 @@ const getAllPosts = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getSinglePost = catchAsync(async (req: Request, res: Response) => {
-  const result = await PostServices.getSinglePost(req.params.id as string);
+  const result = await PostServices.getSinglePost(req.params.id as string, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

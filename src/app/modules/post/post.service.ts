@@ -199,7 +199,8 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
 };
 
 
-const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) => {
+const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions, user?: JwtPayload) => {
+  const userId = user?.userId;
   const { searchTerm, type, bloodGroup: bg, division, district, upazila } = filters;
   const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc' } = options;
 
@@ -250,7 +251,11 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
           likes: true,
           comments: true,
         }
-      }
+      },
+      likes: userId ? {
+        where: { userId },
+        select: { userId: true }
+      } : false
     },
     skip,
     take,
@@ -259,17 +264,26 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions) =
 
   const total = await prisma.post.count({ where: whereConditions });
 
+  const postsWithLikedStatus = result.map((post: any) => {
+    const { likes, ...postData } = post;
+    return {
+      ...postData,
+      hasLiked: !!(likes && likes.length > 0)
+    };
+  });
+
   return {
     meta: {
       page,
       limit,
       total,
     },
-    data: result,
+    data: postsWithLikedStatus,
   };
 };
 
-const getSinglePost = async (postId: string) => {
+const getSinglePost = async (postId: string, user?: JwtPayload) => {
+  const userId = user?.userId;
   const result = await prisma.post.findUnique({
     where: {
       id: postId,
@@ -293,25 +307,6 @@ const getSinglePost = async (postId: string) => {
           likes: true,
           comments: true,
         }
-      },
-      likes: {
-        select: {
-          id: true,
-          createdAt: true,
-          user: {
-            select: {
-              id: true,
-              email: true,
-              contactNumber: true,
-              role: true,
-              donorProfile: { select: { name: true } },
-              hospital: { select: { name: true } },
-              organisation: { select: { name: true } },
-              admin: { select: { name: true } },
-            }
-          }
-        },
-        orderBy: { createdAt: 'desc' }
       },
       comments: {
         where: { parentId: null },
@@ -376,6 +371,12 @@ const getSinglePost = async (postId: string) => {
           },
         },
         orderBy: { createdAt: 'desc' }
+      },
+      likes: userId ? {
+        where: { userId },
+        select: { userId: true }
+      } : {
+        take: 0 // If no user, we don't need to check specific liked status here as we have the count and list below
       }
     }
   });
@@ -384,7 +385,40 @@ const getSinglePost = async (postId: string) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
   }
 
-  return result;
+  const { likes, ...postData } = result as any;
+  const hasLiked = !!(likes && likes.length > 0);
+
+  // Fetch full likes list if needed (already in the query above, but we need to keep a separate logic for the list)
+  const fullResult = await prisma.post.findUnique({
+    where: { id: postId },
+    include: {
+      likes: {
+        select: {
+          id: true,
+          createdAt: true,
+          user: {
+            select: {
+              id: true,
+              email: true,
+              contactNumber: true,
+              role: true,
+              donorProfile: { select: { name: true } },
+              hospital: { select: { name: true } },
+              organisation: { select: { name: true } },
+              admin: { select: { name: true } },
+            }
+          }
+        },
+        orderBy: { createdAt: 'desc' }
+      }
+    }
+  });
+
+  return {
+    ...postData,
+    hasLiked,
+    likes: fullResult?.likes || []
+  };
 };
 
 const updatePost = async (postId: string, user: JwtPayload, payload: Partial<ICreatePost>) => {

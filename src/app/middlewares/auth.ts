@@ -102,4 +102,44 @@ const auth = (...requiredRoles: UserRole[]) => {
   });
 };
 
+const authOptional = () => {
+  return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      return next();
+    }
+
+    const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
+
+    if (!token) {
+      return next();
+    }
+
+    try {
+      const decoded = verifyToken(
+        token,
+        envVars.JWT.SECRET as string,
+      ) as jwt.JwtPayload;
+
+      const user = await prisma.user.findUnique({
+        where: { id: decoded.userId },
+      });
+
+      if (user && !user.isDeleted && user.accountStatus === 'ACTIVE') {
+        req.user = decoded;
+      }
+    } catch (error) {
+      // Ignore token errors for optional auth
+    }
+
+    next();
+  });
+};
+
+export const AuthMiddleware = {
+  auth,
+  authOptional
+};
+
 export default auth;
