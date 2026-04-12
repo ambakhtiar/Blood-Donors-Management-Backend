@@ -8,44 +8,45 @@ import { PostControllers } from './post.controller';
 const router = Router();
 
 router.post(
-  '/',
-  auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL),
-  validateRequest(createPostSchema),
-  PostControllers.createPost
+    '/',
+    auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL),
+    validateRequest(createPostSchema),
+    PostControllers.createPost
 );
 
 router.get('/', AuthMiddleware.authOptional(), PostControllers.getAllPosts);
+router.get('/user/:userId', AuthMiddleware.authOptional(), PostControllers.getPostsByUserId);
 router.get('/:id', AuthMiddleware.authOptional(), PostControllers.getSinglePost);
 
 router.patch(
-  '/:id',
-  auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
-  validateRequest(updatePostSchema),
-  PostControllers.updatePost
+    '/:id',
+    auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    validateRequest(updatePostSchema),
+    PostControllers.updatePost
 );
 
 router.delete(
-  '/:id',
-  auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
-  PostControllers.deletePost
+    '/:id',
+    auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    PostControllers.deletePost
 );
 
 router.patch(
-  '/:id/resolve',
-  auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL),
-  PostControllers.resolvePost
+    '/:id/resolve',
+    auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL),
+    PostControllers.resolvePost
 );
 
 router.patch(
-  '/:id/approve',
-  auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
-  PostControllers.approvePost
+    '/:id/approve',
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    PostControllers.approvePost
 );
 
 router.patch(
-  '/:id/verify',
-  auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
-  PostControllers.verifyPost
+    '/:id/verify',
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    PostControllers.verifyPost
 );
 
 export const PostRoutes = router;

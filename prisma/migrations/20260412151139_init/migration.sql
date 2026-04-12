@@ -29,11 +29,12 @@ CREATE TABLE "User" (
     "contactNumber" TEXT NOT NULL,
     "password" TEXT,
     "role" "UserRole" NOT NULL DEFAULT 'USER',
+    "profilePictureUrl" TEXT,
     "accountStatus" "AccountStatus" NOT NULL DEFAULT 'PENDING',
     "needsPasswordChange" BOOLEAN NOT NULL DEFAULT false,
-    "division" TEXT,
-    "district" TEXT,
-    "upazila" TEXT,
+    "division" TEXT NOT NULL,
+    "district" TEXT NOT NULL,
+    "upazila" TEXT NOT NULL,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -202,8 +203,10 @@ CREATE TABLE "Post" (
 -- CreateTable
 CREATE TABLE "DonationHistory" (
     "id" TEXT NOT NULL,
+    "userId" TEXT,
     "bloodDonorId" TEXT NOT NULL,
     "receiverOrgId" TEXT,
+    "postId" TEXT,
     "donationDate" TIMESTAMP(3) NOT NULL,
     "donationCount" INTEGER NOT NULL DEFAULT 1,
     "weightDuringDonation" DOUBLE PRECISION,
@@ -337,6 +340,12 @@ CREATE UNIQUE INDEX "BloodDonor_contactNumber_key" ON "BloodDonor"("contactNumbe
 CREATE UNIQUE INDEX "BloodDonor_userId_key" ON "BloodDonor"("userId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "DonationHistory_userId_key" ON "DonationHistory"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "DonationHistory_postId_key" ON "DonationHistory"("postId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "OrganisationVolunteer_organisationId_bloodDonorId_key" ON "OrganisationVolunteer"("organisationId", "bloodDonorId");
 
 -- CreateIndex
@@ -382,10 +391,16 @@ ALTER TABLE "HospitalDonationRecord" ADD CONSTRAINT "HospitalDonationRecord_bloo
 ALTER TABLE "Post" ADD CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "DonationHistory" ADD CONSTRAINT "DonationHistory_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "DonationHistory" ADD CONSTRAINT "DonationHistory_bloodDonorId_fkey" FOREIGN KEY ("bloodDonorId") REFERENCES "BloodDonor"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "DonationHistory" ADD CONSTRAINT "DonationHistory_receiverOrgId_fkey" FOREIGN KEY ("receiverOrgId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DonationHistory" ADD CONSTRAINT "DonationHistory_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "OrganisationVolunteer" ADD CONSTRAINT "OrganisationVolunteer_organisationId_fkey" FOREIGN KEY ("organisationId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

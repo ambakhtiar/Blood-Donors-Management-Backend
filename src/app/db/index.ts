@@ -29,6 +29,9 @@ const seedSuperAdmin = async () => {
                     password: hashedPassword,
                     role: superUser.role,
                     accountStatus: superUser.accountStatus,
+                    division: "Dhaka",
+                    district: "Dhaka",
+                    upazila: "Dhanmondi",
                 },
             });
 

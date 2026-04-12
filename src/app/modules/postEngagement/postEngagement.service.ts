@@ -7,6 +7,7 @@ const userSelect = {
   id: true,
   email: true,
   contactNumber: true,
+  profilePictureUrl: true,
   donorProfile: { select: { name: true } },
   admin: { select: { name: true } },
   superAdmin: { select: { name: true } },

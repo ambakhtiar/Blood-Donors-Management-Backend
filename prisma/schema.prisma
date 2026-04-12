@@ -75,6 +75,7 @@ model User {
     contactNumber       String        @unique
     password            String?
     role                UserRole      @default(USER)
+    profilePictureUrl   String?
     accountStatus       AccountStatus @default(PENDING)
     needsPasswordChange Boolean       @default(false)
 
@@ -106,6 +107,7 @@ model User {
     payments             Payment[]
     likes                Like[]
     comments             Comment[]
+    donationHistory      DonationHistory?
 }
 
 // ================= 1:1 Role Models =================
@@ -198,9 +200,9 @@ model BloodDonor {
     gender           Gender
     lastDonationDate DateTime?
     isAvailable      Boolean    @default(true)
-    division         String
-    district         String
-    upazila          String
+    division         String?
+    district         String?
+    upazila          String?
     area             String?
     latitude         Float?
     longitude        Float?
@@ -275,14 +277,20 @@ model Post {
     payments Payment[]
     likes    Like[]
     comments Comment[]
+
+    donationHistories DonationHistory?
 }
 
 model DonationHistory {
     id                   String     @id @default(uuid(7))
+    userId               String?    @unique
+    user                 User?      @relation(fields: [userId], references: [id])
     bloodDonorId         String
     bloodDonor           BloodDonor @relation(fields: [bloodDonorId], references: [id])
     receiverOrgId        String?
     receiverOrg          User?      @relation("ReceiverHistory", fields: [receiverOrgId], references: [id])
+    postId               String?    @unique
+    post                 Post?      @relation(fields: [postId], references: [id])
     donationDate         DateTime
     donationCount        Int        @default(1)
     weightDuringDonation Float?

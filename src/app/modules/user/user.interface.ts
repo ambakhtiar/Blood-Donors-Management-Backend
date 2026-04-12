@@ -31,10 +31,11 @@ export interface IOrganisationUpdate extends ILocationUpdate {
 }
 
 export interface IUpdateProfilePayload extends ILocationUpdate {
-    email?: string;
-    contactNumber?: string;
-    role?: UserRole;
-  donorProfile?: IDonorUpdate;
-  hospital?: IHospitalUpdate;
-  organisation?: IOrganisationUpdate;
+        email?: string;
+        contactNumber?: string;
+        role?: UserRole;
+        profilePictureUrl?: string;
+        donorProfile?: IDonorUpdate;
+        hospital?: IHospitalUpdate;
+        organisation?: IOrganisationUpdate;
 }

@@ -72,6 +72,7 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
 
             const bloodGroup = donorRecord?.bloodGroup || donorProfile?.bloodGroup;
             if (bloodGroup && bloodGroup !== payload.bloodGroup) {
+                // console.log(donorRecord, donorProfile);
                 throw new AppError(
                     httpStatus.BAD_REQUEST,
                     `Provided blood group (${payload.bloodGroup}) does not match our records (${bloodGroup}). Please verify the blood group information.`
@@ -102,19 +103,21 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
                 });
             } else {
                 // Create new BloodDonor if not exists
-                const newBloodDonor = await tx.bloodDonor.create({
-                    data: {
-                        name: donorUser?.donorProfile?.name || payload.title || "Unknown Donor",
-                        contactNumber: donorContactNumber,
-                        bloodGroup: payload.bloodGroup as BloodGroup,
-                        gender: 'MALE', // Defaulting to MALE if unknown, can be updated later
-                        lastDonationDate: donationDate,
-                        division: payload.division || authorSnapshot?.division || "",
-                        district: payload.district || authorSnapshot?.district || "",
-                        upazila: payload.upazila || authorSnapshot?.upazila || "",
-                        userId: donorUser?.id
-                    }
-                });
+                const bloodDonorData: any = {
+                    name: donorUser?.donorProfile?.name || payload.title || "Unknown Donor",
+                    contactNumber: donorContactNumber,
+                    bloodGroup: payload.bloodGroup as BloodGroup,
+                    gender: authorSnapshot?.donorProfile?.gender || payload.gender || "MALE",
+                    isAvailable: true,
+                    lastDonationDate: donationDate,
+                    division: payload.division || authorSnapshot?.division || "Unknown",
+                    district: payload.district || authorSnapshot?.district || "Unknown",
+                    upazila: payload.upazila || authorSnapshot?.upazila || "Unknown",
+                };
+                if (donorUser) {
+                    bloodDonorData.userId = donorUser.id;
+                }
+                const newBloodDonor = await tx.bloodDonor.create({ data: bloodDonorData });
                 finalBloodDonorId = newBloodDonor.id;
             }
 
@@ -128,7 +131,9 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
                     bloodDonorId: finalBloodDonorId,
                     donationDate: donationDate,
                     donationCount: previousDonationsCount + 1,
-                    receiverOrgId: role === UserRole.HOSPITAL || role === UserRole.ORGANISATION ? userId : undefined
+                    userId: role === UserRole.USER ? userId : undefined,
+                    receiverOrgId: role === UserRole.HOSPITAL || role === UserRole.ORGANISATION ? userId : undefined,
+                    postId: post.id
                 }
             });
 
@@ -184,7 +189,6 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
                 bloodGroup: payload.bloodGroup,
                 division: payload.division,
                 district: payload.district,
-                upazila: payload.upazila,
                 isAvailable: true,
             },
             include: {
@@ -248,6 +252,7 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions, u
                     email: true,
                     contactNumber: true,
                     role: true,
+                    profilePictureUrl: true,
                     donorProfile: true,
                     bloodDonor: true,
                     hospital: true,
@@ -290,6 +295,57 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions, u
     };
 };
 
+// Get all posts by a specific userId
+const getPostsByUserId = async (userId: string, options: IPaginationOptions = {}) => {
+    const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc' } = options;
+    const skip = (Number(page) - 1) * Number(limit);
+    const take = Number(limit);
+
+    const whereConditions: Prisma.PostWhereInput = {
+        authorId: userId,
+        isDeleted: false,
+    };
+
+    const result = await prisma.post.findMany({
+        where: whereConditions,
+        include: {
+            author: {
+                select: {
+                    id: true,
+                    email: true,
+                    contactNumber: true,
+                    role: true,
+                    profilePictureUrl: true,
+                    donorProfile: true,
+                    bloodDonor: true,
+                    hospital: true,
+                    organisation: true
+                }
+            },
+            _count: {
+                select: {
+                    likes: true,
+                    comments: true,
+                }
+            },
+        },
+        skip,
+        take,
+        orderBy: { [sortBy]: sortOrder },
+    });
+
+    const total = await prisma.post.count({ where: whereConditions });
+
+    return {
+        meta: {
+            page,
+            limit,
+            total,
+        },
+        data: result,
+    };
+};
+
 const getSinglePost = async (postId: string, user?: JwtPayload) => {
     const userId = user?.userId;
     const query = {
@@ -304,6 +360,7 @@ const getSinglePost = async (postId: string, user?: JwtPayload) => {
                     email: true,
                     contactNumber: true,
                     role: true,
+                    profilePictureUrl: true,
                     donorProfile: true,
                     bloodDonor: true,
                     hospital: true,
@@ -329,6 +386,7 @@ const getSinglePost = async (postId: string, user?: JwtPayload) => {
                             email: true,
                             contactNumber: true,
                             role: true,
+                            profilePictureUrl: true,
                             donorProfile: { select: { name: true } },
                             hospital: { select: { name: true } },
                             organisation: { select: { name: true } },
@@ -347,6 +405,7 @@ const getSinglePost = async (postId: string, user?: JwtPayload) => {
                                     email: true,
                                     contactNumber: true,
                                     role: true,
+                                    profilePictureUrl: true,
                                     donorProfile: { select: { name: true } },
                                     hospital: { select: { name: true } },
                                     organisation: { select: { name: true } },
@@ -365,6 +424,7 @@ const getSinglePost = async (postId: string, user?: JwtPayload) => {
                                             email: true,
                                             contactNumber: true,
                                             role: true,
+                                            profilePictureUrl: true,
                                             donorProfile: { select: { name: true } },
                                             hospital: { select: { name: true } },
                                             organisation: { select: { name: true } },
@@ -412,6 +472,7 @@ const getSinglePost = async (postId: string, user?: JwtPayload) => {
                             email: true,
                             contactNumber: true,
                             role: true,
+                            profilePictureUrl: true,
                             donorProfile: { select: { name: true } },
                             hospital: { select: { name: true } },
                             organisation: { select: { name: true } },
@@ -543,4 +604,5 @@ export const PostServices = {
     resolvePost,
     approvePost,
     verifyPost,
+    getPostsByUserId,
 };

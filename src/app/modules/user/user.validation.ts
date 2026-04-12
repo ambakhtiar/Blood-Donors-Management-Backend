@@ -25,6 +25,7 @@ const updateProfileSchema = z.object({
       )
       .trim()
       .optional(),
+    profilePictureUrl: z.string().url('Please provide a valid URL for the profile picture').optional(),
     // Donor specific fields at root for convenience
     name: z.string().trim().min(3, 'Name must be at least 3 characters long').max(100, 'Name cannot exceed 100 characters').optional(),
     weight: z.coerce.number().min(40, 'Weight must be at least 40 kg').max(200, 'Weight seems out of range').optional(),
