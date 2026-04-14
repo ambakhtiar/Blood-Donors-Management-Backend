@@ -160,6 +160,7 @@ model DonorProfile {
     name                   String
     bloodGroup             BloodGroup
     gender                 Gender
+    dob                    DateTime?
     weight                 Float?
     lastDonationDate       DateTime?
     isAvailableForDonation Boolean    @default(true)

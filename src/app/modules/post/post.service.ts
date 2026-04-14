@@ -114,7 +114,8 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
                     district: payload.district || authorSnapshot?.district || "Unknown",
                     upazila: payload.upazila || authorSnapshot?.upazila || "Unknown",
                 };
-                if (donorUser) {
+                // Only set userId if donorUser exists
+                if (donorUser && donorUser.id) {
                     bloodDonorData.userId = donorUser.id;
                 }
                 const newBloodDonor = await tx.bloodDonor.create({ data: bloodDonorData });

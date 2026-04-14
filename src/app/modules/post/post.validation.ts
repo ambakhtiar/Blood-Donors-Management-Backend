@@ -169,7 +169,6 @@ export const updatePostSchema = z.object({
         area: z.string().trim().optional(),
         latitude: z.coerce.number().optional(),
         longitude: z.coerce.number().optional(),
-        bloodGroup: z.string().transform((val) => bloodGroupMap[val as keyof typeof bloodGroupMap] || val).optional(),
         bloodBags: z.coerce.number().int().min(1).max(50).optional(),
         reason: z.string().trim().min(5).max(1000).optional(),
         donationTimeType: z.nativeEnum(DonationTimeType).optional(),

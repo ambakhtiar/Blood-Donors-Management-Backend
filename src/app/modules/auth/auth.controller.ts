@@ -27,6 +27,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
     res.cookie('refreshToken', refreshToken, {
         secure: envVars.NODE_ENV === 'production',
         httpOnly: true,
+        sameSite: envVars.NODE_ENV === 'production' ? 'none' : 'lax',
     });
 
     sendResponse(res, {
@@ -93,6 +94,7 @@ const logoutUser = catchAsync(async (req: Request, res: Response) => {
     res.clearCookie('refreshToken', {
         secure: envVars.NODE_ENV === 'production',
         httpOnly: true,
+        sameSite: envVars.NODE_ENV === 'production' ? 'none' : 'lax',
     });
 
     sendResponse(res, {

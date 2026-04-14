@@ -2,7 +2,7 @@ import httpStatus from "http-status";
 import { prisma } from "../../lib/prisma";
 import AppError from "../../errors/AppError";
 import { IUpdateProfilePayload } from "./user.interface";
-import { Prisma, UserRole, BloodGroup } from "../../../generated/prisma";
+import { Prisma, UserRole, BloodGroup, Gender } from "../../../generated/prisma";
 import { bloodGroupMap } from "../../helpers/bloodGroup";
 import { JwtPayload } from "jsonwebtoken";
 
@@ -194,16 +194,13 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
 const getDonorList = async (filters: Record<string, unknown>) => {
     const { bloodGroup: bg, division, district, upazila, searchTerm } = filters;
 
-    const andConditions = [];
+    const andConditions: Prisma.BloodDonorWhereInput[] = [];
 
     if (searchTerm) {
-        const searchBg = bloodGroupMap[searchTerm as keyof typeof bloodGroupMap];
         andConditions.push({
             OR: [
-                { email: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
+                { name: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
                 { contactNumber: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } },
-                { donorProfile: { name: { contains: searchTerm as string, mode: Prisma.QueryMode.insensitive } } },
-                ...(searchBg ? [{ donorProfile: { bloodGroup: { equals: searchBg } } }] : []),
             ]
         });
     }
@@ -211,7 +208,7 @@ const getDonorList = async (filters: Record<string, unknown>) => {
     if (bg) {
         const bloodGroupValue = bg ? (bloodGroupMap[bg as keyof typeof bloodGroupMap] || (bg as BloodGroup)) : undefined;
         andConditions.push({
-            donorProfile: { bloodGroup: { equals: bloodGroupValue as BloodGroup } }
+            bloodGroup: { equals: bloodGroupValue as BloodGroup }
         });
     }
 
@@ -227,27 +224,55 @@ const getDonorList = async (filters: Record<string, unknown>) => {
         andConditions.push({ upazila: { equals: upazila as string } });
     }
 
-    // Always filter for USER role and not deleted
+    // Always filter for available donors and not deleted
     andConditions.push({
-        role: UserRole.USER,
         isDeleted: false,
-        donorProfile: {
-            isAvailableForDonation: true,
-            isDeleted: false
-        }
+        isAvailable: true,
     });
 
-    const whereConditions: Prisma.UserWhereInput = { AND: andConditions };
+    // Gender-based donation gap check (Eligibility)
+    const now = new Date();
+    const maleThreshold = new Date();
+    maleThreshold.setMonth(now.getMonth() - 2);
 
-    const result = await prisma.user.findMany({
+    const femaleThreshold = new Date();
+    femaleThreshold.setMonth(now.getMonth() - 3);
+
+    andConditions.push({
+        OR: [
+            {
+                gender: Gender.MALE,
+                OR: [
+                    { lastDonationDate: { lte: maleThreshold } },
+                    { lastDonationDate: null },
+                ],
+            },
+            {
+                gender: Gender.FEMALE,
+                OR: [
+                    { lastDonationDate: { lte: femaleThreshold } },
+                    { lastDonationDate: null },
+                ],
+            },
+        ],
+    });
+
+    const whereConditions: Prisma.BloodDonorWhereInput = { AND: andConditions };
+
+    const result = await prisma.bloodDonor.findMany({
         where: whereConditions,
         include: {
-            donorProfile: true
+            user: {
+                select: {
+                    id: true,
+                    role: true,
+                    profilePictureUrl: true,
+                }
+            }
         }
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    return result.map(({ password: _password, ...userWithoutPassword }) => userWithoutPassword);
+    return result;
 };
 
 const getDonationHistory = async (user: JwtPayload) => {

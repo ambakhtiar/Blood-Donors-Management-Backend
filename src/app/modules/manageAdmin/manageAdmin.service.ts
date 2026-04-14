@@ -32,7 +32,10 @@ const createAdmin = async (payload: any) => {
         password: hashedPassword,
         role: UserRole.ADMIN,
         accountStatus: AccountStatus.ACTIVE,
-        needsPasswordChange: true, // Specific requirement
+        needsPasswordChange: true,
+        division: payload.division || 'Central',
+        district: payload.district || 'Central',
+        upazila: payload.upazila || 'Central',
       },
     });
 
