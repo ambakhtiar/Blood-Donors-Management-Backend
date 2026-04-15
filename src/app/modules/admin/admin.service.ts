@@ -1,5 +1,6 @@
 import { Prisma, AccountStatus, UserRole } from "../../../generated/prisma";
 import httpStatus from "http-status";
+import { JwtPayload } from "jsonwebtoken";
 import AppError from "../../errors/AppError";
 import { prisma } from "../../lib/prisma";
 import { IOptions, IUserFilters } from "./admin.interface";
@@ -69,7 +70,7 @@ const getAllOrganisations = async (filters: IUserFilters, options: IOptions) => 
   return await getAllUsers({ ...filters, role: UserRole.ORGANISATION }, options);
 };
 
-const changeUserStatus = async (id: string, status: AccountStatus) => {
+const changeUserStatus = async (id: string, status: AccountStatus, requester: JwtPayload) => {
   const user = await prisma.user.findUnique({
     where: {
       id,
@@ -79,6 +80,21 @@ const changeUserStatus = async (id: string, status: AccountStatus) => {
 
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, 'User not found. The account may have been deleted or the ID is incorrect.');
+  }
+
+  // Security checks
+  if (user.id === requester.userId) {
+    throw new AppError(
+      httpStatus.FORBIDDEN,
+      "You cannot change your own account status."
+    );
+  }
+
+  if (requester.role === UserRole.ADMIN && (user.role === UserRole.ADMIN || user.role === UserRole.SUPER_ADMIN)) {
+    throw new AppError(
+      httpStatus.FORBIDDEN,
+      "You do not have permission to change the status of other administrative accounts."
+    );
   }
 
   const result = await prisma.user.update({
@@ -101,7 +117,7 @@ const changeUserStatus = async (id: string, status: AccountStatus) => {
   return result;
 };
 
-const updateHospitalStatus = async (id: string, status: AccountStatus) => {
+const updateHospitalStatus = async (id: string, status: AccountStatus, requester: JwtPayload) => {
   const user = await prisma.user.findUnique({
     where: { id, role: UserRole.HOSPITAL, isDeleted: false },
   });
@@ -110,10 +126,10 @@ const updateHospitalStatus = async (id: string, status: AccountStatus) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Hospital account not found. Please verify the ID is correct.');
   }
 
-  return await changeUserStatus(id, status);
+  return await changeUserStatus(id, status, requester);
 };
 
-const updateOrganisationStatus = async (id: string, status: AccountStatus) => {
+const updateOrganisationStatus = async (id: string, status: AccountStatus, requester: JwtPayload) => {
   const user = await prisma.user.findUnique({
     where: { id, role: UserRole.ORGANISATION, isDeleted: false },
   });
@@ -122,15 +138,52 @@ const updateOrganisationStatus = async (id: string, status: AccountStatus) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Organisation account not found. Please verify the ID is correct.');
   }
 
-  return await changeUserStatus(id, status);
+  return await changeUserStatus(id, status, requester);
 };
 
 const getSystemAnalytics = async () => {
-  const [totalUsers, totalPosts, totalBloodDonors, totalDonationHistories] = await Promise.all([
+  const [
+    totalUsers,
+    totalPosts,
+    totalBloodDonors,
+    totalDonationHistories,
+    totalHospital,
+    pendingHospital,
+    rejectedHospital,
+    activeHospital,
+    blockedHospital,
+    totalOrg,
+    pendingOrg,
+    rejectedOrg,
+    activeOrg,
+    blockedOrg,
+    totalStandardUser,
+    blockedUser,
+    rejectedUser,
+    totalAdmin,
+  ] = await Promise.all([
     prisma.user.count({ where: { isDeleted: false } }),
     prisma.post.count({ where: { isDeleted: false } }),
     prisma.bloodDonor.count({ where: { isDeleted: false } }),
     prisma.donationHistory.count({ where: { isDeleted: false } }),
+    // Hospital counts
+    prisma.user.count({ where: { role: UserRole.HOSPITAL, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.HOSPITAL, accountStatus: AccountStatus.PENDING, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.HOSPITAL, accountStatus: AccountStatus.REJECTED, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.HOSPITAL, accountStatus: AccountStatus.ACTIVE, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.HOSPITAL, accountStatus: AccountStatus.BLOCKED, isDeleted: false } }),
+    // Organisation counts
+    prisma.user.count({ where: { role: UserRole.ORGANISATION, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.ORGANISATION, accountStatus: AccountStatus.PENDING, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.ORGANISATION, accountStatus: AccountStatus.REJECTED, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.ORGANISATION, accountStatus: AccountStatus.ACTIVE, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.ORGANISATION, accountStatus: AccountStatus.BLOCKED, isDeleted: false } }),
+    // Generic users (role USER)
+    prisma.user.count({ where: { role: UserRole.USER, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.USER, accountStatus: AccountStatus.BLOCKED, isDeleted: false } }),
+    prisma.user.count({ where: { role: UserRole.USER, accountStatus: AccountStatus.REJECTED, isDeleted: false } }),
+    // Admin count
+    prisma.user.count({ where: { role: UserRole.ADMIN, isDeleted: false } }),
   ]);
 
   return {
@@ -138,6 +191,20 @@ const getSystemAnalytics = async () => {
     totalPosts,
     totalBloodDonors,
     totalDonationHistories,
+    totalHospital,
+    pendingHospital,
+    rejectedHospital,
+    activeHospital,
+    blockedHospital,
+    totalOrg,
+    pendingOrg,
+    rejectedOrg,
+    activeOrg,
+    blockedOrg,
+    totalStandardUser,
+    blockedUser,
+    rejectedUser,
+    totalAdmin,
   };
 };
 

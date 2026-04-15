@@ -25,9 +25,9 @@ const updateProfileSchema = z.object({
       )
       .trim()
       .optional(),
-    profilePictureUrl: z.string().url('Please provide a valid URL for the profile picture').optional(),
+    profilePictureUrl: z.string().url('Please provide a valid URL for the profile picture').optional().or(z.literal('')),
     // Donor specific fields at root for convenience
-    name: z.string().trim().min(3, 'Name must be at least 3 characters long').max(100, 'Name cannot exceed 100 characters').optional(),
+    name: z.string().trim().min(2, 'Name must be at least 2 characters long').max(100, 'Name cannot exceed 100 characters').optional(),
     weight: z.coerce.number().min(40, 'Weight must be at least 40 kg').max(200, 'Weight seems out of range').optional(),
     lastDonationDate: z.coerce.date().optional(),
     isAvailableForDonation: z.boolean().optional(),
@@ -38,7 +38,7 @@ const updateProfileSchema = z.object({
 
     donorProfile: z
       .object({
-        name: z.string().trim().min(3, 'Name must be at least 3 characters long').max(100, 'Name cannot exceed 100 characters').optional(),
+        name: z.string().trim().min(2, 'Name must be at least 2 characters long').max(100, 'Name cannot exceed 100 characters').optional(),
         weight: z.coerce.number().min(40, 'Weight must be at least 40 kg').max(200, 'Weight seems out of range').optional(),
         lastDonationDate: z.coerce.date().optional(),
         isAvailableForDonation: z.boolean().optional(),
@@ -55,7 +55,7 @@ const updateProfileSchema = z.object({
       .optional(),
     organisation: z
       .object({
-        name: z.string().trim().min(3, 'Organisation name must be at least 3 characters long').max(150, 'Organisation name cannot exceed 150 characters').optional(),
+        name: z.string().trim().min(2, 'Organisation name must be at least 2 characters long').max(150, 'Organisation name cannot exceed 150 characters').optional(),
         registrationNumber: z.string().trim().optional(),
         establishedYear: z.string().trim().optional(),
         ...locationSchema,

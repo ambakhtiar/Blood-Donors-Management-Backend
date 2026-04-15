@@ -8,29 +8,36 @@ import { UserRole } from '../../../generated/prisma';
 const router = express.Router();
 
 router.post(
-  '/volunteers',
-  auth(UserRole.ORGANISATION),
-  validateRequest(OrganisationValidation.addVolunteerSchema),
-  OrganisationControllers.addVolunteer
+    '/volunteers',
+    auth(UserRole.ORGANISATION),
+    validateRequest(OrganisationValidation.addVolunteerSchema),
+    OrganisationControllers.addVolunteer
 );
 
 router.patch(
-  '/volunteers/:bloodDonorId/donation-date',
-  auth(UserRole.ORGANISATION),
-  validateRequest(OrganisationValidation.updateDonationDateSchema),
-  OrganisationControllers.updateUnregisteredVolunteerDonation
+    '/volunteers/:bloodDonorId/donation-date',
+    auth(UserRole.ORGANISATION),
+    validateRequest(OrganisationValidation.updateDonationDateSchema),
+    OrganisationControllers.updateUnregisteredVolunteerDonation
 );
 
 router.get(
-  '/volunteers',
-  auth(UserRole.ORGANISATION),
-  OrganisationControllers.getOrganisationVolunteers
+    '/volunteers',
+    auth(UserRole.ORGANISATION),
+    OrganisationControllers.getOrganisationVolunteers
 );
 
-router.get(
-  '/volunteers/history',
-  auth(UserRole.ORGANISATION),
-  OrganisationControllers.getVolunteerDonationHistory
+router.delete(
+    '/volunteers/:bloodDonorId',
+    auth(UserRole.ORGANISATION),
+    OrganisationControllers.deleteVolunteer
+);
+
+router.patch(
+    '/volunteers/:bloodDonorId',
+    auth(UserRole.ORGANISATION),
+    validateRequest(OrganisationValidation.updateVolunteerSchema),
+    OrganisationControllers.updateUnregisteredVolunteerInfo
 );
 
 export const OrganisationRoutes = router;

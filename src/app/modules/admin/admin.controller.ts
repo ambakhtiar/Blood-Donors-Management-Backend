@@ -54,8 +54,9 @@ const getAllOrganisations = catchAsync(async (req: Request, res: Response) => {
 const changeUserStatus = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const { status } = req.body;
+  const requester = req.user;
 
-  const result = await AdminServices.changeUserStatus(id as string, status);
+  const result = await AdminServices.changeUserStatus(id as string, status, requester);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -79,7 +80,8 @@ const getSystemAnalytics = catchAsync(async (req: Request, res: Response) => {
 const updateHospitalStatus = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const { status } = req.body;
-  const result = await AdminServices.updateHospitalStatus(id as string, status);
+  const requester = req.user;
+  const result = await AdminServices.updateHospitalStatus(id as string, status, requester);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -92,7 +94,8 @@ const updateHospitalStatus = catchAsync(async (req: Request, res: Response) => {
 const updateOrganisationStatus = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const { status } = req.body;
-  const result = await AdminServices.updateOrganisationStatus(id as string, status);
+  const requester = req.user;
+  const result = await AdminServices.updateOrganisationStatus(id as string, status, requester);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

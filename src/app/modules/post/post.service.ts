@@ -214,7 +214,8 @@ const createPost = async (user: JwtPayload, payload: ICreatePost) => {
 
 const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions, user?: JwtPayload) => {
     const userId = user?.userId;
-    const { searchTerm, type, bloodGroup: bg, division, district, upazila } = filters;
+    const role = user?.role;
+    const { searchTerm, type, bloodGroup: bg, division, district, upazila, isVerified, isApproved, isResolved } = filters;
     const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc' } = options;
 
     const skip = (Number(page) - 1) * Number(limit);
@@ -223,6 +224,18 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions, u
     const bloodGroup = bg ? (bloodGroupMap[bg as keyof typeof bloodGroupMap] || (bg as BloodGroup)) : undefined;
 
     const andConditions: Prisma.PostWhereInput[] = [];
+    
+    // Admin sees all posts including deleted; normal users only see non-deleted approved posts
+    const isAdminView = role === UserRole.ADMIN || role === UserRole.SUPER_ADMIN;
+    if (!isAdminView) {
+        andConditions.push({ isDeleted: false });
+        andConditions.push({ isApproved: true });
+    } else {
+        // Admin can optionally filter
+        if (filters.isDeleted !== undefined) {
+            andConditions.push({ isDeleted: filters.isDeleted === 'true' || filters.isDeleted === true });
+        }
+    }
 
     if (searchTerm) {
         const searchBg = bloodGroupMap[searchTerm as keyof typeof bloodGroupMap];
@@ -240,7 +253,15 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions, u
     if (district) andConditions.push({ district });
     if (upazila) andConditions.push({ upazila });
 
-    andConditions.push({ isDeleted: false });
+    if (isVerified !== undefined) {
+        andConditions.push({ isVerified: isVerified === 'true' || isVerified === true });
+    }
+    if (isApproved !== undefined) {
+        andConditions.push({ isApproved: isApproved === 'true' || isApproved === true });
+    }
+    if (isResolved !== undefined) {
+        andConditions.push({ isResolved: isResolved === 'true' || isResolved === true });
+    }
 
     const whereConditions: Prisma.PostWhereInput = { AND: andConditions };
 
@@ -571,7 +592,7 @@ const approvePost = async (postId: string, user: JwtPayload) => {
 
     return await prisma.post.update({
         where: { id: postId },
-        data: { isApproved: true },
+        data: { isApproved: !post.isApproved },
     });
 };
 
@@ -592,7 +613,24 @@ const verifyPost = async (postId: string, user: JwtPayload) => {
 
     return await prisma.post.update({
         where: { id: postId },
-        data: { isVerified: true },
+        data: { isVerified: !post.isVerified },
+    });
+};
+
+const toggleDeletePost = async (postId: string, user: JwtPayload) => {
+    const { role } = user;
+
+    if (role !== UserRole.ADMIN && role !== UserRole.SUPER_ADMIN) {
+        throw new AppError(httpStatus.FORBIDDEN, 'Access denied. You do not have permission to manage post visibility.');
+    }
+
+    const post = await prisma.post.findUnique({ where: { id: postId } });
+
+    if (!post) throw new AppError(httpStatus.NOT_FOUND, 'Post not found.');
+
+    return await prisma.post.update({
+        where: { id: postId },
+        data: { isDeleted: !post.isDeleted },
     });
 };
 
@@ -606,4 +644,5 @@ export const PostServices = {
     approvePost,
     verifyPost,
     getPostsByUserId,
+    toggleDeletePost,
 };

@@ -49,4 +49,10 @@ router.patch(
     PostControllers.verifyPost
 );
 
+router.patch(
+    '/:id/toggle-delete',
+    auth(USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
+    PostControllers.toggleDeletePost
+);
+
 export const PostRoutes = router;

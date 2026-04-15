@@ -17,7 +17,7 @@ const createPost = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllPosts = catchAsync(async (req: Request, res: Response) => {
-    const filters = pick(req.query, ['searchTerm', 'type', 'bloodGroup', 'division', 'district', 'upazila']) as IPostFilters;
+    const filters = pick(req.query, ['searchTerm', 'type', 'bloodGroup', 'division', 'district', 'upazila', 'isVerified', 'isApproved', 'isResolved']) as IPostFilters;
     const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']) as IPaginationOptions;
 
     const result = await PostServices.getAllPosts(filters, options, req.user);
@@ -110,6 +110,17 @@ const verifyPost = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const toggleDeletePost = catchAsync(async (req: Request, res: Response) => {
+    const post = await PostServices.toggleDeletePost(req.params.id as string, req.user);
+    const isNowDeleted = post.isDeleted;
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: isNowDeleted ? 'Post hidden successfully' : 'Post restored successfully',
+        data: post,
+    });
+});
+
 export const PostControllers = {
     createPost,
     getAllPosts,
@@ -120,4 +131,5 @@ export const PostControllers = {
     approvePost,
     verifyPost,
     getPostsByUserId,
+    toggleDeletePost,
 };

@@ -53,7 +53,8 @@ const updateAdmin = catchAsync(async (req: Request, res: Response) => {
 
 const changeAdminAccess = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id as string;
-  const result = await ManageAdminServices.changeAdminAccess(id, req.body);
+  const requester = req.user;
+  const result = await ManageAdminServices.changeAdminAccess(id, req.body, requester);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -65,7 +66,8 @@ const changeAdminAccess = catchAsync(async (req: Request, res: Response) => {
 
 const deleteAdmin = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id as string;
-  const result = await ManageAdminServices.deleteAdmin(id);
+  const requester = req.user;
+  const result = await ManageAdminServices.deleteAdmin(id, requester);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

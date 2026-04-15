@@ -41,8 +41,36 @@ const getPostComments = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const editComment = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user as JwtPayload;
+  const commentId = req.params.commentId as string;
+  const result = await PostEngagementServices.editComment(commentId, user, req.body);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Comment updated successfully',
+    data: result,
+  });
+});
+
+const deleteComment = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user as JwtPayload;
+  const commentId = req.params.commentId as string;
+  await PostEngagementServices.deleteComment(commentId, user);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Comment deleted successfully',
+    data: null,
+  });
+});
+
 export const PostEngagementControllers = {
   toggleLike,
   addComment,
   getPostComments,
+  editComment,
+  deleteComment,
 };

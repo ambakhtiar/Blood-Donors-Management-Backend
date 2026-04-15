@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import { prisma } from '../../lib/prisma';
 import AppError from '../../errors/AppError';
-import { IRecordDonationPayload, IUpdateRequestStatusPayload, IHospitalDonationRecordFilters, IPaginationOptions } from './hospital.interface';
+import { IRecordDonationPayload, IUpdateRequestStatusPayload, IHospitalDonationRecordFilters, IPaginationOptions, IUpdateHospitalDonationRecordPayload } from './hospital.interface';
 import { Gender, PostType, RequestStatus, BloodGroup, Prisma } from '../../../generated/prisma';
 import { sendNotificationEmail } from '../../utils/sendEmail';
 import { bloodGroupMap } from '../../helpers/bloodGroup';
@@ -85,7 +85,6 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
                 hospitalId,
                 bloodDonorId: bloodDonor.id,
                 donationDate: donationDate,
-                weight: payload.weight,
             },
         });
 
@@ -163,21 +162,38 @@ const recordDonation = async (hospitalId: string, payload: IRecordDonationPayloa
                 receiverOrgId: hospitalId,
                 donationDate: donationDate,
                 donationCount: previousDonationsCount + 1,
-                weightDuringDonation: payload.weight,
             },
         });
 
         if (payload.createPost) {
-            await tx.post.create({
+            const post = await tx.post.create({
                 data: {
                     authorId: hospitalId,
                     type: PostType.BLOOD_DONATION,
                     bloodGroup: bloodDonor.bloodGroup,
                     donationTime: donationDate,
-                    content: payload.postContent || `Blood donation received from ${bloodDonor.name}`,
+                    title: payload.postTitle || `Blood Donation Recorded: ${bloodDonor.name}`,
+                    content: payload.postContent || `Successfully recorded a blood donation from ${bloodDonor.name}. Every drop counts towards saving a life.`,
+                    images: payload.postImages || [],
                     isApproved: true,
                     isVerified: false,
                 },
+            });
+
+            // Link post to record
+            await tx.hospitalDonationRecord.update({
+                where: { id: hospitalRecord.id },
+                data: { postId: post.id },
+            });
+
+            // Link post to donation history
+            await tx.donationHistory.updateMany({
+                where: { 
+                    bloodDonorId: bloodDonor.id, 
+                    donationDate: donationDate, 
+                    postId: null 
+                },
+                data: { postId: post.id },
             });
         }
 
@@ -347,30 +363,106 @@ const getHospitalDonationRecords = async (
 const updateHospitalDonationRecord = async (
     hospitalId: string,
     recordId: string,
-    payload: any
+    payload: IUpdateHospitalDonationRecordPayload
 ) => {
-    const record = await prisma.hospitalDonationRecord.findUnique({
-        where: { id: recordId, isDeleted: false },
-    });
+    return await prisma.$transaction(async (tx) => {
+        const record = await tx.hospitalDonationRecord.findUnique({
+            where: { id: recordId, isDeleted: false },
+            include: { bloodDonor: true }
+        });
 
-    if (!record) {
-        throw new AppError(httpStatus.NOT_FOUND, 'Donation record not found or already deleted.');
-    }
+        if (!record) {
+            throw new AppError(httpStatus.NOT_FOUND, 'Donation record not found or already deleted.');
+        }
 
-    if (record.hospitalId !== hospitalId) {
-        throw new AppError(httpStatus.FORBIDDEN, 'You are not authorized to update this record as it was not registered by your hospital.');
-    }
+        if (record.hospitalId !== hospitalId) {
+            throw new AppError(httpStatus.FORBIDDEN, 'You are not authorized to update this record as it was not registered by your hospital.');
+        }
 
-    // Update the associated BloodDonor directly
-    await prisma.bloodDonor.update({
-        where: { id: record.bloodDonorId },
-        data: payload,
-    });
+        // Lock check: If post already exists, cannot unmark
+        if (payload.createPost === false && record.postId) {
+            throw new AppError(httpStatus.BAD_REQUEST, 'Cannot unmark "Create Post" because a post has already been published for this record.');
+        }
 
-    // Return the updated joined record
-    return await prisma.hospitalDonationRecord.findUnique({
-        where: { id: recordId },
-        include: { bloodDonor: true }
+        const donor = record.bloodDonor;
+
+        // 1. Update BloodDonor specific fields if provided
+        const donorUpdateData: any = {};
+        if (payload.name) donorUpdateData.name = payload.name;
+        if (payload.contactNumber) donorUpdateData.contactNumber = payload.contactNumber;
+        if (payload.division) donorUpdateData.division = payload.division;
+        if (payload.district) donorUpdateData.district = payload.district;
+        if (payload.upazila) donorUpdateData.upazila = payload.upazila;
+
+        if (Object.keys(donorUpdateData).length > 0) {
+            await tx.bloodDonor.update({
+                where: { id: record.bloodDonorId },
+                data: donorUpdateData,
+            });
+        }
+
+        // 2. Handle Post creation/update
+        let updatedPostId = record.postId;
+
+        if (payload.createPost === true) {
+            if (!record.postId) {
+                // Create new post
+                const post = await tx.post.create({
+                    data: {
+                        authorId: hospitalId,
+                        type: PostType.BLOOD_DONATION,
+                        bloodGroup: donor.bloodGroup,
+                        donationTime: record.donationDate,
+                        title: payload.postTitle || `Blood Donation Recorded: ${donor.name}`,
+                        content: payload.postContent || `Successfully recorded a blood donation from ${donor.name}. Every drop counts towards saving a life.`,
+                        images: payload.postImages || [],
+                        isApproved: true,
+                        isVerified: false,
+                    },
+                });
+                updatedPostId = post.id;
+            } else {
+                // Update existing post if specific fields provided
+                const postUpdateData: any = {};
+                if (payload.postTitle) postUpdateData.title = payload.postTitle;
+                if (payload.postContent) postUpdateData.content = payload.postContent;
+                if (payload.postImages) postUpdateData.images = payload.postImages;
+
+                if (Object.keys(postUpdateData).length > 0) {
+                    await tx.post.update({
+                        where: { id: record.postId },
+                        data: postUpdateData,
+                    });
+                }
+            }
+        }
+
+        // 3. Update HospitalDonationRecord fields
+        const recordUpdateData: any = {
+            postId: updatedPostId,
+        };
+
+        await tx.hospitalDonationRecord.update({
+            where: { id: recordId },
+            data: recordUpdateData,
+        });
+
+        // 4. Also sync DonationHistory's postId if it was just created
+        if (updatedPostId && !record.postId) {
+            await tx.donationHistory.updateMany({
+                where: { 
+                    bloodDonorId: record.bloodDonorId, 
+                    donationDate: record.donationDate, 
+                    postId: null 
+                },
+                data: { postId: updatedPostId },
+            });
+        }
+
+        return await tx.hospitalDonationRecord.findUnique({
+            where: { id: recordId },
+            include: { bloodDonor: true, post: true }
+        });
     });
 };
 

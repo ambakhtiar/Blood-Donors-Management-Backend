@@ -27,18 +27,24 @@ const recordDonationSchema = z.object({
         district: z.string().trim().optional(),
         upazila: z.string().trim().optional(),
         createPost: z.boolean().optional(),
+        postTitle: z.string().trim().optional(),
+        postImages: z.array(z.string().url()).optional(),
         postContent: z.string().trim().optional(),
     }),
 });
 
 const updateDonationRecordSchema = z.object({
-  body: z.object({
-    name: z.string().trim().min(3, 'Name is too short').max(100).optional(),
-    contactNumber: z.string().regex(/^\+8801[3-9]\d{8}$/, 'Must be valid BD number').trim().optional(),
-    division: z.string().trim().optional(),
-    district: z.string().trim().optional(),
-    upazila: z.string().trim().optional(),
-  }),
+    body: z.object({
+        name: z.string().trim().min(3, 'Name is too short').max(100).optional(),
+        contactNumber: z.string().regex(/^\+8801[3-9]\d{8}$/, 'Must be valid BD number').trim().optional(),
+        division: z.string().trim().optional(),
+        district: z.string().trim().optional(),
+        upazila: z.string().trim().optional(),
+        createPost: z.boolean().optional(),
+        postTitle: z.string().trim().optional(),
+        postImages: z.array(z.string().url()).optional(),
+        postContent: z.string().trim().optional(),
+    }),
 });
 
 export const HospitalValidation = {

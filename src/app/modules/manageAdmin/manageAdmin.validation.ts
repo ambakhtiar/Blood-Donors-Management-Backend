@@ -43,13 +43,21 @@ const updateAdminSchema = z.object({
       )
       .trim()
       .optional(),
+    email: z
+      .string()
+      .email('Please provide a valid email address.')
+      .trim()
+      .optional(),
+    division: z.string().trim().optional(),
+    district: z.string().trim().optional(),
+    upazila: z.string().trim().optional(),
   }),
 });
 
 const changeAdminAccessSchema = z.object({
   body: z.object({
-    accountStatus: z.enum([AccountStatus.ACTIVE, AccountStatus.BLOCKED], {
-      message: 'Status must be either ACTIVE or BLOCKED',
+    accountStatus: z.nativeEnum(AccountStatus, {
+      message: 'Invalid account status provided.',
     }),
   }),
 });

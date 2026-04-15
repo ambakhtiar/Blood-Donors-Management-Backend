@@ -20,8 +20,9 @@ export interface IRecordDonationPayload {
   name: string;
   bloodGroup: BloodGroup;
   gender: Gender;
-  weight?: number;
   createPost?: boolean;
+  postTitle?: string;
+  postImages?: string[];
   postContent?: string;
   division?: string;
   district?: string;
@@ -29,6 +30,18 @@ export interface IRecordDonationPayload {
   area?: string;
   latitude?: number;
   longitude?: number;
+}
+
+export interface IUpdateHospitalDonationRecordPayload {
+  createPost?: boolean;
+  postTitle?: string;
+  postImages?: string[];
+  postContent?: string;
+  name?: string;
+  contactNumber?: string;
+  division?: string;
+  district?: string;
+  upazila?: string;
 }
 
 export interface IUpdateRequestStatusPayload {

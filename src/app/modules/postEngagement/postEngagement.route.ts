@@ -26,4 +26,17 @@ router.get(
   PostEngagementControllers.getPostComments
 );
 
+router.patch(
+  '/comment/:commentId',
+  auth(UserRole.USER, UserRole.HOSPITAL, UserRole.ORGANISATION, UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  validateRequest(PostEngagementValidations.editCommentSchema),
+  PostEngagementControllers.editComment
+);
+
+router.delete(
+  '/comment/:commentId',
+  auth(UserRole.USER, UserRole.HOSPITAL, UserRole.ORGANISATION, UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  PostEngagementControllers.deleteComment
+);
+
 export const PostEngagementRoutes = router;

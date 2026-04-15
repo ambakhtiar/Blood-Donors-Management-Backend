@@ -227,8 +227,9 @@ model HospitalDonationRecord {
     hospital     User       @relation("HospitalRecords", fields: [hospitalId], references: [id])
     bloodDonorId String
     bloodDonor   BloodDonor @relation(fields: [bloodDonorId], references: [id])
+    postId       String?    @unique
+    post         Post?      @relation(fields: [postId], references: [id])
     donationDate DateTime   @default(now())
-    weight       Float?
     isDeleted    Boolean    @default(false)
     createdAt    DateTime   @default(now())
     updatedAt    DateTime   @updatedAt
@@ -280,6 +281,7 @@ model Post {
     comments Comment[]
 
     donationHistories DonationHistory?
+    hospitalRecord    HospitalDonationRecord?
 }
 
 model DonationHistory {
@@ -294,7 +296,6 @@ model DonationHistory {
     post                 Post?      @relation(fields: [postId], references: [id])
     donationDate         DateTime
     donationCount        Int        @default(1)
-    weightDuringDonation Float?
     isDeleted            Boolean    @default(false)
     createdAt            DateTime   @default(now())
 }

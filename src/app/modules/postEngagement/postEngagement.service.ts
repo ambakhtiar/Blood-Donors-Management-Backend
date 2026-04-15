@@ -2,6 +2,7 @@ import httpStatus from 'http-status';
 import { prisma } from '../../lib/prisma';
 import AppError from '../../errors/AppError';
 import { ICommentPayload, IToggleLikePayload } from './postEngagement.interface';
+import { JwtPayload } from 'jsonwebtoken';
 
 const userSelect = {
   id: true,
@@ -121,8 +122,42 @@ const getPostComments = async (postId: string) => {
   return comments;
 };
 
+const editComment = async (commentId: string, user: JwtPayload, payload: { content: string }) => {
+  const comment = await prisma.comment.findUnique({ where: { id: commentId } });
+  if (!comment) throw new AppError(httpStatus.NOT_FOUND, 'Comment not found');
+
+  if (comment.userId !== user.userId) {
+    throw new AppError(httpStatus.FORBIDDEN, 'You can only edit your own comments.');
+  }
+
+  return await prisma.comment.update({
+    where: { id: commentId },
+    data: { content: payload.content },
+    include: { user: { select: userSelect } }
+  });
+};
+
+const deleteComment = async (commentId: string, user: JwtPayload) => {
+  const comment = await prisma.comment.findUnique({ where: { id: commentId } });
+  if (!comment) throw new AppError(httpStatus.NOT_FOUND, 'Comment not found');
+
+  if (comment.userId !== user.userId && user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN') {
+    throw new AppError(httpStatus.FORBIDDEN, 'You do not have permission to delete this comment.');
+  }
+
+  await prisma.$transaction(async (tx) => {
+    // Delete replies first to prevent foreign key errors
+    await tx.comment.deleteMany({ where: { parentId: commentId } });
+    await tx.comment.delete({ where: { id: commentId } });
+  });
+
+  return null;
+};
+
 export const PostEngagementServices = {
   toggleLike,
   addComment,
   getPostComments,
+  editComment,
+  deleteComment,
 };

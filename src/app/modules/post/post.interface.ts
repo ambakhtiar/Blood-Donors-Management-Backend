@@ -32,6 +32,10 @@ export interface IPostFilters {
     division?: string;
     district?: string;
     upazila?: string;
+    isVerified?: boolean | string;
+    isApproved?: boolean | string;
+    isResolved?: boolean | string;
+    isDeleted?: boolean | string;
 }
 
 export interface IPaginationOptions {
