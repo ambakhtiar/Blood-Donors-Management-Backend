@@ -5,54 +5,67 @@ import sendResponse from "../../utils/sendResponse";
 import { UserServices } from "./user.service";
 
 const getMyProfile = catchAsync(async (req: Request, res: Response) => {
-  const { userId, role } = req.user;
-  const result = await UserServices.getMyProfile(userId, role);
+    const { userId, role } = req.user;
+    const result = await UserServices.getMyProfile(userId, role);
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: "User profile retrieved successfully",
-    data: result,
-  });
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "User profile retrieved successfully",
+        data: result,
+    });
 });
 
 const updateMyProfile = catchAsync(async (req: Request, res: Response) => {
-  const { userId, role } = req.user;
-  const result = await UserServices.updateMyProfile(userId, role, req.body);
+    const { userId, role } = req.user;
+    const result = await UserServices.updateMyProfile(userId, role, req.body);
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: "User profile updated successfully",
-    data: result,
-  });
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "User profile updated successfully",
+        data: result,
+    });
 });
 
 const getDonorList = catchAsync(async (req: Request, res: Response) => {
-  const result = await UserServices.getDonorList(req.query as Record<string, unknown>);
+    const result = await UserServices.getDonorList(req.query as Record<string, unknown>);
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: "Donor list retrieved successfully",
-    data: result,
-  });
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Donor list retrieved successfully",
+        data: result,
+    });
 });
 
 const getDonationHistory = catchAsync(async (req: Request, res: Response) => {
-  const result = await UserServices.getDonationHistory(req.user);
+    const result = await UserServices.getDonationHistory(req.user);
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Donation history retrieved successfully',
-    data: result,
-  });
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: 'Donation history retrieved successfully',
+        data: result,
+    });
+});
+
+const getPublicProfile = catchAsync(async (req: Request, res: Response) => {
+    const { userId } = req.params;
+    const result = await UserServices.getPublicProfile(userId as string);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Public profile retrieved successfully",
+        data: result,
+    });
 });
 
 export const UserControllers = {
-  getMyProfile,
-  updateMyProfile,
-  getDonorList,
-  getDonationHistory,
+    getMyProfile,
+    updateMyProfile,
+    getDonorList,
+    getDonationHistory,
+    getPublicProfile,
 };

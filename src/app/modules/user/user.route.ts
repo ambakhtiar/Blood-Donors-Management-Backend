@@ -34,4 +34,10 @@ router.get(
   UserControllers.getDonorList
 );
 
+router.get(
+    '/:userId',
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.HOSPITAL, UserRole.ORGANISATION, UserRole.USER),
+    UserControllers.getPublicProfile
+);
+
 export const UserRoutes = router;

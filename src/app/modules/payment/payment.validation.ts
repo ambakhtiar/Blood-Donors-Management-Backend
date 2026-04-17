@@ -10,6 +10,9 @@ const initiateDonationSchema = z.object({
       .number({ message: 'Donation amount is required and must be a number' })
       .positive('Donation amount must be greater than zero')
       .min(10, 'Minimum donation amount is 10 BDT'),
+    success_url: z.string().url().optional(),
+    fail_url: z.string().url().optional(),
+    cancel_url: z.string().url().optional(),
   }),
 });
 

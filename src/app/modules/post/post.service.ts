@@ -253,6 +253,15 @@ const getAllPosts = async (filters: IPostFilters, options: IPaginationOptions, u
     if (district) andConditions.push({ district });
     if (upazila) andConditions.push({ upazila });
 
+    if (filters.startDate && filters.endDate) {
+        andConditions.push({
+            createdAt: {
+                gte: new Date(filters.startDate as string),
+                lte: new Date(filters.endDate as string),
+            },
+        });
+    }
+
     if (isVerified !== undefined) {
         andConditions.push({ isVerified: isVerified === 'true' || isVerified === true });
     }
@@ -555,20 +564,21 @@ const deletePost = async (postId: string, user: JwtPayload) => {
 };
 
 const resolvePost = async (postId: string, user: JwtPayload) => {
-    const { userId } = user;
-
+    const { userId, role } = user;
     const post = await prisma.post.findUnique({
         where: { id: postId, isDeleted: false },
     });
 
     if (!post) throw new AppError(httpStatus.NOT_FOUND, 'Post not found. It may have been deleted or the ID is incorrect.');
 
-    if (post.type !== PostType.BLOOD_FINDING) {
-        throw new AppError(httpStatus.BAD_REQUEST, 'Only "Blood Finding" posts can be marked as resolved. This action is not available for this post type.');
+    if (post.type !== PostType.BLOOD_FINDING && post.type !== PostType.HELPING) {
+        throw new AppError(httpStatus.BAD_REQUEST, 'Only "Blood Finding" or "Helping" posts can be marked as resolved.');
     }
 
-    if (post.authorId !== userId) {
-        throw new AppError(httpStatus.FORBIDDEN, 'Only the original author of this post can mark it as resolved.');
+    const isAdmin = role === UserRole.ADMIN || role === UserRole.SUPER_ADMIN;
+
+    if (post.authorId !== userId && !isAdmin) {
+        throw new AppError(httpStatus.FORBIDDEN, 'Only the original author or an administrator can mark this post as resolved.');
     }
 
     return await prisma.post.update({

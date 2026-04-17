@@ -33,7 +33,7 @@ router.delete(
 
 router.patch(
     '/:id/resolve',
-    auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL),
+    auth(USER_ROLE.USER, USER_ROLE.ORGANISATION, USER_ROLE.HOSPITAL, USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN),
     PostControllers.resolvePost
 );
 

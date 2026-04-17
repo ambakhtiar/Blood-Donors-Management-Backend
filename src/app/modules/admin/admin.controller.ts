@@ -7,7 +7,7 @@ import { IOptions, IUserFilters } from './admin.interface';
 import pick from '../../shared/pick';
 
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'role', 'accountStatus']);
+  const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'role', 'accountStatus', 'startDate', 'endDate']);
   const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
 
   const result = await AdminServices.getAllUsers(filters as IUserFilters, options as IOptions);
@@ -22,7 +22,7 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllHospitals = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'accountStatus']);
+  const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'accountStatus', 'startDate', 'endDate']);
   const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
 
   const result = await AdminServices.getAllHospitals(filters as IUserFilters, options as IOptions);
@@ -37,7 +37,7 @@ const getAllHospitals = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllOrganisations = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'accountStatus']);
+  const filters = pick(req.query, ['searchTerm', 'email', 'contactNumber', 'accountStatus', 'startDate', 'endDate']);
   const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
 
   const result = await AdminServices.getAllOrganisations(filters as IUserFilters, options as IOptions);
@@ -105,6 +105,21 @@ const updateOrganisationStatus = catchAsync(async (req: Request, res: Response) 
   });
 });
 
+const getAllDonors = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, ['searchTerm', 'bloodGroup', 'gender', 'division', 'district', 'startDate', 'endDate']);
+  const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
+
+  const result = await AdminServices.getAllDonors(filters, options as IOptions);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Donors retrieved successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
+
 export const AdminControllers = {
   getAllUsers,
   changeUserStatus,
@@ -113,4 +128,5 @@ export const AdminControllers = {
   getAllOrganisations,
   updateHospitalStatus,
   updateOrganisationStatus,
+  getAllDonors,
 };

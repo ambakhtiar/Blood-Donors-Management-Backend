@@ -20,6 +20,12 @@ router.get(
   AdminControllers.getAllUsers
 );
 
+router.get(
+  '/donors',
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  AdminControllers.getAllDonors
+);
+
 router.patch(
   '/users/:id/status',
   auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),

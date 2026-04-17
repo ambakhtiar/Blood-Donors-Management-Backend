@@ -17,7 +17,7 @@ const createPost = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllPosts = catchAsync(async (req: Request, res: Response) => {
-    const filters = pick(req.query, ['searchTerm', 'type', 'bloodGroup', 'division', 'district', 'upazila', 'isVerified', 'isApproved', 'isResolved']) as IPostFilters;
+    const filters = pick(req.query, ['searchTerm', 'type', 'bloodGroup', 'division', 'district', 'upazila', 'isVerified', 'isApproved', 'isResolved', 'startDate', 'endDate']) as IPostFilters;
     const options = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']) as IPaginationOptions;
 
     const result = await PostServices.getAllPosts(filters, options, req.user);

@@ -17,13 +17,12 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, Postman, etc.)
-      if (!origin) return callback(null, true);
+      // Allow requests with no origin (mobile apps, Postman, etc.) or 'null' origin (common in redirects)
+      if (!origin || origin === 'null') return callback(null, true);
 
       // Check if origin is in allowedOrigins or matches Vercel preview pattern
       const isAllowed =
         allowedOrigins.includes(origin) ||
-        /^https:\/\/next-blog-client.*\.vercel\.app$/.test(origin) ||
         /^https:\/\/.*\.vercel\.app$/.test(origin); // Any Vercel deployment
 
       if (isAllowed) {

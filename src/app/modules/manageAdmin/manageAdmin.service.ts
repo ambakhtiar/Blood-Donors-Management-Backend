@@ -55,7 +55,7 @@ const createAdmin = async (payload: any) => {
 };
 
 const getAllAdmins = async (query: Record<string, unknown>) => {
-    const { searchTerm, page, limit } = query;
+    const { searchTerm, page, limit, sortBy, sortOrder, accountStatus } = query;
 
     const pageNumber = Number(page || 1);
     const limitNumber = Number(limit || 10);
@@ -73,7 +73,23 @@ const getAllAdmins = async (query: Record<string, unknown>) => {
         });
     }
 
+    if (accountStatus) {
+        andConditions.push({
+            user: { accountStatus: accountStatus }
+        });
+    }
+
     const whereConditions = andConditions.length > 0 ? { AND: andConditions } : {};
+
+    // Determine orderBy
+    let orderBy: any = { createdAt: 'desc' };
+    if (sortBy && sortOrder) {
+        if (sortBy === 'name') {
+            orderBy = { name: sortOrder };
+        } else if (sortBy === 'email' || sortBy === 'createdAt') {
+            orderBy = { user: { [sortBy]: sortOrder } };
+        }
+    }
 
     const admins = await prisma.admin.findMany({
         where: whereConditions,
@@ -96,6 +112,7 @@ const getAllAdmins = async (query: Record<string, unknown>) => {
                 },
             },
         },
+        orderBy,
     });
 
     const total = await prisma.admin.count({ where: whereConditions });

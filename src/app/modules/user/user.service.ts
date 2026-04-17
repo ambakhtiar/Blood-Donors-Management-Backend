@@ -192,7 +192,7 @@ const updateMyProfile = async (userId: string, role: string, payload: IUpdatePro
 };
 
 const getDonorList = async (filters: Record<string, unknown>) => {
-    const { bloodGroup: bg, division, district, upazila, searchTerm } = filters;
+    const { bloodGroup: bg, division, district, upazila, searchTerm, sortBy, sortOrder } = filters;
 
     const andConditions: Prisma.BloodDonorWhereInput[] = [];
 
@@ -222,6 +222,15 @@ const getDonorList = async (filters: Record<string, unknown>) => {
 
     if (upazila) {
         andConditions.push({ upazila: { equals: upazila as string } });
+    }
+
+    if (filters.startDate && filters.endDate) {
+        andConditions.push({
+            createdAt: {
+                gte: new Date(filters.startDate as string),
+                lte: new Date(filters.endDate as string),
+            },
+        });
     }
 
     // Always filter for available donors and not deleted
@@ -259,8 +268,18 @@ const getDonorList = async (filters: Record<string, unknown>) => {
 
     const whereConditions: Prisma.BloodDonorWhereInput = { AND: andConditions };
 
+    let orderBy: Prisma.BloodDonorOrderByWithRelationInput = { createdAt: 'desc' };
+    if (sortBy) {
+        const validSortFields = ['lastDonationDate', 'createdAt', 'name'];
+        if (validSortFields.includes(sortBy as string)) {
+            // Prisma treats nulls linearly. Using default sorting behavior.
+            orderBy = { [sortBy as string]: sortOrder === 'asc' ? 'asc' : 'desc' };
+        }
+    }
+
     const result = await prisma.bloodDonor.findMany({
         where: whereConditions,
+        orderBy,
         include: {
             user: {
                 select: {
@@ -310,9 +329,69 @@ const getDonationHistory = async (user: JwtPayload) => {
     return result;
 };
 
+const getPublicProfile = async (userId: string) => {
+    const user = await prisma.user.findUnique({
+        where: { id: userId, isDeleted: false },
+        include: {
+            donorProfile: true,
+            hospital: true,
+            organisation: true,
+            bloodDonor: {
+                select: {
+                    id: true,
+                    donations: {
+                        where: { isDeleted: false }
+                    }
+                }
+            }
+        }
+    });
+
+    if (!user) {
+        throw new AppError(httpStatus.NOT_FOUND, 'User not found.');
+    }
+
+    // Calculate total donations across all records
+    const donationCount = user.bloodDonor?.donations?.reduce((acc, curr) => acc + (curr.donationCount || 1), 0) || 0;
+
+    const posts = await prisma.post.findMany({
+        where: { authorId: userId, isDeleted: false },
+        orderBy: { createdAt: 'desc' },
+        include: {
+            author: {
+                select: {
+                    id: true,
+                    role: true,
+                    profilePictureUrl: true,
+                    donorProfile: { select: { name: true } },
+                    hospital: { select: { name: true } },
+                    organisation: { select: { name: true } },
+                }
+            },
+            _count: {
+                select: {
+                    comments: true,
+                    likes: true
+                }
+            }
+        }
+    });
+
+    // Remove sensitive data
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...safeUser } = user;
+
+    return {
+        user: safeUser,
+        posts,
+        donationCount
+    };
+};
+
 export const UserServices = {
     getMyProfile,
     updateMyProfile,
     getDonorList,
     getDonationHistory,
+    getPublicProfile,
 };

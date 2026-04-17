@@ -26,6 +26,14 @@ const getAllUsers = async (filters: IUserFilters, options: IOptions) => {
   if (contactNumber) andConditions.push({ contactNumber: { contains: contactNumber, mode: "insensitive" } });
   if (role) andConditions.push({ role: role as UserRole });
   if (accountStatus) andConditions.push({ accountStatus });
+  if (filters.startDate && filters.endDate) {
+    andConditions.push({
+      createdAt: {
+        gte: new Date(filters.startDate),
+        lte: new Date(filters.endDate),
+      },
+    });
+  }
 
   andConditions.push({ isDeleted: false });
 
@@ -208,6 +216,100 @@ const getSystemAnalytics = async () => {
   };
 };
 
+const getAllDonors = async (filters: any, options: IOptions) => {
+  const { searchTerm, bloodGroup, gender, division, district } = filters;
+  const { limit, page, skip, sortBy, sortOrder } = paginationHelper.calculatePagination(options);
+
+  const andConditions: Prisma.BloodDonorWhereInput[] = [];
+
+  if (searchTerm) {
+    andConditions.push({
+      OR: [
+        { name: { contains: searchTerm, mode: "insensitive" } },
+        { contactNumber: { contains: searchTerm, mode: "insensitive" } },
+      ],
+    });
+  }
+
+  if (bloodGroup) andConditions.push({ bloodGroup: bloodGroup as any });
+  if (gender) andConditions.push({ gender: gender as any });
+  if (division) andConditions.push({ division: { contains: division, mode: "insensitive" } });
+  if (district) andConditions.push({ district: { contains: district, mode: "insensitive" } });
+
+  if (filters.startDate && filters.endDate) {
+    andConditions.push({
+      createdAt: {
+        gte: new Date(filters.startDate),
+        lte: new Date(filters.endDate),
+      },
+    });
+  }
+
+  andConditions.push({ isDeleted: false });
+
+  const whereConditions: Prisma.BloodDonorWhereInput = andConditions.length > 0 ? { AND: andConditions } : {};
+
+  let orderBy: Prisma.BloodDonorOrderByWithRelationInput = { createdAt: 'desc' };
+  if (sortBy) {
+    const validSortFields = ['lastDonationDate', 'createdAt', 'name'];
+    if (validSortFields.includes(sortBy)) {
+      orderBy = { [sortBy]: sortOrder === 'asc' ? 'asc' : 'desc' };
+    }
+  }
+
+  const result = await prisma.bloodDonor.findMany({
+    where: whereConditions,
+    skip,
+    take: limit,
+    orderBy,
+    include: {
+      user: {
+        select: {
+          id: true,
+          email: true,
+          accountStatus: true,
+        }
+      },
+      hospitalRecords: {
+        include: {
+          hospital: {
+            select: {
+              id: true,
+              hospital: true,
+            }
+          }
+        }
+      },
+      organisationVols: {
+        include: {
+          organisation: {
+            select: {
+              id: true,
+              organisation: true,
+            }
+          }
+        }
+      },
+      donations: {
+        where: { isDeleted: false }
+      }
+    },
+  });
+
+  const total = await prisma.bloodDonor.count({
+    where: whereConditions,
+  });
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
+};
+
 export const AdminServices = {
   getAllUsers,
   changeUserStatus,
@@ -216,4 +318,5 @@ export const AdminServices = {
   getAllOrganisations,
   updateHospitalStatus,
   updateOrganisationStatus,
+  getAllDonors,
 };

@@ -5,8 +5,13 @@ import { PostType, PaymentStatus } from "../../../generated/prisma";
 import { envVars } from "../../config/env";
 import { SSLCommerzUtils } from "../../utils/sslcommerz";
 
-const initiateDonation = async (userId: string, postId: string, amount: number) => {
-  const post = await prisma.post.findUnique({
+const initiateDonation = async (
+  userId: string, 
+  postId: string, 
+  amount: number,
+  redirectUrls?: { success_url?: string; fail_url?: string; cancel_url?: string }
+) => {
+  const post = await prisma.post.findFirst({
     where: { id: postId, isDeleted: false },
     include: { author: true }
   });
@@ -19,6 +24,19 @@ const initiateDonation = async (userId: string, postId: string, amount: number) 
     throw new AppError(httpStatus.BAD_REQUEST, "Only helping posts support crowdfunding");
   }
 
+  // Prevent donation if goal is already met or if this donation exceeds it
+  const currentRaised = post.raisedAmount || 0;
+  const target = post.targetAmount || 0;
+  
+  if (currentRaised >= target) {
+    throw new AppError(httpStatus.BAD_REQUEST, "This goal has already been successfully reached! Thank you for your interest.");
+  }
+
+  if (currentRaised + amount > target) {
+    const remaining = target - currentRaised;
+    throw new AppError(httpStatus.BAD_REQUEST, `This donation would exceed the target goal. Only ৳${remaining.toLocaleString()} more is needed.`);
+  }
+
   if (!post.isVerified) {
     throw new AppError(httpStatus.FORBIDDEN, "Only verified helping posts can receive donations.");
   }
@@ -28,7 +46,13 @@ const initiateDonation = async (userId: string, postId: string, amount: number) 
   }
 
   const user = await prisma.user.findUnique({
-    where: { id: userId }
+    where: { id: userId },
+    include: {
+      donorProfile: true,
+      admin: true,
+      hospital: true,
+      organisation: true,
+    },
   });
 
   if (!user) {
@@ -48,29 +72,51 @@ const initiateDonation = async (userId: string, postId: string, amount: number) 
     }
   });
 
+  const userName =
+    user.donorProfile?.name ||
+    user.admin?.name ||
+    user.hospital?.name ||
+    user.organisation?.name ||
+    "Donor";
+
+  // Use dynamic redirect URLs if provided, otherwise fallback to backend defaults
+  const success_url = redirectUrls?.success_url || `${envVars.BACKEND_URL}/api/v1/payments/success?transactionId=${transactionId}`;
+  const fail_url = redirectUrls?.fail_url || `${envVars.BACKEND_URL}/api/v1/payments/fail?transactionId=${transactionId}`;
+  const cancel_url = redirectUrls?.cancel_url || `${envVars.BACKEND_URL}/api/v1/payments/cancel?transactionId=${transactionId}`;
+
   const paymentInitData = {
     total_amount: amount,
-    currency: 'BDT',
+    currency: "BDT",
     tran_id: transactionId,
-    success_url: `${envVars.BACKEND_URL}/api/v1/payments/success?transactionId=${transactionId}`,
-    fail_url: `${envVars.BACKEND_URL}/api/v1/payments/fail?transactionId=${transactionId}`,
-    cancel_url: `${envVars.BACKEND_URL}/api/v1/payments/cancel?transactionId=${transactionId}`,
+    success_url,
+    fail_url,
+    cancel_url,
     ipn_url: `${envVars.BACKEND_URL}/api/v1/payments/ipn`,
-    shipping_method: 'N/A',
-    product_name: 'Donation',
-    product_category: 'Crowdfunding',
-    product_profile: 'general',
-    cus_name: user.email || 'Donor', // Use email if name not available in User
-    cus_email: user.email || 'donor@example.com',
-    cus_add1: 'Dhaka',
-    cus_city: 'Dhaka',
-    cus_state: 'Dhaka',
-    cus_postcode: '1000',
-    cus_country: 'Bangladesh',
-    cus_phone: user.contactNumber || '01700000000',
+    shipping_method: "N/A",
+    product_name: "Donation",
+    product_category: "Crowdfunding",
+    product_profile: "general",
+    cus_name: userName,
+    cus_email: user.email || "donor@example.com",
+    cus_add1: "Dhaka",
+    cus_city: "Dhaka",
+    cus_state: "Dhaka",
+    cus_postcode: "1000",
+    cus_country: "Bangladesh",
+    cus_phone: user.contactNumber || "01700000000",
+    ship_name: userName,
+    ship_add1: "Dhaka",
+    ship_city: "Dhaka",
+    ship_state: "Dhaka",
+    ship_postcode: "1000",
+    ship_country: "Bangladesh",
   };
 
   const response = await SSLCommerzUtils.initPayment(paymentInitData);
+  console.log('SSLCommerz Response:', response);
+  if (response.status !== 'SUCCESS') {
+    throw new AppError(httpStatus.BAD_REQUEST, response.failedreason || 'SSLCommerz payment initiation failed');
+  }
   return response.GatewayPageURL;
 };
 
@@ -85,7 +131,10 @@ const paymentSuccess = async (transactionId: string) => {
     }
 
     if (payment.status === PaymentStatus.SUCCESS) {
-      return { message: "Already successful" };
+      return { 
+        message: "Already successful",
+        postId: payment.postId
+      };
     }
 
     // Update payment status
@@ -104,7 +153,10 @@ const paymentSuccess = async (transactionId: string) => {
       }
     });
 
-    return { message: "Payment successful" };
+    return { 
+      message: "Payment successful",
+      postId: payment.postId 
+    };
   });
 };
 

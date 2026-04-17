@@ -9,7 +9,7 @@ const router = Router();
 
 router.post(
   "/initiate",
-  auth(UserRole.USER),
+  auth(UserRole.USER, UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.HOSPITAL, UserRole.ORGANISATION),
   validateRequest(PaymentValidation.initiateDonationSchema),
   PaymentControllers.initiateDonation
 );
